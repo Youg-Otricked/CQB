@@ -1,0 +1,11 @@
+project:
+  name: CQB
+  version: 1.0.0
+  description: CQB is QuarticC's official build system
+  author: luca
+  repo: 
+  qc_version: x1.3.49
+
+dependencies: {}
+
+commands:

@@ -1,0 +1,95 @@
+namespace Exported {
+    #include<Vector, std>
+}
+#nomain
+namespace CQB {
+    namespace Build {
+        struct Command {
+            string targetName;
+            string commandBin;
+            Vector::Vec<string> inputs;
+            string outputArtifact;
+            Vector::Vec<string> flags;
+            Vector::Vec<string> dependencies;
+        };
+        class Builder {
+            private Vector::Vec<Command> commands;
+            private Command& current_command();
+            Builder();
+            Builder* Project(string name);
+            Builder* Alias(string fileName, string aliasName);
+            Builder* AliasDir(string dirName, string aliasName);
+            Builder* Define(string to_define);
+            Builder* LinkDir(string to_link);
+            Builder* Link(string to_link);
+            Builder* Include(string to_inc);
+            Builder* LinkerFlag(string to_flag);
+            Builder* Warn(string to_warn);
+            Builder* NoWarn(string to_warn);
+            Builder* Error(string to_error);
+            Builder* CArgs();
+            Builder* AddExecutable(string outputName, Vector::Vec<string> sourceFiles);
+            Builder* AddObject(string outputName, Vector::Vec<string> sourceFiles);
+            Builder* AddStaticLibrary(string outputName, Vector::Vec<string> objectFiles);
+            Builder* AddDynamicLibrary(string outputName, Vector::Vec<string> sourceFiles);
+            Builder* TargetFlags(Vector::Vec<string> targetFlags);
+            Builder* AddCustomCommand(string targetName, string commandBin, string outputArtifact);
+            Builder* Flag(string flag);
+            Builder* AddCDependency(string targetName, Vector::Vec<string> cSourceFiles);
+            Builder* DependsOn(string dependencyName);
+            Vector::Vec<Command> ExtractGraph();
+        };
+    }
+    namespace CI {
+        struct Step {
+            string name;
+            Vector::Vec<string> command;
+        };
+        struct Task {
+            string name;
+            Vector::Vec<Step> steps;
+            Vector::Vec<Task*> next;
+            bool ignoreFailure;
+        };
+        class Job {
+            private Vector::Vec<Task*> tasks;
+            private Task *entry;
+            private Task *current;
+            Job(string name, Vector::Vec<Step> steps);
+            Task* addTask(string name, Vector::Vec<Step> steps, bool advance = false);
+            Job* focus(Task* task);
+            Job* link(Task* parent, Task* child);
+            Task* getGraphRoot();
+        };
+    }
+    namespace Engine {
+        struct TaskState {
+            string name;
+            string category;     
+            string status;
+            int progress;        
+            string lastOutput;   
+            Vector::Vec<string> logHistory; 
+            int warningsCount;
+            int errorsCount;
+        };
+        struct RunResult {
+            int exitCode;
+            string output;
+        };
+        RunResult runCommand(Vector::Vec<string> args, string label, bool tty);
+        class Runner {
+            bool ciDone;
+            bool buildDone;
+            CI::Task* ciRoot;
+            Vector::Vec<TaskState> activeStates;
+            CI::Task* activeTask;
+            Vector::Vec<Build::Command> buildGraph;
+            int indexOf(Vector::Vec<Build::Command>& g, string name);
+            int runBuildPipeline();
+            int runCIPipeline();
+            Runner(Vector::Vec<Build::Command> build, CI::Task *ciRoot);
+            bool Run();
+        };
+    }
+}
