@@ -55,7 +55,7 @@ namespace CQB {
                 this->flag("-I" + to_inc);
                 return this;
             }
-            Builder* linkerflag(string to_flag) {
+            Builder* linkerFlag(string to_flag) {
                 this->flag("-Wl," + to_flag);
                 return this;
             }
@@ -118,7 +118,7 @@ namespace CQB {
                 this->flag("-dynamic");
                 return this;
             }
-            Builder* targetflags(Vector::Vec<string> targetflags) {
+            Builder* targetFlags(Vector::Vec<string> targetflags) {
                 for (addr_t i = 0; i < targetflags.length(); ++i) {
                     this->current_command().flags.push(targetflags[i]);
                 }
