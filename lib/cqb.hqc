@@ -14,6 +14,7 @@ namespace CQB {
             Vector::Vec<string> dependencies;
         };
         class Builder {
+            private string project;
             private Vector::Vec<Command> commands;
             private Command& current_command();
             Builder();
