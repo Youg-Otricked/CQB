@@ -35,7 +35,7 @@ Constructor.
 #### Projects 
 
 ```qc
-Builder* Project(string name);
+Builder* project(string name);
 ```
 
 Set the name of the project to name. Returns this (to allow for method chaining).
@@ -43,18 +43,18 @@ Set the name of the project to name. Returns this (to allow for method chaining)
 #### Building QuarticC Code
 
 ```qc
-Builder* AddExecutable(string outputName, Vector::Vec<string> sourceFiles);
+Builder* addExecutable(string outputName, Vector::Vec<string> sourceFiles);
 ```
 Takes the output binary name & the source files, adds a command, and returns this (for method chaining).
 
 ```qc
-Builder* AddObject(string outputName, Vector::Vec<string> sourceFiles);
-Builder* AddDynamicLibrary(string outputName, Vector::Vec<string> sourceFiles);
+Builder* addObject(string outputName, Vector::Vec<string> sourceFiles);
+Builder* addDynamicLibrary(string outputName, Vector::Vec<string> sourceFiles);
 ```
 Same as above, but produces .o or dynamic librarys instead.
 
 ```qc
-Builder* AddCDependency(string targetName, Vector::Vec<string> cSourceFiles);
+Builder* addCDependency(string targetName, Vector::Vec<string> cSourceFiles);
 ```
 
 Translates cSourceFiles into targetName.qc.
@@ -62,31 +62,31 @@ Translates cSourceFiles into targetName.qc.
 ##### Flags For QuarticC
 
 ```qc
-Builder* Alias(string fileName, string aliasName);
-Builder* AliasDir(string dirName, string aliasName);
-Builder* Define(string to_define);
-Builder* LinkDir(string to_link);
-Builder* Link(string to_link);
-Builder* Include(string to_inc);
-Builder* LinkerFlag(string to_flag);
-Builder* Warn(string to_warn);
-Builder* NoWarn(string to_warn);
-Builder* Error(string to_error);
+Builder* alias(string fileName, string aliasName);
+Builder* aliasDir(string dirName, string aliasName);
+Builder* define(string to_define);
+Builder* linkDir(string to_link);
+Builder* link(string to_link);
+Builder* include(string to_inc);
+Builder* linkerFlag(string to_flag);
+Builder* warn(string to_warn);
+Builder* noWarn(string to_warn);
+Builder* error(string to_error);
 ```
 All of these do the same thing - appending a commonly used flag, and returning this for chaining.
 
 Alias appends `-A <fileName> <aliasName>`, AliasDir appends `-ad <dirName> <aliasName>`, Define appends `-D<thing>`, etc.
 
 ```qc
-Builder* CArgs();
+Builder* cArgs();
 ```
 All args past this point go to C (appends `--c-args`)
 
 #### General Commands
 
 ```qc
-Builder* AddStaticLibrary(string outputName, Vector::Vec<string> objectFiles);
-Builder* AddCustomCommand(string targetName, string commandBin, string outputArtifact);
+Builder* addStaticLibrary(string outputName, Vector::Vec<string> objectFiles);
+Builder* addCustomCommand(string targetName, string commandBin, string outputArtifact);
 ```
 
 AddStaticLibrary adds a command `ar rcs <outputName> <objectFiles>`, AddCustomCommand runs your commandBin. Returns this for chaining.
@@ -94,8 +94,8 @@ AddStaticLibrary adds a command `ar rcs <outputName> <objectFiles>`, AddCustomCo
 #### General Flags (Can be applied to any command)
 
 ```qc
-Builder* TargetFlags(Vector::Vec<string> targetFlags);
-Builder* Flag(string flag);
+Builder* targetFlags(Vector::Vec<string> targetFlags);
+Builder* flag(string flag);
 ```
 
 Adds one or many flags to a command. Returns this for chaining.
@@ -103,7 +103,7 @@ Adds one or many flags to a command. Returns this for chaining.
 #### Dependencies
 
 ```qc
-Builder* DependsOn(string dependencyName);
+Builder* dependsOn(string dependencyName);
 ``` 
 
 Says that the command with targetName dependencyName must run before this command. 
@@ -111,7 +111,7 @@ Says that the command with targetName dependencyName must run before this comman
 #### Extraction
 
 ```qc
-Vector::Vec<Command> ExtractGraph();
+Vector::Vec<Command> extractGraph();
 ```
 
 Extract the commands to be passed to Run.

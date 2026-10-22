@@ -23,59 +23,59 @@ namespace CQB {
             Builder() {
                 this->commands = Vector::Vec<Command>();
             }
-            Builder* Project(string name) {
+            Builder* project(string name) {
                 this->project = name;
                 return this;
             }
-            Builder* Alias(string fileName, string aliasName) {
-                this->Flag("-A");
-                this->Flag(fileName);
-                this->Flag(aliasName);
+            Builder* alias(string fileName, string aliasName) {
+                this->flag("-A");
+                this->flag(fileName);
+                this->flag(aliasName);
                 return this;
             }
-            Builder* AliasDir(string dirName, string aliasName) {
-                this->Flag("-ad");
-                this->Flag(dirName);
-                this->Flag(aliasName);
+            Builder* aliasDir(string dirName, string aliasName) {
+                this->flag("-ad");
+                this->flag(dirName);
+                this->flag(aliasName);
                 return this;
             }
-            Builder* Define(string to_define) {
-                this->Flag("-D" + to_define);
+            Builder* define(string to_define) {
+                this->flag("-D" + to_define);
                 return this;
             }
-            Builder* LinkDir(string to_link) {
-                this->Flag("-L" + to_link);
+            Builder* linkDir(string to_link) {
+                this->flag("-L" + to_link);
                 return this;
             }
-            Builder* Link(string to_link) {
-                this->Flag("-l" + to_link);
+            Builder* link(string to_link) {
+                this->flag("-l" + to_link);
                 return this;
             }
-            Builder* Include(string to_inc) {
-                this->Flag("-I" + to_inc);
+            Builder* include(string to_inc) {
+                this->flag("-I" + to_inc);
                 return this;
             }
-            Builder* LinkerFlag(string to_flag) {
-                this->Flag("-Wl," + to_flag);
+            Builder* linkerflag(string to_flag) {
+                this->flag("-Wl," + to_flag);
                 return this;
             }
-            Builder* Warn(string to_warn) {
-                this->Flag("-W" + to_warn);
+            Builder* warn(string to_warn) {
+                this->flag("-W" + to_warn);
                 return this;
             }
-            Builder* NoWarn(string to_warn) {
-                this->Flag("-Wno-" + to_warn);
+            Builder* noWarn(string to_warn) {
+                this->flag("-Wno-" + to_warn);
                 return this;
             }
-            Builder* Error(string to_error) {
-                this->Flag("-E" + to_error);
+            Builder* error(string to_error) {
+                this->flag("-E" + to_error);
                 return this;
             }
-            Builder* CArgs() {
-                this->Flag("--c-flags"); 
+            Builder* cArgs() {
+                this->flag("--c-flags"); 
                 return this;
             }
-            Builder* AddExecutable(string outputName, Vector::Vec<string> sourceFiles) {
+            Builder* addExecutable(string outputName, Vector::Vec<string> sourceFiles) {
                 Command cmd;
                 cmd.targetName = outputName;
                 cmd.commandBin = "qc";
@@ -85,7 +85,7 @@ namespace CQB {
                 this->commands.push(cmd);
                 return this;
             }
-            Builder* AddObject(string outputName, Vector::Vec<string> sourceFiles) {
+            Builder* addObject(string outputName, Vector::Vec<string> sourceFiles) {
                 Command cmd;
                 cmd.targetName = outputName;
                 cmd.commandBin = "qc";
@@ -93,10 +93,10 @@ namespace CQB {
                 cmd.outputArtifact = outputName;
                 cmd.dependencies = Vector::Vec<string>();
                 this->commands.push(cmd);
-                this->Flag("-oo");
+                this->flag("-oo");
                 return this;
             }
-            Builder* AddStaticLibrary(string outputName, Vector::Vec<string> objectFiles) {
+            Builder* addStaticLibrary(string outputName, Vector::Vec<string> objectFiles) {
                 Command cmd;
                 cmd.targetName = outputName;
                 cmd.commandBin = "ar";
@@ -104,10 +104,10 @@ namespace CQB {
                 cmd.outputArtifact = outputName;
                 cmd.dependencies = Vector::Vec<string>();
                 this->commands.push(cmd);
-                this->Flag("rcs");
+                this->flag("rcs");
                 return this;
             }
-            Builder* AddDynamicLibrary(string outputName, Vector::Vec<string> sourceFiles) {
+            Builder* addDynamicLibrary(string outputName, Vector::Vec<string> sourceFiles) {
                 Command cmd;
                 cmd.targetName = outputName;
                 cmd.commandBin = "qc";
@@ -115,16 +115,16 @@ namespace CQB {
                 cmd.outputArtifact = outputName;
                 cmd.dependencies = Vector::Vec<string>();
                 this->commands.push(cmd);
-                this->Flag("-dynamic");
+                this->flag("-dynamic");
                 return this;
             }
-            Builder* TargetFlags(Vector::Vec<string> targetFlags) {
-                for (addr_t i = 0; i < targetFlags.length(); ++i) {
-                    this->current_command().flags.push(targetFlags[i]);
+            Builder* targetflags(Vector::Vec<string> targetflags) {
+                for (addr_t i = 0; i < targetflags.length(); ++i) {
+                    this->current_command().flags.push(targetflags[i]);
                 }
                 return this;
             }
-            Builder* AddCustomCommand(string targetName, string commandBin, string outputArtifact) {
+            Builder* addCustomCommand(string targetName, string commandBin, string outputArtifact) {
                 Command cmd;
                 cmd.targetName = targetName;
                 cmd.commandBin = commandBin;
@@ -133,11 +133,11 @@ namespace CQB {
                 this->commands.push(cmd);
                 return this;
             }
-            Builder* Flag(string flag) {
+            Builder* flag(string flag) {
                 this->current_command().flags.push(flag);
                 return this;
             }
-            Builder* AddCDependency(string targetName, Vector::Vec<string> cSourceFiles) {
+            Builder* addCDependency(string targetName, Vector::Vec<string> cSourceFiles) {
                 Command cmd;
                 cmd.targetName = targetName;
                 cmd.commandBin = "qc --translate-c";
@@ -147,11 +147,11 @@ namespace CQB {
                 this->commands.push(cmd);
                 return this;
             }
-            Builder* DependsOn(string dependencyName) {
+            Builder* dependsOn(string dependencyName) {
                 this->current_command().dependencies.push(dependencyName);
                 return this;
             }
-            Vector::Vec<Command> ExtractGraph() {
+            Vector::Vec<Command> extractGraph() {
                 return this->commands;
             }
         };
