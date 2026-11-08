@@ -12,5 +12,6 @@ int main() {
     CQB::Build::Builder builder = CQB::Build::Builder();
     builder.project("test")->addExecutable("a.out", ["testmain.qc"])->flag("-O3");
     CQB::Engine::Runner runner = CQB::Engine::Runner(builder.extractGraph(), job.getGraphRoot());
-    return runner.runCIPipeline() ? 1 : runner.runBuildPipeline();
+    runner.Run();
+    return 0;
 }

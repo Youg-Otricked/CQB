@@ -4,11 +4,11 @@ namespace Exported {
 namespace CQB {
     namespace CI {
         struct Step {
-            string name;
-            Vector::Vec<string> command;
+            char *name;
+            Vector::Vec<char*> command;
         };
         struct Task {
-            string name;
+            char *name;
             Vector::Vec<Step> steps;
             Vector::Vec<Task*> next;
             bool ignoreFailure;
@@ -17,7 +17,7 @@ namespace CQB {
             private Vector::Vec<Task*> tasks;
             private Task *entry;
             private Task *current;
-            Job(string name, Vector::Vec<Step> steps) {
+            Job(char *name, Vector::Vec<Step> steps) {
                 Task *task = `malloc(sizeof Task);
                 *task = Task{name, steps};
                 task->next = Vector::Vec<Task*>();
@@ -25,7 +25,7 @@ namespace CQB {
                 this->entry = task;
                 this->current = task;
             }
-            Task* addTask(string name, Vector::Vec<Step> steps, bool advance = false) {
+            Task* addTask(char *name, Vector::Vec<Step> steps, bool advance = false) {
                 Task *task = `malloc(sizeof Task);
                 *task = Task{name, steps};
                 this->tasks.push(task);

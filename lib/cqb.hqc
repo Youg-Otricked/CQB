@@ -6,49 +6,49 @@ namespace Exported {
 namespace CQB {
     namespace Build {
         struct Command {
-            string targetName;
-            string commandBin;
-            Vector::Vec<string> inputs;
-            string outputArtifact;
-            Vector::Vec<string> flags;
-            Vector::Vec<string> dependencies;
+            char* targetName;
+            char* commandBin;
+            Vector::Vec<char*> inputs;
+            char* outputArtifact;
+            Vector::Vec<char*> flags;
+            Vector::Vec<char*> dependencies;
         };
         class Builder {
-            private string project;
+            private char* project;
             private Vector::Vec<Command> commands;
             private Command& current_command();
             Builder();
-            Builder* project(string name);
-            Builder* alias(string fileName, string aliasName);
-            Builder* aliasDir(string dirName, string aliasName);
-            Builder* define(string to_define);
-            Builder* linkDir(string to_link);
-            Builder* link(string to_link);
-            Builder* include(string to_inc);
-            Builder* linkerFlag(string to_flag);
-            Builder* warn(string to_warn);
-            Builder* noWarn(string to_warn);
-            Builder* error(string to_error);
+            Builder* project(char* name);
+            Builder* alias(char* fileName, char* aliasName);
+            Builder* aliasDir(char* dirName, char* aliasName);
+            Builder* define(char* to_define);
+            Builder* linkDir(char* to_link);
+            Builder* link(char* to_link);
+            Builder* include(char* to_inc);
+            Builder* linkerFlag(char* to_flag);
+            Builder* warn(char* to_warn);
+            Builder* noWarn(char* to_warn);
+            Builder* error(char* to_error);
             Builder* cArgs();
-            Builder* addExecutable(string outputName, Vector::Vec<string> sourceFiles);
-            Builder* addObject(string outputName, Vector::Vec<string> sourceFiles);
-            Builder* addStaticLibrary(string outputName, Vector::Vec<string> objectFiles);
-            Builder* addDynamicLibrary(string outputName, Vector::Vec<string> sourceFiles);
-            Builder* targetFlags(Vector::Vec<string> targetFlags);
-            Builder* addCustomCommand(string targetName, string commandBin, string outputArtifact);
-            Builder* flag(string flag);
-            Builder* addCDependency(string targetName, Vector::Vec<string> cSourceFiles);
-            Builder* dependsOn(string dependencyName);
+            Builder* addExecutable(char* outputName, Vector::Vec<char*> sourceFiles);
+            Builder* addObject(char* outputName, Vector::Vec<char*> sourceFiles);
+            Builder* addStaticLibrary(char* outputName, Vector::Vec<char*> objectFiles);
+            Builder* addDynamicLibrary(char* outputName, Vector::Vec<char*> sourceFiles);
+            Builder* targetFlags(Vector::Vec<char*> targetFlags);
+            Builder* addCustomCommand(char* targetName, char* commandBin, char* outputArtifact);
+            Builder* flag(char* flag);
+            Builder* addCDependency(char* targetName, Vector::Vec<char*> cSourceFiles);
+            Builder* dependsOn(char* dependencyName);
             Vector::Vec<Command> extractGraph();
         };
     }
     namespace CI {
         struct Step {
-            string name;
-            Vector::Vec<string> command;
+            char* name;
+            Vector::Vec<char*> command;
         };
         struct Task {
-            string name;
+            char* name;
             Vector::Vec<Step> steps;
             Vector::Vec<Task*> next;
             bool ignoreFailure;
@@ -57,8 +57,8 @@ namespace CQB {
             private Vector::Vec<Task*> tasks;
             private Task *entry;
             private Task *current;
-            Job(string name, Vector::Vec<Step> steps);
-            Task* addTask(string name, Vector::Vec<Step> steps, bool advance = false);
+            Job(char* name, Vector::Vec<Step> steps);
+            Task* addTask(char* name, Vector::Vec<Step> steps, bool advance = false);
             Job* focus(Task* task);
             Job* link(Task* parent, Task* child);
             Task* getGraphRoot();
@@ -66,20 +66,20 @@ namespace CQB {
     }
     namespace Engine {
         struct TaskState {
-            string name;
-            string category;     
-            string status;
+            char* name;
+            char* category;     
+            char* status;
             int progress;        
-            string lastOutput;   
-            Vector::Vec<string> logHistory; 
+            char* lastOutput;   
+            Vector::Vec<char*> logHistory; 
             int warningsCount;
             int errorsCount;
         };
         struct RunResult {
             int exitCode;
-            string output;
+            char* output;
         };
-        RunResult runCommand(Vector::Vec<string> args, string label, bool tty);
+        RunResult runCommand(Vector::Vec<char*> args, char* label, bool tty);
         class Runner {
             bool ciDone;
             bool buildDone;
@@ -87,7 +87,7 @@ namespace CQB {
             Vector::Vec<TaskState> activeStates;
             CI::Task* activeTask;
             Vector::Vec<Build::Command> buildGraph;
-            int indexOf(Vector::Vec<Build::Command>& g, string name);
+            int indexOf(Vector::Vec<Build::Command>& g, char* name);
             int runBuildPipeline();
             int runCIPipeline();
             Runner(Vector::Vec<Build::Command> build, CI::Task *ciRoot);

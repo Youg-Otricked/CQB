@@ -35,7 +35,7 @@ Constructor.
 #### Projects 
 
 ```qc
-Builder* project(string name);
+Builder* project(char* name);
 ```
 
 Set the name of the project to name. Returns this (to allow for method chaining).
@@ -43,18 +43,18 @@ Set the name of the project to name. Returns this (to allow for method chaining)
 #### Building QuarticC Code
 
 ```qc
-Builder* addExecutable(string outputName, Vector::Vec<string> sourceFiles);
+Builder* addExecutable(char* outputName, Vector::Vec<char*> sourceFiles);
 ```
 Takes the output binary name & the source files, adds a command, and returns this (for method chaining).
 
 ```qc
-Builder* addObject(string outputName, Vector::Vec<string> sourceFiles);
-Builder* addDynamicLibrary(string outputName, Vector::Vec<string> sourceFiles);
+Builder* addObject(char* outputName, Vector::Vec<char*> sourceFiles);
+Builder* addDynamicLibrary(char* outputName, Vector::Vec<char*> sourceFiles);
 ```
 Same as above, but produces .o or dynamic librarys instead.
 
 ```qc
-Builder* addCDependency(string targetName, Vector::Vec<string> cSourceFiles);
+Builder* addCDependency(char* targetName, Vector::Vec<char*> cSourceFiles);
 ```
 
 Translates cSourceFiles into targetName.qc.
@@ -62,16 +62,16 @@ Translates cSourceFiles into targetName.qc.
 ##### Flags For QuarticC
 
 ```qc
-Builder* alias(string fileName, string aliasName);
-Builder* aliasDir(string dirName, string aliasName);
-Builder* define(string to_define);
-Builder* linkDir(string to_link);
-Builder* link(string to_link);
-Builder* include(string to_inc);
-Builder* linkerFlag(string to_flag);
-Builder* warn(string to_warn);
-Builder* noWarn(string to_warn);
-Builder* error(string to_error);
+Builder* alias(char* fileName, char* aliasName);
+Builder* aliasDir(char* dirName, char* aliasName);
+Builder* define(char* to_define);
+Builder* linkDir(char* to_link);
+Builder* link(char* to_link);
+Builder* include(char* to_inc);
+Builder* linkerFlag(char* to_flag);
+Builder* warn(char* to_warn);
+Builder* noWarn(char* to_warn);
+Builder* error(char* to_error);
 ```
 All of these do the same thing - appending a commonly used flag, and returning this for chaining.
 
@@ -85,8 +85,8 @@ All args past this point go to C (appends `--c-args`)
 #### General Commands
 
 ```qc
-Builder* addStaticLibrary(string outputName, Vector::Vec<string> objectFiles);
-Builder* addCustomCommand(string targetName, string commandBin, string outputArtifact);
+Builder* addStaticLibrary(char* outputName, Vector::Vec<char*> objectFiles);
+Builder* addCustomCommand(char* targetName, char* commandBin, char* outputArtifact);
 ```
 
 AddStaticLibrary adds a command `ar rcs <outputName> <objectFiles>`, AddCustomCommand runs your commandBin. Returns this for chaining.
@@ -94,8 +94,8 @@ AddStaticLibrary adds a command `ar rcs <outputName> <objectFiles>`, AddCustomCo
 #### General Flags (Can be applied to any command)
 
 ```qc
-Builder* targetFlags(Vector::Vec<string> targetFlags);
-Builder* flag(string flag);
+Builder* targetFlags(Vector::Vec<char*> targetFlags);
+Builder* flag(char* flag);
 ```
 
 Adds one or many flags to a command. Returns this for chaining.
@@ -103,7 +103,7 @@ Adds one or many flags to a command. Returns this for chaining.
 #### Dependencies
 
 ```qc
-Builder* dependsOn(string dependencyName);
+Builder* dependsOn(char* dependencyName);
 ``` 
 
 Says that the command with targetName dependencyName must run before this command. 
@@ -122,14 +122,14 @@ Extract the commands to be passed to Run.
 
 Full CI Job. Builds Tasks to be used by Run.
 
-#### `Job(string name, Vector::Vec<Step> steps);`
+#### `Job(char* name, Vector::Vec<Step> steps);`
 
 Constructs Job, initializes the first task for CI with name and steps.
 
 #### Tasks
 
 ```qc
-Task* addTask(string name, Vector::Vec<Step> steps, bool advance = false);
+Task* addTask(char* name, Vector::Vec<Step> steps, bool advance = false);
 Job* focus(Task* task);
 Job* link(Task* parent, Task* child);
 Task* getGraphRoot();

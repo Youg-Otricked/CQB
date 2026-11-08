@@ -6,6 +6,7 @@ namespace Exported {
     #include<Vector, std>
     #include<sys/wait.h>
     #include<time.h>
+    #include<String, std>
 }
 #nomain
 namespace CQB {
@@ -48,12 +49,12 @@ namespace CQB {
             }
         }
         struct TaskState {
-            string name;
-            string category;     
-            string status;
+            char *name;
+            char *category;     
+            char *status;
             int progress;        
-            string lastOutput;   
-            Vector::Vec<string> logHistory; 
+            char *lastOutput;   
+            Vector::Vec<char*> logHistory; 
             int warningsCount;
             int errorsCount;
         };
@@ -77,9 +78,9 @@ namespace CQB {
         }
         struct RunResult {
             int exitCode;
-            string output;
+            char *output;
         };
-        RunResult runCommand(Vector::Vec<string> args, string label, bool tty) {
+        RunResult runCommand(Vector::Vec<char*> args, char *label, bool tty) {
             int[2] fds = [int, 2];
             if (pipe(fds) != 0) { return RunResult{-1, "pipe failed"}; }
             posix_spawn_file_actions_t fa;
@@ -95,7 +96,7 @@ namespace CQB {
             posix_spawn_file_actions_destroy(&fa);
             `close(fds[1]);
             if (rc != 0) { `close(fds[0]); return RunResult{-1, "command not found"}; }
-            string outs = "";
+            String::Str outs = "";
             char[4096] buf = [char, 4096];
             char[512] line = [char, 512];
             char[32] phase = [char, 32];
@@ -106,17 +107,20 @@ namespace CQB {
             int n = `read(fds[0], buf, 4095);
             while (n > 0) {
                 buf[n] = '\0';
-                outs += &(buf[0]);
+                String::Str s = &(buf[0]);
+                outs += s;
+                s._destroy();
                 for (int i = 0; i < n; i++) {
                     if (buf[i] != '\n') {
                         if (lineLen < 511) { line[lineLen] = buf[i]; lineLen++; }
                         continue;
                     }
                     line[lineLen] = '\0';
+                    int len = lineLen;
                     lineLen = 0;
                     if (!isProgressLine(&(line[0]), 0)) continue;
                     int p = 0; int j = 1;
-                    while (line[j] != ']' && p < 31) { phase[p] = line[j]; p++; j++; }
+                    while (j < len && line[j] != ']' && p < 31) { phase[p] = line[j]; p++; j++; }
                     phase[p] = '\0';
                     if (strncmp(&(phase[0]), "DONE ", 5) == 0) {
                         steps++;
@@ -134,7 +138,7 @@ namespace CQB {
             `close(fds[0]);
             int status = 0;
             waitpid(pid, &status, 0);
-            return RunResult{decodeStatus(status), outs};
+            return RunResult{decodeStatus(status), outs.c_str()};
         }
         class Runner {
             bool ciDone;
@@ -143,7 +147,7 @@ namespace CQB {
             Vector::Vec<TaskState> activeStates;
             CI::Task* activeTask;
             Vector::Vec<Build::Command> buildGraph;
-            int indexOf(Vector::Vec<Build::Command>& g, string name) {
+            int indexOf(Vector::Vec<Build::Command>& g, char *name) {
                 for (int i = 0; i < g.length(); i++) {
                     if (g[i].targetName == name) return i;
                 }
@@ -162,7 +166,7 @@ namespace CQB {
                 for (int i = 0; i < n; i++) {
                     remaining.push(this->buildGraph[i].dependencies.length());
                     done.push(false);
-                    foreach (string dep in this->buildGraph[i].dependencies) {
+                    foreach (char *dep in this->buildGraph[i].dependencies) {
                         if (this->indexOf(this->buildGraph, dep) < 0) {
                             `qout("QC-BUILD: '%s' depends on unknown target '%s'\n", this->buildGraph[i].targetName, dep);
                             return 1;
@@ -177,7 +181,7 @@ namespace CQB {
                         order.push(i);
                         progressed = true;
                         for (int j = 0; j < n; j++) {
-                            foreach (string dep in this->buildGraph[j].dependencies) {
+                            foreach (char *dep in this->buildGraph[j].dependencies) {
                                 if (dep == this->buildGraph[i].targetName) remaining[j]--;
                             }
                         }
@@ -191,24 +195,37 @@ namespace CQB {
                 long int totalStart = nowMs();
                 for (int k = 0; k < order.length(); k++) {
                     Build::Command command = this->buildGraph[order[k]];
-                    Vector::Vec<string> comm = [command.commandBin];
+                    Vector::Vec<char*> comm = [command.commandBin];
                     bool isQc = comm[0] == "qc";
                     if (isQc) {
-                        foreach (string input in command.inputs) { comm.push(input); }
-                        foreach (string flag in command.flags) { comm.push(flag); }
+                        foreach (char *input in command.inputs) { comm.push(input); }
+                        foreach (char *flag in command.flags) { comm.push(flag); }
                         comm.push("-o");
                         comm.push(command.outputArtifact);
                         bool hasProgress = false;
-                        foreach (string flag in command.flags) {
+                        foreach (char *flag in command.flags) {
                             if (flag == "--progress") hasProgress = true;
                         }
                         if (!hasProgress) comm.push("--progress");
                     } else {
-                        foreach (string flag in command.flags) { comm.push(flag); }
+                        foreach (char *flag in command.flags) { comm.push(flag); }
                     }
-                    string label = "[" + `to_string(k + 1) + "/" + `to_string(order.length()) + "] " + command.targetName;
+                    String::Str label = "[";
+                    defer label._destroy();
+                    String::Str num = String::toStr<int>(k + 1);
+                    defer num._destroy();
+                    String::Str num2 = String::toStr<int>(order.length());
+                    label += num;
+                    String::Str slash = "/";
+                    defer num2._destroy();
+                    defer slash._destroy();
+                    label += slash;
+                    label += num2;
+                    String::Str lb = "]";
+                    defer lb._destroy();
+                    label += lb;
                     long int t0 = nowMs();
-                    RunResult res = runCommand(comm, label, tty);
+                    RunResult res = runCommand(comm, label.c_str(), tty);
                     long int ms = nowMs() - t0;
                     comm._destroy();
                     if (tty) {
@@ -227,6 +244,7 @@ namespace CQB {
                         printWithoutProgress(res.output);
                         return res.exitCode;
                     }
+                    `free(res.output);
                 }
                 long int total = nowMs() - totalStart;
                 `qout("build finished: %i targets in %i.%03is\n", order.length(), total / 1000, total % 1000);
@@ -273,7 +291,7 @@ namespace CQB {
                             "running",
                             0,
                             "",
-                            Vector::Vec<string>(),
+                            Vector::Vec<char*>(),
                             0,
                             0
                         };
@@ -303,6 +321,7 @@ namespace CQB {
                                 break;
                             }
                         }
+                        `free(res.output);
                     }
                     if (failed) {
                         this->activeTask = nullptr;
