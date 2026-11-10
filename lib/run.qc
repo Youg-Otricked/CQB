@@ -6,7 +6,7 @@ namespace Exported {
     #include<Vector, std>
     #include<sys/wait.h>
     #include<time.h>
-    #include<String, std>
+    #include<String, IO, std>
 }
 #nomain
 namespace CQB {
@@ -44,7 +44,7 @@ namespace CQB {
                 while (s[i] != '\n' && s[i] != '\0') i++;
                 bool atNewline = s[i] == '\n';
                 s[i] = '\0';
-                if (!isProgressLine(s, start)) `qout("%s\n", &(s[start]));
+                if (!isProgressLine(s, start)) IO::qout("%s\n", &(s[start]));
                 if (atNewline) { s[i] = '\n'; i++; }
             }
         }
@@ -129,7 +129,7 @@ namespace CQB {
                         phaseStart = nowMs();
                     }
                     if (tty) {
-                        `qout("\r\x1b[K%s  %i (%ims) [%s]", label, steps, lastStepMs, &(phase[0]));
+                        IO::qout("\r\x1b[K%s  %i (%ims) [%s]", label, steps, lastStepMs, &(phase[0]));
                         `flush();
                     }
                 }
@@ -168,7 +168,7 @@ namespace CQB {
                     done.push(false);
                     foreach (char *dep in this->buildGraph[i].dependencies) {
                         if (this->indexOf(this->buildGraph, dep) < 0) {
-                            `qout("QC-BUILD: '%s' depends on unknown target '%s'\n", this->buildGraph[i].targetName, dep);
+                            IO::qout("QC-BUILD: '%s' depends on unknown target '%s'\n", this->buildGraph[i].targetName, dep);
                             return 1;
                         }
                     }
@@ -187,7 +187,7 @@ namespace CQB {
                         }
                     }
                     if (!progressed) {
-                        `qout("QC-BUILD: dependency cycle in build graph\n");
+                        IO::qout("QC-BUILD: dependency cycle in build graph\n");
                         return 2;
                     }
                 }
@@ -229,31 +229,31 @@ namespace CQB {
                     long int ms = nowMs() - t0;
                     comm._destroy();
                     if (tty) {
-                        `qout("\r\x1b[K");
+                        IO::qout("\r\x1b[K");
                         fflush(nullptr);
                     }
                     if (res.exitCode == 0) {
                         int steps = countDone(res.output);
                         if (steps > 0) {
-                            `qout("[%i/%i] %s ok (%i steps, %i.%03is)\n", k + 1, order.length(), command.targetName, steps, ms / 1000, ms % 1000);
+                            IO::qout("[%i/%i] %s ok (%i steps, %i.%03is)\n", k + 1, order.length(), command.targetName, steps, ms / 1000, ms % 1000);
                         } else {
-                            `qout("[%i/%i] %s ok (%i.%03is)\n", k + 1, order.length(), command.targetName, ms / 1000, ms % 1000);
+                            IO::qout("[%i/%i] %s ok (%i.%03is)\n", k + 1, order.length(), command.targetName, ms / 1000, ms % 1000);
                         }
                     } else {
-                        `qout("[%i/%i] %s FAILED (exit %i)\n", k + 1, order.length(), command.targetName, res.exitCode);
+                        IO::qout("[%i/%i] %s FAILED (exit %i)\n", k + 1, order.length(), command.targetName, res.exitCode);
                         printWithoutProgress(res.output);
                         return res.exitCode;
                     }
                     `free(res.output);
                 }
                 long int total = nowMs() - totalStart;
-                `qout("build finished: %i targets in %i.%03is\n", order.length(), total / 1000, total % 1000);
+                IO::qout("build finished: %i targets in %i.%03is\n", order.length(), total / 1000, total % 1000);
                 this->buildDone = true;
                 return 0;
             }
             int runCIPipeline() {
                 if (this->ciRoot == nullptr) {
-                    `qout("QC-CI: no pipeline root\n");
+                    IO::qout("QC-CI: no pipeline root\n");
                     return 1;
                 }
                 Vector::Vec<CI::Task*> pending = Vector::Vec<CI::Task*>();
@@ -307,14 +307,14 @@ namespace CQB {
                     for (int i = 0; i < task->steps.length(); i++) {
                         CI::Step step = task->steps[i];
                         state->progress = task->steps.length() > 0 ? (i * 100) / task->steps.length() : 100;
-                        `qout("QC-CI: [%s] %s\n", task->name, step.name);
+                        IO::qout("QC-CI: [%s] %s\n", task->name, step.name);
                         RunResult res = runCommand(step.command, "", false);
                         state->lastOutput = res.output;
                         state->logHistory.push(res.output);
-                        `qout("QC-CI: %s\n", res.output);
+                        IO::qout("QC-CI: %s\n", res.output);
                         if (res.exitCode != 0) {
                             state->errorsCount++;
-                            `qout("QC-CI: step '%s' failed with exit code %i\n", step.name, res.exitCode);
+                            IO::qout("QC-CI: step '%s' failed with exit code %i\n", step.name, res.exitCode);
                             if (!task->ignoreFailure) {
                                 state->status = "failed";
                                 failed = true;

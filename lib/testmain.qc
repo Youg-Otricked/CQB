@@ -1,4 +1,4 @@
 int main() {
-    `qout("Hello, World!\n");
+    IO::qout("Hello, World!\n");
     return 0;
 }
