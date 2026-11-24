@@ -3,10 +3,12 @@ namespace Exported {
     #include<CQB, ./build.qc>
     #include<spawn.h>
     #include<unistd.h>
-    #include<Vector, std>
+    #include<Vector, std/collections/vector.hqc>
     #include<sys/wait.h>
     #include<time.h>
-    #include<String, IO, std>
+    #include<string.h>
+    #include<String, std/string.hqc>
+    #include<IO, std/io.hqc>
 }
 #nomain
 namespace CQB {

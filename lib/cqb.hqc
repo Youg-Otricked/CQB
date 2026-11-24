@@ -1,6 +1,6 @@
 #link<./libcqb.a>
 namespace Exported {
-    #include<Vector, std>
+    #include<Vector, std/collections/vector.hqc>
 }
 #nomain
 namespace CQB {

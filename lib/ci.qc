@@ -1,5 +1,5 @@
 namespace Exported {
-    #include<Vector, std>
+    #include<Vector, std/collections/vector.hqc>
 }
 namespace CQB {
     namespace CI {

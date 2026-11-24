@@ -1,5 +1,6 @@
 namespace Exported {
-    #include<String, Vector, std>
+    #include<String, std/string.hqc>
+    #include<Vector, std/collections/vector.hqc>
 }
 namespace CQB {
     namespace Build {
