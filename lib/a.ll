@@ -5,141 +5,515 @@ target triple = "x86_64-unknown-linux-gnu"
 
 %"String::Str" = type { ptr, i64, i64 }
 %"String::View" = type { ptr, i64 }
-%"Vector::Iterator::It<int>" = type { ptr, i32, i32 }
-%"Vector::Vec<int>" = type { ptr, i32, i32 }
-%"Utils::_timespec" = type { i64, i64 }
-%"Math::Floating" = type { i32, [8 x i8] }
-%"Errors::Error<double>" = type { i32, [8 x i8] }
-%"Vector::Iterator::It<char*>" = type { ptr, i32, i32 }
 %"Vector::Vec<char*>" = type { ptr, i32, i32 }
+%"Vector::Iterator::It<char*>" = type { ptr, i32, i32 }
+%"Vector::Vec<CQB::Build::Command>" = type { ptr, i32, i32 }
 %"CQB::Build::Command" = type { ptr, ptr, %"Vector::Vec<char*>", ptr, %"Vector::Vec<char*>", %"Vector::Vec<char*>" }
 %"Vector::Iterator::It<CQB::Build::Command>" = type { ptr, i32, i32 }
-%"Vector::Vec<CQB::Build::Command>" = type { ptr, i32, i32 }
-%"Vector::Iterator::It<CQB::CI::Task*>" = type { ptr, i32, i32 }
+%"CQB::Build::Builder" = type { ptr, %"Vector::Vec<CQB::Build::Command>" }
 %"Vector::Vec<CQB::CI::Task*>" = type { ptr, i32, i32 }
+%"Vector::Iterator::It<CQB::CI::Task*>" = type { ptr, i32, i32 }
+%"Vector::Vec<CQB::CI::Step>" = type { ptr, i32, i32 }
 %"CQB::CI::Step" = type { ptr, %"Vector::Vec<char*>" }
 %"Vector::Iterator::It<CQB::CI::Step>" = type { ptr, i32, i32 }
-%"Vector::Vec<CQB::CI::Step>" = type { ptr, i32, i32 }
 %"CQB::CI::Task" = type { ptr, %"Vector::Vec<CQB::CI::Step>", %"Vector::Vec<CQB::CI::Task*>", i1 }
+%"CQB::CI::Job" = type { %"Vector::Vec<CQB::CI::Task*>", ptr, ptr }
+%"Vector::Vec<CQB::Engine::TaskState>" = type { ptr, i32, i32 }
 %"CQB::Engine::TaskState" = type { ptr, ptr, ptr, i32, ptr, %"Vector::Vec<char*>", i32, i32 }
 %"Vector::Iterator::It<CQB::Engine::TaskState>" = type { ptr, i32, i32 }
-%"Vector::Vec<CQB::Engine::TaskState>" = type { ptr, i32, i32 }
-%timespec = type { i64, i64 }
 %"CQB::Engine::RunResult" = type { i32, ptr }
-%posix_spawn_file_actions_t = type { i32, i32, ptr, [16 x i32] }
-%"Vector::Iterator::It<bool>" = type { ptr, i32, i32 }
 %"Vector::Vec<bool>" = type { ptr, i32, i32 }
+%"Vector::Vec<int>" = type { ptr, i32, i32 }
+%"CQB::Engine::Runner" = type { i1, i1, ptr, %"Vector::Vec<CQB::Engine::TaskState>", ptr, %"Vector::Vec<CQB::Build::Command>" }
+%sigval = type { [8 x i8] }
+%idtype_t = type { i32 }
+%timespec = type { i64, i64 }
+%posix_spawn_file_actions_t = type { i32, i32, ptr, [16 x i32] }
+%"Vector::Iterator::It<int>" = type { ptr, i32, i32 }
+%"Vector::Iterator::It<bool>" = type { ptr, i32, i32 }
 
 @stderr = external local_unnamed_addr global ptr, align 8
 @.str = private unnamed_addr constant [19 x i8] c"panic: %s (%s:%d)\0A\00", align 1
-@.str.1 = private unnamed_addr constant [8 x i8] c"%0*.*jd\00", align 1
-@.str.2 = private unnamed_addr constant [7 x i8] c"%*.*jd\00", align 1
-@stdout = external local_unnamed_addr global ptr, align 8
-@"String::Str::NOT_FOUND" = weak_odr local_unnamed_addr global i64 -1
-@.str.23 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
-@.str.24 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
-@.str.31 = private constant [48 x i8] c"attempted to extract a negative length subtring\00"
-@.str.32 = private constant [68 x i8] c"attempted to extract a substring larger than the length of a string\00"
-@.str.34 = private constant [29 x i8] c"substring view out of bounds\00"
-@.str.37 = private constant [27 x i8] c"string index out of bounds\00"
-@.str.38 = private constant [37 x i8] c"string insertion index out of bounds\00"
-@.str.40 = private constant [33 x i8] c"string erase range out of bounds\00"
-@.str.41 = private unnamed_addr constant [5 x i8] c"true\00"
-@.str.42 = private unnamed_addr constant [6 x i8] c"qtrue\00"
-@.str.43 = private unnamed_addr constant [5 x i8] c"both\00"
-@.str.44 = private unnamed_addr constant [7 x i8] c"qfalse\00"
-@.str.45 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
-@.str.46 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@"IO::output" = weak_odr global i32 1
+@"String::Str::NOT_FOUND" = weak_odr global i64 -1
+@.str.1 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@0 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.2 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@1 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.3 = private constant [2 x i8] c"T\00"
+@.str.4 = private constant [2 x i8] c"T\00"
+@.str.5 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@2 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.6 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@3 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.7 = private constant [2 x i8] c"T\00"
+@.str.8 = private constant [2 x i8] c"T\00"
+@.str.9 = private constant [3 x i8] c"-A\00"
+@.str.10 = private constant [4 x i8] c"-ad\00"
+@.str.11 = private constant [3 x i8] c"-D\00"
+@.str.12 = private constant [3 x i8] c"-L\00"
+@.str.13 = private constant [3 x i8] c"-l\00"
+@.str.14 = private constant [3 x i8] c"-I\00"
+@.str.15 = private constant [5 x i8] c"-Wl,\00"
+@.str.16 = private constant [3 x i8] c"-W\00"
+@.str.17 = private constant [6 x i8] c"-Wno-\00"
+@.str.18 = private constant [3 x i8] c"-E\00"
+@.str.19 = private constant [10 x i8] c"--c-flags\00"
+@.str.20 = private constant [3 x i8] c"qc\00"
+@.str.21 = private constant [3 x i8] c"qc\00"
+@.str.22 = private constant [4 x i8] c"-oo\00"
+@.str.23 = private constant [3 x i8] c"ar\00"
+@.str.24 = private constant [4 x i8] c"rcs\00"
+@.str.25 = private constant [3 x i8] c"qc\00"
+@.str.26 = private constant [9 x i8] c"-dynamic\00"
+@.str.27 = private constant [17 x i8] c"qc --translate-c\00"
+@.str.28 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@4 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.29 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@5 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.30 = private constant [2 x i8] c"T\00"
+@.str.31 = private constant [2 x i8] c"T\00"
+@.str.32 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@6 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.33 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@7 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.34 = private constant [2 x i8] c"T\00"
+@.str.35 = private constant [2 x i8] c"T\00"
+@.str.36 = private constant [5 x i8] c"Task\00"
+@.str.37 = private constant [5 x i8] c"Task\00"
+@.str.38 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@8 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.39 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@9 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.40 = private constant [2 x i8] c"T\00"
+@.str.41 = private constant [2 x i8] c"T\00"
+@__environ = external global ptr
+@_PC_LINK_MAX = weak_odr global i32 0
+@_PC_MAX_CANON = weak_odr global i32 1
+@_PC_MAX_INPUT = weak_odr global i32 2
+@_PC_NAME_MAX = weak_odr global i32 3
+@_PC_PATH_MAX = weak_odr global i32 4
+@_PC_PIPE_BUF = weak_odr global i32 5
+@_PC_CHOWN_RESTRICTED = weak_odr global i32 6
+@_PC_NO_TRUNC = weak_odr global i32 7
+@_PC_VDISABLE = weak_odr global i32 8
+@_PC_SYNC_IO = weak_odr global i32 9
+@_PC_ASYNC_IO = weak_odr global i32 10
+@_PC_PRIO_IO = weak_odr global i32 11
+@_PC_SOCK_MAXBUF = weak_odr global i32 12
+@_PC_FILESIZEBITS = weak_odr global i32 13
+@_PC_REC_INCR_XFER_SIZE = weak_odr global i32 14
+@_PC_REC_MAX_XFER_SIZE = weak_odr global i32 15
+@_PC_REC_MIN_XFER_SIZE = weak_odr global i32 16
+@_PC_REC_XFER_ALIGN = weak_odr global i32 17
+@_PC_ALLOC_SIZE_MIN = weak_odr global i32 18
+@_PC_SYMLINK_MAX = weak_odr global i32 19
+@_PC_2_SYMLINKS = weak_odr global i32 20
+@_SC_ARG_MAX = weak_odr global i32 0
+@_SC_CHILD_MAX = weak_odr global i32 1
+@_SC_CLK_TCK = weak_odr global i32 2
+@_SC_NGROUPS_MAX = weak_odr global i32 3
+@_SC_OPEN_MAX = weak_odr global i32 4
+@_SC_STREAM_MAX = weak_odr global i32 5
+@_SC_TZNAME_MAX = weak_odr global i32 6
+@_SC_JOB_CONTROL = weak_odr global i32 7
+@_SC_SAVED_IDS = weak_odr global i32 8
+@_SC_REALTIME_SIGNALS = weak_odr global i32 9
+@_SC_PRIORITY_SCHEDULING = weak_odr global i32 10
+@_SC_TIMERS = weak_odr global i32 11
+@_SC_ASYNCHRONOUS_IO = weak_odr global i32 12
+@_SC_PRIORITIZED_IO = weak_odr global i32 13
+@_SC_SYNCHRONIZED_IO = weak_odr global i32 14
+@_SC_FSYNC = weak_odr global i32 15
+@_SC_MAPPED_FILES = weak_odr global i32 16
+@_SC_MEMLOCK = weak_odr global i32 17
+@_SC_MEMLOCK_RANGE = weak_odr global i32 18
+@_SC_MEMORY_PROTECTION = weak_odr global i32 19
+@_SC_MESSAGE_PASSING = weak_odr global i32 20
+@_SC_SEMAPHORES = weak_odr global i32 21
+@_SC_SHARED_MEMORY_OBJECTS = weak_odr global i32 22
+@_SC_AIO_LISTIO_MAX = weak_odr global i32 23
+@_SC_AIO_MAX = weak_odr global i32 24
+@_SC_AIO_PRIO_DELTA_MAX = weak_odr global i32 25
+@_SC_DELAYTIMER_MAX = weak_odr global i32 26
+@_SC_MQ_OPEN_MAX = weak_odr global i32 27
+@_SC_MQ_PRIO_MAX = weak_odr global i32 28
+@_SC_VERSION = weak_odr global i32 29
+@_SC_PAGESIZE = weak_odr global i32 30
+@_SC_RTSIG_MAX = weak_odr global i32 31
+@_SC_SEM_NSEMS_MAX = weak_odr global i32 32
+@_SC_SEM_VALUE_MAX = weak_odr global i32 33
+@_SC_SIGQUEUE_MAX = weak_odr global i32 34
+@_SC_TIMER_MAX = weak_odr global i32 35
+@_SC_BC_BASE_MAX = weak_odr global i32 36
+@_SC_BC_DIM_MAX = weak_odr global i32 37
+@_SC_BC_SCALE_MAX = weak_odr global i32 38
+@_SC_BC_STRING_MAX = weak_odr global i32 39
+@_SC_COLL_WEIGHTS_MAX = weak_odr global i32 40
+@_SC_EQUIV_CLASS_MAX = weak_odr global i32 41
+@_SC_EXPR_NEST_MAX = weak_odr global i32 42
+@_SC_LINE_MAX = weak_odr global i32 43
+@_SC_RE_DUP_MAX = weak_odr global i32 44
+@_SC_CHARCLASS_NAME_MAX = weak_odr global i32 45
+@_SC_2_VERSION = weak_odr global i32 46
+@_SC_2_C_BIND = weak_odr global i32 47
+@_SC_2_C_DEV = weak_odr global i32 48
+@_SC_2_FORT_DEV = weak_odr global i32 49
+@_SC_2_FORT_RUN = weak_odr global i32 50
+@_SC_2_SW_DEV = weak_odr global i32 51
+@_SC_2_LOCALEDEF = weak_odr global i32 52
+@_SC_PII = weak_odr global i32 53
+@_SC_PII_XTI = weak_odr global i32 54
+@_SC_PII_SOCKET = weak_odr global i32 55
+@_SC_PII_INTERNET = weak_odr global i32 56
+@_SC_PII_OSI = weak_odr global i32 57
+@_SC_POLL = weak_odr global i32 58
+@_SC_SELECT = weak_odr global i32 59
+@_SC_UIO_MAXIOV = weak_odr global i32 60
+@_SC_IOV_MAX = weak_odr global i32 60
+@_SC_PII_INTERNET_STREAM = weak_odr global i32 61
+@_SC_PII_INTERNET_DGRAM = weak_odr global i32 62
+@_SC_PII_OSI_COTS = weak_odr global i32 63
+@_SC_PII_OSI_CLTS = weak_odr global i32 64
+@_SC_PII_OSI_M = weak_odr global i32 65
+@_SC_T_IOV_MAX = weak_odr global i32 66
+@_SC_THREADS = weak_odr global i32 67
+@_SC_THREAD_SAFE_FUNCTIONS = weak_odr global i32 68
+@_SC_GETGR_R_SIZE_MAX = weak_odr global i32 69
+@_SC_GETPW_R_SIZE_MAX = weak_odr global i32 70
+@_SC_LOGIN_NAME_MAX = weak_odr global i32 71
+@_SC_TTY_NAME_MAX = weak_odr global i32 72
+@_SC_THREAD_DESTRUCTOR_ITERATIONS = weak_odr global i32 73
+@_SC_THREAD_KEYS_MAX = weak_odr global i32 74
+@_SC_THREAD_STACK_MIN = weak_odr global i32 75
+@_SC_THREAD_THREADS_MAX = weak_odr global i32 76
+@_SC_THREAD_ATTR_STACKADDR = weak_odr global i32 77
+@_SC_THREAD_ATTR_STACKSIZE = weak_odr global i32 78
+@_SC_THREAD_PRIORITY_SCHEDULING = weak_odr global i32 79
+@_SC_THREAD_PRIO_INHERIT = weak_odr global i32 80
+@_SC_THREAD_PRIO_PROTECT = weak_odr global i32 81
+@_SC_THREAD_PROCESS_SHARED = weak_odr global i32 82
+@_SC_NPROCESSORS_CONF = weak_odr global i32 83
+@_SC_NPROCESSORS_ONLN = weak_odr global i32 84
+@_SC_PHYS_PAGES = weak_odr global i32 85
+@_SC_AVPHYS_PAGES = weak_odr global i32 86
+@_SC_ATEXIT_MAX = weak_odr global i32 87
+@_SC_PASS_MAX = weak_odr global i32 88
+@_SC_XOPEN_VERSION = weak_odr global i32 89
+@_SC_XOPEN_XCU_VERSION = weak_odr global i32 90
+@_SC_XOPEN_UNIX = weak_odr global i32 91
+@_SC_XOPEN_CRYPT = weak_odr global i32 92
+@_SC_XOPEN_ENH_I18N = weak_odr global i32 93
+@_SC_XOPEN_SHM = weak_odr global i32 94
+@_SC_2_CHAR_TERM = weak_odr global i32 95
+@_SC_2_C_VERSION = weak_odr global i32 96
+@_SC_2_UPE = weak_odr global i32 97
+@_SC_XOPEN_XPG2 = weak_odr global i32 98
+@_SC_XOPEN_XPG3 = weak_odr global i32 99
+@_SC_XOPEN_XPG4 = weak_odr global i32 100
+@_SC_CHAR_BIT = weak_odr global i32 101
+@_SC_CHAR_MAX = weak_odr global i32 102
+@_SC_CHAR_MIN = weak_odr global i32 103
+@_SC_INT_MAX = weak_odr global i32 104
+@_SC_INT_MIN = weak_odr global i32 105
+@_SC_LONG_BIT = weak_odr global i32 106
+@_SC_WORD_BIT = weak_odr global i32 107
+@_SC_MB_LEN_MAX = weak_odr global i32 108
+@_SC_NZERO = weak_odr global i32 109
+@_SC_SSIZE_MAX = weak_odr global i32 110
+@_SC_SCHAR_MAX = weak_odr global i32 111
+@_SC_SCHAR_MIN = weak_odr global i32 112
+@_SC_SHRT_MAX = weak_odr global i32 113
+@_SC_SHRT_MIN = weak_odr global i32 114
+@_SC_UCHAR_MAX = weak_odr global i32 115
+@_SC_UINT_MAX = weak_odr global i32 116
+@_SC_ULONG_MAX = weak_odr global i32 117
+@_SC_USHRT_MAX = weak_odr global i32 118
+@_SC_NL_ARGMAX = weak_odr global i32 119
+@_SC_NL_LANGMAX = weak_odr global i32 120
+@_SC_NL_MSGMAX = weak_odr global i32 121
+@_SC_NL_NMAX = weak_odr global i32 122
+@_SC_NL_SETMAX = weak_odr global i32 123
+@_SC_NL_TEXTMAX = weak_odr global i32 124
+@_SC_XBS5_ILP32_OFF32 = weak_odr global i32 125
+@_SC_XBS5_ILP32_OFFBIG = weak_odr global i32 126
+@_SC_XBS5_LP64_OFF64 = weak_odr global i32 127
+@_SC_XBS5_LPBIG_OFFBIG = weak_odr global i32 128
+@_SC_XOPEN_LEGACY = weak_odr global i32 129
+@_SC_XOPEN_REALTIME = weak_odr global i32 130
+@_SC_XOPEN_REALTIME_THREADS = weak_odr global i32 131
+@_SC_ADVISORY_INFO = weak_odr global i32 132
+@_SC_BARRIERS = weak_odr global i32 133
+@_SC_BASE = weak_odr global i32 134
+@_SC_C_LANG_SUPPORT = weak_odr global i32 135
+@_SC_C_LANG_SUPPORT_R = weak_odr global i32 136
+@_SC_CLOCK_SELECTION = weak_odr global i32 137
+@_SC_CPUTIME = weak_odr global i32 138
+@_SC_THREAD_CPUTIME = weak_odr global i32 139
+@_SC_DEVICE_IO = weak_odr global i32 140
+@_SC_DEVICE_SPECIFIC = weak_odr global i32 141
+@_SC_DEVICE_SPECIFIC_R = weak_odr global i32 142
+@_SC_FD_MGMT = weak_odr global i32 143
+@_SC_FIFO = weak_odr global i32 144
+@_SC_PIPE = weak_odr global i32 145
+@_SC_FILE_ATTRIBUTES = weak_odr global i32 146
+@_SC_FILE_LOCKING = weak_odr global i32 147
+@_SC_FILE_SYSTEM = weak_odr global i32 148
+@_SC_MONOTONIC_CLOCK = weak_odr global i32 149
+@_SC_MULTI_PROCESS = weak_odr global i32 150
+@_SC_SINGLE_PROCESS = weak_odr global i32 151
+@_SC_NETWORKING = weak_odr global i32 152
+@_SC_READER_WRITER_LOCKS = weak_odr global i32 153
+@_SC_SPIN_LOCKS = weak_odr global i32 154
+@_SC_REGEXP = weak_odr global i32 155
+@_SC_REGEX_VERSION = weak_odr global i32 156
+@_SC_SHELL = weak_odr global i32 157
+@_SC_SIGNALS = weak_odr global i32 158
+@_SC_SPAWN = weak_odr global i32 159
+@_SC_SPORADIC_SERVER = weak_odr global i32 160
+@_SC_THREAD_SPORADIC_SERVER = weak_odr global i32 161
+@_SC_SYSTEM_DATABASE = weak_odr global i32 162
+@_SC_SYSTEM_DATABASE_R = weak_odr global i32 163
+@_SC_TIMEOUTS = weak_odr global i32 164
+@_SC_TYPED_MEMORY_OBJECTS = weak_odr global i32 165
+@_SC_USER_GROUPS = weak_odr global i32 166
+@_SC_USER_GROUPS_R = weak_odr global i32 167
+@_SC_2_PBS = weak_odr global i32 168
+@_SC_2_PBS_ACCOUNTING = weak_odr global i32 169
+@_SC_2_PBS_LOCATE = weak_odr global i32 170
+@_SC_2_PBS_MESSAGE = weak_odr global i32 171
+@_SC_2_PBS_TRACK = weak_odr global i32 172
+@_SC_SYMLOOP_MAX = weak_odr global i32 173
+@_SC_STREAMS = weak_odr global i32 174
+@_SC_2_PBS_CHECKPOINT = weak_odr global i32 175
+@_SC_V6_ILP32_OFF32 = weak_odr global i32 176
+@_SC_V6_ILP32_OFFBIG = weak_odr global i32 177
+@_SC_V6_LP64_OFF64 = weak_odr global i32 178
+@_SC_V6_LPBIG_OFFBIG = weak_odr global i32 179
+@_SC_HOST_NAME_MAX = weak_odr global i32 180
+@_SC_TRACE = weak_odr global i32 181
+@_SC_TRACE_EVENT_FILTER = weak_odr global i32 182
+@_SC_TRACE_INHERIT = weak_odr global i32 183
+@_SC_TRACE_LOG = weak_odr global i32 184
+@_SC_LEVEL1_ICACHE_SIZE = weak_odr global i32 185
+@_SC_LEVEL1_ICACHE_ASSOC = weak_odr global i32 186
+@_SC_LEVEL1_ICACHE_LINESIZE = weak_odr global i32 187
+@_SC_LEVEL1_DCACHE_SIZE = weak_odr global i32 188
+@_SC_LEVEL1_DCACHE_ASSOC = weak_odr global i32 189
+@_SC_LEVEL1_DCACHE_LINESIZE = weak_odr global i32 190
+@_SC_LEVEL2_CACHE_SIZE = weak_odr global i32 191
+@_SC_LEVEL2_CACHE_ASSOC = weak_odr global i32 192
+@_SC_LEVEL2_CACHE_LINESIZE = weak_odr global i32 193
+@_SC_LEVEL3_CACHE_SIZE = weak_odr global i32 194
+@_SC_LEVEL3_CACHE_ASSOC = weak_odr global i32 195
+@_SC_LEVEL3_CACHE_LINESIZE = weak_odr global i32 196
+@_SC_LEVEL4_CACHE_SIZE = weak_odr global i32 197
+@_SC_LEVEL4_CACHE_ASSOC = weak_odr global i32 198
+@_SC_LEVEL4_CACHE_LINESIZE = weak_odr global i32 199
+@_SC_IPV6 = weak_odr global i32 235
+@_SC_RAW_SOCKETS = weak_odr global i32 236
+@_SC_V7_ILP32_OFF32 = weak_odr global i32 237
+@_SC_V7_ILP32_OFFBIG = weak_odr global i32 238
+@_SC_V7_LP64_OFF64 = weak_odr global i32 239
+@_SC_V7_LPBIG_OFFBIG = weak_odr global i32 240
+@_SC_SS_REPL_MAX = weak_odr global i32 241
+@_SC_TRACE_EVENT_NAME_MAX = weak_odr global i32 242
+@_SC_TRACE_NAME_MAX = weak_odr global i32 243
+@_SC_TRACE_SYS_MAX = weak_odr global i32 244
+@_SC_TRACE_USER_EVENT_MAX = weak_odr global i32 245
+@_SC_XOPEN_STREAMS = weak_odr global i32 246
+@_SC_THREAD_ROBUST_PRIO_INHERIT = weak_odr global i32 247
+@_SC_THREAD_ROBUST_PRIO_PROTECT = weak_odr global i32 248
+@_SC_MINSIGSTKSZ = weak_odr global i32 249
+@_SC_SIGSTKSZ = weak_odr global i32 250
+@_CS_PATH = weak_odr global i32 0
+@_CS_V6_WIDTH_RESTRICTED_ENVS = weak_odr global i32 1
+@_CS_GNU_LIBC_VERSION = weak_odr global i32 2
+@_CS_GNU_LIBPTHREAD_VERSION = weak_odr global i32 3
+@_CS_V5_WIDTH_RESTRICTED_ENVS = weak_odr global i32 4
+@_CS_V7_WIDTH_RESTRICTED_ENVS = weak_odr global i32 5
+@_CS_LFS_CFLAGS = weak_odr global i32 1000
+@_CS_LFS_LDFLAGS = weak_odr global i32 1001
+@_CS_LFS_LIBS = weak_odr global i32 1002
+@_CS_LFS_LINTFLAGS = weak_odr global i32 1003
+@_CS_LFS64_CFLAGS = weak_odr global i32 1004
+@_CS_LFS64_LDFLAGS = weak_odr global i32 1005
+@_CS_LFS64_LIBS = weak_odr global i32 1006
+@_CS_LFS64_LINTFLAGS = weak_odr global i32 1007
+@_CS_XBS5_ILP32_OFF32_CFLAGS = weak_odr global i32 1100
+@_CS_XBS5_ILP32_OFF32_LDFLAGS = weak_odr global i32 1101
+@_CS_XBS5_ILP32_OFF32_LIBS = weak_odr global i32 1102
+@_CS_XBS5_ILP32_OFF32_LINTFLAGS = weak_odr global i32 1103
+@_CS_XBS5_ILP32_OFFBIG_CFLAGS = weak_odr global i32 1104
+@_CS_XBS5_ILP32_OFFBIG_LDFLAGS = weak_odr global i32 1105
+@_CS_XBS5_ILP32_OFFBIG_LIBS = weak_odr global i32 1106
+@_CS_XBS5_ILP32_OFFBIG_LINTFLAGS = weak_odr global i32 1107
+@_CS_XBS5_LP64_OFF64_CFLAGS = weak_odr global i32 1108
+@_CS_XBS5_LP64_OFF64_LDFLAGS = weak_odr global i32 1109
+@_CS_XBS5_LP64_OFF64_LIBS = weak_odr global i32 1110
+@_CS_XBS5_LP64_OFF64_LINTFLAGS = weak_odr global i32 1111
+@_CS_XBS5_LPBIG_OFFBIG_CFLAGS = weak_odr global i32 1112
+@_CS_XBS5_LPBIG_OFFBIG_LDFLAGS = weak_odr global i32 1113
+@_CS_XBS5_LPBIG_OFFBIG_LIBS = weak_odr global i32 1114
+@_CS_XBS5_LPBIG_OFFBIG_LINTFLAGS = weak_odr global i32 1115
+@_CS_POSIX_V6_ILP32_OFF32_CFLAGS = weak_odr global i32 1116
+@_CS_POSIX_V6_ILP32_OFF32_LDFLAGS = weak_odr global i32 1117
+@_CS_POSIX_V6_ILP32_OFF32_LIBS = weak_odr global i32 1118
+@_CS_POSIX_V6_ILP32_OFF32_LINTFLAGS = weak_odr global i32 1119
+@_CS_POSIX_V6_ILP32_OFFBIG_CFLAGS = weak_odr global i32 1120
+@_CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS = weak_odr global i32 1121
+@_CS_POSIX_V6_ILP32_OFFBIG_LIBS = weak_odr global i32 1122
+@_CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS = weak_odr global i32 1123
+@_CS_POSIX_V6_LP64_OFF64_CFLAGS = weak_odr global i32 1124
+@_CS_POSIX_V6_LP64_OFF64_LDFLAGS = weak_odr global i32 1125
+@_CS_POSIX_V6_LP64_OFF64_LIBS = weak_odr global i32 1126
+@_CS_POSIX_V6_LP64_OFF64_LINTFLAGS = weak_odr global i32 1127
+@_CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS = weak_odr global i32 1128
+@_CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS = weak_odr global i32 1129
+@_CS_POSIX_V6_LPBIG_OFFBIG_LIBS = weak_odr global i32 1130
+@_CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS = weak_odr global i32 1131
+@_CS_POSIX_V7_ILP32_OFF32_CFLAGS = weak_odr global i32 1132
+@_CS_POSIX_V7_ILP32_OFF32_LDFLAGS = weak_odr global i32 1133
+@_CS_POSIX_V7_ILP32_OFF32_LIBS = weak_odr global i32 1134
+@_CS_POSIX_V7_ILP32_OFF32_LINTFLAGS = weak_odr global i32 1135
+@_CS_POSIX_V7_ILP32_OFFBIG_CFLAGS = weak_odr global i32 1136
+@_CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS = weak_odr global i32 1137
+@_CS_POSIX_V7_ILP32_OFFBIG_LIBS = weak_odr global i32 1138
+@_CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS = weak_odr global i32 1139
+@_CS_POSIX_V7_LP64_OFF64_CFLAGS = weak_odr global i32 1140
+@_CS_POSIX_V7_LP64_OFF64_LDFLAGS = weak_odr global i32 1141
+@_CS_POSIX_V7_LP64_OFF64_LIBS = weak_odr global i32 1142
+@_CS_POSIX_V7_LP64_OFF64_LINTFLAGS = weak_odr global i32 1143
+@_CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS = weak_odr global i32 1144
+@_CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS = weak_odr global i32 1145
+@_CS_POSIX_V7_LPBIG_OFFBIG_LIBS = weak_odr global i32 1146
+@_CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS = weak_odr global i32 1147
+@_CS_V6_ENV = weak_odr global i32 1148
+@_CS_V7_ENV = weak_odr global i32 1149
+@optarg = external global ptr
+@optind = external global i32
+@opterr = external global i32
+@optopt = external global i32
+@SI_ASYNCNL = weak_odr global i32 -60
+@SI_DETHREAD = weak_odr global i32 -7
+@SI_TKILL = weak_odr global i32 -6
+@SI_SIGIO = weak_odr global i32 -5
+@SI_ASYNCIO = weak_odr global i32 -4
+@SI_MESGQ = weak_odr global i32 -3
+@SI_TIMER = weak_odr global i32 -2
+@SI_QUEUE = weak_odr global i32 -1
+@SI_USER = weak_odr global i32 0
+@SI_KERNEL = weak_odr global i32 128
+@ILL_ILLOPC = weak_odr global i32 1
+@ILL_ILLOPN = weak_odr global i32 2
+@ILL_ILLADR = weak_odr global i32 3
+@ILL_ILLTRP = weak_odr global i32 4
+@ILL_PRVOPC = weak_odr global i32 5
+@ILL_PRVREG = weak_odr global i32 6
+@ILL_COPROC = weak_odr global i32 7
+@ILL_BADSTK = weak_odr global i32 8
+@ILL_BADIADDR = weak_odr global i32 9
+@FPE_INTDIV = weak_odr global i32 1
+@FPE_INTOVF = weak_odr global i32 2
+@FPE_FLTDIV = weak_odr global i32 3
+@FPE_FLTOVF = weak_odr global i32 4
+@FPE_FLTUND = weak_odr global i32 5
+@FPE_FLTRES = weak_odr global i32 6
+@FPE_FLTINV = weak_odr global i32 7
+@FPE_FLTSUB = weak_odr global i32 8
+@FPE_FLTUNK = weak_odr global i32 14
+@FPE_CONDTRAP = weak_odr global i32 15
+@SEGV_MAPERR = weak_odr global i32 1
+@SEGV_ACCERR = weak_odr global i32 2
+@SEGV_BNDERR = weak_odr global i32 3
+@SEGV_PKUERR = weak_odr global i32 4
+@SEGV_ACCADI = weak_odr global i32 5
+@SEGV_ADIDERR = weak_odr global i32 6
+@SEGV_ADIPERR = weak_odr global i32 7
+@SEGV_MTEAERR = weak_odr global i32 8
+@SEGV_MTESERR = weak_odr global i32 9
+@SEGV_CPERR = weak_odr global i32 10
+@BUS_ADRALN = weak_odr global i32 1
+@BUS_ADRERR = weak_odr global i32 2
+@BUS_OBJERR = weak_odr global i32 3
+@BUS_MCEERR_AR = weak_odr global i32 4
+@BUS_MCEERR_AO = weak_odr global i32 5
+@CLD_EXITED = weak_odr global i32 1
+@CLD_KILLED = weak_odr global i32 2
+@CLD_DUMPED = weak_odr global i32 3
+@CLD_TRAPPED = weak_odr global i32 4
+@CLD_STOPPED = weak_odr global i32 5
+@CLD_CONTINUED = weak_odr global i32 6
+@POLL_IN = weak_odr global i32 1
+@POLL_OUT = weak_odr global i32 2
+@POLL_MSG = weak_odr global i32 3
+@POLL_ERR = weak_odr global i32 4
+@POLL_PRI = weak_odr global i32 5
+@POLL_HUP = weak_odr global i32 6
+@SIGEV_SIGNAL = weak_odr global i32 0
+@SIGEV_NONE = weak_odr global i32 1
+@SIGEV_THREAD = weak_odr global i32 2
+@SIGEV_THREAD_ID = weak_odr global i32 4
+@SS_ONSTACK = weak_odr global i32 1
+@SS_DISABLE = weak_odr global i32 2
+@__tzname = external global ptr
+@__daylight = external global i32
+@__timezone = external global i64
+@tzname = external global ptr
+@daylight = external global i32
+@timezone = external global i64
+@.str.42 = private constant [7 x i8] c"[DONE \00"
+@.str.43 = private constant [4 x i8] c"%s\0A\00"
+@.str.44 = private constant [12 x i8] c"pipe failed\00"
+@.str.45 = private constant [18 x i8] c"command not found\00"
+@.str.46 = private constant [1 x i8] zeroinitializer
+@.str.47 = private constant [6 x i8] c"DONE \00"
+@.str.48 = private constant [23 x i8] c"\0D\1B[K%s  %i (%ims) [%s]\00"
 @.str.49 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@10 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
 @.str.50 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
-@.str.53 = private constant [3 x i8] c"-A\00"
-@.str.54 = private constant [4 x i8] c"-ad\00"
-@.str.55 = private unnamed_addr constant [3 x i8] c"-D\00"
-@.str.56 = private unnamed_addr constant [3 x i8] c"-L\00"
-@.str.57 = private unnamed_addr constant [3 x i8] c"-l\00"
-@.str.58 = private unnamed_addr constant [3 x i8] c"-I\00"
-@.str.59 = private unnamed_addr constant [5 x i8] c"-Wl,\00"
-@.str.60 = private unnamed_addr constant [3 x i8] c"-W\00"
-@.str.61 = private unnamed_addr constant [6 x i8] c"-Wno-\00"
-@.str.62 = private unnamed_addr constant [3 x i8] c"-E\00"
-@.str.63 = private constant [10 x i8] c"--c-flags\00"
-@.str.64 = private constant [3 x i8] c"qc\00"
-@.str.65 = private constant [3 x i8] c"qc\00"
-@.str.66 = private constant [4 x i8] c"-oo\00"
-@.str.67 = private constant [3 x i8] c"ar\00"
-@.str.68 = private constant [4 x i8] c"rcs\00"
-@.str.69 = private constant [3 x i8] c"qc\00"
-@.str.70 = private constant [9 x i8] c"-dynamic\00"
-@.str.71 = private constant [17 x i8] c"qc --translate-c\00"
-@.str.72 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
-@.str.73 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
-@.str.76 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
-@.str.77 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
-@.str.82 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
-@.str.83 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
-@__tzname = weak_odr local_unnamed_addr global ptr null
-@__daylight = weak_odr local_unnamed_addr global i32 0
-@__timezone = weak_odr local_unnamed_addr global i64 0
-@tzname = weak_odr local_unnamed_addr global ptr null
-@daylight = weak_odr local_unnamed_addr global i32 0
-@timezone = weak_odr local_unnamed_addr global i64 0
-@__environ = weak_odr local_unnamed_addr global ptr null
-@optarg = weak_odr local_unnamed_addr global ptr null
-@optind = weak_odr local_unnamed_addr global i32 0
-@opterr = weak_odr local_unnamed_addr global i32 0
-@optopt = weak_odr local_unnamed_addr global i32 0
-@.str.86 = private constant [7 x i8] c"[DONE \00"
-@0 = private constant [1 x i8] zeroinitializer, align 1
-@.str.88 = private constant [12 x i8] c"pipe failed\00"
-@.str.89 = private constant [18 x i8] c"command not found\00"
-@1 = private unnamed_addr constant [5 x i8] c"\0D\1B[K\00", align 1
-@2 = private unnamed_addr constant [3 x i8] c"  \00", align 1
-@3 = private unnamed_addr constant [3 x i8] c" (\00", align 1
-@4 = private unnamed_addr constant [6 x i8] c"ms) [\00", align 1
-@5 = private unnamed_addr constant [3 x i8] c"]\00\00", align 1
-@.str.93 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
-@.str.94 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
-@6 = private unnamed_addr constant [29 x i8] c"/home/luca/.qc/lib/stdlib.qc\00", align 1
-@7 = private unnamed_addr constant [12 x i8] c"QC-BUILD: '\00", align 1
-@8 = private unnamed_addr constant [30 x i8] c"' depends on unknown target '\00", align 1
-@9 = private unnamed_addr constant [4 x i8] c"'\0A\00\00", align 1
-@10 = private unnamed_addr constant [44 x i8] c"QC-BUILD: dependency cycle in build graph\0A\00\00", align 1
-@.str.99 = private constant [3 x i8] c"qc\00"
-@.str.100 = private constant [3 x i8] c"-o\00"
-@.str.101 = private constant [11 x i8] c"--progress\00"
-@.str.102 = private constant [11 x i8] c"--progress\00"
-@11 = private unnamed_addr constant [6 x i8] c"\0D\1B[K\00\00", align 1
-@12 = private unnamed_addr constant [9 x i8] c" steps, \00", align 1
-@13 = private unnamed_addr constant [6 x i8] c" ok (\00", align 1
-@14 = private unnamed_addr constant [5 x i8] c"s)\0A\00\00", align 1
-@15 = private unnamed_addr constant [2 x i8] c"[\00", align 1
-@16 = private unnamed_addr constant [2 x i8] c"/\00", align 1
-@17 = private unnamed_addr constant [15 x i8] c" FAILED (exit \00", align 1
-@18 = private unnamed_addr constant [4 x i8] c")\0A\00\00", align 1
-@19 = private unnamed_addr constant [17 x i8] c"build finished: \00", align 1
-@20 = private unnamed_addr constant [13 x i8] c" targets in \00", align 1
-@21 = private unnamed_addr constant [2 x i8] c".\00", align 1
-@22 = private unnamed_addr constant [4 x i8] c"s\0A\00\00", align 1
-@23 = private unnamed_addr constant [26 x i8] c"QC-CI: no pipeline root\0A\00\00", align 1
-@.str.113 = private constant [3 x i8] c"ci\00"
-@.str.114 = private constant [8 x i8] c"running\00"
-@.str.116 = private constant [8 x i8] c"running\00"
-@.str.117 = private constant [1 x i8] zeroinitializer
-@24 = private unnamed_addr constant [9 x i8] c"QC-CI: [\00", align 1
-@25 = private unnamed_addr constant [3 x i8] c"] \00", align 1
-@.str.119 = private constant [1 x i8] zeroinitializer
-@26 = private unnamed_addr constant [8 x i8] c"QC-CI: \00", align 1
-@27 = private unnamed_addr constant [14 x i8] c"QC-CI: step '\00", align 1
-@28 = private unnamed_addr constant [25 x i8] c"' failed with exit code \00", align 1
-@29 = private unnamed_addr constant [3 x i8] c"\0A\00\00", align 1
-@.str.122 = private constant [7 x i8] c"failed\00"
-@.str.123 = private constant [8 x i8] c"success\00"
+@11 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.51 = private constant [2 x i8] c"T\00"
+@.str.52 = private constant [2 x i8] c"T\00"
+@.str.53 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@12 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.54 = private constant [36 x i8] c"attempted to iterate a empty vector\00"
+@13 = private unnamed_addr constant [46 x i8] c"/home/luca/.qc/lib/std/collections/vector.hqc\00", align 1
+@.str.55 = private constant [2 x i8] c"T\00"
+@.str.56 = private constant [2 x i8] c"T\00"
+@.str.57 = private constant [47 x i8] c"QC-BUILD: '%s' depends on unknown target '%s'\0A\00"
+@.str.58 = private constant [43 x i8] c"QC-BUILD: dependency cycle in build graph\0A\00"
+@.str.59 = private constant [3 x i8] c"qc\00"
+@.str.60 = private constant [3 x i8] c"-o\00"
+@.str.61 = private constant [11 x i8] c"--progress\00"
+@.str.62 = private constant [11 x i8] c"--progress\00"
+@.str.63 = private constant [2 x i8] c"[\00"
+@.str.64 = private constant [2 x i8] c"0\00"
+@.str.65 = private constant [2 x i8] c"/\00"
+@.str.66 = private constant [2 x i8] c"]\00"
+@.str.67 = private constant [5 x i8] c"\0D\1B[K\00"
+@.str.68 = private constant [36 x i8] c"[%i/%i] %s ok (%i steps, %i.%03is)\0A\00"
+@.str.69 = private constant [26 x i8] c"[%i/%i] %s ok (%i.%03is)\0A\00"
+@.str.70 = private constant [29 x i8] c"[%i/%i] %s FAILED (exit %i)\0A\00"
+@.str.71 = private constant [40 x i8] c"build finished: %i targets in %i.%03is\0A\00"
+@.str.72 = private constant [25 x i8] c"QC-CI: no pipeline root\0A\00"
+@.str.73 = private constant [3 x i8] c"ci\00"
+@.str.74 = private constant [8 x i8] c"running\00"
+@.str.75 = private constant [1 x i8] zeroinitializer
+@.str.76 = private constant [8 x i8] c"running\00"
+@.str.77 = private constant [1 x i8] zeroinitializer
+@.str.78 = private constant [16 x i8] c"QC-CI: [%s] %s\0A\00"
+@.str.79 = private constant [1 x i8] zeroinitializer
+@.str.80 = private constant [11 x i8] c"QC-CI: %s\0A\00"
+@.str.81 = private constant [43 x i8] c"QC-CI: step '%s' failed with exit code %i\0A\00"
+@.str.82 = private constant [7 x i8] c"failed\00"
+@.str.83 = private constant [8 x i8] c"success\00"
 
 ; Function Attrs: cold mustprogress nofree noreturn nounwind sspstrong uwtable
-define internal fastcc void @__qc_panic(ptr noundef %0, ptr noundef %1, i32 noundef range(i32 132, 1234) %2) unnamed_addr #0 {
+define internal void @__qc_panic(ptr noundef %0, ptr noundef %1, i32 noundef %2) local_unnamed_addr #0 {
   %4 = load ptr, ptr @stderr, align 8, !tbaa !9
-  %5 = tail call i32 (ptr, ptr, ...) @fprintf(ptr noundef %4, ptr noundef nonnull @.str, ptr noundef %0, ptr noundef %1, i32 noundef %2) #23
-  tail call void @abort() #24
+  %5 = tail call i32 (ptr, ptr, ...) @fprintf(ptr noundef %4, ptr noundef nonnull @.str, ptr noundef %0, ptr noundef %1, i32 noundef %2) #22
+  tail call void @abort() #23
   unreachable
 }
 
@@ -149,38 +523,44 @@ declare noundef i32 @fprintf(ptr noundef captures(none), ptr noundef readonly ca
 ; Function Attrs: cold nofree noreturn nounwind
 declare void @abort() local_unnamed_addr #2
 
-; Function Attrs: mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: read)
-declare i64 @strlen(ptr noundef captures(none)) local_unnamed_addr #3
-
 ; Function Attrs: mustprogress nofree nounwind sspstrong willreturn memory(inaccessiblemem: readwrite, errnomem: write) uwtable
-define internal fastcc noalias noundef ptr @qc_malloc(i64 noundef %0) unnamed_addr #4 {
-  %2 = tail call noalias ptr @malloc(i64 noundef %0) #25
+define internal noalias noundef ptr @qc_malloc(i64 noundef %0) local_unnamed_addr #3 {
+  %2 = tail call noalias ptr @malloc(i64 noundef %0) #24
   ret ptr %2
 }
 
 ; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite, errnomem: write)
-declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #5
+declare noalias noundef ptr @malloc(i64 noundef) local_unnamed_addr #4
 
 ; Function Attrs: mustprogress nounwind sspstrong willreturn memory(argmem: readwrite, inaccessiblemem: readwrite) uwtable
-define internal fastcc void @qc_free(ptr noundef captures(none) %0) unnamed_addr #6 {
-  tail call void @free(ptr noundef %0) #26
+define internal void @qc_free(ptr noundef captures(none) %0) local_unnamed_addr #5 {
+  tail call void @free(ptr noundef %0) #25
   ret void
 }
 
 ; Function Attrs: mustprogress nounwind willreturn allockind("free") memory(argmem: readwrite, inaccessiblemem: readwrite)
-declare void @free(ptr allocptr noundef captures(none)) local_unnamed_addr #7
+declare void @free(ptr allocptr noundef captures(none)) local_unnamed_addr #6
 
 ; Function Attrs: mustprogress nounwind sspstrong willreturn memory(argmem: readwrite, inaccessiblemem: readwrite, errnomem: write) uwtable
-define internal fastcc noalias noundef ptr @qc_realloc(ptr noundef captures(none) %0, i64 noundef %1) unnamed_addr #8 {
-  %3 = tail call ptr @realloc(ptr noundef %0, i64 noundef %1) #27
+define internal noalias noundef ptr @qc_realloc(ptr noundef captures(none) %0, i64 noundef %1) local_unnamed_addr #7 {
+  %3 = tail call ptr @realloc(ptr noundef %0, i64 noundef %1) #26
   ret ptr %3
 }
 
 ; Function Attrs: mustprogress nounwind willreturn allockind("realloc") allocsize(1) memory(argmem: readwrite, inaccessiblemem: readwrite, errnomem: write)
-declare noalias noundef ptr @realloc(ptr allocptr noundef captures(none), i64 noundef) local_unnamed_addr #9
+declare noalias noundef ptr @realloc(ptr allocptr noundef captures(none), i64 noundef) local_unnamed_addr #8
+
+; Function Attrs: mustprogress nofree nounwind sspstrong willreturn memory(inaccessiblemem: readwrite, errnomem: write) uwtable
+define internal noalias noundef ptr @qc_calloc(i64 noundef %0, i64 noundef %1) local_unnamed_addr #3 {
+  %3 = tail call noalias ptr @calloc(i64 noundef %0, i64 noundef %1) #27
+  ret ptr %3
+}
+
+; Function Attrs: mustprogress nofree nounwind willreturn allockind("alloc,zeroed") allocsize(0,1) memory(inaccessiblemem: readwrite, errnomem: write)
+declare noalias noundef ptr @calloc(i64 noundef, i64 noundef) local_unnamed_addr #9
 
 ; Function Attrs: mustprogress nofree nounwind sspstrong uwtable
-define internal fastcc void @qc_flush() unnamed_addr #10 {
+define internal void @qc_flush() local_unnamed_addr #10 {
   %1 = tail call i32 @fflush(ptr noundef null)
   ret void
 }
@@ -188,9257 +568,7328 @@ define internal fastcc void @qc_flush() unnamed_addr #10 {
 ; Function Attrs: nofree nounwind
 declare noundef i32 @fflush(ptr noundef captures(none)) local_unnamed_addr #1
 
-; Function Attrs: mustprogress nofree nounwind sspstrong uwtable
-define internal fastcc void @qc_fmt_int(i64 noundef %0, i32 noundef range(i32 -1, 4) %1, i1 noundef zeroext %2) unnamed_addr #10 {
-  %4 = tail call noundef range(i32 0, -2147483648) i32 @llvm.smax.i32(i32 %1, i32 0)
-  %5 = select i1 %2, ptr @.str.1, ptr @.str.2
-  %6 = tail call i32 (ptr, ...) @printf(ptr noundef nonnull dereferenceable(1) %5, i32 noundef %4, i32 noundef -1, i64 noundef %0)
-  ret void
+; Function Attrs: mustprogress nofree norecurse nosync nounwind sspstrong willreturn memory(none) uwtable
+define internal i32 @qc_powi_i32(i32 noundef %0, i32 noundef %1) local_unnamed_addr #11 {
+  %3 = icmp slt i32 %1, 0
+  br i1 %3, label %17, label %4
+
+4:                                                ; preds = %2
+  %5 = icmp eq i32 %1, 0
+  br i1 %5, label %17, label %6
+
+6:                                                ; preds = %6, %4
+  %7 = phi i32 [ %13, %6 ], [ 1, %4 ]
+  %8 = phi i32 [ %15, %6 ], [ %1, %4 ]
+  %9 = phi i32 [ %14, %6 ], [ %0, %4 ]
+  %10 = and i32 %8, 1
+  %11 = icmp eq i32 %10, 0
+  %12 = select i1 %11, i32 1, i32 %9
+  %13 = mul nsw i32 %12, %7
+  %14 = mul nsw i32 %9, %9
+  %15 = lshr i32 %8, 1
+  %16 = icmp eq i32 %15, 0
+  br i1 %16, label %17, label %6, !llvm.loop !12
+
+17:                                               ; preds = %6, %4, %2
+  %18 = phi i32 [ 0, %2 ], [ 1, %4 ], [ %13, %6 ]
+  ret i32 %18
 }
 
-; Function Attrs: mustprogress nocallback nocreateundeforpoison nofree nosync nounwind speculatable willreturn memory(none)
-declare i32 @llvm.smax.i32(i32, i32) #11
+; Function Attrs: mustprogress nofree norecurse nosync nounwind sspstrong willreturn memory(none) uwtable
+define internal zeroext range(i8 0, 4) i8 @qc_qand(i8 noundef zeroext %0, i8 noundef zeroext %1) local_unnamed_addr #11 {
+  %3 = or i8 %1, %0
+  %4 = icmp eq i8 %3, 0
+  br i1 %4, label %14, label %5
 
-; Function Attrs: nofree nounwind
-declare noundef i32 @printf(ptr noundef readonly captures(none), ...) local_unnamed_addr #1
+5:                                                ; preds = %2
+  %6 = icmp ult i8 %0, 2
+  %7 = icmp ult i8 %1, 2
+  %8 = or i1 %6, %7
+  br i1 %8, label %14, label %9
 
-; Function Attrs: mustprogress nofree nounwind sspstrong uwtable
-define internal fastcc void @qc_fmt_string(ptr nofree noundef readonly captures(address_is_null) %0) unnamed_addr #10 {
-  %2 = icmp eq ptr %0, null
-  %3 = select i1 %2, ptr @0, ptr %0
-  %4 = tail call i64 @strlen(ptr noundef nonnull dereferenceable(1) %3) #28
-  %5 = trunc i64 %4 to i32
-  %6 = tail call i32 @llvm.smin.i32(i32 %5, i32 -1)
-  %.not = icmp sgt i32 %5, -2
-  br i1 %.not, label %.loopexit1, label %.preheader
+9:                                                ; preds = %5
+  %10 = icmp eq i8 %0, 2
+  %11 = icmp eq i8 %1, 2
+  %12 = and i1 %10, %11
+  %13 = select i1 %12, i8 2, i8 3
+  br label %14
 
-7:                                                ; preds = %.preheader
-  %8 = add nuw nsw i32 %11, 1
-  %9 = xor i32 %6, %8
-  %10 = icmp eq i32 %9, -1
-  br i1 %10, label %.loopexit1, label %.preheader, !llvm.loop !12
-
-.preheader:                                       ; preds = %1, %7
-  %11 = phi i32 [ %8, %7 ], [ 0, %1 ]
-  %12 = load ptr, ptr @stdout, align 8, !tbaa !9
-  %13 = tail call i32 @putc(i32 noundef 32, ptr noundef %12), !inline_history !14
-  %14 = icmp eq i32 %13, -1
-  br i1 %14, label %.loopexit, label %7
-
-.loopexit1:                                       ; preds = %7, %1
-  %15 = load ptr, ptr @stdout, align 8, !tbaa !9
-  %16 = tail call i32 @fputs(ptr noundef nonnull %3, ptr noundef %15)
-  br label %.loopexit
-
-.loopexit:                                        ; preds = %.preheader, %.loopexit1
-  ret void
+14:                                               ; preds = %9, %5, %2
+  %15 = phi i8 [ 1, %5 ], [ 0, %2 ], [ %13, %9 ]
+  ret i8 %15
 }
 
-; Function Attrs: mustprogress nocallback nocreateundeforpoison nofree nosync nounwind speculatable willreturn memory(none)
-declare i32 @llvm.smin.i32(i32, i32) #11
+; Function Attrs: mustprogress nofree norecurse nosync nounwind sspstrong willreturn memory(none) uwtable
+define internal zeroext range(i8 0, 4) i8 @qc_qor(i8 noundef zeroext %0, i8 noundef zeroext %1) local_unnamed_addr #11 {
+  %3 = icmp eq i8 %0, 0
+  %4 = icmp eq i8 %1, 0
+  %5 = or i8 %1, %0
+  %6 = icmp eq i8 %5, 0
+  br i1 %6, label %23, label %7
 
-; Function Attrs: nofree nounwind
-declare noundef i32 @putc(i32 noundef, ptr noundef captures(none)) local_unnamed_addr #1
+7:                                                ; preds = %2
+  %8 = icmp eq i8 %1, 1
+  %9 = and i1 %3, %8
+  br i1 %9, label %23, label %10
 
-; Function Attrs: nofree nounwind
-declare noundef i32 @fputs(ptr noundef readonly captures(none), ptr noundef captures(none)) local_unnamed_addr #1
+10:                                               ; preds = %7
+  %11 = icmp eq i8 %1, 2
+  %12 = and i1 %3, %11
+  br i1 %12, label %23, label %13
 
-; Function Attrs: mustprogress nofree nounwind sspstrong uwtable
-define internal fastcc void @qc_print_string(ptr nofree noundef readonly captures(address_is_null) %0) unnamed_addr #10 {
-  %2 = icmp eq ptr %0, null
-  %3 = select i1 %2, ptr @0, ptr %0
-  %4 = load ptr, ptr @stdout, align 8, !tbaa !9
-  %5 = tail call i32 @fputs(ptr noundef nonnull %3, ptr noundef %4)
-  ret void
+13:                                               ; preds = %10
+  %14 = icmp eq i8 %0, 1
+  %15 = icmp ult i8 %1, 2
+  %16 = and i1 %14, %15
+  br i1 %16, label %23, label %17
+
+17:                                               ; preds = %13
+  %18 = icmp eq i8 %0, 2
+  %19 = and i1 %18, %4
+  br i1 %19, label %23, label %20
+
+20:                                               ; preds = %17
+  %21 = and i1 %18, %11
+  %22 = select i1 %21, i8 2, i8 3
+  br label %23
+
+23:                                               ; preds = %20, %17, %13, %10, %7, %2
+  %24 = phi i8 [ 2, %17 ], [ 0, %2 ], [ 1, %7 ], [ 2, %10 ], [ 1, %13 ], [ %22, %20 ]
+  ret i8 %24
 }
 
-; Function Attrs: mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: read)
-declare i32 @strncmp(ptr captures(none), ptr captures(none), i64) local_unnamed_addr #12
+; Function Attrs: mustprogress nofree norecurse nosync nounwind sspstrong willreturn memory(none) uwtable
+define internal zeroext range(i8 0, 4) i8 @qc_qxor(i8 noundef zeroext %0, i8 noundef zeroext %1) local_unnamed_addr #11 {
+  %3 = or i8 %1, %0
+  %4 = icmp ult i8 %3, 2
+  br i1 %4, label %14, label %5
+
+5:                                                ; preds = %2
+  %6 = icmp ult i8 %1, 2
+  %7 = icmp ult i8 %0, 2
+  %8 = xor i1 %7, %6
+  br i1 %8, label %14, label %9
+
+9:                                                ; preds = %5
+  %10 = icmp eq i8 %0, 2
+  %11 = icmp eq i8 %1, 2
+  %12 = and i1 %10, %11
+  %13 = select i1 %12, i8 1, i8 3
+  br label %14
+
+14:                                               ; preds = %9, %5, %2
+  %15 = phi i8 [ %13, %9 ], [ 0, %2 ], [ 3, %5 ]
+  ret i8 %15
+}
+
+; Function Attrs: mustprogress nofree norecurse nosync nounwind sspstrong willreturn memory(none) uwtable
+define internal noundef zeroext i8 @qc_qnot(i8 noundef zeroext %0) local_unnamed_addr #11 {
+  %2 = sub i8 3, %0
+  ret i8 %2
+}
+
+; Function Attrs: mustprogress nofree norecurse nosync nounwind sspstrong willreturn memory(none) uwtable
+define internal noundef zeroext i1 @qc_qand_collapse(i8 noundef zeroext %0, i8 noundef zeroext %1) local_unnamed_addr #11 {
+  %3 = and i8 %0, 2
+  %4 = and i8 %3, %1
+  %5 = icmp ne i8 %4, 0
+  ret i1 %5
+}
+
+; Function Attrs: mustprogress nofree norecurse nosync nounwind sspstrong willreturn memory(none) uwtable
+define internal noundef zeroext i1 @qc_qor_collapse(i8 noundef zeroext %0, i8 noundef zeroext %1) local_unnamed_addr #11 {
+  %3 = or i8 %1, %0
+  %4 = and i8 %3, 2
+  %5 = icmp ne i8 %4, 0
+  ret i1 %5
+}
+
+; Function Attrs: mustprogress nofree nounwind sspstrong uwtable
+define internal noundef i32 @qc_open(ptr nofree noundef readonly captures(none) %0, ptr nofree noundef readonly captures(none) %1) local_unnamed_addr #10 {
+  %3 = tail call noalias ptr @fopen(ptr noundef %0, ptr noundef %1)
+  %4 = icmp eq ptr %3, null
+  br i1 %4, label %7, label %5
+
+5:                                                ; preds = %2
+  %6 = tail call i32 @fileno(ptr noundef nonnull %3) #25
+  br label %7
+
+7:                                                ; preds = %5, %2
+  %8 = phi i32 [ %6, %5 ], [ -1, %2 ]
+  ret i32 %8
+}
+
+; Function Attrs: nofree nounwind
+declare noalias noundef ptr @fopen(ptr noundef readonly captures(none), ptr noundef readonly captures(none)) local_unnamed_addr #1
+
+; Function Attrs: nofree nounwind
+declare noundef i32 @fileno(ptr noundef captures(none)) local_unnamed_addr #1
 
 ; Function Attrs: mustprogress sspstrong uwtable
-define internal fastcc void @qc_close(i32 noundef %0) unnamed_addr #13 {
+define internal void @qc_close(i32 noundef %0) local_unnamed_addr #12 {
   %2 = tail call i32 @close(i32 noundef %0)
   ret void
 }
 
-declare i32 @close(i32 noundef) local_unnamed_addr #14
+declare i32 @close(i32 noundef) local_unnamed_addr #13
 
 ; Function Attrs: mustprogress nofree sspstrong uwtable
-define internal fastcc noundef i64 @qc_read(i32 noundef %0, ptr nofree noundef nonnull captures(none) %1) unnamed_addr #15 {
-  %3 = tail call i64 @read(i32 noundef %0, ptr noundef nonnull %1, i64 noundef 4095)
-  ret i64 %3
+define internal noundef i64 @qc_read(i32 noundef %0, ptr nofree noundef captures(none) %1, i64 noundef %2) local_unnamed_addr #14 {
+  %4 = tail call i64 @read(i32 noundef %0, ptr noundef %1, i64 noundef %2)
+  ret i64 %4
 }
 
 ; Function Attrs: nofree
-declare noundef i64 @read(i32 noundef, ptr noundef captures(none), i64 noundef) local_unnamed_addr #16
+declare noundef i64 @read(i32 noundef, ptr noundef captures(none), i64 noundef) local_unnamed_addr #15
 
-define weak_odr void @"String::Str_Str_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !15 {
-entry:
-  %strlen = tail call i64 @strlen(ptr nonnull dereferenceable(1) %1)
-  %length_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i64 %strlen, ptr %length_ptr, align 8
-  %add = add i64 %strlen, 1
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 %add)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call, ptr nonnull align 1 %1, i64 %add, i1 false)
-  store ptr %builtin_call, ptr %0, align 8
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 16
-  store i64 %add, ptr %capacity_ptr, align 8
+; Function Attrs: mustprogress nounwind sspstrong uwtable
+define internal i64 @qc_lseek(i32 noundef %0, i64 noundef %1, i32 noundef %2) local_unnamed_addr #16 {
+  %4 = tail call i64 @lseek(i32 noundef %0, i64 noundef %1, i32 noundef %2) #25
+  ret i64 %4
+}
+
+; Function Attrs: nounwind
+declare i64 @lseek(i32 noundef, i64 noundef, i32 noundef) local_unnamed_addr #17
+
+; Function Attrs: mustprogress nofree sspstrong uwtable
+define internal void @qc_write(i32 noundef %0, ptr nofree noundef readonly captures(address_is_null) %1) local_unnamed_addr #14 {
+  %3 = icmp eq ptr %1, null
+  br i1 %3, label %15, label %4
+
+4:                                                ; preds = %2
+  %5 = tail call i64 @strlen(ptr noundef nonnull dereferenceable(1) %1) #28
+  br label %6
+
+6:                                                ; preds = %10, %4
+  %7 = phi i64 [ %5, %4 ], [ %14, %10 ]
+  %8 = phi ptr [ %1, %4 ], [ %13, %10 ]
+  %9 = icmp eq i64 %7, 0
+  br i1 %9, label %15, label %10
+
+10:                                               ; preds = %6
+  %11 = tail call i64 @write(i32 noundef %0, ptr noundef %8, i64 noundef %7)
+  %12 = icmp sgt i64 %11, 0
+  %13 = getelementptr inbounds nuw i8, ptr %8, i64 %11
+  %14 = sub i64 %7, %11
+  br i1 %12, label %6, label %15, !llvm.loop !14
+
+15:                                               ; preds = %10, %6, %2
   ret void
 }
 
-define weak_odr void @"String::Str_Str_addr_t_char"(ptr %0, i64 %1, i8 %2) local_unnamed_addr !qc.return_types !15 {
+; Function Attrs: mustprogress nofree nosync nounwind willreturn memory(argmem: read)
+declare i64 @strlen(ptr noundef captures(none)) local_unnamed_addr #18
+
+; Function Attrs: nofree
+declare noundef i64 @write(i32 noundef, ptr noundef readonly captures(none), i64 noundef) local_unnamed_addr #15
+
+; Function Attrs: mustprogress nofree sspstrong uwtable
+define internal noundef i64 @qc_write_sized(i32 noundef %0, ptr nofree noundef readonly captures(address_is_null) %1, i64 noundef %2) local_unnamed_addr #14 {
+  %4 = icmp eq ptr %1, null
+  br i1 %4, label %7, label %5
+
+5:                                                ; preds = %3
+  %6 = tail call i64 @write(i32 noundef %0, ptr noundef nonnull %1, i64 noundef %2)
+  br label %7
+
+7:                                                ; preds = %5, %3
+  %8 = phi i64 [ %6, %5 ], [ -1, %3 ]
+  ret i64 %8
+}
+
+; Function Attrs: mustprogress nofree norecurse nosync nounwind sspstrong willreturn memory(argmem: read) uwtable
+define internal zeroext i1 @qc_variadic_is_empty(ptr nofree noundef readonly captures(none) %0) local_unnamed_addr #19 {
+  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %3 = load i32, ptr %2, align 4, !tbaa !15
+  %4 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %5 = load i32, ptr %4, align 8, !tbaa !18
+  %6 = icmp sge i32 %3, %5
+  ret i1 %6
+}
+
+; Function Attrs: mustprogress nofree norecurse nosync nounwind sspstrong willreturn memory(read, argmem: readwrite, inaccessiblemem: none, target_mem: none) uwtable
+define internal ptr @qc_variadic_next(ptr nofree noundef captures(none) %0) local_unnamed_addr #20 {
+  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %3 = load i32, ptr %2, align 4, !tbaa !15
+  %4 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %5 = load i32, ptr %4, align 8, !tbaa !18
+  %6 = icmp slt i32 %3, %5
+  br i1 %6, label %7, label %13
+
+7:                                                ; preds = %1
+  %8 = load ptr, ptr %0, align 8, !tbaa !19
+  %9 = sext i32 %3 to i64
+  %10 = getelementptr inbounds [8 x i8], ptr %8, i64 %9
+  %11 = load ptr, ptr %10, align 8, !tbaa !20
+  %12 = add nsw i32 %3, 1
+  store i32 %12, ptr %2, align 4, !tbaa !15
+  br label %13
+
+13:                                               ; preds = %7, %1
+  %14 = phi ptr [ %11, %7 ], [ null, %1 ]
+  ret ptr %14
+}
+
+declare !qc.return_types !21 void @"IO::qout"(ptr, ptr)
+
+declare !qc.return_types !22 ptr @"IO::getWord"()
+
+declare !qc.return_types !22 ptr @"IO::getLine"()
+
+declare !qc.return_types !23 void @"String::Str_Str_char*"(ptr, ptr)
+
+declare !qc.return_types !23 void @"String::Str_Str_addr_t_char"(ptr, i64, i8)
+
+declare !qc.return_types !23 void @"String::Str_Str_char*_addr_t"(ptr, ptr, i64)
+
+declare !qc.return_types !24 %"String::Str" @"String::Str_operator=_char*"(ptr, ptr)
+
+declare !qc.return_types !25 i64 @"String::Str_len"(ptr)
+
+declare !qc.return_types !24 %"String::Str" @"String::Str_substr_addr_t_addr_t"(ptr, i64, i64)
+
+declare !qc.return_types !26 %"String::View" @"String::Str_subView_addr_t_addr_t"(ptr, i64, i64)
+
+declare !qc.return_types !25 i64 @"String::Str_find_Str_addr_t"(ptr, %"String::Str", i64)
+
+declare !qc.return_types !27 i1 @"String::Str_contains_Str"(ptr, %"String::Str")
+
+declare !qc.return_types !27 i1 @"String::Str_startsWith_Str"(ptr, %"String::Str")
+
+declare !qc.return_types !27 i1 @"String::Str_endsWith_Str"(ptr, %"String::Str")
+
+declare !qc.return_types !27 i1 @"String::Str_isEmpty"(ptr)
+
+declare !qc.return_types !27 i1 @"String::Str_operator==_Str"(ptr, %"String::Str")
+
+declare !qc.return_types !27 i1 @"String::Str_operator!=_Str"(ptr, %"String::Str")
+
+declare !qc.return_types !27 i1 @"String::Str__eval"(ptr)
+
+declare !qc.return_types !24 %"String::Str" @"String::Str_operator+_char*"(ptr, ptr)
+
+declare !qc.return_types !24 %"String::Str" @"String::Str_operator+=_char*"(ptr, ptr)
+
+declare !qc.return_types !24 %"String::Str" @"String::Str_operator+_Str"(ptr, %"String::Str")
+
+declare !qc.return_types !24 %"String::Str" @"String::Str_operator+=_Str"(ptr, %"String::Str")
+
+declare !qc.return_types !28 ptr @"String::Str_operator[]_addr_t"(ptr, i64)
+
+declare !qc.return_types !21 void @"String::Str__destroy"(ptr)
+
+declare !qc.return_types !21 void @"String::Str_insert_addr_t_Str"(ptr, i64, %"String::Str")
+
+declare !qc.return_types !21 void @"String::Str_erase_addr_t_addr_t"(ptr, i64, i64)
+
+declare !qc.return_types !27 i1 @"String::Str_operator==_char*"(ptr, ptr)
+
+declare !qc.return_types !27 i1 @"String::Str_operator!=_char*"(ptr, ptr)
+
+declare !qc.return_types !27 i1 @"String::Str_toBool"(ptr)
+
+declare !qc.return_types !29 i2 @"String::Str_toQBool"(ptr)
+
+declare !qc.return_types !22 ptr @"String::Str_c_str"(ptr)
+
+define weak_odr void @"Vector::Vec<char*>_Vec"(ptr %0) !qc.return_types !23 {
 entry:
-  %length_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i64 %1, ptr %length_ptr, align 8
-  %add = add i64 %1, 1
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 %add)
-  %icmplt22 = icmp sgt i64 %1, 0
-  br i1 %icmplt22, label %for.body.preheader, label %for.end
-
-for.body.preheader:                               ; preds = %entry
-  tail call void @llvm.memset.p0.i64(ptr align 1 %builtin_call, i8 %2, i64 %1, i1 false)
-  br label %for.end
-
-for.end:                                          ; preds = %for.body.preheader, %entry
-  %ptr_arr_asi8 = getelementptr i8, ptr %builtin_call, i64 %1
-  store i8 0, ptr %ptr_arr_asi8, align 1
-  store ptr %builtin_call, ptr %0, align 8
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 16
-  store i64 %add, ptr %capacity_ptr, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
   ret void
 }
 
-define weak_odr void @"String::Str_Str_char*_addr_t"(ptr %0, ptr %1, i64 %2) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"Vector::Vec<char*>_reserve_int"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  store ptr %1, ptr %0, align 8
-  %add = add i64 %2, 1
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 16
-  store i64 %add, ptr %capacity_ptr, align 8
-  %length_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i64 %2, ptr %length_ptr, align 8
-  ret void
-}
-
-define weak_odr %"String::Str" @"String::Str_operator=_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !16 {
-entry:
-  %data1 = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data1)
-  store ptr null, ptr %0, align 8
-  %strlen = tail call i64 @strlen(ptr nonnull dereferenceable(1) %1)
-  %length_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i64 %strlen, ptr %length_ptr, align 8
-  %add = add i64 %strlen, 1
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 %add)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call, ptr nonnull align 1 %1, i64 %add, i1 false)
-  store ptr %builtin_call, ptr %0, align 8
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 16
-  store i64 %add, ptr %capacity_ptr, align 8
-  %2 = insertvalue %"String::Str" poison, ptr %builtin_call, 0
-  %3 = insertvalue %"String::Str" %2, i64 %strlen, 1
-  %deref21 = insertvalue %"String::Str" %3, i64 %add, 2
-  ret %"String::Str" %deref21
-}
-
-define weak_odr i64 @"String::Str_len"(ptr %0) local_unnamed_addr !qc.return_types !17 {
-entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length = load i64, ptr %1, align 8
-  ret i64 %length
-}
-
-define weak_odr %"String::Str" @"String::Str_substr_addr_t_addr_t"(ptr %0, i64 %1, i64 %2) local_unnamed_addr !qc.return_types !16 {
-entry:
-  %icmplt = icmp slt i64 %2, 0
-  br i1 %icmplt, label %then, label %ifcont
-
-then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.31, ptr nonnull @6, i32 1103) #29
-  unreachable
-
-ifcont:                                           ; preds = %entry
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length3 = load i64, ptr %3, align 8
-  %icmpgt = icmp sgt i64 %1, %length3
-  %sub = sub i64 %length3, %1
-  %icmpgt7 = icmp sgt i64 %2, %sub
-  %or.cond = or i1 %icmpgt, %icmpgt7
-  br i1 %or.cond, label %then8, label %ifcont9
-
-then8:                                            ; preds = %ifcont
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.32, ptr nonnull @6, i32 1106) #29
-  unreachable
-
-ifcont9:                                          ; preds = %ifcont
-  %add = add nuw i64 %2, 1
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 %add)
-  %builtin_call37 = ptrtoaddr ptr %builtin_call to i64
-  %icmplt1234.not = icmp eq i64 %2, 0
-  br i1 %icmplt1234.not, label %for.end, label %iter.check
-
-iter.check:                                       ; preds = %ifcont9
-  %data = load ptr, ptr %0, align 8
-  %invariant.gep = getelementptr i8, ptr %data, i64 %1
-  %min.iters.check = icmp ult i64 %2, 4
-  br i1 %min.iters.check, label %for.body.preheader, label %vector.memcheck
-
-vector.memcheck:                                  ; preds = %iter.check
-  %data38 = ptrtoaddr ptr %data to i64
-  %4 = add i64 %1, %data38
-  %5 = sub i64 %4, %builtin_call37
-  %diff.check = icmp ugt i64 %5, -32
-  br i1 %diff.check, label %for.body.preheader, label %vector.main.loop.iter.check
-
-vector.main.loop.iter.check:                      ; preds = %vector.memcheck
-  %min.iters.check39 = icmp ult i64 %2, 32
-  br i1 %min.iters.check39, label %vec.epilog.ph, label %vector.ph
-
-vector.ph:                                        ; preds = %vector.main.loop.iter.check
-  %n.mod.vf = and i64 %2, 28
-  %n.vec = and i64 %2, 9223372036854775776
-  br label %vector.body
-
-vector.body:                                      ; preds = %vector.body, %vector.ph
-  %index = phi i64 [ 0, %vector.ph ], [ %index.next, %vector.body ]
-  %6 = getelementptr i8, ptr %builtin_call, i64 %index
-  %7 = getelementptr i8, ptr %invariant.gep, i64 %index
-  %8 = getelementptr i8, ptr %7, i64 16
-  %wide.load = load <16 x i8>, ptr %7, align 1
-  %wide.load40 = load <16 x i8>, ptr %8, align 1
-  %9 = getelementptr i8, ptr %6, i64 16
-  store <16 x i8> %wide.load, ptr %6, align 1
-  store <16 x i8> %wide.load40, ptr %9, align 1
-  %index.next = add nuw i64 %index, 32
-  %10 = icmp eq i64 %index.next, %n.vec
-  br i1 %10, label %middle.block, label %vector.body, !llvm.loop !18
-
-middle.block:                                     ; preds = %vector.body
-  %cmp.n = icmp eq i64 %2, %n.vec
-  br i1 %cmp.n, label %for.end, label %vec.epilog.iter.check
-
-vec.epilog.iter.check:                            ; preds = %middle.block
-  %min.epilog.iters.check = icmp eq i64 %n.mod.vf, 0
-  br i1 %min.epilog.iters.check, label %for.body.preheader, label %vec.epilog.ph, !prof !21
-
-vec.epilog.ph:                                    ; preds = %vector.main.loop.iter.check, %vec.epilog.iter.check
-  %vec.epilog.resume.val = phi i64 [ %n.vec, %vec.epilog.iter.check ], [ 0, %vector.main.loop.iter.check ]
-  %n.vec42 = and i64 %2, 9223372036854775804
-  br label %vec.epilog.vector.body
-
-vec.epilog.vector.body:                           ; preds = %vec.epilog.vector.body, %vec.epilog.ph
-  %index43 = phi i64 [ %vec.epilog.resume.val, %vec.epilog.ph ], [ %index.next45, %vec.epilog.vector.body ]
-  %11 = getelementptr i8, ptr %builtin_call, i64 %index43
-  %12 = getelementptr i8, ptr %invariant.gep, i64 %index43
-  %wide.load44 = load <4 x i8>, ptr %12, align 1
-  store <4 x i8> %wide.load44, ptr %11, align 1
-  %index.next45 = add nuw i64 %index43, 4
-  %13 = icmp eq i64 %index.next45, %n.vec42
-  br i1 %13, label %vec.epilog.middle.block, label %vec.epilog.vector.body, !llvm.loop !22
-
-vec.epilog.middle.block:                          ; preds = %vec.epilog.vector.body
-  %cmp.n46 = icmp eq i64 %2, %n.vec42
-  br i1 %cmp.n46, label %for.end, label %for.body.preheader
-
-for.body.preheader:                               ; preds = %vector.memcheck, %iter.check, %vec.epilog.iter.check, %vec.epilog.middle.block
-  %"String::i.035.ph" = phi i64 [ 0, %iter.check ], [ 0, %vector.memcheck ], [ %n.vec, %vec.epilog.iter.check ], [ %n.vec42, %vec.epilog.middle.block ]
-  %xtraiter = and i64 %2, 3
-  %lcmp.mod.not = icmp eq i64 %xtraiter, 0
-  br i1 %lcmp.mod.not, label %for.body.prol.loopexit, label %for.body.prol
-
-for.body.prol:                                    ; preds = %for.body.preheader, %for.body.prol
-  %"String::i.035.prol" = phi i64 [ %inc.prol, %for.body.prol ], [ %"String::i.035.ph", %for.body.preheader ]
-  %prol.iter = phi i64 [ %prol.iter.next, %for.body.prol ], [ 0, %for.body.preheader ]
-  %ptr_arr_asi.prol = getelementptr i8, ptr %builtin_call, i64 %"String::i.035.prol"
-  %gep.prol = getelementptr i8, ptr %invariant.gep, i64 %"String::i.035.prol"
-  %ptr_arr_val.prol = load i8, ptr %gep.prol, align 1
-  store i8 %ptr_arr_val.prol, ptr %ptr_arr_asi.prol, align 1
-  %inc.prol = add nuw nsw i64 %"String::i.035.prol", 1
-  %prol.iter.next = add i64 %prol.iter, 1
-  %prol.iter.cmp.not = icmp eq i64 %prol.iter.next, %xtraiter
-  br i1 %prol.iter.cmp.not, label %for.body.prol.loopexit, label %for.body.prol, !llvm.loop !23
-
-for.body.prol.loopexit:                           ; preds = %for.body.prol, %for.body.preheader
-  %"String::i.035.unr" = phi i64 [ %"String::i.035.ph", %for.body.preheader ], [ %inc.prol, %for.body.prol ]
-  %14 = sub nsw i64 %"String::i.035.ph", %2
-  %15 = icmp ugt i64 %14, -4
-  br i1 %15, label %for.end, label %for.body
-
-for.body:                                         ; preds = %for.body.prol.loopexit, %for.body
-  %"String::i.035" = phi i64 [ %inc.3, %for.body ], [ %"String::i.035.unr", %for.body.prol.loopexit ]
-  %ptr_arr_asi = getelementptr i8, ptr %builtin_call, i64 %"String::i.035"
-  %gep = getelementptr i8, ptr %invariant.gep, i64 %"String::i.035"
-  %ptr_arr_val = load i8, ptr %gep, align 1
-  store i8 %ptr_arr_val, ptr %ptr_arr_asi, align 1
-  %inc = add nuw nsw i64 %"String::i.035", 1
-  %ptr_arr_asi.1 = getelementptr i8, ptr %builtin_call, i64 %inc
-  %gep.1 = getelementptr i8, ptr %invariant.gep, i64 %inc
-  %ptr_arr_val.1 = load i8, ptr %gep.1, align 1
-  store i8 %ptr_arr_val.1, ptr %ptr_arr_asi.1, align 1
-  %inc.1 = add nuw nsw i64 %"String::i.035", 2
-  %ptr_arr_asi.2 = getelementptr i8, ptr %builtin_call, i64 %inc.1
-  %gep.2 = getelementptr i8, ptr %invariant.gep, i64 %inc.1
-  %ptr_arr_val.2 = load i8, ptr %gep.2, align 1
-  store i8 %ptr_arr_val.2, ptr %ptr_arr_asi.2, align 1
-  %inc.2 = add nuw nsw i64 %"String::i.035", 3
-  %ptr_arr_asi.3 = getelementptr i8, ptr %builtin_call, i64 %inc.2
-  %gep.3 = getelementptr i8, ptr %invariant.gep, i64 %inc.2
-  %ptr_arr_val.3 = load i8, ptr %gep.3, align 1
-  store i8 %ptr_arr_val.3, ptr %ptr_arr_asi.3, align 1
-  %inc.3 = add nuw nsw i64 %"String::i.035", 4
-  %exitcond.not.3 = icmp eq i64 %inc.3, %2
-  br i1 %exitcond.not.3, label %for.end, label %for.body, !llvm.loop !25
-
-for.end:                                          ; preds = %for.body.prol.loopexit, %for.body, %middle.block, %vec.epilog.middle.block, %ifcont9
-  %ptr_arr_asi19 = getelementptr i8, ptr %builtin_call, i64 %2
-  store i8 0, ptr %ptr_arr_asi19, align 1
-  %"String::Str_inst.fca.0.insert" = insertvalue %"String::Str" poison, ptr %builtin_call, 0
-  %"String::Str_inst.fca.1.insert" = insertvalue %"String::Str" %"String::Str_inst.fca.0.insert", i64 %2, 1
-  %"String::Str_inst.fca.2.insert" = insertvalue %"String::Str" %"String::Str_inst.fca.1.insert", i64 %add, 2
-  ret %"String::Str" %"String::Str_inst.fca.2.insert"
-}
-
-define weak_odr %"String::View" @"String::Str_subView_addr_t_addr_t"(ptr %0, i64 %1, i64 %2) local_unnamed_addr !qc.return_types !26 {
-entry:
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length2 = load i64, ptr %3, align 8
-  %icmpgt = icmp sgt i64 %1, %length2
-  %sub = sub i64 %length2, %1
-  %icmpgt6 = icmp sgt i64 %2, %sub
-  %or.cond = select i1 %icmpgt, i1 true, i1 %icmpgt6
-  br i1 %or.cond, label %then, label %ifcont
-
-then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.34, ptr nonnull @6, i32 1118) #29
-  unreachable
-
-ifcont:                                           ; preds = %entry
-  %data = load ptr, ptr %0, align 8
-  %ptr_arith_plus = getelementptr i8, ptr %data, i64 %1
-  %4 = insertvalue %"String::View" zeroinitializer, ptr %ptr_arith_plus, 0
-  %5 = insertvalue %"String::View" %4, i64 %2, 1
-  ret %"String::View" %5
-}
-
-define weak_odr i64 @"String::Str_find_Str_addr_t"(ptr %0, %"String::Str" %1, i64 %2) local_unnamed_addr !qc.return_types !17 {
-entry:
-  %.fca.0.extract = extractvalue %"String::Str" %1, 0
-  %.fca.1.extract = extractvalue %"String::Str" %1, 1
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length = load i64, ptr %3, align 8
-  %icmpgt = icmp sgt i64 %2, %length
-  br i1 %icmpgt, label %then, label %ifcont
-
-common.ret:                                       ; preds = %for.body, %for.cond17, %ifcont, %for.end, %then10, %then
-  %common.ret.op = phi i64 [ %"Str::NOT_FOUND", %then ], [ %2, %ifcont ], [ %"Str::NOT_FOUND12", %then10 ], [ %"Str::NOT_FOUND35", %for.end ], [ %"String::i.053", %for.cond17 ], [ %"String::i.053", %for.body ]
-  ret i64 %common.ret.op
-
-then:                                             ; preds = %entry
-  %"Str::NOT_FOUND" = load i64, ptr @"String::Str::NOT_FOUND", align 8
-  br label %common.ret
-
-ifcont:                                           ; preds = %entry
-  %icmpeq = icmp eq i64 %.fca.1.extract, 0
-  br i1 %icmpeq, label %common.ret, label %ifcont4
-
-ifcont4:                                          ; preds = %ifcont
-  %sub = sub i64 %length, %2
-  %icmpgt9 = icmp sgt i64 %.fca.1.extract, %sub
-  br i1 %icmpgt9, label %then10, label %for.cond.preheader
-
-for.cond.preheader:                               ; preds = %ifcont4
-  %sub16 = sub i64 %length, %.fca.1.extract
-  %icmple.not52 = icmp sgt i64 %2, %sub16
-  br i1 %icmple.not52, label %for.end, label %for.body.lr.ph
-
-for.body.lr.ph:                                   ; preds = %for.cond.preheader
-  %icmplt50 = icmp sgt i64 %.fca.1.extract, 0
-  br label %for.body
-
-then10:                                           ; preds = %ifcont4
-  %"Str::NOT_FOUND12" = load i64, ptr @"String::Str::NOT_FOUND", align 8
-  br label %common.ret
-
-for.body:                                         ; preds = %for.body.lr.ph, %ifcont31
-  %"String::i.053" = phi i64 [ %2, %for.body.lr.ph ], [ %inc34, %ifcont31 ]
-  br i1 %icmplt50, label %for.body18.lr.ph, label %common.ret
-
-for.body18.lr.ph:                                 ; preds = %for.body
-  %data = load ptr, ptr %0, align 8
-  %4 = getelementptr i8, ptr %data, i64 %"String::i.053"
-  br label %for.body18
-
-for.end:                                          ; preds = %ifcont31, %for.cond.preheader
-  %"Str::NOT_FOUND35" = load i64, ptr @"String::Str::NOT_FOUND", align 8
-  br label %common.ret
-
-for.cond17:                                       ; preds = %for.body18
-  %inc = add nuw nsw i64 %"String::j.051", 1
-  %exitcond.not = icmp eq i64 %inc, %.fca.1.extract
-  br i1 %exitcond.not, label %common.ret, label %for.body18
-
-for.body18:                                       ; preds = %for.body18.lr.ph, %for.cond17
-  %"String::j.051" = phi i64 [ 0, %for.body18.lr.ph ], [ %inc, %for.cond17 ]
-  %ptr_arr_addr = getelementptr i8, ptr %4, i64 %"String::j.051"
-  %ptr_arr_val = load i8, ptr %ptr_arr_addr, align 1
-  %ptr_arr_addr26 = getelementptr i8, ptr %.fca.0.extract, i64 %"String::j.051"
-  %ptr_arr_val27 = load i8, ptr %ptr_arr_addr26, align 1
-  %icmpne.not = icmp eq i8 %ptr_arr_val, %ptr_arr_val27
-  br i1 %icmpne.not, label %for.cond17, label %ifcont31
-
-ifcont31:                                         ; preds = %for.body18
-  %inc34 = add i64 %"String::i.053", 1
-  %icmple.not = icmp sgt i64 %inc34, %sub16
-  br i1 %icmple.not, label %for.end, label %for.body
-}
-
-define weak_odr i1 @"String::Str_contains_Str"(ptr %0, %"String::Str" %1) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %.fca.0.extract.i = extractvalue %"String::Str" %1, 0
-  %.fca.1.extract.i = extractvalue %"String::Str" %1, 1
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length.i = load i64, ptr %2, align 8
-  %icmpgt.i = icmp slt i64 %length.i, 0
-  br i1 %icmpgt.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %entry
-  %"Str::NOT_FOUND.i" = load i64, ptr @"String::Str::NOT_FOUND", align 8
-  br label %"String::Str_find_Str_addr_t.exit"
-
-ifcont.i:                                         ; preds = %entry
-  %icmpeq.i = icmp eq i64 %.fca.1.extract.i, 0
-  br i1 %icmpeq.i, label %"String::Str_find_Str_addr_t.exit", label %ifcont4.i
-
-ifcont4.i:                                        ; preds = %ifcont.i
-  %icmpgt9.i = icmp sgt i64 %.fca.1.extract.i, %length.i
-  br i1 %icmpgt9.i, label %then10.i, label %for.cond.preheader.i
-
-for.cond.preheader.i:                             ; preds = %ifcont4.i
-  %sub16.i = sub i64 %length.i, %.fca.1.extract.i
-  %icmple.not52.i = icmp slt i64 %sub16.i, 0
-  br i1 %icmple.not52.i, label %for.end.i, label %for.body.lr.ph.i
-
-for.body.lr.ph.i:                                 ; preds = %for.cond.preheader.i
-  %icmplt50.i = icmp sgt i64 %.fca.1.extract.i, 0
-  br label %for.body.i
-
-then10.i:                                         ; preds = %ifcont4.i
-  %"Str::NOT_FOUND12.i" = load i64, ptr @"String::Str::NOT_FOUND", align 8
-  br label %"String::Str_find_Str_addr_t.exit"
-
-for.body.i:                                       ; preds = %ifcont31.i, %for.body.lr.ph.i
-  %"String::i.053.i" = phi i64 [ 0, %for.body.lr.ph.i ], [ %inc34.i, %ifcont31.i ]
-  br i1 %icmplt50.i, label %for.body18.lr.ph.i, label %"String::Str_find_Str_addr_t.exit"
-
-for.body18.lr.ph.i:                               ; preds = %for.body.i
-  %data.i = load ptr, ptr %0, align 8
-  %3 = getelementptr i8, ptr %data.i, i64 %"String::i.053.i"
-  br label %for.body18.i
-
-for.end.i:                                        ; preds = %ifcont31.i, %for.cond.preheader.i
-  %"Str::NOT_FOUND35.i" = load i64, ptr @"String::Str::NOT_FOUND", align 8
-  br label %"String::Str_find_Str_addr_t.exit"
-
-for.cond17.i:                                     ; preds = %for.body18.i
-  %inc.i = add nuw nsw i64 %"String::j.051.i", 1
-  %exitcond.not.i = icmp eq i64 %inc.i, %.fca.1.extract.i
-  br i1 %exitcond.not.i, label %"String::Str_find_Str_addr_t.exit", label %for.body18.i
-
-for.body18.i:                                     ; preds = %for.cond17.i, %for.body18.lr.ph.i
-  %"String::j.051.i" = phi i64 [ 0, %for.body18.lr.ph.i ], [ %inc.i, %for.cond17.i ]
-  %ptr_arr_addr.i = getelementptr i8, ptr %3, i64 %"String::j.051.i"
-  %ptr_arr_val.i = load i8, ptr %ptr_arr_addr.i, align 1
-  %ptr_arr_addr26.i = getelementptr i8, ptr %.fca.0.extract.i, i64 %"String::j.051.i"
-  %ptr_arr_val27.i = load i8, ptr %ptr_arr_addr26.i, align 1
-  %icmpne.not.i = icmp eq i8 %ptr_arr_val.i, %ptr_arr_val27.i
-  br i1 %icmpne.not.i, label %for.cond17.i, label %ifcont31.i
-
-ifcont31.i:                                       ; preds = %for.body18.i
-  %inc34.i = add i64 %"String::i.053.i", 1
-  %icmple.not.i = icmp sgt i64 %inc34.i, %sub16.i
-  br i1 %icmple.not.i, label %for.end.i, label %for.body.i
-
-"String::Str_find_Str_addr_t.exit":               ; preds = %for.body.i, %for.cond17.i, %then.i, %ifcont.i, %then10.i, %for.end.i
-  %common.ret.op.i = phi i64 [ %"Str::NOT_FOUND.i", %then.i ], [ 0, %ifcont.i ], [ %"Str::NOT_FOUND12.i", %then10.i ], [ %"Str::NOT_FOUND35.i", %for.end.i ], [ %"String::i.053.i", %for.cond17.i ], [ 0, %for.body.i ]
-  %"Str::NOT_FOUND" = load i64, ptr @"String::Str::NOT_FOUND", align 8
-  %icmpne = icmp ne i64 %common.ret.op.i, %"Str::NOT_FOUND"
-  ret i1 %icmpne
-}
-
-define weak_odr i1 @"String::Str_startsWith_Str"(ptr %0, %"String::Str" %1) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %.fca.0.extract.i = extractvalue %"String::Str" %1, 0
-  %.fca.1.extract.i = extractvalue %"String::Str" %1, 1
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length.i = load i64, ptr %2, align 8
-  %icmpgt.i = icmp slt i64 %length.i, 0
-  br i1 %icmpgt.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %entry
-  %"Str::NOT_FOUND.i" = load i64, ptr @"String::Str::NOT_FOUND", align 8
-  br label %"String::Str_find_Str_addr_t.exit"
-
-ifcont.i:                                         ; preds = %entry
-  %icmpeq.i = icmp eq i64 %.fca.1.extract.i, 0
-  br i1 %icmpeq.i, label %"String::Str_find_Str_addr_t.exit", label %ifcont4.i
-
-ifcont4.i:                                        ; preds = %ifcont.i
-  %icmpgt9.i = icmp sgt i64 %.fca.1.extract.i, %length.i
-  br i1 %icmpgt9.i, label %then10.i, label %for.cond.preheader.i
-
-for.cond.preheader.i:                             ; preds = %ifcont4.i
-  %sub16.i = sub i64 %length.i, %.fca.1.extract.i
-  %icmple.not52.i = icmp slt i64 %sub16.i, 0
-  br i1 %icmple.not52.i, label %for.end.i, label %for.body.lr.ph.i
-
-for.body.lr.ph.i:                                 ; preds = %for.cond.preheader.i
-  %icmplt50.i = icmp sgt i64 %.fca.1.extract.i, 0
-  br label %for.body.i
-
-then10.i:                                         ; preds = %ifcont4.i
-  %"Str::NOT_FOUND12.i" = load i64, ptr @"String::Str::NOT_FOUND", align 8
-  br label %"String::Str_find_Str_addr_t.exit"
-
-for.body.i:                                       ; preds = %ifcont31.i, %for.body.lr.ph.i
-  %"String::i.053.i" = phi i64 [ 0, %for.body.lr.ph.i ], [ %inc34.i, %ifcont31.i ]
-  br i1 %icmplt50.i, label %for.body18.lr.ph.i, label %"String::Str_find_Str_addr_t.exit"
-
-for.body18.lr.ph.i:                               ; preds = %for.body.i
-  %data.i = load ptr, ptr %0, align 8
-  %3 = getelementptr i8, ptr %data.i, i64 %"String::i.053.i"
-  br label %for.body18.i
-
-for.end.i:                                        ; preds = %ifcont31.i, %for.cond.preheader.i
-  %"Str::NOT_FOUND35.i" = load i64, ptr @"String::Str::NOT_FOUND", align 8
-  br label %"String::Str_find_Str_addr_t.exit"
-
-for.cond17.i:                                     ; preds = %for.body18.i
-  %inc.i = add nuw nsw i64 %"String::j.051.i", 1
-  %exitcond.not.i = icmp eq i64 %inc.i, %.fca.1.extract.i
-  br i1 %exitcond.not.i, label %"String::Str_find_Str_addr_t.exit", label %for.body18.i
-
-for.body18.i:                                     ; preds = %for.cond17.i, %for.body18.lr.ph.i
-  %"String::j.051.i" = phi i64 [ 0, %for.body18.lr.ph.i ], [ %inc.i, %for.cond17.i ]
-  %ptr_arr_addr.i = getelementptr i8, ptr %3, i64 %"String::j.051.i"
-  %ptr_arr_val.i = load i8, ptr %ptr_arr_addr.i, align 1
-  %ptr_arr_addr26.i = getelementptr i8, ptr %.fca.0.extract.i, i64 %"String::j.051.i"
-  %ptr_arr_val27.i = load i8, ptr %ptr_arr_addr26.i, align 1
-  %icmpne.not.i = icmp eq i8 %ptr_arr_val.i, %ptr_arr_val27.i
-  br i1 %icmpne.not.i, label %for.cond17.i, label %ifcont31.i
-
-ifcont31.i:                                       ; preds = %for.body18.i
-  %inc34.i = add i64 %"String::i.053.i", 1
-  %icmple.not.i = icmp sgt i64 %inc34.i, %sub16.i
-  br i1 %icmple.not.i, label %for.end.i, label %for.body.i
-
-"String::Str_find_Str_addr_t.exit":               ; preds = %for.body.i, %for.cond17.i, %then.i, %ifcont.i, %then10.i, %for.end.i
-  %common.ret.op.i = phi i64 [ %"Str::NOT_FOUND.i", %then.i ], [ 0, %ifcont.i ], [ %"Str::NOT_FOUND12.i", %then10.i ], [ %"Str::NOT_FOUND35.i", %for.end.i ], [ %"String::i.053.i", %for.cond17.i ], [ 0, %for.body.i ]
-  %icmpeq = icmp eq i64 %common.ret.op.i, 0
-  ret i1 %icmpeq
-}
-
-define weak_odr i1 @"String::Str_endsWith_Str"(ptr %0, %"String::Str" %1) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %.fca.1.extract = extractvalue %"String::Str" %1, 1
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length1 = load i64, ptr %2, align 8
-  %icmpgt = icmp sgt i64 %.fca.1.extract, %length1
-  br i1 %icmpgt, label %common.ret, label %ifcont
-
-common.ret:                                       ; preds = %entry, %"String::Str_find_Str_addr_t.exit"
-  %common.ret.op = phi i1 [ %icmpeq, %"String::Str_find_Str_addr_t.exit" ], [ false, %entry ]
-  ret i1 %common.ret.op
-
-ifcont:                                           ; preds = %entry
-  %sub = sub i64 %length1, %.fca.1.extract
-  %.fca.0.extract.i = extractvalue %"String::Str" %1, 0
-  %icmpgt.i = icmp sgt i64 %sub, %length1
-  br i1 %icmpgt.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %ifcont
-  %"Str::NOT_FOUND.i" = load i64, ptr @"String::Str::NOT_FOUND", align 8
-  br label %"String::Str_find_Str_addr_t.exit"
-
-ifcont.i:                                         ; preds = %ifcont
-  %icmpeq.i = icmp eq i64 %.fca.1.extract, 0
-  br i1 %icmpeq.i, label %"String::Str_find_Str_addr_t.exit", label %for.body.lr.ph.i
-
-for.body.lr.ph.i:                                 ; preds = %ifcont.i
-  %icmplt50.i = icmp sgt i64 %.fca.1.extract, 0
-  br label %for.body.i
-
-for.body.i:                                       ; preds = %ifcont31.i, %for.body.lr.ph.i
-  %"String::i.053.i" = phi i64 [ %sub, %for.body.lr.ph.i ], [ %inc34.i, %ifcont31.i ]
-  br i1 %icmplt50.i, label %for.body18.lr.ph.i, label %"String::Str_find_Str_addr_t.exit"
-
-for.body18.lr.ph.i:                               ; preds = %for.body.i
-  %data.i = load ptr, ptr %0, align 8
-  %3 = getelementptr i8, ptr %data.i, i64 %"String::i.053.i"
-  br label %for.body18.i
-
-for.end.i:                                        ; preds = %ifcont31.i
-  %"Str::NOT_FOUND35.i" = load i64, ptr @"String::Str::NOT_FOUND", align 8
-  br label %"String::Str_find_Str_addr_t.exit"
-
-for.cond17.i:                                     ; preds = %for.body18.i
-  %inc.i = add nuw nsw i64 %"String::j.051.i", 1
-  %exitcond.not.i = icmp eq i64 %inc.i, %.fca.1.extract
-  br i1 %exitcond.not.i, label %"String::Str_find_Str_addr_t.exit", label %for.body18.i
-
-for.body18.i:                                     ; preds = %for.cond17.i, %for.body18.lr.ph.i
-  %"String::j.051.i" = phi i64 [ 0, %for.body18.lr.ph.i ], [ %inc.i, %for.cond17.i ]
-  %ptr_arr_addr.i = getelementptr i8, ptr %3, i64 %"String::j.051.i"
-  %ptr_arr_val.i = load i8, ptr %ptr_arr_addr.i, align 1
-  %ptr_arr_addr26.i = getelementptr i8, ptr %.fca.0.extract.i, i64 %"String::j.051.i"
-  %ptr_arr_val27.i = load i8, ptr %ptr_arr_addr26.i, align 1
-  %icmpne.not.i = icmp eq i8 %ptr_arr_val.i, %ptr_arr_val27.i
-  br i1 %icmpne.not.i, label %for.cond17.i, label %ifcont31.i
-
-ifcont31.i:                                       ; preds = %for.body18.i
-  %inc34.i = add i64 %"String::i.053.i", 1
-  %icmple.not.i = icmp sgt i64 %inc34.i, %sub
-  br i1 %icmple.not.i, label %for.end.i, label %for.body.i
-
-"String::Str_find_Str_addr_t.exit":               ; preds = %for.body.i, %for.cond17.i, %then.i, %ifcont.i, %for.end.i
-  %common.ret.op.i = phi i64 [ %"Str::NOT_FOUND.i", %then.i ], [ %sub, %ifcont.i ], [ %"String::i.053.i", %for.cond17.i ], [ %"Str::NOT_FOUND35.i", %for.end.i ], [ %sub, %for.body.i ]
-  %icmpeq = icmp eq i64 %common.ret.op.i, %sub
-  br label %common.ret
-}
-
-define weak_odr i1 @"String::Str_isEmpty"(ptr %0) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length = load i64, ptr %1, align 8
-  %icmpeq = icmp eq i64 %length, 0
-  ret i1 %icmpeq
-}
-
-define weak_odr i1 @"String::Str_eq_Str"(ptr %0, %"String::Str" %1) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %.fca.0.extract = extractvalue %"String::Str" %1, 0
-  %.fca.1.extract = extractvalue %"String::Str" %1, 1
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length = load i64, ptr %2, align 8
-  %icmpne.not = icmp eq i64 %length, %.fca.1.extract
-  br i1 %icmpne.not, label %for.cond.preheader, label %common.ret
-
-for.cond.preheader:                               ; preds = %entry
-  %icmplt14 = icmp sgt i64 %.fca.1.extract, 0
-  br i1 %icmplt14, label %for.body.lr.ph, label %common.ret
-
-for.body.lr.ph:                                   ; preds = %for.cond.preheader
-  %data = load ptr, ptr %0, align 8
-  br label %for.body
-
-common.ret:                                       ; preds = %for.body, %for.cond.preheader, %entry
-  %common.ret.op = phi i1 [ false, %entry ], [ true, %for.cond.preheader ], [ %icmpne8.not, %for.body ]
-  ret i1 %common.ret.op
-
-for.body:                                         ; preds = %for.body, %for.body.lr.ph
-  %"String::i.015" = phi i64 [ 0, %for.body.lr.ph ], [ %inc, %for.body ]
-  %ptr_arr_addr = getelementptr i8, ptr %data, i64 %"String::i.015"
-  %ptr_arr_val = load i8, ptr %ptr_arr_addr, align 1
-  %ptr_arr_addr6 = getelementptr i8, ptr %.fca.0.extract, i64 %"String::i.015"
-  %ptr_arr_val7 = load i8, ptr %ptr_arr_addr6, align 1
-  %icmpne8.not = icmp eq i8 %ptr_arr_val, %ptr_arr_val7
-  %inc = add nuw nsw i64 %"String::i.015", 1
-  %exitcond.not = icmp ne i64 %inc, %.fca.1.extract
-  %or.cond.not = select i1 %icmpne8.not, i1 %exitcond.not, i1 false
-  br i1 %or.cond.not, label %for.body, label %common.ret
-}
-
-define weak_odr i1 @"String::Str_operator==_Str"(ptr %0, %"String::Str" %1) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %.fca.0.extract.i = extractvalue %"String::Str" %1, 0
-  %.fca.1.extract.i = extractvalue %"String::Str" %1, 1
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length.i = load i64, ptr %2, align 8
-  %icmpne.not.i = icmp eq i64 %length.i, %.fca.1.extract.i
-  br i1 %icmpne.not.i, label %for.cond.preheader.i, label %"String::Str_eq_Str.exit"
-
-for.cond.preheader.i:                             ; preds = %entry
-  %icmplt14.i = icmp sgt i64 %.fca.1.extract.i, 0
-  br i1 %icmplt14.i, label %for.body.lr.ph.i, label %"String::Str_eq_Str.exit"
-
-for.body.lr.ph.i:                                 ; preds = %for.cond.preheader.i
-  %data.i = load ptr, ptr %0, align 8
-  br label %for.body.i
-
-for.body.i:                                       ; preds = %for.body.i, %for.body.lr.ph.i
-  %"String::i.015.i" = phi i64 [ 0, %for.body.lr.ph.i ], [ %inc.i, %for.body.i ]
-  %ptr_arr_addr.i = getelementptr i8, ptr %data.i, i64 %"String::i.015.i"
-  %ptr_arr_val.i = load i8, ptr %ptr_arr_addr.i, align 1
-  %ptr_arr_addr6.i = getelementptr i8, ptr %.fca.0.extract.i, i64 %"String::i.015.i"
-  %ptr_arr_val7.i = load i8, ptr %ptr_arr_addr6.i, align 1
-  %icmpne8.not.i = icmp eq i8 %ptr_arr_val.i, %ptr_arr_val7.i
-  %inc.i = add nuw nsw i64 %"String::i.015.i", 1
-  %exitcond.not.i = icmp ne i64 %inc.i, %.fca.1.extract.i
-  %or.cond.not = select i1 %icmpne8.not.i, i1 %exitcond.not.i, i1 false
-  br i1 %or.cond.not, label %for.body.i, label %"String::Str_eq_Str.exit"
-
-"String::Str_eq_Str.exit":                        ; preds = %for.body.i, %entry, %for.cond.preheader.i
-  %common.ret.op.i = phi i1 [ false, %entry ], [ true, %for.cond.preheader.i ], [ %icmpne8.not.i, %for.body.i ]
-  ret i1 %common.ret.op.i
-}
-
-define weak_odr i1 @"String::Str_operator!=_Str"(ptr %0, %"String::Str" %1) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %.fca.0.extract.i = extractvalue %"String::Str" %1, 0
-  %.fca.1.extract.i = extractvalue %"String::Str" %1, 1
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length.i = load i64, ptr %2, align 8
-  %icmpne.not.i = icmp eq i64 %length.i, %.fca.1.extract.i
-  br i1 %icmpne.not.i, label %for.cond.preheader.i, label %"String::Str_eq_Str.exit"
-
-for.cond.preheader.i:                             ; preds = %entry
-  %icmplt14.i = icmp sgt i64 %.fca.1.extract.i, 0
-  br i1 %icmplt14.i, label %for.body.lr.ph.i, label %"String::Str_eq_Str.exit"
-
-for.body.lr.ph.i:                                 ; preds = %for.cond.preheader.i
-  %data.i = load ptr, ptr %0, align 8
-  br label %for.body.i
-
-for.body.i:                                       ; preds = %for.body.i, %for.body.lr.ph.i
-  %"String::i.015.i" = phi i64 [ 0, %for.body.lr.ph.i ], [ %inc.i, %for.body.i ]
-  %ptr_arr_addr.i = getelementptr i8, ptr %data.i, i64 %"String::i.015.i"
-  %ptr_arr_val.i = load i8, ptr %ptr_arr_addr.i, align 1
-  %ptr_arr_addr6.i = getelementptr i8, ptr %.fca.0.extract.i, i64 %"String::i.015.i"
-  %ptr_arr_val7.i = load i8, ptr %ptr_arr_addr6.i, align 1
-  %icmpne8.not.i.not = icmp ne i8 %ptr_arr_val.i, %ptr_arr_val7.i
-  %inc.i = add nuw nsw i64 %"String::i.015.i", 1
-  %exitcond.not.i = icmp eq i64 %inc.i, %.fca.1.extract.i
-  %or.cond = select i1 %icmpne8.not.i.not, i1 true, i1 %exitcond.not.i
-  br i1 %or.cond, label %"String::Str_eq_Str.exit", label %for.body.i
-
-"String::Str_eq_Str.exit":                        ; preds = %for.body.i, %entry, %for.cond.preheader.i
-  %not = phi i1 [ true, %entry ], [ false, %for.cond.preheader.i ], [ %icmpne8.not.i.not, %for.body.i ]
-  ret i1 %not
-}
-
-define weak_odr i1 @"String::Str__eval"(ptr %0) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length.i = load i64, ptr %1, align 8
-  %icmpeq.i = icmp ne i64 %length.i, 0
-  ret i1 %icmpeq.i
-}
-
-define weak_odr %"String::Str" @"String::Str_operator+_Str"(ptr %0, %"String::Str" %1) local_unnamed_addr !qc.return_types !16 {
-entry:
-  %.fca.0.extract = extractvalue %"String::Str" %1, 0
-  %.fca.1.extract = extractvalue %"String::Str" %1, 1
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length = load i64, ptr %2, align 8
-  %add = add i64 %length, %.fca.1.extract
-  %add2 = add i64 %add, 1
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 %add2)
-  %icmplt43 = icmp sgt i64 %length, 0
-  br i1 %icmplt43, label %iter.check, label %for.cond7.preheader
-
-iter.check:                                       ; preds = %entry
-  %builtin_call47 = ptrtoaddr ptr %builtin_call to i64
-  %data = load ptr, ptr %0, align 8
-  %min.iters.check = icmp ult i64 %length, 4
-  %data48 = ptrtoaddr ptr %data to i64
-  %3 = sub i64 %data48, %builtin_call47
-  %diff.check = icmp ugt i64 %3, -32
-  %or.cond = select i1 %min.iters.check, i1 true, i1 %diff.check
-  br i1 %or.cond, label %for.body.preheader, label %vector.main.loop.iter.check
-
-vector.main.loop.iter.check:                      ; preds = %iter.check
-  %min.iters.check49 = icmp ult i64 %length, 32
-  br i1 %min.iters.check49, label %vec.epilog.ph, label %vector.ph
-
-vector.ph:                                        ; preds = %vector.main.loop.iter.check
-  %n.mod.vf = and i64 %length, 28
-  %n.vec = and i64 %length, 9223372036854775776
-  br label %vector.body
-
-vector.body:                                      ; preds = %vector.body, %vector.ph
-  %index = phi i64 [ 0, %vector.ph ], [ %index.next, %vector.body ]
-  %4 = getelementptr i8, ptr %builtin_call, i64 %index
-  %5 = getelementptr i8, ptr %data, i64 %index
-  %6 = getelementptr i8, ptr %5, i64 16
-  %wide.load = load <16 x i8>, ptr %5, align 1
-  %wide.load50 = load <16 x i8>, ptr %6, align 1
-  %7 = getelementptr i8, ptr %4, i64 16
-  store <16 x i8> %wide.load, ptr %4, align 1
-  store <16 x i8> %wide.load50, ptr %7, align 1
-  %index.next = add nuw i64 %index, 32
-  %8 = icmp eq i64 %index.next, %n.vec
-  br i1 %8, label %middle.block, label %vector.body, !llvm.loop !28
-
-middle.block:                                     ; preds = %vector.body
-  %cmp.n = icmp eq i64 %length, %n.vec
-  br i1 %cmp.n, label %for.cond7.preheader, label %vec.epilog.iter.check
-
-vec.epilog.iter.check:                            ; preds = %middle.block
-  %min.epilog.iters.check = icmp eq i64 %n.mod.vf, 0
-  br i1 %min.epilog.iters.check, label %for.body.preheader, label %vec.epilog.ph, !prof !21
-
-vec.epilog.ph:                                    ; preds = %vector.main.loop.iter.check, %vec.epilog.iter.check
-  %vec.epilog.resume.val = phi i64 [ %n.vec, %vec.epilog.iter.check ], [ 0, %vector.main.loop.iter.check ]
-  %n.vec52 = and i64 %length, 9223372036854775804
-  br label %vec.epilog.vector.body
-
-vec.epilog.vector.body:                           ; preds = %vec.epilog.vector.body, %vec.epilog.ph
-  %index53 = phi i64 [ %vec.epilog.resume.val, %vec.epilog.ph ], [ %index.next55, %vec.epilog.vector.body ]
-  %9 = getelementptr i8, ptr %builtin_call, i64 %index53
-  %10 = getelementptr i8, ptr %data, i64 %index53
-  %wide.load54 = load <4 x i8>, ptr %10, align 1
-  store <4 x i8> %wide.load54, ptr %9, align 1
-  %index.next55 = add nuw i64 %index53, 4
-  %11 = icmp eq i64 %index.next55, %n.vec52
-  br i1 %11, label %vec.epilog.middle.block, label %vec.epilog.vector.body, !llvm.loop !29
-
-vec.epilog.middle.block:                          ; preds = %vec.epilog.vector.body
-  %cmp.n56 = icmp eq i64 %length, %n.vec52
-  br i1 %cmp.n56, label %for.cond7.preheader, label %for.body.preheader
-
-for.body.preheader:                               ; preds = %iter.check, %vec.epilog.iter.check, %vec.epilog.middle.block
-  %"String::i.044.ph" = phi i64 [ 0, %iter.check ], [ %n.vec, %vec.epilog.iter.check ], [ %n.vec52, %vec.epilog.middle.block ]
-  %xtraiter = and i64 %length, 3
-  %lcmp.mod.not = icmp eq i64 %xtraiter, 0
-  br i1 %lcmp.mod.not, label %for.body.prol.loopexit, label %for.body.prol
-
-for.body.prol:                                    ; preds = %for.body.preheader, %for.body.prol
-  %"String::i.044.prol" = phi i64 [ %inc.prol, %for.body.prol ], [ %"String::i.044.ph", %for.body.preheader ]
-  %prol.iter = phi i64 [ %prol.iter.next, %for.body.prol ], [ 0, %for.body.preheader ]
-  %ptr_arr_asi.prol = getelementptr i8, ptr %builtin_call, i64 %"String::i.044.prol"
-  %ptr_arr_addr.prol = getelementptr i8, ptr %data, i64 %"String::i.044.prol"
-  %ptr_arr_val.prol = load i8, ptr %ptr_arr_addr.prol, align 1
-  store i8 %ptr_arr_val.prol, ptr %ptr_arr_asi.prol, align 1
-  %inc.prol = add nuw nsw i64 %"String::i.044.prol", 1
-  %prol.iter.next = add i64 %prol.iter, 1
-  %prol.iter.cmp.not = icmp eq i64 %prol.iter.next, %xtraiter
-  br i1 %prol.iter.cmp.not, label %for.body.prol.loopexit, label %for.body.prol, !llvm.loop !30
-
-for.body.prol.loopexit:                           ; preds = %for.body.prol, %for.body.preheader
-  %"String::i.044.unr" = phi i64 [ %"String::i.044.ph", %for.body.preheader ], [ %inc.prol, %for.body.prol ]
-  %12 = sub nsw i64 %"String::i.044.ph", %length
-  %13 = icmp ugt i64 %12, -4
-  br i1 %13, label %for.cond7.preheader, label %for.body
-
-for.cond7.preheader:                              ; preds = %for.body.prol.loopexit, %for.body, %middle.block, %vec.epilog.middle.block, %entry
-  %invariant.gep = getelementptr i8, ptr %builtin_call, i64 %length
-  %icmplt1345 = icmp sgt i64 %.fca.1.extract, 0
-  br i1 %icmplt1345, label %for.body8.preheader, label %for.end10
-
-for.body8.preheader:                              ; preds = %for.cond7.preheader
-  tail call void @llvm.memcpy.p0.p0.i64(ptr align 1 %invariant.gep, ptr align 1 %.fca.0.extract, i64 %.fca.1.extract, i1 false)
-  br label %for.end10
-
-for.body:                                         ; preds = %for.body.prol.loopexit, %for.body
-  %"String::i.044" = phi i64 [ %inc.3, %for.body ], [ %"String::i.044.unr", %for.body.prol.loopexit ]
-  %ptr_arr_asi = getelementptr i8, ptr %builtin_call, i64 %"String::i.044"
-  %ptr_arr_addr = getelementptr i8, ptr %data, i64 %"String::i.044"
-  %ptr_arr_val = load i8, ptr %ptr_arr_addr, align 1
-  store i8 %ptr_arr_val, ptr %ptr_arr_asi, align 1
-  %inc = add nuw nsw i64 %"String::i.044", 1
-  %ptr_arr_asi.1 = getelementptr i8, ptr %builtin_call, i64 %inc
-  %ptr_arr_addr.1 = getelementptr i8, ptr %data, i64 %inc
-  %ptr_arr_val.1 = load i8, ptr %ptr_arr_addr.1, align 1
-  store i8 %ptr_arr_val.1, ptr %ptr_arr_asi.1, align 1
-  %inc.1 = add nuw nsw i64 %"String::i.044", 2
-  %ptr_arr_asi.2 = getelementptr i8, ptr %builtin_call, i64 %inc.1
-  %ptr_arr_addr.2 = getelementptr i8, ptr %data, i64 %inc.1
-  %ptr_arr_val.2 = load i8, ptr %ptr_arr_addr.2, align 1
-  store i8 %ptr_arr_val.2, ptr %ptr_arr_asi.2, align 1
-  %inc.2 = add nuw nsw i64 %"String::i.044", 3
-  %ptr_arr_asi.3 = getelementptr i8, ptr %builtin_call, i64 %inc.2
-  %ptr_arr_addr.3 = getelementptr i8, ptr %data, i64 %inc.2
-  %ptr_arr_val.3 = load i8, ptr %ptr_arr_addr.3, align 1
-  store i8 %ptr_arr_val.3, ptr %ptr_arr_asi.3, align 1
-  %inc.3 = add nuw nsw i64 %"String::i.044", 4
-  %exitcond.not.3 = icmp eq i64 %inc.3, %length
-  br i1 %exitcond.not.3, label %for.cond7.preheader, label %for.body, !llvm.loop !31
-
-for.end10:                                        ; preds = %for.body8.preheader, %for.cond7.preheader
-  %ptr_arr_asi29 = getelementptr i8, ptr %invariant.gep, i64 %.fca.1.extract
-  store i8 0, ptr %ptr_arr_asi29, align 1
-  %"String::Str_inst.fca.0.insert" = insertvalue %"String::Str" poison, ptr %builtin_call, 0
-  %"String::Str_inst.fca.1.insert" = insertvalue %"String::Str" %"String::Str_inst.fca.0.insert", i64 %add, 1
-  %"String::Str_inst.fca.2.insert" = insertvalue %"String::Str" %"String::Str_inst.fca.1.insert", i64 %add2, 2
-  ret %"String::Str" %"String::Str_inst.fca.2.insert"
-}
-
-define weak_odr %"String::Str" @"String::Str_operator+=_Str"(ptr %0, %"String::Str" %1) local_unnamed_addr !qc.return_types !16 {
-entry:
-  %.fca.0.extract = extractvalue %"String::Str" %1, 0
-  %.fca.1.extract = extractvalue %"String::Str" %1, 1
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length = load i64, ptr %2, align 8
-  %add = add i64 %length, %.fca.1.extract
-  %data = load ptr, ptr %0, align 8
-  %add2 = add i64 %add, 1
-  %builtin_call = tail call fastcc ptr @qc_realloc(ptr %data, i64 %add2)
-  store ptr %builtin_call, ptr %0, align 8
-  %icmplt27 = icmp sgt i64 %.fca.1.extract, 0
-  br i1 %icmplt27, label %for.body.preheader, label %for.end
-
-for.body.preheader:                               ; preds = %entry
-  %xtraiter = and i64 %.fca.1.extract, 3
-  %3 = icmp ult i64 %.fca.1.extract, 4
-  br i1 %3, label %for.body.epil.preheader, label %for.body.preheader.new
-
-for.body.preheader.new:                           ; preds = %for.body.preheader
-  %unroll_iter = and i64 %.fca.1.extract, 9223372036854775804
-  br label %for.body
-
-for.body:                                         ; preds = %for.body, %for.body.preheader.new
-  %"String::i.028" = phi i64 [ 0, %for.body.preheader.new ], [ %inc.3, %for.body ]
-  %niter = phi i64 [ 0, %for.body.preheader.new ], [ %niter.next.3, %for.body ]
-  %length4 = load i64, ptr %2, align 8
-  %data7 = load ptr, ptr %0, align 8
-  %4 = getelementptr i8, ptr %data7, i64 %length4
-  %ptr_arr_asi = getelementptr i8, ptr %4, i64 %"String::i.028"
-  %ptr_arr_addr = getelementptr i8, ptr %.fca.0.extract, i64 %"String::i.028"
-  %ptr_arr_val = load i8, ptr %ptr_arr_addr, align 1
-  store i8 %ptr_arr_val, ptr %ptr_arr_asi, align 1
-  %inc = or disjoint i64 %"String::i.028", 1
-  %length4.1 = load i64, ptr %2, align 8
-  %data7.1 = load ptr, ptr %0, align 8
-  %5 = getelementptr i8, ptr %data7.1, i64 %length4.1
-  %ptr_arr_asi.1 = getelementptr i8, ptr %5, i64 %inc
-  %ptr_arr_addr.1 = getelementptr i8, ptr %.fca.0.extract, i64 %inc
-  %ptr_arr_val.1 = load i8, ptr %ptr_arr_addr.1, align 1
-  store i8 %ptr_arr_val.1, ptr %ptr_arr_asi.1, align 1
-  %inc.1 = or disjoint i64 %"String::i.028", 2
-  %length4.2 = load i64, ptr %2, align 8
-  %data7.2 = load ptr, ptr %0, align 8
-  %6 = getelementptr i8, ptr %data7.2, i64 %length4.2
-  %ptr_arr_asi.2 = getelementptr i8, ptr %6, i64 %inc.1
-  %ptr_arr_addr.2 = getelementptr i8, ptr %.fca.0.extract, i64 %inc.1
-  %ptr_arr_val.2 = load i8, ptr %ptr_arr_addr.2, align 1
-  store i8 %ptr_arr_val.2, ptr %ptr_arr_asi.2, align 1
-  %inc.2 = or disjoint i64 %"String::i.028", 3
-  %length4.3 = load i64, ptr %2, align 8
-  %data7.3 = load ptr, ptr %0, align 8
-  %7 = getelementptr i8, ptr %data7.3, i64 %length4.3
-  %ptr_arr_asi.3 = getelementptr i8, ptr %7, i64 %inc.2
-  %ptr_arr_addr.3 = getelementptr i8, ptr %.fca.0.extract, i64 %inc.2
-  %ptr_arr_val.3 = load i8, ptr %ptr_arr_addr.3, align 1
-  store i8 %ptr_arr_val.3, ptr %ptr_arr_asi.3, align 1
-  %inc.3 = add nuw nsw i64 %"String::i.028", 4
-  %niter.next.3 = add i64 %niter, 4
-  %niter.ncmp.3 = icmp eq i64 %niter.next.3, %unroll_iter
-  br i1 %niter.ncmp.3, label %for.end.loopexit.unr-lcssa, label %for.body
-
-for.end.loopexit.unr-lcssa:                       ; preds = %for.body
-  %lcmp.mod.not = icmp eq i64 %xtraiter, 0
-  br i1 %lcmp.mod.not, label %for.end.loopexit, label %for.body.epil.preheader
-
-for.body.epil.preheader:                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.preheader
-  %"String::i.028.epil.init" = phi i64 [ 0, %for.body.preheader ], [ %inc.3, %for.end.loopexit.unr-lcssa ]
-  %lcmp.mod30 = icmp ne i64 %xtraiter, 0
-  tail call void @llvm.assume(i1 %lcmp.mod30)
-  br label %for.body.epil
-
-for.body.epil:                                    ; preds = %for.body.epil, %for.body.epil.preheader
-  %"String::i.028.epil" = phi i64 [ %inc.epil, %for.body.epil ], [ %"String::i.028.epil.init", %for.body.epil.preheader ]
-  %epil.iter = phi i64 [ %epil.iter.next, %for.body.epil ], [ 0, %for.body.epil.preheader ]
-  %length4.epil = load i64, ptr %2, align 8
-  %data7.epil = load ptr, ptr %0, align 8
-  %8 = getelementptr i8, ptr %data7.epil, i64 %length4.epil
-  %ptr_arr_asi.epil = getelementptr i8, ptr %8, i64 %"String::i.028.epil"
-  %ptr_arr_addr.epil = getelementptr i8, ptr %.fca.0.extract, i64 %"String::i.028.epil"
-  %ptr_arr_val.epil = load i8, ptr %ptr_arr_addr.epil, align 1
-  store i8 %ptr_arr_val.epil, ptr %ptr_arr_asi.epil, align 1
-  %inc.epil = add nuw nsw i64 %"String::i.028.epil", 1
-  %epil.iter.next = add i64 %epil.iter, 1
-  %epil.iter.cmp.not = icmp eq i64 %epil.iter.next, %xtraiter
-  br i1 %epil.iter.cmp.not, label %for.end.loopexit, label %for.body.epil, !llvm.loop !32
-
-for.end.loopexit:                                 ; preds = %for.body.epil, %for.end.loopexit.unr-lcssa
-  %data14.pre = load ptr, ptr %0, align 8
-  br label %for.end
-
-for.end:                                          ; preds = %for.end.loopexit, %entry
-  %data14 = phi ptr [ %data14.pre, %for.end.loopexit ], [ %builtin_call, %entry ]
-  store i64 %add, ptr %2, align 8
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 16
-  store i64 %add2, ptr %capacity_ptr, align 8
-  %ptr_arr_asi15 = getelementptr i8, ptr %data14, i64 %add
-  store i8 0, ptr %ptr_arr_asi15, align 1
-  %deref.unpack = load ptr, ptr %0, align 8
-  %9 = insertvalue %"String::Str" poison, ptr %deref.unpack, 0
-  %deref.unpack23 = load i64, ptr %2, align 8
-  %10 = insertvalue %"String::Str" %9, i64 %deref.unpack23, 1
-  %deref.unpack25 = load i64, ptr %capacity_ptr, align 8
-  %deref26 = insertvalue %"String::Str" %10, i64 %deref.unpack25, 2
-  ret %"String::Str" %deref26
-}
-
-define weak_odr ptr @"String::Str_operator[]_addr_t"(ptr %0, i64 %1) local_unnamed_addr !qc.return_types !33 {
-entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length = load i64, ptr %2, align 8
-  %icmpge.not = icmp slt i64 %1, %length
-  br i1 %icmpge.not, label %ifcont, label %then
-
-then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.37, ptr nonnull @6, i32 1205) #29
-  unreachable
-
-ifcont:                                           ; preds = %entry
-  %data = load ptr, ptr %0, align 8
-  %lval_ptr_arr_addr = getelementptr i8, ptr %data, i64 %1
-  ret ptr %lval_ptr_arr_addr
-}
-
-define weak_odr void @"String::Str__destroy"(ptr %0) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %data = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data)
-  store ptr null, ptr %0, align 8
-  ret void
-}
-
-define weak_odr void @"String::Str_insert_addr_t_Str"(ptr %0, i64 %1, %"String::Str" %2) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %.fca.0.extract = extractvalue %"String::Str" %2, 0
-  %.fca.1.extract = extractvalue %"String::Str" %2, 1
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length = load i64, ptr %3, align 8
-  %icmpgt = icmp sgt i64 %1, %length
-  br i1 %icmpgt, label %then, label %ifcont
-
-then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.38, ptr nonnull @6, i32 1215) #29
-  unreachable
-
-ifcont:                                           ; preds = %entry
-  %add = add i64 %length, %.fca.1.extract
-  %add4 = add i64 %add, 1
-  %4 = getelementptr inbounds nuw i8, ptr %0, i64 16
-  %capacity = load i64, ptr %4, align 8
-  %icmpgt5 = icmp sgt i64 %add4, %capacity
-  br i1 %icmpgt5, label %then6, label %ifcont7
-
-then6:                                            ; preds = %ifcont
-  store i64 %add4, ptr %4, align 8
-  %data = load ptr, ptr %0, align 8
-  %builtin_call = tail call fastcc ptr @qc_realloc(ptr %data, i64 %add4)
-  store ptr %builtin_call, ptr %0, align 8
-  %length11.pre = load i64, ptr %3, align 8
-  br label %ifcont7
-
-ifcont7:                                          ; preds = %then6, %ifcont
-  %length11 = phi i64 [ %length11.pre, %then6 ], [ %length, %ifcont ]
-  %icmpgt1354 = icmp sgt i64 %length11, %1
-  br i1 %icmpgt1354, label %for.body.preheader, label %for.cond22.preheader
-
-for.body.preheader:                               ; preds = %ifcont7
-  %5 = sub i64 %length11, %1
-  %xtraiter = and i64 %5, 3
-  %lcmp.mod.not = icmp eq i64 %xtraiter, 0
-  br i1 %lcmp.mod.not, label %for.body.prol.loopexit, label %for.body.prol
-
-for.body.prol:                                    ; preds = %for.body.preheader, %for.body.prol
-  %"String::i.055.prol" = phi i64 [ %sub19.prol, %for.body.prol ], [ %length11, %for.body.preheader ]
-  %prol.iter = phi i64 [ %prol.iter.next, %for.body.prol ], [ 0, %for.body.preheader ]
-  %data17.prol = load ptr, ptr %0, align 8
-  %6 = getelementptr i8, ptr %data17.prol, i64 %"String::i.055.prol"
-  %7 = getelementptr i8, ptr %6, i64 %.fca.1.extract
-  %ptr_arr_asi.prol = getelementptr i8, ptr %7, i64 -1
-  %sub19.prol = add nsw i64 %"String::i.055.prol", -1
-  %ptr_arr_addr.prol = getelementptr i8, ptr %data17.prol, i64 %sub19.prol
-  %ptr_arr_val.prol = load i8, ptr %ptr_arr_addr.prol, align 1
-  store i8 %ptr_arr_val.prol, ptr %ptr_arr_asi.prol, align 1
-  %prol.iter.next = add i64 %prol.iter, 1
-  %prol.iter.cmp.not = icmp eq i64 %prol.iter.next, %xtraiter
-  br i1 %prol.iter.cmp.not, label %for.body.prol.loopexit, label %for.body.prol, !llvm.loop !35
-
-for.body.prol.loopexit:                           ; preds = %for.body.prol, %for.body.preheader
-  %"String::i.055.unr" = phi i64 [ %length11, %for.body.preheader ], [ %sub19.prol, %for.body.prol ]
-  %8 = sub i64 %1, %length11
-  %9 = icmp ugt i64 %8, -4
-  br i1 %9, label %for.cond22.preheader, label %for.body
-
-for.cond22.preheader:                             ; preds = %for.body.prol.loopexit, %for.body, %ifcont7
-  %icmplt56 = icmp sgt i64 %.fca.1.extract, 0
-  br i1 %icmplt56, label %for.body23.preheader, label %for.end25
-
-for.body23.preheader:                             ; preds = %for.cond22.preheader
-  %xtraiter59 = and i64 %.fca.1.extract, 3
-  %10 = icmp ult i64 %.fca.1.extract, 4
-  br i1 %10, label %for.body23.epil.preheader, label %for.body23.preheader.new
-
-for.body23.preheader.new:                         ; preds = %for.body23.preheader
-  %unroll_iter = and i64 %.fca.1.extract, 9223372036854775804
-  br label %for.body23
-
-for.body:                                         ; preds = %for.body.prol.loopexit, %for.body
-  %"String::i.055" = phi i64 [ %sub19.3, %for.body ], [ %"String::i.055.unr", %for.body.prol.loopexit ]
-  %data17 = load ptr, ptr %0, align 8
-  %11 = getelementptr i8, ptr %data17, i64 %"String::i.055"
-  %12 = getelementptr i8, ptr %11, i64 %.fca.1.extract
-  %ptr_arr_asi = getelementptr i8, ptr %12, i64 -1
-  %sub19 = add nsw i64 %"String::i.055", -1
-  %ptr_arr_addr = getelementptr i8, ptr %data17, i64 %sub19
-  %ptr_arr_val = load i8, ptr %ptr_arr_addr, align 1
-  store i8 %ptr_arr_val, ptr %ptr_arr_asi, align 1
-  %data17.1 = load ptr, ptr %0, align 8
-  %13 = getelementptr i8, ptr %data17.1, i64 %sub19
-  %14 = getelementptr i8, ptr %13, i64 %.fca.1.extract
-  %ptr_arr_asi.1 = getelementptr i8, ptr %14, i64 -1
-  %sub19.1 = add nsw i64 %"String::i.055", -2
-  %ptr_arr_addr.1 = getelementptr i8, ptr %data17.1, i64 %sub19.1
-  %ptr_arr_val.1 = load i8, ptr %ptr_arr_addr.1, align 1
-  store i8 %ptr_arr_val.1, ptr %ptr_arr_asi.1, align 1
-  %data17.2 = load ptr, ptr %0, align 8
-  %15 = getelementptr i8, ptr %data17.2, i64 %sub19.1
-  %16 = getelementptr i8, ptr %15, i64 %.fca.1.extract
-  %ptr_arr_asi.2 = getelementptr i8, ptr %16, i64 -1
-  %sub19.2 = add nsw i64 %"String::i.055", -3
-  %ptr_arr_addr.2 = getelementptr i8, ptr %data17.2, i64 %sub19.2
-  %ptr_arr_val.2 = load i8, ptr %ptr_arr_addr.2, align 1
-  store i8 %ptr_arr_val.2, ptr %ptr_arr_asi.2, align 1
-  %data17.3 = load ptr, ptr %0, align 8
-  %17 = getelementptr i8, ptr %data17.3, i64 %sub19.2
-  %18 = getelementptr i8, ptr %17, i64 %.fca.1.extract
-  %ptr_arr_asi.3 = getelementptr i8, ptr %18, i64 -1
-  %sub19.3 = add nsw i64 %"String::i.055", -4
-  %ptr_arr_addr.3 = getelementptr i8, ptr %data17.3, i64 %sub19.3
-  %ptr_arr_val.3 = load i8, ptr %ptr_arr_addr.3, align 1
-  store i8 %ptr_arr_val.3, ptr %ptr_arr_asi.3, align 1
-  %icmpgt13.3 = icmp sgt i64 %sub19.3, %1
-  br i1 %icmpgt13.3, label %for.body, label %for.cond22.preheader
-
-for.body23:                                       ; preds = %for.body23, %for.body23.preheader.new
-  %"String::i21.057" = phi i64 [ 0, %for.body23.preheader.new ], [ %inc.3, %for.body23 ]
-  %niter = phi i64 [ 0, %for.body23.preheader.new ], [ %niter.next.3, %for.body23 ]
-  %data31 = load ptr, ptr %0, align 8
-  %19 = getelementptr i8, ptr %data31, i64 %1
-  %ptr_arr_asi32 = getelementptr i8, ptr %19, i64 %"String::i21.057"
-  %ptr_arr_addr35 = getelementptr i8, ptr %.fca.0.extract, i64 %"String::i21.057"
-  %ptr_arr_val36 = load i8, ptr %ptr_arr_addr35, align 1
-  store i8 %ptr_arr_val36, ptr %ptr_arr_asi32, align 1
-  %inc = or disjoint i64 %"String::i21.057", 1
-  %data31.1 = load ptr, ptr %0, align 8
-  %20 = getelementptr i8, ptr %data31.1, i64 %1
-  %ptr_arr_asi32.1 = getelementptr i8, ptr %20, i64 %inc
-  %ptr_arr_addr35.1 = getelementptr i8, ptr %.fca.0.extract, i64 %inc
-  %ptr_arr_val36.1 = load i8, ptr %ptr_arr_addr35.1, align 1
-  store i8 %ptr_arr_val36.1, ptr %ptr_arr_asi32.1, align 1
-  %inc.1 = or disjoint i64 %"String::i21.057", 2
-  %data31.2 = load ptr, ptr %0, align 8
-  %21 = getelementptr i8, ptr %data31.2, i64 %1
-  %ptr_arr_asi32.2 = getelementptr i8, ptr %21, i64 %inc.1
-  %ptr_arr_addr35.2 = getelementptr i8, ptr %.fca.0.extract, i64 %inc.1
-  %ptr_arr_val36.2 = load i8, ptr %ptr_arr_addr35.2, align 1
-  store i8 %ptr_arr_val36.2, ptr %ptr_arr_asi32.2, align 1
-  %inc.2 = or disjoint i64 %"String::i21.057", 3
-  %data31.3 = load ptr, ptr %0, align 8
-  %22 = getelementptr i8, ptr %data31.3, i64 %1
-  %ptr_arr_asi32.3 = getelementptr i8, ptr %22, i64 %inc.2
-  %ptr_arr_addr35.3 = getelementptr i8, ptr %.fca.0.extract, i64 %inc.2
-  %ptr_arr_val36.3 = load i8, ptr %ptr_arr_addr35.3, align 1
-  store i8 %ptr_arr_val36.3, ptr %ptr_arr_asi32.3, align 1
-  %inc.3 = add nuw nsw i64 %"String::i21.057", 4
-  %niter.next.3 = add i64 %niter, 4
-  %niter.ncmp.3 = icmp eq i64 %niter.next.3, %unroll_iter
-  br i1 %niter.ncmp.3, label %for.end25.loopexit.unr-lcssa, label %for.body23
-
-for.end25.loopexit.unr-lcssa:                     ; preds = %for.body23
-  %lcmp.mod60.not = icmp eq i64 %xtraiter59, 0
-  br i1 %lcmp.mod60.not, label %for.end25, label %for.body23.epil.preheader
-
-for.body23.epil.preheader:                        ; preds = %for.end25.loopexit.unr-lcssa, %for.body23.preheader
-  %"String::i21.057.epil.init" = phi i64 [ 0, %for.body23.preheader ], [ %inc.3, %for.end25.loopexit.unr-lcssa ]
-  %lcmp.mod61 = icmp ne i64 %xtraiter59, 0
-  tail call void @llvm.assume(i1 %lcmp.mod61)
-  br label %for.body23.epil
-
-for.body23.epil:                                  ; preds = %for.body23.epil, %for.body23.epil.preheader
-  %"String::i21.057.epil" = phi i64 [ %inc.epil, %for.body23.epil ], [ %"String::i21.057.epil.init", %for.body23.epil.preheader ]
-  %epil.iter = phi i64 [ %epil.iter.next, %for.body23.epil ], [ 0, %for.body23.epil.preheader ]
-  %data31.epil = load ptr, ptr %0, align 8
-  %23 = getelementptr i8, ptr %data31.epil, i64 %1
-  %ptr_arr_asi32.epil = getelementptr i8, ptr %23, i64 %"String::i21.057.epil"
-  %ptr_arr_addr35.epil = getelementptr i8, ptr %.fca.0.extract, i64 %"String::i21.057.epil"
-  %ptr_arr_val36.epil = load i8, ptr %ptr_arr_addr35.epil, align 1
-  store i8 %ptr_arr_val36.epil, ptr %ptr_arr_asi32.epil, align 1
-  %inc.epil = add nuw nsw i64 %"String::i21.057.epil", 1
-  %epil.iter.next = add i64 %epil.iter, 1
-  %epil.iter.cmp.not = icmp eq i64 %epil.iter.next, %xtraiter59
-  br i1 %epil.iter.cmp.not, label %for.end25, label %for.body23.epil, !llvm.loop !36
-
-for.end25:                                        ; preds = %for.end25.loopexit.unr-lcssa, %for.body23.epil, %for.cond22.preheader
-  store i64 %add, ptr %3, align 8
-  %data40 = load ptr, ptr %0, align 8
-  %ptr_arr_asi41 = getelementptr i8, ptr %data40, i64 %add
-  store i8 0, ptr %ptr_arr_asi41, align 1
-  ret void
-}
-
-define weak_odr void @"String::Str_erase_addr_t_addr_t"(ptr %0, i64 %1, i64 %2) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %length2 = load i64, ptr %3, align 8
-  %icmpgt = icmp sgt i64 %1, %length2
-  %sub = sub i64 %length2, %1
-  %icmpgt6 = icmp sgt i64 %2, %sub
-  %or.cond = select i1 %icmpgt, i1 true, i1 %icmpgt6
-  br i1 %or.cond, label %then, label %ifcont
-
-then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.40, ptr nonnull @6, i32 1233) #29
-  unreachable
-
-ifcont:                                           ; preds = %entry
-  %icmpeq = icmp eq i64 %2, 0
-  br i1 %icmpeq, label %common.ret, label %for.cond.preheader
-
-for.cond.preheader:                               ; preds = %ifcont
-  %sub1335 = sub i64 %length2, %2
-  %icmplt36 = icmp slt i64 %1, %sub1335
-  br i1 %icmplt36, label %for.body, label %for.end
-
-common.ret:                                       ; preds = %ifcont, %for.end
-  ret void
-
-for.body:                                         ; preds = %for.cond.preheader, %for.body
-  %"String::i.037" = phi i64 [ %inc, %for.body ], [ %1, %for.cond.preheader ]
-  %data = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr i8, ptr %data, i64 %"String::i.037"
-  %ptr_arr_addr = getelementptr i8, ptr %ptr_arr_asi, i64 %2
-  %ptr_arr_val = load i8, ptr %ptr_arr_addr, align 1
-  store i8 %ptr_arr_val, ptr %ptr_arr_asi, align 1
-  %inc = add nsw i64 %"String::i.037", 1
-  %length11 = load i64, ptr %3, align 8
-  %sub13 = sub i64 %length11, %2
-  %icmplt = icmp slt i64 %inc, %sub13
-  br i1 %icmplt, label %for.body, label %for.end
-
-for.end:                                          ; preds = %for.body, %for.cond.preheader
-  %sub13.lcssa = phi i64 [ %sub1335, %for.cond.preheader ], [ %sub13, %for.body ]
-  store i64 %sub13.lcssa, ptr %3, align 8
-  %data22 = load ptr, ptr %0, align 8
-  %ptr_arr_asi23 = getelementptr i8, ptr %data22, i64 %sub13.lcssa
-  store i8 0, ptr %ptr_arr_asi23, align 1
-  br label %common.ret
-}
-
-define weak_odr i1 @"String::Str_streq_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %data1 = load ptr, ptr %0, align 8
-  %ptr_arr_val32 = load i8, ptr %data1, align 1
-  %icmpne.not33 = icmp eq i8 %ptr_arr_val32, 0
-  br i1 %icmpne.not33, label %while.end, label %and.rhs
-
-while.body:                                       ; preds = %and.rhs
-  %icmpne15.not = icmp eq i8 %ptr_arr_val35, %ptr_arr_val5
-  br i1 %icmpne15.not, label %ifcont, label %common.ret
-
-common.ret:                                       ; preds = %while.body, %while.end
-  %common.ret.op = phi i1 [ %icmpeq, %while.end ], [ false, %while.body ]
-  ret i1 %common.ret.op
-
-while.end:                                        ; preds = %and.rhs, %ifcont, %entry
-  %"String::i.0.lcssa" = phi i64 [ 0, %entry ], [ %inc, %ifcont ], [ %"String::i.034", %and.rhs ]
-  %ptr_arr_val.lcssa = phi i8 [ 0, %entry ], [ 0, %ifcont ], [ %ptr_arr_val35, %and.rhs ]
-  %ptr_arr_addr22 = getelementptr i8, ptr %1, i64 %"String::i.0.lcssa"
-  %ptr_arr_val23 = load i8, ptr %ptr_arr_addr22, align 1
-  %icmpeq = icmp eq i8 %ptr_arr_val.lcssa, %ptr_arr_val23
-  br label %common.ret
-
-and.rhs:                                          ; preds = %entry, %ifcont
-  %ptr_arr_val35 = phi i8 [ %ptr_arr_val, %ifcont ], [ %ptr_arr_val32, %entry ]
-  %"String::i.034" = phi i64 [ %inc, %ifcont ], [ 0, %entry ]
-  %ptr_arr_addr4 = getelementptr i8, ptr %1, i64 %"String::i.034"
-  %ptr_arr_val5 = load i8, ptr %ptr_arr_addr4, align 1
-  %icmpne6.not = icmp eq i8 %ptr_arr_val5, 0
-  br i1 %icmpne6.not, label %while.end, label %while.body
-
-ifcont:                                           ; preds = %while.body
-  %inc = add i64 %"String::i.034", 1
-  %ptr_arr_addr = getelementptr i8, ptr %data1, i64 %inc
-  %ptr_arr_val = load i8, ptr %ptr_arr_addr, align 1
-  %icmpne.not = icmp eq i8 %ptr_arr_val, 0
-  br i1 %icmpne.not, label %while.end, label %and.rhs
-}
-
-define weak_odr i1 @"String::Str_operator==_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %data1.i = load ptr, ptr %0, align 8
-  %ptr_arr_val32.i = load i8, ptr %data1.i, align 1
-  %icmpne.not33.i = icmp eq i8 %ptr_arr_val32.i, 0
-  br i1 %icmpne.not33.i, label %while.end.i, label %and.rhs.i
-
-while.body.i:                                     ; preds = %and.rhs.i
-  %icmpne15.not.i = icmp eq i8 %ptr_arr_val35.i, %ptr_arr_val5.i
-  br i1 %icmpne15.not.i, label %ifcont.i, label %"String::Str_streq_char*.exit"
-
-while.end.i:                                      ; preds = %ifcont.i, %and.rhs.i, %entry
-  %"String::i.0.lcssa.i" = phi i64 [ 0, %entry ], [ %"String::i.034.i", %and.rhs.i ], [ %inc.i, %ifcont.i ]
-  %ptr_arr_val.lcssa.i = phi i8 [ 0, %entry ], [ %ptr_arr_val35.i, %and.rhs.i ], [ 0, %ifcont.i ]
-  %ptr_arr_addr22.i = getelementptr i8, ptr %1, i64 %"String::i.0.lcssa.i"
-  %ptr_arr_val23.i = load i8, ptr %ptr_arr_addr22.i, align 1
-  %icmpeq.i = icmp eq i8 %ptr_arr_val.lcssa.i, %ptr_arr_val23.i
-  br label %"String::Str_streq_char*.exit"
-
-and.rhs.i:                                        ; preds = %entry, %ifcont.i
-  %ptr_arr_val35.i = phi i8 [ %ptr_arr_val.i, %ifcont.i ], [ %ptr_arr_val32.i, %entry ]
-  %"String::i.034.i" = phi i64 [ %inc.i, %ifcont.i ], [ 0, %entry ]
-  %ptr_arr_addr4.i = getelementptr i8, ptr %1, i64 %"String::i.034.i"
-  %ptr_arr_val5.i = load i8, ptr %ptr_arr_addr4.i, align 1
-  %icmpne6.not.i = icmp eq i8 %ptr_arr_val5.i, 0
-  br i1 %icmpne6.not.i, label %while.end.i, label %while.body.i
-
-ifcont.i:                                         ; preds = %while.body.i
-  %inc.i = add i64 %"String::i.034.i", 1
-  %ptr_arr_addr.i = getelementptr i8, ptr %data1.i, i64 %inc.i
-  %ptr_arr_val.i = load i8, ptr %ptr_arr_addr.i, align 1
-  %icmpne.not.i = icmp eq i8 %ptr_arr_val.i, 0
-  br i1 %icmpne.not.i, label %while.end.i, label %and.rhs.i
-
-"String::Str_streq_char*.exit":                   ; preds = %while.body.i, %while.end.i
-  %common.ret.op.i = phi i1 [ %icmpeq.i, %while.end.i ], [ false, %while.body.i ]
-  ret i1 %common.ret.op.i
-}
-
-define weak_odr i1 @"String::Str_operator!=_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %data1.i = load ptr, ptr %0, align 8
-  %ptr_arr_val32.i = load i8, ptr %data1.i, align 1
-  %icmpne.not33.i = icmp eq i8 %ptr_arr_val32.i, 0
-  br i1 %icmpne.not33.i, label %while.end.i, label %and.rhs.i
-
-while.body.i:                                     ; preds = %and.rhs.i
-  %icmpne15.not.i = icmp eq i8 %ptr_arr_val35.i, %ptr_arr_val5.i
-  br i1 %icmpne15.not.i, label %ifcont.i, label %"String::Str_streq_char*.exit"
-
-while.end.i:                                      ; preds = %ifcont.i, %and.rhs.i, %entry
-  %"String::i.0.lcssa.i" = phi i64 [ 0, %entry ], [ %"String::i.034.i", %and.rhs.i ], [ %inc.i, %ifcont.i ]
-  %ptr_arr_val.lcssa.i = phi i8 [ 0, %entry ], [ %ptr_arr_val35.i, %and.rhs.i ], [ 0, %ifcont.i ]
-  %ptr_arr_addr22.i = getelementptr i8, ptr %1, i64 %"String::i.0.lcssa.i"
-  %ptr_arr_val23.i = load i8, ptr %ptr_arr_addr22.i, align 1
-  %icmpeq.i = icmp ne i8 %ptr_arr_val.lcssa.i, %ptr_arr_val23.i
-  br label %"String::Str_streq_char*.exit"
-
-and.rhs.i:                                        ; preds = %entry, %ifcont.i
-  %ptr_arr_val35.i = phi i8 [ %ptr_arr_val.i, %ifcont.i ], [ %ptr_arr_val32.i, %entry ]
-  %"String::i.034.i" = phi i64 [ %inc.i, %ifcont.i ], [ 0, %entry ]
-  %ptr_arr_addr4.i = getelementptr i8, ptr %1, i64 %"String::i.034.i"
-  %ptr_arr_val5.i = load i8, ptr %ptr_arr_addr4.i, align 1
-  %icmpne6.not.i = icmp eq i8 %ptr_arr_val5.i, 0
-  br i1 %icmpne6.not.i, label %while.end.i, label %while.body.i
-
-ifcont.i:                                         ; preds = %while.body.i
-  %inc.i = add i64 %"String::i.034.i", 1
-  %ptr_arr_addr.i = getelementptr i8, ptr %data1.i, i64 %inc.i
-  %ptr_arr_val.i = load i8, ptr %ptr_arr_addr.i, align 1
-  %icmpne.not.i = icmp eq i8 %ptr_arr_val.i, 0
-  br i1 %icmpne.not.i, label %while.end.i, label %and.rhs.i
-
-"String::Str_streq_char*.exit":                   ; preds = %while.body.i, %while.end.i
-  %common.ret.op.i = phi i1 [ %icmpeq.i, %while.end.i ], [ true, %while.body.i ]
-  ret i1 %common.ret.op.i
-}
-
-define weak_odr i1 @"String::Str_toBool"(ptr %0) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %data1.i = load ptr, ptr %0, align 8
-  %ptr_arr_val32.i = load i8, ptr %data1.i, align 1
-  switch i8 %ptr_arr_val32.i, label %"String::Str_streq_char*.exit" [
-    i8 0, label %while.end.i
-    i8 116, label %ifcont.i
-  ]
-
-while.end.i:                                      ; preds = %ifcont.i.3, %ifcont.i.2, %ifcont.i.1, %ifcont.i, %entry
-  %"String::i.0.lcssa.i" = phi i64 [ 0, %entry ], [ 1, %ifcont.i ], [ 3, %ifcont.i.2 ], [ 4, %ifcont.i.3 ], [ 2, %ifcont.i.1 ]
-  %ptr_arr_val.lcssa.i = phi i8 [ %ptr_arr_val32.i, %entry ], [ %ptr_arr_val.i, %ifcont.i ], [ %ptr_arr_val.i.2, %ifcont.i.2 ], [ %ptr_arr_val.i.3, %ifcont.i.3 ], [ %ptr_arr_val.i.1, %ifcont.i.1 ]
-  %ptr_arr_addr22.i = getelementptr i8, ptr @.str.41, i64 %"String::i.0.lcssa.i"
-  %ptr_arr_val23.i = load i8, ptr %ptr_arr_addr22.i, align 1
-  %icmpeq.i = icmp eq i8 %ptr_arr_val.lcssa.i, %ptr_arr_val23.i
-  br label %"String::Str_streq_char*.exit"
-
-ifcont.i:                                         ; preds = %entry
-  %ptr_arr_addr.i = getelementptr i8, ptr %data1.i, i64 1
-  %ptr_arr_val.i = load i8, ptr %ptr_arr_addr.i, align 1
-  switch i8 %ptr_arr_val.i, label %"String::Str_streq_char*.exit" [
-    i8 0, label %while.end.i
-    i8 114, label %ifcont.i.1
-  ]
-
-ifcont.i.1:                                       ; preds = %ifcont.i
-  %ptr_arr_addr.i.1 = getelementptr i8, ptr %data1.i, i64 2
-  %ptr_arr_val.i.1 = load i8, ptr %ptr_arr_addr.i.1, align 1
-  switch i8 %ptr_arr_val.i.1, label %"String::Str_streq_char*.exit" [
-    i8 0, label %while.end.i
-    i8 117, label %ifcont.i.2
-  ]
-
-ifcont.i.2:                                       ; preds = %ifcont.i.1
-  %ptr_arr_addr.i.2 = getelementptr i8, ptr %data1.i, i64 3
-  %ptr_arr_val.i.2 = load i8, ptr %ptr_arr_addr.i.2, align 1
-  switch i8 %ptr_arr_val.i.2, label %"String::Str_streq_char*.exit" [
-    i8 0, label %while.end.i
-    i8 101, label %ifcont.i.3
-  ]
-
-ifcont.i.3:                                       ; preds = %ifcont.i.2
-  %ptr_arr_addr.i.3 = getelementptr i8, ptr %data1.i, i64 4
-  %ptr_arr_val.i.3 = load i8, ptr %ptr_arr_addr.i.3, align 1
-  br label %while.end.i
-
-"String::Str_streq_char*.exit":                   ; preds = %ifcont.i.2, %ifcont.i.1, %ifcont.i, %entry, %while.end.i
-  %common.ret.op.i = phi i1 [ %icmpeq.i, %while.end.i ], [ false, %ifcont.i.2 ], [ false, %ifcont.i.1 ], [ false, %ifcont.i ], [ false, %entry ]
-  ret i1 %common.ret.op.i
-}
-
-define weak_odr i2 @"String::Str_toQBool"(ptr %0) local_unnamed_addr !qc.return_types !37 {
-entry:
-  %data1.i = load ptr, ptr %0, align 8
-  %ptr_arr_val32.i = load i8, ptr %data1.i, align 1
-  switch i8 %ptr_arr_val32.i, label %.thread [
-    i8 98, label %ifcont.i17
-    i8 113, label %ifcont.i
-  ]
-
-ifcont.i:                                         ; preds = %entry
-  %ptr_arr_addr.i = getelementptr i8, ptr %data1.i, i64 1
-  %ptr_arr_val.i = load i8, ptr %ptr_arr_addr.i, align 1
-  switch i8 %ptr_arr_val.i, label %ifcont.i41 [
-    i8 0, label %and.rhs.i8.preheader.thread
-    i8 116, label %ifcont.i.1
-  ]
-
-ifcont.i.1:                                       ; preds = %ifcont.i
-  %ptr_arr_addr.i.1 = getelementptr i8, ptr %data1.i, i64 2
-  %ptr_arr_val.i.1 = load i8, ptr %ptr_arr_addr.i.1, align 1
-  switch i8 %ptr_arr_val.i.1, label %ifcont.i41 [
-    i8 0, label %and.rhs.i8.preheader.thread
-    i8 114, label %ifcont.i.2
-  ]
-
-ifcont.i.2:                                       ; preds = %ifcont.i.1
-  %ptr_arr_addr.i.2 = getelementptr i8, ptr %data1.i, i64 3
-  %ptr_arr_val.i.2 = load i8, ptr %ptr_arr_addr.i.2, align 1
-  switch i8 %ptr_arr_val.i.2, label %ifcont.i41 [
-    i8 0, label %and.rhs.i8.preheader.thread
-    i8 117, label %ifcont.i.3
-  ]
-
-ifcont.i.3:                                       ; preds = %ifcont.i.2
-  %ptr_arr_addr.i.3 = getelementptr i8, ptr %data1.i, i64 4
-  %ptr_arr_val.i.3 = load i8, ptr %ptr_arr_addr.i.3, align 1
-  switch i8 %ptr_arr_val.i.3, label %ifcont.i41 [
-    i8 0, label %and.rhs.i8.preheader.thread
-    i8 101, label %ifcont.i.4
-  ]
-
-ifcont.i.4:                                       ; preds = %ifcont.i.3
-  %ptr_arr_addr.i.4 = getelementptr i8, ptr %data1.i, i64 5
-  %ptr_arr_val.i.4 = load i8, ptr %ptr_arr_addr.i.4, align 1
-  br label %and.rhs.i8.preheader.thread
-
-and.rhs.i8.preheader.thread:                      ; preds = %ifcont.i.4, %ifcont.i.3, %ifcont.i.2, %ifcont.i.1, %ifcont.i
-  %"String::i.0.lcssa.i.ph" = phi i64 [ 3, %ifcont.i.2 ], [ 5, %ifcont.i.4 ], [ 2, %ifcont.i.1 ], [ 1, %ifcont.i ], [ 4, %ifcont.i.3 ]
-  %ptr_arr_val.lcssa.i.ph = phi i8 [ %ptr_arr_val.i.2, %ifcont.i.2 ], [ %ptr_arr_val.i.4, %ifcont.i.4 ], [ %ptr_arr_val.i.1, %ifcont.i.1 ], [ %ptr_arr_val.i, %ifcont.i ], [ %ptr_arr_val.i.3, %ifcont.i.3 ]
-  %ptr_arr_addr22.i61 = getelementptr i8, ptr @.str.42, i64 %"String::i.0.lcssa.i.ph"
-  %ptr_arr_val23.i62 = load i8, ptr %ptr_arr_addr22.i61, align 1
-  %icmpeq.i63 = icmp eq i8 %ptr_arr_val.lcssa.i.ph, %ptr_arr_val23.i62
-  %1 = freeze i1 %icmpeq.i63
-  br label %ifcont.i41
-
-ifcont.i17:                                       ; preds = %entry
-  %ptr_arr_addr.i19 = getelementptr i8, ptr %data1.i, i64 1
-  %ptr_arr_val.i20 = load i8, ptr %ptr_arr_addr.i19, align 1
-  switch i8 %ptr_arr_val.i20, label %.thread [
-    i8 0, label %"String::Str_streq_char*.exit52"
-    i8 111, label %ifcont.i17.1
-  ]
-
-ifcont.i17.1:                                     ; preds = %ifcont.i17
-  %ptr_arr_addr.i19.1 = getelementptr i8, ptr %data1.i, i64 2
-  %ptr_arr_val.i20.1 = load i8, ptr %ptr_arr_addr.i19.1, align 1
-  switch i8 %ptr_arr_val.i20.1, label %.thread [
-    i8 0, label %"String::Str_streq_char*.exit52"
-    i8 116, label %ifcont.i17.2
-  ]
-
-ifcont.i17.2:                                     ; preds = %ifcont.i17.1
-  %ptr_arr_addr.i19.2 = getelementptr i8, ptr %data1.i, i64 3
-  %ptr_arr_val.i20.2 = load i8, ptr %ptr_arr_addr.i19.2, align 1
-  switch i8 %ptr_arr_val.i20.2, label %.thread [
-    i8 0, label %"String::Str_streq_char*.exit52"
-    i8 104, label %ifcont.i17.3
-  ]
-
-ifcont.i17.3:                                     ; preds = %ifcont.i17.2
-  %ptr_arr_addr.i19.3 = getelementptr i8, ptr %data1.i, i64 4
-  %ptr_arr_val.i20.3 = load i8, ptr %ptr_arr_addr.i19.3, align 1
-  br label %"String::Str_streq_char*.exit52"
-
-while.end.i46.thread:                             ; preds = %ifcont.i41.5, %ifcont.i41.4, %ifcont.i41.3, %ifcont.i41.2, %ifcont.i41.1, %ifcont.i41
-  %"String::i.0.lcssa.i47.ph" = phi i64 [ 5, %ifcont.i41.4 ], [ 3, %ifcont.i41.2 ], [ 6, %ifcont.i41.5 ], [ 2, %ifcont.i41.1 ], [ 1, %ifcont.i41 ], [ 4, %ifcont.i41.3 ]
-  %ptr_arr_val.lcssa.i48.ph = phi i8 [ %ptr_arr_val.i44.4, %ifcont.i41.4 ], [ %ptr_arr_val.i44.2, %ifcont.i41.2 ], [ %ptr_arr_val.i44.5, %ifcont.i41.5 ], [ %ptr_arr_val.i44.1, %ifcont.i41.1 ], [ %ptr_arr_val.i44, %ifcont.i41 ], [ %ptr_arr_val.i44.3, %ifcont.i41.3 ]
-  %ptr_arr_addr22.i49116 = getelementptr i8, ptr @.str.44, i64 %"String::i.0.lcssa.i47.ph"
-  %ptr_arr_val23.i50117 = load i8, ptr %ptr_arr_addr22.i49116, align 1
-  %icmpeq.i51118 = icmp eq i8 %ptr_arr_val.lcssa.i48.ph, %ptr_arr_val23.i50117
-  %select_val104119 = zext i1 %icmpeq.i51118 to i2
-  br i1 %common.ret.op.i54.ph.ph, label %2, label %.thread
-
-ifcont.i41:                                       ; preds = %ifcont.i.3, %ifcont.i.2, %ifcont.i.1, %ifcont.i, %and.rhs.i8.preheader.thread
-  %common.ret.op.i54.ph.ph = phi i1 [ %1, %and.rhs.i8.preheader.thread ], [ false, %ifcont.i ], [ false, %ifcont.i.1 ], [ false, %ifcont.i.2 ], [ false, %ifcont.i.3 ]
-  %ptr_arr_addr.i43 = getelementptr i8, ptr %data1.i, i64 1
-  %ptr_arr_val.i44 = load i8, ptr %ptr_arr_addr.i43, align 1
-  switch i8 %ptr_arr_val.i44, label %"String::Str_streq_char*.exit52.thread" [
-    i8 0, label %while.end.i46.thread
-    i8 102, label %ifcont.i41.1
-  ]
-
-ifcont.i41.1:                                     ; preds = %ifcont.i41
-  %ptr_arr_addr.i43.1 = getelementptr i8, ptr %data1.i, i64 2
-  %ptr_arr_val.i44.1 = load i8, ptr %ptr_arr_addr.i43.1, align 1
-  switch i8 %ptr_arr_val.i44.1, label %"String::Str_streq_char*.exit52.thread" [
-    i8 0, label %while.end.i46.thread
-    i8 97, label %ifcont.i41.2
-  ]
-
-ifcont.i41.2:                                     ; preds = %ifcont.i41.1
-  %ptr_arr_addr.i43.2 = getelementptr i8, ptr %data1.i, i64 3
-  %ptr_arr_val.i44.2 = load i8, ptr %ptr_arr_addr.i43.2, align 1
-  switch i8 %ptr_arr_val.i44.2, label %"String::Str_streq_char*.exit52.thread" [
-    i8 0, label %while.end.i46.thread
-    i8 108, label %ifcont.i41.3
-  ]
-
-ifcont.i41.3:                                     ; preds = %ifcont.i41.2
-  %ptr_arr_addr.i43.3 = getelementptr i8, ptr %data1.i, i64 4
-  %ptr_arr_val.i44.3 = load i8, ptr %ptr_arr_addr.i43.3, align 1
-  switch i8 %ptr_arr_val.i44.3, label %"String::Str_streq_char*.exit52.thread" [
-    i8 0, label %while.end.i46.thread
-    i8 115, label %ifcont.i41.4
-  ]
-
-ifcont.i41.4:                                     ; preds = %ifcont.i41.3
-  %ptr_arr_addr.i43.4 = getelementptr i8, ptr %data1.i, i64 5
-  %ptr_arr_val.i44.4 = load i8, ptr %ptr_arr_addr.i43.4, align 1
-  switch i8 %ptr_arr_val.i44.4, label %"String::Str_streq_char*.exit52.thread" [
-    i8 0, label %while.end.i46.thread
-    i8 101, label %ifcont.i41.5
-  ]
-
-ifcont.i41.5:                                     ; preds = %ifcont.i41.4
-  %ptr_arr_addr.i43.5 = getelementptr i8, ptr %data1.i, i64 6
-  %ptr_arr_val.i44.5 = load i8, ptr %ptr_arr_addr.i43.5, align 1
-  br label %while.end.i46.thread
-
-"String::Str_streq_char*.exit52.thread":          ; preds = %ifcont.i41.4, %ifcont.i41.3, %ifcont.i41.2, %ifcont.i41.1, %ifcont.i41
-  br i1 %common.ret.op.i54.ph.ph, label %2, label %.thread
-
-"String::Str_streq_char*.exit52":                 ; preds = %ifcont.i17.3, %ifcont.i17.2, %ifcont.i17.1, %ifcont.i17
-  %"String::i.0.lcssa.i23.ph" = phi i64 [ 4, %ifcont.i17.3 ], [ 2, %ifcont.i17.1 ], [ 1, %ifcont.i17 ], [ 3, %ifcont.i17.2 ]
-  %ptr_arr_val.lcssa.i24.ph = phi i8 [ %ptr_arr_val.i20.3, %ifcont.i17.3 ], [ %ptr_arr_val.i20.1, %ifcont.i17.1 ], [ %ptr_arr_val.i20, %ifcont.i17 ], [ %ptr_arr_val.i20.2, %ifcont.i17.2 ]
-  %ptr_arr_addr22.i2582 = getelementptr i8, ptr @.str.43, i64 %"String::i.0.lcssa.i23.ph"
-  %ptr_arr_val23.i2683 = load i8, ptr %ptr_arr_addr22.i2582, align 1
-  %icmpeq.i2784 = icmp eq i8 %ptr_arr_val.lcssa.i24.ph, %ptr_arr_val23.i2683
-  %cond.fr = freeze i1 %icmpeq.i2784
-  %spec.select129 = sext i1 %cond.fr to i2
-  br label %.thread
-
-2:                                                ; preds = %while.end.i46.thread, %"String::Str_streq_char*.exit52.thread"
-  br label %.thread
-
-.thread:                                          ; preds = %"String::Str_streq_char*.exit52", %entry, %ifcont.i17.2, %ifcont.i17.1, %ifcont.i17, %while.end.i46.thread, %"String::Str_streq_char*.exit52.thread", %2
-  %3 = phi i2 [ -2, %2 ], [ 0, %entry ], [ %select_val104119, %while.end.i46.thread ], [ 0, %ifcont.i17.1 ], [ 0, %"String::Str_streq_char*.exit52.thread" ], [ %spec.select129, %"String::Str_streq_char*.exit52" ], [ 0, %ifcont.i17 ], [ 0, %ifcont.i17.2 ]
-  ret i2 %3
-}
-
-define weak_odr ptr @"String::Str_c_str"(ptr %0) local_unnamed_addr !qc.return_types !38 {
-entry:
-  %data = load ptr, ptr %0, align 8
-  ret ptr %data
-}
-
-define weak_odr void @"Vector::Vec<int>_Vec"(ptr %0) local_unnamed_addr !qc.return_types !15 {
-entry:
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  ret void
-}
-
-define weak_odr void @"Vector::Vec<int>_reserve_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %icmpeq = icmp eq i32 %1, 0
-  %data = load ptr, ptr %0, align 8
+  %"Vector::new_data" = alloca ptr, align 8
+  %cap = alloca i32, align 4
+  store i32 0, ptr %cap, align 4
+  store i32 %1, ptr %cap, align 4
+  %cap1 = load i32, ptr %cap, align 4
+  %icmpeq = icmp eq i32 %cap1, 0
   br i1 %icmpeq, label %then, label %ifcont
 
-common.ret:                                       ; preds = %ifcont, %ifcont9, %then
+then:                                             ; preds = %entry
+  %2 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
   ret void
 
-then:                                             ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
 ifcont:                                           ; preds = %entry
-  %promote_int = sext i32 %1 to i64
-  %mul = shl nsw i64 %promote_int, 2
-  %builtin_call = tail call fastcc ptr @qc_realloc(ptr %data, i64 %mul)
-  %ptr_eq = icmp eq ptr %builtin_call, null
-  br i1 %ptr_eq, label %common.ret, label %ifcont5
+  store ptr null, ptr %"Vector::new_data", align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  %data2 = load ptr, ptr %3, align 8
+  %cap3 = load i32, ptr %cap, align 4
+  %promote_int = sext i32 %cap3 to i64
+  %mul = mul i64 8, %promote_int
+  %builtin_call = call ptr @qc_realloc(ptr %data2, i64 %mul)
+  store ptr %builtin_call, ptr %"Vector::new_data", align 8
+  %new_data = load ptr, ptr %"Vector::new_data", align 8
+  %ptr_eq = icmp eq ptr %new_data, null
+  br i1 %ptr_eq, label %then4, label %ifcont5
+
+then4:                                            ; preds = %ifcont
+  ret void
 
 ifcont5:                                          ; preds = %ifcont
-  %capacity_ptr7 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %1, ptr %capacity_ptr7, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %2, align 8
-  %icmpgt = icmp sgt i32 %size, %1
+  %cap6 = load i32, ptr %cap, align 4
+  %capacity_ptr7 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
+  store i32 %cap6, ptr %capacity_ptr7, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %4, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %5, align 4
+  %icmpgt = icmp sgt i32 %size, %capacity
   br i1 %icmpgt, label %then8, label %ifcont9
 
 then8:                                            ; preds = %ifcont5
-  store i32 %1, ptr %2, align 8
+  %6 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
+  %capacity10 = load i32, ptr %6, align 4
+  %size_ptr11 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
+  store i32 %capacity10, ptr %size_ptr11, align 4
   br label %ifcont9
 
 ifcont9:                                          ; preds = %then8, %ifcont5
-  store ptr %builtin_call, ptr %0, align 8
-  br label %common.ret
+  %new_data12 = load ptr, ptr %"Vector::new_data", align 8
+  %data_ptr13 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  store ptr %new_data12, ptr %data_ptr13, align 8
+  ret void
 }
 
-define weak_odr void @"Vector::Vec<int>_push_T"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<char*>_push_T"(ptr %0, ptr %1) !qc.return_types !21 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %value = alloca ptr, align 8
+  store ptr null, ptr %value, align 8
+  store ptr %1, ptr %value, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
   %capacity = load i32, ptr %2, align 4
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %3, align 4
-  %icmple.not = icmp sgt i32 %capacity, %size
-  %data6.pre = load ptr, ptr %0, align 8
-  br i1 %icmple.not, label %ifcont, label %then
+  %icmple = icmp sle i32 %capacity, %size
+  br i1 %icmple, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %icmpeq = icmp eq i32 %capacity, 0
-  %mul = shl i32 %capacity, 1
-  %select_val = select i1 %icmpeq, i32 1, i32 %mul
-  %icmpeq.i = icmp eq i32 %select_val, 0
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
+  %4 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %4, align 4
+  %icmpeq = icmp eq i32 %capacity1, 0
+  br i1 %icmpeq, label %ternary.true, label %ternary.false
 
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data6.pre)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %select_val to i64
-  %mul.i = shl nsw i64 %promote_int.i, 2
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<int>_reserve_int.exitthread-pre-split", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %select_val, ptr %2, align 4
-  %size.i = load i32, ptr %3, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %select_val
-  br i1 %icmpgt.i, label %then8.i, label %"Vector::Vec<int>_reserve_int.exit.thread"
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %select_val, ptr %3, align 8
-  br label %"Vector::Vec<int>_reserve_int.exit.thread"
-
-"Vector::Vec<int>_reserve_int.exit.thread":       ; preds = %ifcont5.i, %then8.i
-  %size511 = phi i32 [ %size.i, %ifcont5.i ], [ %select_val, %then8.i ]
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
-
-"Vector::Vec<int>_reserve_int.exitthread-pre-split": ; preds = %ifcont.i
-  %data.pr = load ptr, ptr %0, align 8
-  %4 = icmp eq ptr %data.pr, null
-  br i1 %4, label %common.ret, label %"Vector::Vec<int>_reserve_int.exitthread-pre-split.ifcont_crit_edge"
-
-"Vector::Vec<int>_reserve_int.exitthread-pre-split.ifcont_crit_edge": ; preds = %"Vector::Vec<int>_reserve_int.exitthread-pre-split"
-  %size5.pre = load i32, ptr %3, align 8
-  br label %ifcont
-
-common.ret:                                       ; preds = %then.i, %"Vector::Vec<int>_reserve_int.exitthread-pre-split", %ifcont
+ifcont:                                           ; preds = %ifcont4, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
+  %size5 = load i32, ptr %5, align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  %data6 = load ptr, ptr %6, align 8
+  %ptr_arr_asi = getelementptr ptr, ptr %data6, i32 %size5
+  %value7 = load ptr, ptr %value, align 8
+  store ptr %value7, ptr %ptr_arr_asi, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %size_ptr, align 4
   ret void
 
-ifcont:                                           ; preds = %"Vector::Vec<int>_reserve_int.exitthread-pre-split.ifcont_crit_edge", %"Vector::Vec<int>_reserve_int.exit.thread", %entry
-  %data6 = phi ptr [ %data.pr, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %builtin_call.i, %"Vector::Vec<int>_reserve_int.exit.thread" ], [ %data6.pre, %entry ]
-  %size5 = phi i32 [ %size5.pre, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %size511, %"Vector::Vec<int>_reserve_int.exit.thread" ], [ %size, %entry ]
-  %5 = sext i32 %size5 to i64
-  %ptr_arr_asi = getelementptr [4 x i8], ptr %data6, i64 %5
-  store i32 %1, ptr %ptr_arr_asi, align 4
-  %inc_deref = load i32, ptr %3, align 8
-  %inc = add i32 %inc_deref, 1
-  store i32 %inc, ptr %3, align 8
-  br label %common.ret
+ternary.true:                                     ; preds = %then
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %then
+  %7 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
+  %capacity2 = load i32, ptr %7, align 4
+  %mul = mul i32 %capacity2, 2
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ 1, %ternary.true ], [ %mul, %ternary.false ]
+  call void @"Vector::Vec<char*>_reserve_int"(ptr %0, i32 %ternary_val)
+  %8 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %8, align 8
+  %ptr_eq = icmp eq ptr %data, null
+  br i1 %ptr_eq, label %then3, label %ifcont4
+
+then3:                                            ; preds = %ternary.end
+  ret void
+
+ifcont4:                                          ; preds = %ternary.end
+  br label %ifcont
 }
 
-define weak_odr i32 @"Vector::Vec<int>_length"(ptr %0) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"Vector::Vec<char*>_length"(ptr %0) !qc.return_types !30 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   ret i32 %size
 }
 
-define weak_odr void @"Vector::Vec<int>_pop"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<char*>_pop"(ptr %0) !qc.return_types !21 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpgt = icmp sgt i32 %size, 0
   br i1 %icmpgt, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %dec = add nsw i32 %size, -1
-  store i32 %dec, ptr %1, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %size_ptr, align 4
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
   ret void
 }
 
-define weak_odr void @"Vector::Vec<int>_shrinkToFit"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<char*>_shrinkToFit"(ptr %0) !qc.return_types !21 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
-  %icmpeq.i = icmp eq i32 %size, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<int>_reserve_int.exit"
-
-ifcont.i:                                         ; preds = %entry
-  %promote_int.i = sext i32 %size to i64
-  %mul.i = shl nsw i64 %promote_int.i, 2
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<int>_reserve_int.exit", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  %capacity_ptr7.i = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %size, ptr %capacity_ptr7.i, align 4
-  %size.i = load i32, ptr %1, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %size
-  br i1 %icmpgt.i, label %then8.i, label %ifcont9.i
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %size, ptr %1, align 8
-  br label %ifcont9.i
-
-ifcont9.i:                                        ; preds = %then8.i, %ifcont5.i
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %"Vector::Vec<int>_reserve_int.exit"
-
-"Vector::Vec<int>_reserve_int.exit":              ; preds = %then.i, %ifcont.i, %ifcont9.i
+  call void @"Vector::Vec<char*>_reserve_int"(ptr %0, i32 %size)
   ret void
 }
 
-define weak_odr void @"Vector::Vec<int>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<char*>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) !qc.return_types !21 {
 entry:
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %3, align 4
-  %icmpne.not = icmp eq i32 %size, 0
-  br i1 %icmpne.not, label %ifcont, label %then
+  %"Vector::i" = alloca i32, align 4
+  %length = alloca i64, align 8
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i64 0, ptr %length, align 8
+  store i64 %2, ptr %length, align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, 0
+  br i1 %icmpne, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %data1 = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data1)
+  %4 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  %data1 = load ptr, ptr %4, align 8
+  call void @qc_free(ptr %data1)
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %trunc = trunc i64 %2 to i32
+  %length2 = load i64, ptr %length, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
+  %trunc = trunc i64 %length2 to i32
   store i32 %trunc, ptr %capacity_ptr, align 4
-  store i32 %trunc, ptr %3, align 4
-  %sext = shl i64 %2, 32
-  %mul = ashr exact i64 %sext, 30
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 %mul)
-  store ptr %builtin_call, ptr %0, align 8
-  %size514 = load i32, ptr %3, align 8
-  %icmplt15 = icmp sgt i32 %size514, 0
-  br i1 %icmplt15, label %for.body, label %for.end
+  %length3 = load i64, ptr %length, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
+  %trunc4 = trunc i64 %length3 to i32
+  store i32 %trunc4, ptr %size_ptr, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
+  %capacity5 = load i32, ptr %5, align 4
+  %promote_int = sext i32 %capacity5 to i64
+  %mul = mul i64 8, %promote_int
+  %builtin_call = call ptr @qc_malloc(i64 %mul)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  store ptr %builtin_call, ptr %data_ptr, align 8
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
 
-for.body:                                         ; preds = %ifcont, %for.body
-  %indvars.iv = phi i64 [ %indvars.iv.next, %for.body ], [ 0, %ifcont ]
-  %data7 = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr [4 x i8], ptr %data7, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr [4 x i8], ptr %1, i64 %indvars.iv
-  %ptr_arr_val = load i32, ptr %ptr_arr_addr, align 4
-  store i32 %ptr_arr_val, ptr %ptr_arr_asi, align 4
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
-  %size5 = load i32, ptr %3, align 8
-  %4 = sext i32 %size5 to i64
-  %icmplt = icmp slt i64 %indvars.iv.next, %4
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size
   br i1 %icmplt, label %for.body, label %for.end
 
-for.end:                                          ; preds = %for.body, %ifcont
+for.body:                                         ; preds = %for.cond
+  %i6 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  %data7 = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr ptr, ptr %data7, i32 %i6
+  %i8 = load i32, ptr %"Vector::i", align 4
+  %data9 = load ptr, ptr %data, align 8
+  %ptr_arr_addr = getelementptr ptr, ptr %data9, i32 %i8
+  %ptr_arr_val = load ptr, ptr %ptr_arr_addr, align 8
+  store ptr %ptr_arr_val, ptr %ptr_arr_asi, align 8
+  br label %for.inc
+
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
+
+for.end:                                          ; preds = %for.cond
   ret void
 }
 
-define weak_odr ptr @"Vector::Vec<int>_operator[]_addr_t"(ptr %0, i64 %1) local_unnamed_addr !qc.return_types !40 {
+define weak_odr ptr @"Vector::Vec<char*>_operator[]_addr_t"(ptr %0, i64 %1) !qc.return_types !31 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %lval_ptr_arr_addr = getelementptr [4 x i8], ptr %data, i64 %1
+  %index = alloca i64, align 8
+  store i64 0, ptr %index, align 8
+  store i64 %1, ptr %index, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %index1 = load i64, ptr %index, align 8
+  %lval_ptr_arr_addr = getelementptr ptr, ptr %data, i64 %index1
   ret ptr %lval_ptr_arr_addr
 }
 
-define weak_odr void @"Vector::Iterator::It<int>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"Vector::Iterator::It<char*>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) !qc.return_types !23 {
 entry:
-  store ptr %1, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %2, ptr %size_ptr, align 8
-  %select_val = select i1 %3, i32 %2, i32 0
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %select_val, ptr %current_index_ptr, align 4
+  %is_end = alloca i1, align 1
+  %size = alloca i32, align 4
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i32 0, ptr %size, align 4
+  store i32 %2, ptr %size, align 4
+  store i1 false, ptr %is_end, align 1
+  store i1 %3, ptr %is_end, align 1
+  %data1 = load ptr, ptr %data, align 8
+  %data_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 0
+  store ptr %data1, ptr %data_ptr, align 8
+  %size2 = load i32, ptr %size, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 1
+  store i32 %size2, ptr %size_ptr, align 4
+  %is_end3 = load i1, ptr %is_end, align 1
+  br i1 %is_end3, label %ternary.true, label %ternary.false
+
+ternary.true:                                     ; preds = %entry
+  %size4 = load i32, ptr %size, align 4
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %entry
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ %size4, %ternary.true ], [ 0, %ternary.false ]
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 2
+  store i32 %ternary_val, ptr %current_index_ptr, align 4
   ret void
 }
 
-define weak_odr i1 @"Vector::Iterator::It<int>__atEnd"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Iterator::It<char*>__atEnd"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 2
   %current_index = load i32, ptr %2, align 4
   %icmple = icmp sle i32 %size, %current_index
   ret i1 %icmple
 }
 
-define weak_odr i32 @"Vector::Iterator::It<int>__next"(ptr %0) local_unnamed_addr !qc.return_types !41 {
+define weak_odr ptr @"Vector::Iterator::It<char*>__next"(ptr %0) !qc.return_types !32 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.23, ptr nonnull @6, i32 132) #29
+  call void @__qc_panic(ptr @.str.1, ptr @0, i32 40) #29
   unreachable
 
 ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i.not = icmp sgt i32 %size, %current_index.i
-  br i1 %icmple.i.not, label %then1, label %ifcont2
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %sub.sink = phi i32 [ %sub, %ifcont2 ], [ %current_index.i, %then1 ]
-  %data4 = load ptr, ptr %0, align 8
-  %3 = sext i32 %sub.sink to i64
-  %ptr_arr_addr5 = getelementptr [4 x i8], ptr %data4, i64 %3
-  %common.ret.op = load i32, ptr %ptr_arr_addr5, align 4
-  ret i32 %common.ret.op
+  %_atEnd_result = call i1 @"Vector::Iterator::It<char*>__atEnd"(ptr %0)
+  %not = xor i1 %_atEnd_result, true
+  br i1 %not, label %then1, label %ifcont2
 
 then1:                                            ; preds = %ifcont
-  %inc = add nsw i32 %current_index.i, 1
-  store i32 %inc, ptr %2, align 4
-  br label %common.ret
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr ptr, ptr %data, i32 %inc_deref
+  %ptr_arr_val = load ptr, ptr %ptr_arr_addr, align 8
+  ret ptr %ptr_arr_val
 
 ifcont2:                                          ; preds = %ifcont
-  %sub = add i32 %size, -1
-  br label %common.ret
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 1
+  %size3 = load i32, ptr %3, align 4
+  %sub = sub i32 %size3, 1
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 0
+  %data4 = load ptr, ptr %4, align 8
+  %ptr_arr_addr5 = getelementptr ptr, ptr %data4, i32 %sub
+  %ptr_arr_val6 = load ptr, ptr %ptr_arr_addr5, align 8
+  ret ptr %ptr_arr_val6
 }
 
-define weak_odr i1 @"Vector::Iterator::It<int>__atStart"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Iterator::It<char*>__atStart"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 2
   %current_index = load i32, ptr %1, align 4
-  %icmple = icmp slt i32 %current_index, 1
+  %icmple = icmp sle i32 %current_index, 0
   ret i1 %icmple
 }
 
-define weak_odr i32 @"Vector::Iterator::It<int>__prev"(ptr %0) local_unnamed_addr !qc.return_types !41 {
+define weak_odr ptr @"Vector::Iterator::It<char*>__prev"(ptr %0) !qc.return_types !32 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.24, ptr nonnull @6, i32 144) #29
+  call void @__qc_panic(ptr @.str.2, ptr @1, i32 56) #29
   unreachable
 
 ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i = icmp slt i32 %current_index.i, 1
-  br i1 %icmple.i, label %ifcont2, label %then1
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %common.ret.op.in = phi ptr [ %ptr_arr_addr, %then1 ], [ %ptr_arr_addr4, %ifcont2 ]
-  %common.ret.op = load i32, ptr %common.ret.op.in, align 4
-  ret i32 %common.ret.op
+  %_atStart_result = call i1 @"Vector::Iterator::It<char*>__atStart"(ptr %0)
+  %not = xor i1 %_atStart_result, true
+  br i1 %not, label %then1, label %ifcont2
 
 then1:                                            ; preds = %ifcont
-  %dec = add nsw i32 %current_index.i, -1
-  store i32 %dec, ptr %2, align 4
-  %data = load ptr, ptr %0, align 8
-  %3 = zext nneg i32 %dec to i64
-  %ptr_arr_addr = getelementptr [4 x i8], ptr %data, i64 %3
-  br label %common.ret
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr ptr, ptr %data, i32 %dec
+  %ptr_arr_val = load ptr, ptr %ptr_arr_addr, align 8
+  ret ptr %ptr_arr_val
 
 ifcont2:                                          ; preds = %ifcont
-  %data3 = load ptr, ptr %0, align 8
-  %4 = sext i32 %current_index.i to i64
-  %ptr_arr_addr4 = getelementptr [4 x i8], ptr %data3, i64 %4
-  br label %common.ret
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 2
+  %current_index = load i32, ptr %3, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 0
+  %data3 = load ptr, ptr %4, align 8
+  %ptr_arr_addr4 = getelementptr ptr, ptr %data3, i32 %current_index
+  %ptr_arr_val5 = load ptr, ptr %ptr_arr_addr4, align 8
+  ret ptr %ptr_arr_val5
 }
 
-define weak_odr void @"Vector::Iterator::It<int>__moveTo_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Iterator::It<char*>__moveTo_int"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %index = alloca i32, align 4
+  store i32 0, ptr %index, align 4
+  store i32 %1, ptr %index, align 4
+  %index1 = load i32, ptr %index, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %2, align 4
-  %icmpge.not = icmp slt i32 %1, %size
-  %sub = add i32 %size, -1
-  %spec.store.select = tail call i32 @llvm.smax.i32(i32 %1, i32 0)
-  %index.0 = select i1 %icmpge.not, i32 %spec.store.select, i32 %sub
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %index.0, ptr %current_index_ptr, align 4
-  ret void
-}
-
-define weak_odr %"Vector::Iterator::It<int>" @"Vector::Vec<int>__begin"(ptr %0) local_unnamed_addr !qc.return_types !42 {
-entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<int>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<int>" poison, ptr %data, 0
-  %"Vector::Iterator::It<int>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<int>" %"Vector::Iterator::It<int>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<int>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<int>" %"Vector::Iterator::It<int>_inst.fca.1.insert", i32 0, 2
-  ret %"Vector::Iterator::It<int>" %"Vector::Iterator::It<int>_inst.fca.2.insert"
-}
-
-define weak_odr %"Vector::Iterator::It<int>" @"Vector::Vec<int>__end"(ptr %0) local_unnamed_addr !qc.return_types !42 {
-entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<int>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<int>" poison, ptr %data, 0
-  %"Vector::Iterator::It<int>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<int>" %"Vector::Iterator::It<int>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<int>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<int>" %"Vector::Iterator::It<int>_inst.fca.1.insert", i32 %size, 2
-  ret %"Vector::Iterator::It<int>" %"Vector::Iterator::It<int>_inst.fca.2.insert"
-}
-
-define weak_odr void @"Vector::Vec<int>__destroy"(ptr %0) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %data = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data)
-  store ptr null, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 -1, ptr %size_ptr, align 8
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 -1, ptr %capacity_ptr, align 4
-  ret void
-}
-
-define weak_odr ptr @"Vector::Vec<int>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<int>" %1) local_unnamed_addr !qc.return_types !43 {
-entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<int>" %1, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<int>" %1, 1
-  %.fca.2.extract = extractvalue %"Vector::Vec<int>" %1, 2
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %capacity1 = load i32, ptr %2, align 4
-  %icmpne.not = icmp eq i32 %.fca.2.extract, %capacity1
-  br i1 %icmpne.not, label %ifcont, label %then
+  %icmpge = icmp sge i32 %index1, %size
+  br i1 %icmpge, label %then, label %elif.cond
 
 then:                                             ; preds = %entry
-  %icmpeq.i = icmp eq i32 %.fca.2.extract, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 1
+  %size2 = load i32, ptr %3, align 4
+  %sub = sub i32 %size2, 1
+  store i32 %sub, ptr %index, align 4
   br label %ifcont
 
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %.fca.2.extract to i64
-  %mul.i = shl nsw i64 %promote_int.i, 2
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %ifcont, label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %.fca.2.extract, ptr %2, align 4
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
-
-ifcont:                                           ; preds = %ifcont5.i, %ifcont.i, %then.i, %entry
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %.fca.1.extract, ptr %size_ptr, align 4
-  %icmplt12 = icmp sgt i32 %.fca.1.extract, 0
-  br i1 %icmplt12, label %for.body.preheader, label %for.end
-
-for.body.preheader:                               ; preds = %ifcont
-  %wide.trip.count = zext nneg i32 %.fca.1.extract to i64
-  %xtraiter = and i64 %wide.trip.count, 3
-  %3 = icmp ult i32 %.fca.1.extract, 4
-  br i1 %3, label %for.body.epil.preheader, label %for.body.preheader.new
-
-for.body.preheader.new:                           ; preds = %for.body.preheader
-  %unroll_iter = and i64 %wide.trip.count, 2147483644
-  br label %for.body
-
-for.body:                                         ; preds = %for.body, %for.body.preheader.new
-  %indvars.iv = phi i64 [ 0, %for.body.preheader.new ], [ %indvars.iv.next.3, %for.body ]
-  %niter = phi i64 [ 0, %for.body.preheader.new ], [ %niter.next.3, %for.body ]
-  %data = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr [4 x i8], ptr %data, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr [4 x i8], ptr %.fca.0.extract, i64 %indvars.iv
-  %ptr_arr_val = load i32, ptr %ptr_arr_addr, align 4
-  store i32 %ptr_arr_val, ptr %ptr_arr_asi, align 4
-  %indvars.iv.next = or disjoint i64 %indvars.iv, 1
-  %data.1 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.1 = getelementptr [4 x i8], ptr %data.1, i64 %indvars.iv.next
-  %ptr_arr_addr.1 = getelementptr [4 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next
-  %ptr_arr_val.1 = load i32, ptr %ptr_arr_addr.1, align 4
-  store i32 %ptr_arr_val.1, ptr %ptr_arr_asi.1, align 4
-  %indvars.iv.next.1 = or disjoint i64 %indvars.iv, 2
-  %data.2 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.2 = getelementptr [4 x i8], ptr %data.2, i64 %indvars.iv.next.1
-  %ptr_arr_addr.2 = getelementptr [4 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next.1
-  %ptr_arr_val.2 = load i32, ptr %ptr_arr_addr.2, align 4
-  store i32 %ptr_arr_val.2, ptr %ptr_arr_asi.2, align 4
-  %indvars.iv.next.2 = or disjoint i64 %indvars.iv, 3
-  %data.3 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.3 = getelementptr [4 x i8], ptr %data.3, i64 %indvars.iv.next.2
-  %ptr_arr_addr.3 = getelementptr [4 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next.2
-  %ptr_arr_val.3 = load i32, ptr %ptr_arr_addr.3, align 4
-  store i32 %ptr_arr_val.3, ptr %ptr_arr_asi.3, align 4
-  %indvars.iv.next.3 = add nuw nsw i64 %indvars.iv, 4
-  %niter.next.3 = add i64 %niter, 4
-  %niter.ncmp.3 = icmp eq i64 %niter.next.3, %unroll_iter
-  br i1 %niter.ncmp.3, label %for.end.loopexit.unr-lcssa, label %for.body
-
-for.end.loopexit.unr-lcssa:                       ; preds = %for.body
-  %lcmp.mod.not = icmp eq i64 %xtraiter, 0
-  br i1 %lcmp.mod.not, label %for.end, label %for.body.epil.preheader
-
-for.body.epil.preheader:                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.preheader
-  %indvars.iv.epil.init = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next.3, %for.end.loopexit.unr-lcssa ]
-  %lcmp.mod15 = icmp ne i64 %xtraiter, 0
-  tail call void @llvm.assume(i1 %lcmp.mod15)
-  br label %for.body.epil
-
-for.body.epil:                                    ; preds = %for.body.epil, %for.body.epil.preheader
-  %indvars.iv.epil = phi i64 [ %indvars.iv.epil.init, %for.body.epil.preheader ], [ %indvars.iv.next.epil, %for.body.epil ]
-  %epil.iter = phi i64 [ 0, %for.body.epil.preheader ], [ %epil.iter.next, %for.body.epil ]
-  %data.epil = load ptr, ptr %0, align 8
-  %ptr_arr_asi.epil = getelementptr [4 x i8], ptr %data.epil, i64 %indvars.iv.epil
-  %ptr_arr_addr.epil = getelementptr [4 x i8], ptr %.fca.0.extract, i64 %indvars.iv.epil
-  %ptr_arr_val.epil = load i32, ptr %ptr_arr_addr.epil, align 4
-  store i32 %ptr_arr_val.epil, ptr %ptr_arr_asi.epil, align 4
-  %indvars.iv.next.epil = add nuw nsw i64 %indvars.iv.epil, 1
-  %epil.iter.next = add i64 %epil.iter, 1
-  %epil.iter.cmp.not = icmp eq i64 %epil.iter.next, %xtraiter
-  br i1 %epil.iter.cmp.not, label %for.end, label %for.body.epil, !llvm.loop !44
-
-for.end:                                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.epil, %ifcont
-  ret ptr %0
-}
-
-define weak_odr i1 @"Vector::Vec<int>_isEmpty"(ptr %0) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 4
-  %icmpeq = icmp eq i32 %size, 0
-  ret i1 %icmpeq
-}
-
-define weak_odr %"Vector::Vec<int>" @"Utils::range"(i32 %start, i32 %stop, i32 %step) local_unnamed_addr !qc.return_types !45 {
-entry:
-  %icmpgt = icmp sgt i32 %step, 0
-  %icmple = icmp sle i32 %start, %stop
-  %and = select i1 %icmpgt, i1 %icmple, i1 false
-  br i1 %and, label %for.cond.preheader, label %elif.cond
-
-for.cond.preheader:                               ; preds = %entry
-  %icmplt96 = icmp slt i32 %start, %stop
-  br i1 %icmplt96, label %for.body, label %common.ret
-
-common.ret:                                       ; preds = %"Vector::Vec<int>_push_T.exit74", %"Vector::Vec<int>_push_T.exit", %for.cond.preheader, %elif.cond
-  %fin29.fca.0.load.pn.in.sroa.speculated = phi ptr [ %fin.sroa.0.4, %"Vector::Vec<int>_push_T.exit" ], [ null, %elif.cond ], [ null, %for.cond.preheader ], [ %fin.sroa.0.6, %"Vector::Vec<int>_push_T.exit74" ]
-  %fin29.fca.1.load.pn = phi i32 [ %fin.sroa.11.5, %"Vector::Vec<int>_push_T.exit" ], [ 0, %elif.cond ], [ 0, %for.cond.preheader ], [ %fin.sroa.11.8, %"Vector::Vec<int>_push_T.exit74" ]
-  %fin29.fca.2.load.pn = phi i32 [ %fin.sroa.24.4, %"Vector::Vec<int>_push_T.exit" ], [ 0, %elif.cond ], [ 0, %for.cond.preheader ], [ %fin.sroa.24.6, %"Vector::Vec<int>_push_T.exit74" ]
-  %fin29.fca.0.insert.pn = insertvalue %"Vector::Vec<int>" poison, ptr %fin29.fca.0.load.pn.in.sroa.speculated, 0
-  %fin29.fca.1.insert.pn = insertvalue %"Vector::Vec<int>" %fin29.fca.0.insert.pn, i32 %fin29.fca.1.load.pn, 1
-  %common.ret.op = insertvalue %"Vector::Vec<int>" %fin29.fca.1.insert.pn, i32 %fin29.fca.2.load.pn, 2
-  ret %"Vector::Vec<int>" %common.ret.op
+ifcont:                                           ; preds = %elif.body, %elif.cond, %then
+  %index4 = load i32, ptr %index, align 4
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<char*>", ptr %0, i32 0, i32 2
+  store i32 %index4, ptr %current_index_ptr, align 4
+  ret void
 
 elif.cond:                                        ; preds = %entry
-  %icmplt12 = icmp slt i32 %step, 0
-  %icmpgt2489 = icmp sgt i32 %start, %stop
-  %or.cond = select i1 %icmplt12, i1 %icmpgt2489, i1 false
-  br i1 %or.cond, label %for.body19, label %common.ret
+  %index3 = load i32, ptr %index, align 4
+  %icmplt = icmp slt i32 %index3, 0
+  br i1 %icmplt, label %elif.body, label %ifcont
 
-for.body:                                         ; preds = %for.cond.preheader, %"Vector::Vec<int>_push_T.exit"
-  %start1.0100 = phi i32 [ %add, %"Vector::Vec<int>_push_T.exit" ], [ %start, %for.cond.preheader ]
-  %fin.sroa.24.199 = phi i32 [ %fin.sroa.24.4, %"Vector::Vec<int>_push_T.exit" ], [ 0, %for.cond.preheader ]
-  %fin.sroa.11.198 = phi i32 [ %fin.sroa.11.5, %"Vector::Vec<int>_push_T.exit" ], [ 0, %for.cond.preheader ]
-  %fin.sroa.0.197 = phi ptr [ %fin.sroa.0.4, %"Vector::Vec<int>_push_T.exit" ], [ null, %for.cond.preheader ]
-  %icmple.not.i = icmp sgt i32 %fin.sroa.24.199, %fin.sroa.11.198
-  br i1 %icmple.not.i, label %ifcont.i, label %then.i
-
-then.i:                                           ; preds = %for.body
-  %icmpeq.i = icmp eq i32 %fin.sroa.24.199, 0
-  %mul.i = shl i32 %fin.sroa.24.199, 1
-  %select_val.i = select i1 %icmpeq.i, i32 1, i32 %mul.i
-  %icmpeq.i.i = icmp eq i32 %select_val.i, 0
-  br i1 %icmpeq.i.i, label %then.i.i, label %ifcont.i.i
-
-then.i.i:                                         ; preds = %then.i
-  tail call fastcc void @qc_free(ptr %fin.sroa.0.197)
-  br label %"Vector::Vec<int>_push_T.exit"
-
-ifcont.i.i:                                       ; preds = %then.i
-  %promote_int.i.i = sext i32 %select_val.i to i64
-  %mul.i.i = shl nsw i64 %promote_int.i.i, 2
-  %builtin_call.i.i = tail call fastcc ptr @qc_realloc(ptr %fin.sroa.0.197, i64 %mul.i.i)
-  %ptr_eq.i.i = icmp eq ptr %builtin_call.i.i, null
-  br i1 %ptr_eq.i.i, label %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i
-
-ifcont5.i.i:                                      ; preds = %ifcont.i.i
-  %spec.select = tail call i32 @llvm.smin.i32(i32 %fin.sroa.11.198, i32 %select_val.i)
-  br label %ifcont.i
-
-"Vector::Vec<int>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i
-  %0 = icmp eq ptr %fin.sroa.0.197, null
-  br i1 %0, label %"Vector::Vec<int>_push_T.exit", label %ifcont.i
-
-ifcont.i:                                         ; preds = %ifcont5.i.i, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i", %for.body
-  %fin.sroa.0.3 = phi ptr [ %fin.sroa.0.197, %for.body ], [ %builtin_call.i.i, %ifcont5.i.i ], [ %fin.sroa.0.197, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i" ]
-  %fin.sroa.11.4 = phi i32 [ %fin.sroa.11.198, %for.body ], [ %spec.select, %ifcont5.i.i ], [ %fin.sroa.11.198, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i" ]
-  %fin.sroa.24.3 = phi i32 [ %fin.sroa.24.199, %for.body ], [ %select_val.i, %ifcont5.i.i ], [ %fin.sroa.24.199, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i" ]
-  %1 = sext i32 %fin.sroa.11.4 to i64
-  %ptr_arr_asi.i = getelementptr [4 x i8], ptr %fin.sroa.0.3, i64 %1
-  store i32 %start1.0100, ptr %ptr_arr_asi.i, align 4
-  %inc.i = add i32 %fin.sroa.11.4, 1
-  br label %"Vector::Vec<int>_push_T.exit"
-
-"Vector::Vec<int>_push_T.exit":                   ; preds = %then.i.i, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i", %ifcont.i
-  %fin.sroa.0.4 = phi ptr [ %fin.sroa.0.3, %ifcont.i ], [ null, %then.i.i ], [ null, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i" ]
-  %fin.sroa.11.5 = phi i32 [ %inc.i, %ifcont.i ], [ 0, %then.i.i ], [ %fin.sroa.11.198, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i" ]
-  %fin.sroa.24.4 = phi i32 [ %fin.sroa.24.3, %ifcont.i ], [ 0, %then.i.i ], [ %fin.sroa.24.199, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i" ]
-  %add = add i32 %start1.0100, %step
-  %icmplt = icmp slt i32 %add, %stop
-  br i1 %icmplt, label %for.body, label %common.ret
-
-for.body19:                                       ; preds = %elif.cond, %"Vector::Vec<int>_push_T.exit74"
-  %start1.193 = phi i32 [ %add28, %"Vector::Vec<int>_push_T.exit74" ], [ %start, %elif.cond ]
-  %fin.sroa.24.292 = phi i32 [ %fin.sroa.24.6, %"Vector::Vec<int>_push_T.exit74" ], [ 0, %elif.cond ]
-  %fin.sroa.11.291 = phi i32 [ %fin.sroa.11.8, %"Vector::Vec<int>_push_T.exit74" ], [ 0, %elif.cond ]
-  %fin.sroa.0.290 = phi ptr [ %fin.sroa.0.6, %"Vector::Vec<int>_push_T.exit74" ], [ null, %elif.cond ]
-  %icmple.not.i45 = icmp sgt i32 %fin.sroa.24.292, %fin.sroa.11.291
-  br i1 %icmple.not.i45, label %ifcont.i62, label %then.i47
-
-then.i47:                                         ; preds = %for.body19
-  %icmpeq.i48 = icmp eq i32 %fin.sroa.24.292, 0
-  %mul.i49 = shl i32 %fin.sroa.24.292, 1
-  %select_val.i50 = select i1 %icmpeq.i48, i32 1, i32 %mul.i49
-  %icmpeq.i.i51 = icmp eq i32 %select_val.i50, 0
-  br i1 %icmpeq.i.i51, label %then.i.i73, label %ifcont.i.i52
-
-then.i.i73:                                       ; preds = %then.i47
-  tail call fastcc void @qc_free(ptr %fin.sroa.0.290)
-  br label %"Vector::Vec<int>_push_T.exit74"
-
-ifcont.i.i52:                                     ; preds = %then.i47
-  %promote_int.i.i53 = sext i32 %select_val.i50 to i64
-  %mul.i.i54 = shl nsw i64 %promote_int.i.i53, 2
-  %builtin_call.i.i55 = tail call fastcc ptr @qc_realloc(ptr %fin.sroa.0.290, i64 %mul.i.i54)
-  %ptr_eq.i.i56 = icmp eq ptr %builtin_call.i.i55, null
-  br i1 %ptr_eq.i.i56, label %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i69", label %ifcont5.i.i57
-
-ifcont5.i.i57:                                    ; preds = %ifcont.i.i52
-  %spec.select86 = tail call i32 @llvm.smin.i32(i32 %fin.sroa.11.291, i32 %select_val.i50)
-  br label %ifcont.i62
-
-"Vector::Vec<int>_reserve_int.exitthread-pre-split.i69": ; preds = %ifcont.i.i52
-  %2 = icmp eq ptr %fin.sroa.0.290, null
-  br i1 %2, label %"Vector::Vec<int>_push_T.exit74", label %ifcont.i62
-
-ifcont.i62:                                       ; preds = %ifcont5.i.i57, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i69", %for.body19
-  %fin.sroa.0.5 = phi ptr [ %fin.sroa.0.290, %for.body19 ], [ %builtin_call.i.i55, %ifcont5.i.i57 ], [ %fin.sroa.0.290, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i69" ]
-  %fin.sroa.11.7 = phi i32 [ %fin.sroa.11.291, %for.body19 ], [ %spec.select86, %ifcont5.i.i57 ], [ %fin.sroa.11.291, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i69" ]
-  %fin.sroa.24.5 = phi i32 [ %fin.sroa.24.292, %for.body19 ], [ %select_val.i50, %ifcont5.i.i57 ], [ %fin.sroa.24.292, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i69" ]
-  %3 = sext i32 %fin.sroa.11.7 to i64
-  %ptr_arr_asi.i65 = getelementptr [4 x i8], ptr %fin.sroa.0.5, i64 %3
-  store i32 %start1.193, ptr %ptr_arr_asi.i65, align 4
-  %inc.i67 = add i32 %fin.sroa.11.7, 1
-  br label %"Vector::Vec<int>_push_T.exit74"
-
-"Vector::Vec<int>_push_T.exit74":                 ; preds = %then.i.i73, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i69", %ifcont.i62
-  %fin.sroa.0.6 = phi ptr [ %fin.sroa.0.5, %ifcont.i62 ], [ null, %then.i.i73 ], [ null, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i69" ]
-  %fin.sroa.11.8 = phi i32 [ %inc.i67, %ifcont.i62 ], [ 0, %then.i.i73 ], [ %fin.sroa.11.291, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i69" ]
-  %fin.sroa.24.6 = phi i32 [ %fin.sroa.24.5, %ifcont.i62 ], [ 0, %then.i.i73 ], [ %fin.sroa.24.292, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i69" ]
-  %add28 = add i32 %start1.193, %step
-  %icmpgt24 = icmp sgt i32 %add28, %stop
-  br i1 %icmpgt24, label %for.body19, label %common.ret
-}
-
-; Function Attrs: noinline optnone
-define weak_odr void @"Utils::sleep"(i64 %milliseconds) local_unnamed_addr #17 !qc.return_types !34 {
-entry:
-  %"Utils::result" = alloca i64, align 8
-  %rem = alloca %"Utils::_timespec", align 8
-  %req = alloca [2 x i64], align 8
-  %sdiv = sdiv i64 %milliseconds, 1000
-  %srem = srem i64 %milliseconds, 1000
-  %mul = mul nsw i64 %srem, 1000000
-  %arr_lit_val.fca.0.insert = insertvalue [2 x i64] poison, i64 %sdiv, 0
-  %arr_lit_val.fca.1.insert = insertvalue [2 x i64] %arr_lit_val.fca.0.insert, i64 %mul, 1
-  store volatile [2 x i64] %arr_lit_val.fca.1.insert, ptr %req, align 8
-  store volatile %"Utils::_timespec" zeroinitializer, ptr %rem, align 8
-  store volatile i64 0, ptr %"Utils::result", align 8
-  %req.0.req.0.req.0.req.0.arr_elem16 = load volatile i64, ptr %req, align 8
-  %req.0.array_data.cast17 = inttoptr i64 %req.0.req.0.req.0.req.0.arr_elem16 to ptr
-  %0 = call i64 asm sideeffect inteldialect "\0A                mov rax, 230\0A                mov rdi, 1\0A                mov rsi, 0\0A                mov rdx, $1\0A                mov r10, $2\0A                syscall\0A                mov $0, rax\0A            ", "=r,r,r,~{rax},~{rdi},~{rsi},~{rdx},~{r10},~{rcx},~{r11}"(ptr %req.0.array_data.cast17, ptr nonnull %rem) #26
-  store i64 %0, ptr %"Utils::result", align 8
-  %"Utils::result.0.Utils::result.0.Utils::result.0.Utils::result.0.result18" = load volatile i64, ptr %"Utils::result", align 8
-  %icmpeq19 = icmp eq i64 %"Utils::result.0.Utils::result.0.Utils::result.0.Utils::result.0.result18", 0
-  br i1 %icmpeq19, label %while.end, label %ifcont.lr.ph
-
-ifcont.lr.ph:                                     ; preds = %entry
-  %rem_nsec_ptr = getelementptr inbounds nuw i8, ptr %rem, i64 8
-  %req.8.req.8.req.8.req.8.arr_elem_ptr14.sroa_idx = getelementptr inbounds nuw i8, ptr %req, i64 8
+elif.body:                                        ; preds = %elif.cond
+  store i32 0, ptr %index, align 4
   br label %ifcont
-
-while.end:                                        ; preds = %then9, %ifcont, %entry
-  ret void
-
-ifcont:                                           ; preds = %ifcont.lr.ph, %then9
-  %"Utils::result.0.Utils::result.0.Utils::result.0.Utils::result.0.result7" = load volatile i64, ptr %"Utils::result", align 8
-  %icmpeq8 = icmp eq i64 %"Utils::result.0.Utils::result.0.Utils::result.0.Utils::result.0.result7", -4
-  br i1 %icmpeq8, label %then9, label %while.end
-
-then9:                                            ; preds = %ifcont
-  %rem_sec12 = load i64, ptr %rem, align 8
-  store volatile i64 %rem_sec12, ptr %req, align 8
-  %rem_nsec = load i64, ptr %rem_nsec_ptr, align 8
-  store volatile i64 %rem_nsec, ptr %req.8.req.8.req.8.req.8.arr_elem_ptr14.sroa_idx, align 8
-  store volatile i64 0, ptr %"Utils::result", align 8
-  %req.0.req.0.req.0.req.0.arr_elem = load volatile i64, ptr %req, align 8
-  %req.0.array_data.cast = inttoptr i64 %req.0.req.0.req.0.req.0.arr_elem to ptr
-  %1 = call i64 asm sideeffect inteldialect "\0A                mov rax, 230\0A                mov rdi, 1\0A                mov rsi, 0\0A                mov rdx, $1\0A                mov r10, $2\0A                syscall\0A                mov $0, rax\0A            ", "=r,r,r,~{rax},~{rdi},~{rsi},~{rdx},~{r10},~{rcx},~{r11}"(ptr %req.0.array_data.cast, ptr nonnull %rem) #26
-  store i64 %1, ptr %"Utils::result", align 8
-  %"Utils::result.0.Utils::result.0.Utils::result.0.Utils::result.0.result" = load volatile i64, ptr %"Utils::result", align 8
-  %icmpeq = icmp eq i64 %"Utils::result.0.Utils::result.0.Utils::result.0.Utils::result.0.result", 0
-  br i1 %icmpeq, label %while.end, label %ifcont
 }
 
-define weak_odr double @"Math::e"() local_unnamed_addr !qc.return_types !46 {
+define weak_odr %"Vector::Iterator::It<char*>" @"Vector::Vec<char*>__begin"(ptr %0) !qc.return_types !33 {
 entry:
-  ret double f0x4005BF0A8B145769
-}
-
-define weak_odr double @"Math::pi"() local_unnamed_addr !qc.return_types !46 {
-entry:
-  ret double f0x400921FB54442D18
-}
-
-define weak_odr i32 @"Math::ceil"(%"Math::Floating" %a) local_unnamed_addr !qc.return_types !39 {
-entry:
-  %0 = extractvalue %"Math::Floating" %a, 1
-  %.fca.0.extract = extractvalue [8 x i8] %0, 0
-  %.fca.1.extract = extractvalue [8 x i8] %0, 1
-  %.fca.2.extract = extractvalue [8 x i8] %0, 2
-  %.fca.3.extract = extractvalue [8 x i8] %0, 3
-  %.fca.4.extract = extractvalue [8 x i8] %0, 4
-  %.fca.5.extract = extractvalue [8 x i8] %0, 5
-  %.fca.6.extract = extractvalue [8 x i8] %0, 6
-  %.fca.7.extract = extractvalue [8 x i8] %0, 7
-  %array_cpy.0.insert.ext = zext i8 %.fca.0.extract to i64
-  %array_cpy.1.insert.ext = zext i8 %.fca.1.extract to i64
-  %array_cpy.1.insert.shift = shl nuw nsw i64 %array_cpy.1.insert.ext, 8
-  %array_cpy.1.insert.insert = or disjoint i64 %array_cpy.1.insert.shift, %array_cpy.0.insert.ext
-  %array_cpy.2.insert.ext = zext i8 %.fca.2.extract to i64
-  %array_cpy.2.insert.shift = shl nuw nsw i64 %array_cpy.2.insert.ext, 16
-  %array_cpy.2.insert.insert = or disjoint i64 %array_cpy.1.insert.insert, %array_cpy.2.insert.shift
-  %array_cpy.3.insert.ext = zext i8 %.fca.3.extract to i64
-  %array_cpy.3.insert.shift = shl nuw nsw i64 %array_cpy.3.insert.ext, 24
-  %array_cpy.3.insert.insert = or disjoint i64 %array_cpy.2.insert.insert, %array_cpy.3.insert.shift
-  %array_cpy.4.insert.ext = zext i8 %.fca.4.extract to i64
-  %array_cpy.4.insert.shift = shl nuw nsw i64 %array_cpy.4.insert.ext, 32
-  %array_cpy.5.insert.ext = zext i8 %.fca.5.extract to i64
-  %array_cpy.5.insert.shift = shl nuw nsw i64 %array_cpy.5.insert.ext, 40
-  %array_cpy.5.insert.mask = or disjoint i64 %array_cpy.3.insert.insert, %array_cpy.4.insert.shift
-  %array_cpy.6.insert.ext = zext i8 %.fca.6.extract to i64
-  %array_cpy.6.insert.shift = shl nuw nsw i64 %array_cpy.6.insert.ext, 48
-  %array_cpy.6.insert.mask = or disjoint i64 %array_cpy.5.insert.mask, %array_cpy.5.insert.shift
-  %array_cpy.7.insert.ext = zext i8 %.fca.7.extract to i64
-  %array_cpy.7.insert.shift = shl nuw i64 %array_cpy.7.insert.ext, 56
-  %array_cpy.6.insert.insert = or disjoint i64 %array_cpy.7.insert.shift, %array_cpy.6.insert.shift
-  %array_cpy.7.insert.insert = or i64 %array_cpy.6.insert.insert, %array_cpy.6.insert.mask
-  %1 = bitcast i64 %array_cpy.7.insert.insert to double
-  %2 = fptosi double %1 to i32
-  %3 = sitofp i32 %2 to double
-  %fcmpeq = fcmp une double %1, %3
-  %fcmpgt = fcmp ogt double %1, 0.000000e+00
-  %or.cond = and i1 %fcmpgt, %fcmpeq
-  %add = zext i1 %or.cond to i32
-  %spec.select = add i32 %add, %2
-  ret i32 %spec.select
-}
-
-; Function Attrs: mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
-declare void @llvm.memcpy.inline.p0.p0.i64(ptr noalias writeonly captures(none), ptr noalias readonly captures(none), i64, i1 immarg) #18
-
-define weak_odr i32 @"Math::floor"(%"Math::Floating" %a) local_unnamed_addr !qc.return_types !39 {
-entry:
-  %0 = extractvalue %"Math::Floating" %a, 1
-  %.fca.0.extract = extractvalue [8 x i8] %0, 0
-  %.fca.1.extract = extractvalue [8 x i8] %0, 1
-  %.fca.2.extract = extractvalue [8 x i8] %0, 2
-  %.fca.3.extract = extractvalue [8 x i8] %0, 3
-  %.fca.4.extract = extractvalue [8 x i8] %0, 4
-  %.fca.5.extract = extractvalue [8 x i8] %0, 5
-  %.fca.6.extract = extractvalue [8 x i8] %0, 6
-  %.fca.7.extract = extractvalue [8 x i8] %0, 7
-  %array_cpy.0.insert.ext = zext i8 %.fca.0.extract to i64
-  %array_cpy.1.insert.ext = zext i8 %.fca.1.extract to i64
-  %array_cpy.1.insert.shift = shl nuw nsw i64 %array_cpy.1.insert.ext, 8
-  %array_cpy.1.insert.insert = or disjoint i64 %array_cpy.1.insert.shift, %array_cpy.0.insert.ext
-  %array_cpy.2.insert.ext = zext i8 %.fca.2.extract to i64
-  %array_cpy.2.insert.shift = shl nuw nsw i64 %array_cpy.2.insert.ext, 16
-  %array_cpy.2.insert.insert = or disjoint i64 %array_cpy.1.insert.insert, %array_cpy.2.insert.shift
-  %array_cpy.3.insert.ext = zext i8 %.fca.3.extract to i64
-  %array_cpy.3.insert.shift = shl nuw nsw i64 %array_cpy.3.insert.ext, 24
-  %array_cpy.3.insert.insert = or disjoint i64 %array_cpy.2.insert.insert, %array_cpy.3.insert.shift
-  %array_cpy.4.insert.ext = zext i8 %.fca.4.extract to i64
-  %array_cpy.4.insert.shift = shl nuw nsw i64 %array_cpy.4.insert.ext, 32
-  %array_cpy.5.insert.ext = zext i8 %.fca.5.extract to i64
-  %array_cpy.5.insert.shift = shl nuw nsw i64 %array_cpy.5.insert.ext, 40
-  %array_cpy.5.insert.mask = or disjoint i64 %array_cpy.3.insert.insert, %array_cpy.4.insert.shift
-  %array_cpy.6.insert.ext = zext i8 %.fca.6.extract to i64
-  %array_cpy.6.insert.shift = shl nuw nsw i64 %array_cpy.6.insert.ext, 48
-  %array_cpy.6.insert.mask = or disjoint i64 %array_cpy.5.insert.mask, %array_cpy.5.insert.shift
-  %array_cpy.7.insert.ext = zext i8 %.fca.7.extract to i64
-  %array_cpy.7.insert.shift = shl nuw i64 %array_cpy.7.insert.ext, 56
-  %array_cpy.6.insert.insert = or disjoint i64 %array_cpy.7.insert.shift, %array_cpy.6.insert.shift
-  %array_cpy.7.insert.insert = or i64 %array_cpy.6.insert.insert, %array_cpy.6.insert.mask
-  %1 = bitcast i64 %array_cpy.7.insert.insert to double
-  %2 = fptosi double %1 to i32
-  %fcmpge = fcmp ult double %1, 0.000000e+00
-  %3 = sitofp i32 %2 to double
-  %fcmpeq = fcmp une double %1, %3
-  %or.cond.not = select i1 %fcmpge, i1 %fcmpeq, i1 false
-  %sub = sext i1 %or.cond.not to i32
-  %spec.select = add i32 %sub, %2
-  ret i32 %spec.select
-}
-
-define weak_odr double @"Math::sin"(double %x) local_unnamed_addr !qc.return_types !46 {
-entry:
-  %fcmpgt30 = fcmp ogt double %x, f0x400921FB54442D18
-  br i1 %fcmpgt30, label %while.body, label %while.cond4.preheader
-
-while.cond4.preheader:                            ; preds = %while.body, %entry
-  %x1.0.lcssa = phi double [ %x, %entry ], [ %fsub, %while.body ]
-  %fcmplt32 = fcmp olt double %x1.0.lcssa, f0xC00921FB54442D18
-  br i1 %fcmplt32, label %while.body5, label %for.cond.preheader
-
-while.body:                                       ; preds = %entry, %while.body
-  %x1.031 = phi double [ %fsub, %while.body ], [ %x, %entry ]
-  %fsub = fadd double %x1.031, f0xC01921FB54442D18
-  %fcmpgt = fcmp ogt double %fsub, f0x400921FB54442D18
-  br i1 %fcmpgt, label %while.body, label %while.cond4.preheader
-
-for.cond.preheader:                               ; preds = %while.body5, %while.cond4.preheader
-  %x1.1.lcssa = phi double [ %x1.0.lcssa, %while.cond4.preheader ], [ %fadd, %while.body5 ]
-  %0 = fneg double %x1.1.lcssa
-  %1 = fmul double %x1.1.lcssa, %0
-  %fadd14 = fadd double %x1.1.lcssa, 0.000000e+00
-  %fneg23 = fdiv double %1, 6.000000e+00
-  %fmul24 = fmul double %x1.1.lcssa, %fneg23
-  %fadd14.1 = fadd double %fmul24, %fadd14
-  %fneg23.1 = fdiv double %1, 2.000000e+01
-  %fmul24.1 = fmul double %fmul24, %fneg23.1
-  %fadd14.2 = fadd double %fmul24.1, %fadd14.1
-  %fneg23.2 = fdiv double %1, 4.200000e+01
-  %fmul24.2 = fmul double %fmul24.1, %fneg23.2
-  %fadd14.3 = fadd double %fmul24.2, %fadd14.2
-  %fneg23.3 = fdiv double %1, 7.200000e+01
-  %fmul24.3 = fmul double %fmul24.2, %fneg23.3
-  %fadd14.4 = fadd double %fmul24.3, %fadd14.3
-  %fneg23.4 = fdiv double %1, 1.100000e+02
-  %fmul24.4 = fmul double %fmul24.3, %fneg23.4
-  %fadd14.5 = fadd double %fmul24.4, %fadd14.4
-  %fneg23.5 = fdiv double %1, 1.560000e+02
-  %fmul24.5 = fmul double %fmul24.4, %fneg23.5
-  %fadd14.6 = fadd double %fmul24.5, %fadd14.5
-  %fneg23.6 = fdiv double %1, 2.100000e+02
-  %fmul24.6 = fmul double %fmul24.5, %fneg23.6
-  %fadd14.7 = fadd double %fmul24.6, %fadd14.6
-  %fneg23.7 = fdiv double %1, 2.720000e+02
-  %fmul24.7 = fmul double %fmul24.6, %fneg23.7
-  %fadd14.8 = fadd double %fmul24.7, %fadd14.7
-  %fneg23.8 = fdiv double %1, 3.420000e+02
-  %fmul24.8 = fmul double %fmul24.7, %fneg23.8
-  %fadd14.9 = fadd double %fmul24.8, %fadd14.8
-  ret double %fadd14.9
-
-while.body5:                                      ; preds = %while.cond4.preheader, %while.body5
-  %x1.133 = phi double [ %fadd, %while.body5 ], [ %x1.0.lcssa, %while.cond4.preheader ]
-  %fadd = fadd double %x1.133, f0x401921FB54442D18
-  %fcmplt = fcmp olt double %fadd, f0xC00921FB54442D18
-  br i1 %fcmplt, label %while.body5, label %for.cond.preheader
-}
-
-define weak_odr double @"Math::cos"(double %x) local_unnamed_addr !qc.return_types !46 {
-entry:
-  %fcmpgt29 = fcmp ogt double %x, f0x400921FB54442D18
-  br i1 %fcmpgt29, label %while.body, label %while.cond4.preheader
-
-while.cond4.preheader:                            ; preds = %while.body, %entry
-  %x1.0.lcssa = phi double [ %x, %entry ], [ %fsub, %while.body ]
-  %fcmplt31 = fcmp olt double %x1.0.lcssa, f0xC00921FB54442D18
-  br i1 %fcmplt31, label %while.body5, label %for.cond.preheader
-
-while.body:                                       ; preds = %entry, %while.body
-  %x1.030 = phi double [ %fsub, %while.body ], [ %x, %entry ]
-  %fsub = fadd double %x1.030, f0xC01921FB54442D18
-  %fcmpgt = fcmp ogt double %fsub, f0x400921FB54442D18
-  br i1 %fcmpgt, label %while.body, label %while.cond4.preheader
-
-for.cond.preheader:                               ; preds = %while.body5, %while.cond4.preheader
-  %x1.1.lcssa = phi double [ %x1.0.lcssa, %while.cond4.preheader ], [ %fadd, %while.body5 ]
-  %0 = fneg double %x1.1.lcssa
-  %1 = fmul double %x1.1.lcssa, %0
-  %fneg22 = fmul double %1, 5.000000e-01
-  %fadd13.1 = fadd double %fneg22, 1.000000e+00
-  %fneg22.1 = fdiv double %1, 1.200000e+01
-  %fmul23.1 = fmul double %fneg22, %fneg22.1
-  %fadd13.2 = fadd double %fmul23.1, %fadd13.1
-  %fneg22.2 = fdiv double %1, 3.000000e+01
-  %fmul23.2 = fmul double %fmul23.1, %fneg22.2
-  %fadd13.3 = fadd double %fmul23.2, %fadd13.2
-  %fneg22.3 = fdiv double %1, 5.600000e+01
-  %fmul23.3 = fmul double %fmul23.2, %fneg22.3
-  %fadd13.4 = fadd double %fmul23.3, %fadd13.3
-  %fneg22.4 = fdiv double %1, 9.000000e+01
-  %fmul23.4 = fmul double %fmul23.3, %fneg22.4
-  %fadd13.5 = fadd double %fmul23.4, %fadd13.4
-  %fneg22.5 = fdiv double %1, 1.320000e+02
-  %fmul23.5 = fmul double %fmul23.4, %fneg22.5
-  %fadd13.6 = fadd double %fmul23.5, %fadd13.5
-  %fneg22.6 = fdiv double %1, 1.820000e+02
-  %fmul23.6 = fmul double %fmul23.5, %fneg22.6
-  %fadd13.7 = fadd double %fmul23.6, %fadd13.6
-  %fneg22.7 = fdiv double %1, 2.400000e+02
-  %fmul23.7 = fmul double %fmul23.6, %fneg22.7
-  %fadd13.8 = fadd double %fmul23.7, %fadd13.7
-  %fneg22.8 = fdiv double %1, 3.060000e+02
-  %fmul23.8 = fmul double %fmul23.7, %fneg22.8
-  %fadd13.9 = fadd double %fmul23.8, %fadd13.8
-  ret double %fadd13.9
-
-while.body5:                                      ; preds = %while.cond4.preheader, %while.body5
-  %x1.132 = phi double [ %fadd, %while.body5 ], [ %x1.0.lcssa, %while.cond4.preheader ]
-  %fadd = fadd double %x1.132, f0x401921FB54442D18
-  %fcmplt = fcmp olt double %fadd, f0xC00921FB54442D18
-  br i1 %fcmplt, label %while.body5, label %for.cond.preheader
-}
-
-define weak_odr double @"Math::tan"(double %x) local_unnamed_addr !qc.return_types !46 {
-entry:
-  %fcmpgt30.i = fcmp ogt double %x, f0x400921FB54442D18
-  br i1 %fcmpgt30.i, label %while.body.i, label %while.cond4.preheader.i
-
-while.cond4.preheader.i:                          ; preds = %while.body.i, %entry
-  %x1.0.lcssa.i = phi double [ %x, %entry ], [ %fsub.i, %while.body.i ]
-  %fcmplt32.i = fcmp olt double %x1.0.lcssa.i, f0xC00921FB54442D18
-  br i1 %fcmplt32.i, label %while.body5.i, label %"Math::sin.exit"
-
-while.body.i:                                     ; preds = %entry, %while.body.i
-  %x1.031.i = phi double [ %fsub.i, %while.body.i ], [ %x, %entry ]
-  %fsub.i = fadd double %x1.031.i, f0xC01921FB54442D18
-  %fcmpgt.i = fcmp ogt double %fsub.i, f0x400921FB54442D18
-  br i1 %fcmpgt.i, label %while.body.i, label %while.cond4.preheader.i
-
-while.body5.i:                                    ; preds = %while.cond4.preheader.i, %while.body5.i
-  %x1.133.i = phi double [ %fadd.i, %while.body5.i ], [ %x1.0.lcssa.i, %while.cond4.preheader.i ]
-  %fadd.i = fadd double %x1.133.i, f0x401921FB54442D18
-  %fcmplt.i = fcmp olt double %fadd.i, f0xC00921FB54442D18
-  br i1 %fcmplt.i, label %while.body5.i, label %"Math::sin.exit"
-
-"Math::sin.exit":                                 ; preds = %while.body5.i, %while.cond4.preheader.i
-  %x1.1.lcssa.i = phi double [ %x1.0.lcssa.i, %while.cond4.preheader.i ], [ %fadd.i, %while.body5.i ]
-  %0 = fneg double %x1.1.lcssa.i
-  %1 = fmul double %x1.1.lcssa.i, %0
-  %fadd14.i = fadd double %x1.1.lcssa.i, 0.000000e+00
-  %fneg23.i = fdiv double %1, 6.000000e+00
-  %fmul24.i = fmul double %x1.1.lcssa.i, %fneg23.i
-  %fadd14.1.i = fadd double %fadd14.i, %fmul24.i
-  %fneg23.1.i = fdiv double %1, 2.000000e+01
-  %fmul24.1.i = fmul double %fneg23.1.i, %fmul24.i
-  %fadd14.2.i = fadd double %fmul24.1.i, %fadd14.1.i
-  %fneg23.2.i = fdiv double %1, 4.200000e+01
-  %fmul24.2.i = fmul double %fneg23.2.i, %fmul24.1.i
-  %fadd14.3.i = fadd double %fmul24.2.i, %fadd14.2.i
-  %fneg23.3.i = fdiv double %1, 7.200000e+01
-  %fmul24.3.i = fmul double %fneg23.3.i, %fmul24.2.i
-  %fadd14.4.i = fadd double %fmul24.3.i, %fadd14.3.i
-  %fneg23.4.i = fdiv double %1, 1.100000e+02
-  %fmul24.4.i = fmul double %fneg23.4.i, %fmul24.3.i
-  %fadd14.5.i = fadd double %fmul24.4.i, %fadd14.4.i
-  %fneg23.5.i = fdiv double %1, 1.560000e+02
-  %fmul24.5.i = fmul double %fneg23.5.i, %fmul24.4.i
-  %fadd14.6.i = fadd double %fmul24.5.i, %fadd14.5.i
-  %fneg23.6.i = fdiv double %1, 2.100000e+02
-  %fmul24.6.i = fmul double %fneg23.6.i, %fmul24.5.i
-  %fadd14.7.i = fadd double %fmul24.6.i, %fadd14.6.i
-  %fneg23.7.i = fdiv double %1, 2.720000e+02
-  %fmul24.7.i = fmul double %fneg23.7.i, %fmul24.6.i
-  %fadd14.8.i = fadd double %fmul24.7.i, %fadd14.7.i
-  %fneg23.8.i = fdiv double %1, 3.420000e+02
-  %fmul24.8.i = fmul double %fneg23.8.i, %fmul24.7.i
-  %fadd14.9.i = fadd double %fmul24.8.i, %fadd14.8.i
-  %fcmpeq = fcmp oeq double %fadd14.9.i, 0.000000e+00
-  br i1 %fcmpeq, label %or.end, label %or.rhs
-
-or.rhs:                                           ; preds = %"Math::sin.exit"
-  br i1 %fcmpgt30.i, label %while.body.i16, label %while.cond4.preheader.i10
-
-while.cond4.preheader.i10:                        ; preds = %while.body.i16, %or.rhs
-  %x1.0.lcssa.i11 = phi double [ %x, %or.rhs ], [ %fsub.i17, %while.body.i16 ]
-  %fcmplt31.i = fcmp olt double %x1.0.lcssa.i11, f0xC00921FB54442D18
-  br i1 %fcmplt31.i, label %while.body5.i13, label %"Math::cos.exit"
-
-while.body.i16:                                   ; preds = %or.rhs, %while.body.i16
-  %x1.030.i = phi double [ %fsub.i17, %while.body.i16 ], [ %x, %or.rhs ]
-  %fsub.i17 = fadd double %x1.030.i, f0xC01921FB54442D18
-  %fcmpgt.i18 = fcmp ogt double %fsub.i17, f0x400921FB54442D18
-  br i1 %fcmpgt.i18, label %while.body.i16, label %while.cond4.preheader.i10
-
-while.body5.i13:                                  ; preds = %while.cond4.preheader.i10, %while.body5.i13
-  %x1.132.i = phi double [ %fadd.i14, %while.body5.i13 ], [ %x1.0.lcssa.i11, %while.cond4.preheader.i10 ]
-  %fadd.i14 = fadd double %x1.132.i, f0x401921FB54442D18
-  %fcmplt.i15 = fcmp olt double %fadd.i14, f0xC00921FB54442D18
-  br i1 %fcmplt.i15, label %while.body5.i13, label %"Math::cos.exit"
-
-"Math::cos.exit":                                 ; preds = %while.body5.i13, %while.cond4.preheader.i10
-  %x1.1.lcssa.i12 = phi double [ %x1.0.lcssa.i11, %while.cond4.preheader.i10 ], [ %fadd.i14, %while.body5.i13 ]
-  %2 = fneg double %x1.1.lcssa.i12
-  %3 = fmul double %x1.1.lcssa.i12, %2
-  %fneg22.i = fmul double %3, 5.000000e-01
-  %fadd13.1.i = fadd double %fneg22.i, 1.000000e+00
-  %fneg22.1.i = fdiv double %3, 1.200000e+01
-  %fmul23.1.i = fmul double %fneg22.i, %fneg22.1.i
-  %fadd13.2.i = fadd double %fmul23.1.i, %fadd13.1.i
-  %fneg22.2.i = fdiv double %3, 3.000000e+01
-  %fmul23.2.i = fmul double %fneg22.2.i, %fmul23.1.i
-  %fadd13.3.i = fadd double %fmul23.2.i, %fadd13.2.i
-  %fneg22.3.i = fdiv double %3, 5.600000e+01
-  %fmul23.3.i = fmul double %fneg22.3.i, %fmul23.2.i
-  %fadd13.4.i = fadd double %fmul23.3.i, %fadd13.3.i
-  %fneg22.4.i = fdiv double %3, 9.000000e+01
-  %fmul23.4.i = fmul double %fneg22.4.i, %fmul23.3.i
-  %fadd13.5.i = fadd double %fmul23.4.i, %fadd13.4.i
-  %fneg22.5.i = fdiv double %3, 1.320000e+02
-  %fmul23.5.i = fmul double %fneg22.5.i, %fmul23.4.i
-  %fadd13.6.i = fadd double %fmul23.5.i, %fadd13.5.i
-  %fneg22.6.i = fdiv double %3, 1.820000e+02
-  %fmul23.6.i = fmul double %fneg22.6.i, %fmul23.5.i
-  %fadd13.7.i = fadd double %fmul23.6.i, %fadd13.6.i
-  %fneg22.7.i = fdiv double %3, 2.400000e+02
-  %fmul23.7.i = fmul double %fneg22.7.i, %fmul23.6.i
-  %fadd13.8.i = fadd double %fmul23.7.i, %fadd13.7.i
-  %fneg22.8.i = fdiv double %3, 3.060000e+02
-  %fmul23.8.i = fmul double %fneg22.8.i, %fmul23.7.i
-  %fadd13.9.i = fadd double %fmul23.8.i, %fadd13.8.i
-  %fcmpeq5 = fcmp oeq double %fadd13.9.i, 0.000000e+00
-  br label %or.end
-
-or.end:                                           ; preds = %"Math::cos.exit", %"Math::sin.exit"
-  %or = phi i1 [ true, %"Math::sin.exit" ], [ %fcmpeq5, %"Math::cos.exit" ]
-  br i1 %fcmpgt30.i, label %while.body.i56, label %while.cond4.preheader.i20
-
-while.cond4.preheader.i20:                        ; preds = %while.body.i56, %or.end
-  %x1.0.lcssa.i21 = phi double [ %x, %or.end ], [ %fsub.i58, %while.body.i56 ]
-  %fcmplt32.i22 = fcmp olt double %x1.0.lcssa.i21, f0xC00921FB54442D18
-  br i1 %fcmplt32.i22, label %while.body5.i52, label %"Math::sin.exit60"
-
-while.body.i56:                                   ; preds = %or.end, %while.body.i56
-  %x1.031.i57 = phi double [ %fsub.i58, %while.body.i56 ], [ %x, %or.end ]
-  %fsub.i58 = fadd double %x1.031.i57, f0xC01921FB54442D18
-  %fcmpgt.i59 = fcmp ogt double %fsub.i58, f0x400921FB54442D18
-  br i1 %fcmpgt.i59, label %while.body.i56, label %while.cond4.preheader.i20
-
-while.body5.i52:                                  ; preds = %while.cond4.preheader.i20, %while.body5.i52
-  %x1.133.i53 = phi double [ %fadd.i54, %while.body5.i52 ], [ %x1.0.lcssa.i21, %while.cond4.preheader.i20 ]
-  %fadd.i54 = fadd double %x1.133.i53, f0x401921FB54442D18
-  %fcmplt.i55 = fcmp olt double %fadd.i54, f0xC00921FB54442D18
-  br i1 %fcmplt.i55, label %while.body5.i52, label %"Math::sin.exit60"
-
-"Math::sin.exit60":                               ; preds = %while.body5.i52, %while.cond4.preheader.i20
-  %x1.1.lcssa.i23 = phi double [ %x1.0.lcssa.i21, %while.cond4.preheader.i20 ], [ %fadd.i54, %while.body5.i52 ]
-  br i1 %fcmpgt30.i, label %while.body.i96, label %while.cond4.preheader.i62
-
-while.cond4.preheader.i62:                        ; preds = %while.body.i96, %"Math::sin.exit60"
-  %x1.0.lcssa.i63 = phi double [ %x, %"Math::sin.exit60" ], [ %fsub.i98, %while.body.i96 ]
-  %fcmplt31.i64 = fcmp olt double %x1.0.lcssa.i63, f0xC00921FB54442D18
-  br i1 %fcmplt31.i64, label %while.body5.i92, label %"Math::cos.exit100"
-
-while.body.i96:                                   ; preds = %"Math::sin.exit60", %while.body.i96
-  %x1.030.i97 = phi double [ %fsub.i98, %while.body.i96 ], [ %x, %"Math::sin.exit60" ]
-  %fsub.i98 = fadd double %x1.030.i97, f0xC01921FB54442D18
-  %fcmpgt.i99 = fcmp ogt double %fsub.i98, f0x400921FB54442D18
-  br i1 %fcmpgt.i99, label %while.body.i96, label %while.cond4.preheader.i62
-
-while.body5.i92:                                  ; preds = %while.cond4.preheader.i62, %while.body5.i92
-  %x1.132.i93 = phi double [ %fadd.i94, %while.body5.i92 ], [ %x1.0.lcssa.i63, %while.cond4.preheader.i62 ]
-  %fadd.i94 = fadd double %x1.132.i93, f0x401921FB54442D18
-  %fcmplt.i95 = fcmp olt double %fadd.i94, f0xC00921FB54442D18
-  br i1 %fcmplt.i95, label %while.body5.i92, label %"Math::cos.exit100"
-
-"Math::cos.exit100":                              ; preds = %while.body5.i92, %while.cond4.preheader.i62
-  %x1.1.lcssa.i65 = phi double [ %x1.0.lcssa.i63, %while.cond4.preheader.i62 ], [ %fadd.i94, %while.body5.i92 ]
-  %4 = fneg double %x1.1.lcssa.i23
-  %5 = fmul double %x1.1.lcssa.i23, %4
-  %fneg23.i25 = fdiv double %5, 6.000000e+00
-  %fmul24.i26 = fmul double %x1.1.lcssa.i23, %fneg23.i25
-  %fneg23.1.i28 = fdiv double %5, 2.000000e+01
-  %fmul24.1.i29 = fmul double %fneg23.1.i28, %fmul24.i26
-  %fneg23.2.i31 = fdiv double %5, 4.200000e+01
-  %fmul24.2.i32 = fmul double %fneg23.2.i31, %fmul24.1.i29
-  %fneg23.3.i34 = fdiv double %5, 7.200000e+01
-  %fmul24.3.i35 = fmul double %fneg23.3.i34, %fmul24.2.i32
-  %fneg23.4.i37 = fdiv double %5, 1.100000e+02
-  %fmul24.4.i38 = fmul double %fneg23.4.i37, %fmul24.3.i35
-  %fneg23.5.i40 = fdiv double %5, 1.560000e+02
-  %fmul24.5.i41 = fmul double %fneg23.5.i40, %fmul24.4.i38
-  %fneg23.6.i43 = fdiv double %5, 2.100000e+02
-  %fmul24.6.i44 = fmul double %fneg23.6.i43, %fmul24.5.i41
-  %fneg23.7.i46 = fdiv double %5, 2.720000e+02
-  %fmul24.7.i47 = fmul double %fneg23.7.i46, %fmul24.6.i44
-  %fneg23.8.i49 = fdiv double %5, 3.420000e+02
-  %fmul24.8.i50 = fmul double %fneg23.8.i49, %fmul24.7.i47
-  %fadd14.i24 = fadd double %x1.1.lcssa.i23, 0.000000e+00
-  %fadd14.1.i27 = fadd double %fadd14.i24, %fmul24.i26
-  %fadd14.2.i30 = fadd double %fmul24.1.i29, %fadd14.1.i27
-  %fadd14.3.i33 = fadd double %fmul24.2.i32, %fadd14.2.i30
-  %fadd14.4.i36 = fadd double %fmul24.3.i35, %fadd14.3.i33
-  %fadd14.5.i39 = fadd double %fmul24.4.i38, %fadd14.4.i36
-  %fadd14.6.i42 = fadd double %fmul24.5.i41, %fadd14.5.i39
-  %fadd14.7.i45 = fadd double %fmul24.6.i44, %fadd14.6.i42
-  %fadd14.8.i48 = fadd double %fmul24.7.i47, %fadd14.7.i45
-  %fadd14.9.i51 = fadd double %fmul24.8.i50, %fadd14.8.i48
-  %6 = fneg double %x1.1.lcssa.i65
-  %7 = fmul double %x1.1.lcssa.i65, %6
-  %fneg22.i66 = fmul double %7, 5.000000e-01
-  %fadd13.1.i67 = fadd double %fneg22.i66, 1.000000e+00
-  %fneg22.1.i68 = fdiv double %7, 1.200000e+01
-  %fmul23.1.i69 = fmul double %fneg22.i66, %fneg22.1.i68
-  %fadd13.2.i70 = fadd double %fmul23.1.i69, %fadd13.1.i67
-  %fneg22.2.i71 = fdiv double %7, 3.000000e+01
-  %fmul23.2.i72 = fmul double %fneg22.2.i71, %fmul23.1.i69
-  %fadd13.3.i73 = fadd double %fmul23.2.i72, %fadd13.2.i70
-  %fneg22.3.i74 = fdiv double %7, 5.600000e+01
-  %fmul23.3.i75 = fmul double %fneg22.3.i74, %fmul23.2.i72
-  %fadd13.4.i76 = fadd double %fmul23.3.i75, %fadd13.3.i73
-  %fneg22.4.i77 = fdiv double %7, 9.000000e+01
-  %fmul23.4.i78 = fmul double %fneg22.4.i77, %fmul23.3.i75
-  %fadd13.5.i79 = fadd double %fmul23.4.i78, %fadd13.4.i76
-  %fneg22.5.i80 = fdiv double %7, 1.320000e+02
-  %fmul23.5.i81 = fmul double %fneg22.5.i80, %fmul23.4.i78
-  %fadd13.6.i82 = fadd double %fmul23.5.i81, %fadd13.5.i79
-  %fneg22.6.i83 = fdiv double %7, 1.820000e+02
-  %fmul23.6.i84 = fmul double %fneg22.6.i83, %fmul23.5.i81
-  %fadd13.7.i85 = fadd double %fmul23.6.i84, %fadd13.6.i82
-  %fneg22.7.i86 = fdiv double %7, 2.400000e+02
-  %fmul23.7.i87 = fmul double %fneg22.7.i86, %fmul23.6.i84
-  %fadd13.8.i88 = fadd double %fmul23.7.i87, %fadd13.7.i85
-  %fneg22.8.i89 = fdiv double %7, 3.060000e+02
-  %fmul23.8.i90 = fmul double %fneg22.8.i89, %fmul23.7.i87
-  %fadd13.9.i91 = fadd double %fmul23.8.i90, %fadd13.8.i88
-  %fdiv = fdiv double %fadd14.9.i51, %fadd13.9.i91
-  %select_val = select i1 %or, double 0.000000e+00, double %fdiv
-  ret double %select_val
-}
-
-define weak_odr %"Errors::Error<double>" @"Math::log"(double %x) local_unnamed_addr !qc.return_types !47 {
-entry:
-  %fcmple = fcmp ugt double %x, 0.000000e+00
-  br i1 %fcmple, label %while.cond.preheader, label %common.ret
-
-while.cond.preheader:                             ; preds = %entry
-  %fcmpgt80 = fcmp ogt double %x, 2.000000e+00
-  br i1 %fcmpgt80, label %while.body, label %while.cond5.preheader
-
-common.ret:                                       ; preds = %entry, %while.end7
-  %union_payload3.unpack59.pn = phi i8 [ %16, %while.end7 ], [ 0, %entry ]
-  %union_payload3.unpack61.pn = phi i8 [ %14, %while.end7 ], [ 0, %entry ]
-  %union_payload3.unpack63.pn = phi i8 [ %12, %while.end7 ], [ 0, %entry ]
-  %union_payload3.unpack65.pn = phi i8 [ %10, %while.end7 ], [ 0, %entry ]
-  %union_payload3.unpack67.pn = phi i8 [ %8, %while.end7 ], [ 0, %entry ]
-  %union_payload3.unpack69.pn = phi i8 [ %6, %while.end7 ], [ 0, %entry ]
-  %union_payload3.unpack71.pn = phi i8 [ %4, %while.end7 ], [ 0, %entry ]
-  %.pn = phi %"Errors::Error<double>" [ zeroinitializer, %while.end7 ], [ { i32 1, [8 x i8] zeroinitializer }, %entry ]
-  %.pn79 = phi [8 x i8] [ %2, %while.end7 ], [ [i8 3, i8 poison, i8 poison, i8 poison, i8 poison, i8 poison, i8 poison, i8 poison], %entry ]
-  %.pn78 = insertvalue [8 x i8] %.pn79, i8 %union_payload3.unpack59.pn, 1
-  %.pn77 = insertvalue [8 x i8] %.pn78, i8 %union_payload3.unpack61.pn, 2
-  %.pn76 = insertvalue [8 x i8] %.pn77, i8 %union_payload3.unpack63.pn, 3
-  %.pn75 = insertvalue [8 x i8] %.pn76, i8 %union_payload3.unpack65.pn, 4
-  %.pn74 = insertvalue [8 x i8] %.pn75, i8 %union_payload3.unpack67.pn, 5
-  %.pn73 = insertvalue [8 x i8] %.pn74, i8 %union_payload3.unpack69.pn, 6
-  %union_payload372.pn = insertvalue [8 x i8] %.pn73, i8 %union_payload3.unpack71.pn, 7
-  %common.ret.op = insertvalue %"Errors::Error<double>" %.pn, [8 x i8] %union_payload372.pn, 1
-  ret %"Errors::Error<double>" %common.ret.op
-
-while.cond5.preheader:                            ; preds = %while.body, %while.cond.preheader
-  %"Math::n.0.lcssa" = phi i32 [ 0, %while.cond.preheader ], [ %inc, %while.body ]
-  %x1.0.lcssa = phi double [ %x, %while.cond.preheader ], [ %fdiv, %while.body ]
-  %fcmplt84 = fcmp olt double %x1.0.lcssa, 5.000000e-01
-  br i1 %fcmplt84, label %while.body6, label %while.end7
-
-while.body:                                       ; preds = %while.cond.preheader, %while.body
-  %x1.082 = phi double [ %fdiv, %while.body ], [ %x, %while.cond.preheader ]
-  %"Math::n.081" = phi i32 [ %inc, %while.body ], [ 0, %while.cond.preheader ]
-  %fdiv = fmul nnan double %x1.082, 5.000000e-01
-  %inc = add i32 %"Math::n.081", 1
-  %fcmpgt = fcmp ogt double %fdiv, 2.000000e+00
-  br i1 %fcmpgt, label %while.body, label %while.cond5.preheader
-
-while.body6:                                      ; preds = %while.cond5.preheader, %while.body6
-  %x1.186 = phi double [ %fmul, %while.body6 ], [ %x1.0.lcssa, %while.cond5.preheader ]
-  %"Math::n.185" = phi i32 [ %dec, %while.body6 ], [ %"Math::n.0.lcssa", %while.cond5.preheader ]
-  %fmul = fmul nnan double %x1.186, 2.000000e+00
-  %dec = add i32 %"Math::n.185", -1
-  %fcmplt = fcmp olt double %fmul, 5.000000e-01
-  br i1 %fcmplt, label %while.body6, label %while.end7
-
-while.end7:                                       ; preds = %while.body6, %while.cond5.preheader
-  %"Math::n.1.lcssa" = phi i32 [ %"Math::n.0.lcssa", %while.cond5.preheader ], [ %dec, %while.body6 ]
-  %x1.1.lcssa = phi double [ %x1.0.lcssa, %while.cond5.preheader ], [ %fmul, %while.body6 ]
-  %fsub = fadd double %x1.1.lcssa, -1.000000e+00
-  %fneg = fneg double %fsub
-  %fmul17 = fmul double %fsub, %fneg
-  %fdiv14.1 = fmul double %fmul17, 5.000000e-01
-  %fadd.1 = fadd double %fsub, %fdiv14.1
-  %fmul17.1 = fmul double %fmul17, %fneg
-  %fdiv14.2 = fdiv double %fmul17.1, 3.000000e+00
-  %fadd.2 = fadd double %fadd.1, %fdiv14.2
-  %fmul17.2 = fmul double %fmul17.1, %fneg
-  %fdiv14.3 = fmul double %fmul17.2, 2.500000e-01
-  %fadd.3 = fadd double %fadd.2, %fdiv14.3
-  %fmul17.3 = fmul double %fmul17.2, %fneg
-  %fdiv14.4 = fdiv double %fmul17.3, 5.000000e+00
-  %fadd.4 = fadd double %fadd.3, %fdiv14.4
-  %fmul17.4 = fmul double %fmul17.3, %fneg
-  %fdiv14.5 = fdiv double %fmul17.4, 6.000000e+00
-  %fadd.5 = fadd double %fadd.4, %fdiv14.5
-  %fmul17.5 = fmul double %fmul17.4, %fneg
-  %fdiv14.6 = fdiv double %fmul17.5, 7.000000e+00
-  %fadd.6 = fadd double %fadd.5, %fdiv14.6
-  %fmul17.6 = fmul double %fmul17.5, %fneg
-  %fdiv14.7 = fmul double %fmul17.6, 1.250000e-01
-  %fadd.7 = fadd double %fadd.6, %fdiv14.7
-  %fmul17.7 = fmul double %fmul17.6, %fneg
-  %fdiv14.8 = fdiv double %fmul17.7, 9.000000e+00
-  %fadd.8 = fadd double %fadd.7, %fdiv14.8
-  %fmul17.8 = fmul double %fmul17.7, %fneg
-  %fdiv14.9 = fdiv double %fmul17.8, 1.000000e+01
-  %fadd.9 = fadd double %fadd.8, %fdiv14.9
-  %fmul17.9 = fmul double %fmul17.8, %fneg
-  %fdiv14.10 = fdiv double %fmul17.9, 1.100000e+01
-  %fadd.10 = fadd double %fadd.9, %fdiv14.10
-  %fmul17.10 = fmul double %fmul17.9, %fneg
-  %fdiv14.11 = fdiv double %fmul17.10, 1.200000e+01
-  %fadd.11 = fadd double %fadd.10, %fdiv14.11
-  %fmul17.11 = fmul double %fmul17.10, %fneg
-  %fdiv14.12 = fdiv double %fmul17.11, 1.300000e+01
-  %fadd.12 = fadd double %fadd.11, %fdiv14.12
-  %fmul17.12 = fmul double %fmul17.11, %fneg
-  %fdiv14.13 = fdiv double %fmul17.12, 1.400000e+01
-  %fadd.13 = fadd double %fadd.12, %fdiv14.13
-  %fmul17.13 = fmul double %fmul17.12, %fneg
-  %fdiv14.14 = fdiv double %fmul17.13, 1.500000e+01
-  %fadd.14 = fadd double %fadd.13, %fdiv14.14
-  %fmul17.14 = fmul double %fmul17.13, %fneg
-  %fdiv14.15 = fmul double %fmul17.14, 6.250000e-02
-  %fadd.15 = fadd double %fadd.14, %fdiv14.15
-  %fmul17.15 = fmul double %fmul17.14, %fneg
-  %fdiv14.16 = fdiv double %fmul17.15, 1.700000e+01
-  %fadd.16 = fadd double %fadd.15, %fdiv14.16
-  %fmul17.16 = fmul double %fmul17.15, %fneg
-  %fdiv14.17 = fdiv double %fmul17.16, 1.800000e+01
-  %fadd.17 = fadd double %fadd.16, %fdiv14.17
-  %fmul17.17 = fmul double %fmul17.16, %fneg
-  %fdiv14.18 = fdiv double %fmul17.17, 1.900000e+01
-  %fadd.18 = fadd double %fadd.17, %fdiv14.18
-  %fmul17.18 = fmul double %fmul17.17, %fneg
-  %fdiv14.19 = fdiv double %fmul17.18, 2.000000e+01
-  %fadd.19 = fadd double %fadd.18, %fdiv14.19
-  %int_to_float = sitofp i32 %"Math::n.1.lcssa" to double
-  %fmul20 = fmul nnan double %int_to_float, f0x3FE62E42FEFA39EF
-  %fadd21 = fadd double %fmul20, %fadd.19
-  %0 = bitcast double %fadd21 to i64
-  %1 = trunc i64 %0 to i8
-  %2 = insertvalue [8 x i8] poison, i8 %1, 0
-  %3 = lshr i64 %0, 56
-  %4 = trunc nuw i64 %3 to i8
-  %5 = lshr i64 %0, 48
-  %6 = trunc i64 %5 to i8
-  %7 = lshr i64 %0, 40
-  %8 = trunc i64 %7 to i8
-  %9 = lshr i64 %0, 32
-  %10 = trunc i64 %9 to i8
-  %11 = lshr i64 %0, 24
-  %12 = trunc i64 %11 to i8
-  %13 = lshr i64 %0, 16
-  %14 = trunc i64 %13 to i8
-  %15 = lshr i64 %0, 8
-  %16 = trunc i64 %15 to i8
-  br label %common.ret
-}
-
-define weak_odr void @"OSInterop::system"(ptr %command) local_unnamed_addr !qc.return_types !34 {
-entry:
-  tail call fastcc void @qc_flush()
-  tail call void asm sideeffect inteldialect "\0A        mov rdi, $0\0A        call system\0A        ", "r,~{rdi}"(ptr %command) #26
-  ret void
-}
-
-define weak_odr void @"Vector::Vec<char*>_Vec"(ptr %0) local_unnamed_addr !qc.return_types !15 {
-entry:
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  ret void
-}
-
-define weak_odr void @"Vector::Vec<char*>_reserve_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %icmpeq = icmp eq i32 %1, 0
-  %data = load ptr, ptr %0, align 8
-  br i1 %icmpeq, label %then, label %ifcont
-
-common.ret:                                       ; preds = %ifcont, %ifcont9, %then
-  ret void
-
-then:                                             ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
-ifcont:                                           ; preds = %entry
-  %promote_int = sext i32 %1 to i64
-  %mul = shl nsw i64 %promote_int, 3
-  %builtin_call = tail call fastcc ptr @qc_realloc(ptr %data, i64 %mul)
-  %ptr_eq = icmp eq ptr %builtin_call, null
-  br i1 %ptr_eq, label %common.ret, label %ifcont5
-
-ifcont5:                                          ; preds = %ifcont
-  %capacity_ptr7 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %1, ptr %capacity_ptr7, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %2, align 8
-  %icmpgt = icmp sgt i32 %size, %1
-  br i1 %icmpgt, label %then8, label %ifcont9
-
-then8:                                            ; preds = %ifcont5
-  store i32 %1, ptr %2, align 8
-  br label %ifcont9
-
-ifcont9:                                          ; preds = %then8, %ifcont5
-  store ptr %builtin_call, ptr %0, align 8
-  br label %common.ret
-}
-
-define weak_odr void @"Vector::Vec<char*>_push_T"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %capacity = load i32, ptr %2, align 4
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %3, align 4
-  %icmple.not = icmp sgt i32 %capacity, %size
-  %data6.pre = load ptr, ptr %0, align 8
-  br i1 %icmple.not, label %ifcont, label %then
-
-then:                                             ; preds = %entry
-  %icmpeq = icmp eq i32 %capacity, 0
-  %mul = shl i32 %capacity, 1
-  %select_val = select i1 %icmpeq, i32 1, i32 %mul
-  %icmpeq.i = icmp eq i32 %select_val, 0
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data6.pre)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %select_val to i64
-  %mul.i = shl nsw i64 %promote_int.i, 3
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %select_val, ptr %2, align 4
-  %size.i = load i32, ptr %3, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %select_val
-  br i1 %icmpgt.i, label %then8.i, label %"Vector::Vec<char*>_reserve_int.exit.thread"
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %select_val, ptr %3, align 8
-  br label %"Vector::Vec<char*>_reserve_int.exit.thread"
-
-"Vector::Vec<char*>_reserve_int.exit.thread":     ; preds = %ifcont5.i, %then8.i
-  %size511 = phi i32 [ %size.i, %ifcont5.i ], [ %select_val, %then8.i ]
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split": ; preds = %ifcont.i
-  %data.pr = load ptr, ptr %0, align 8
-  %4 = icmp eq ptr %data.pr, null
-  br i1 %4, label %common.ret, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge"
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge": ; preds = %"Vector::Vec<char*>_reserve_int.exitthread-pre-split"
-  %size5.pre = load i32, ptr %3, align 8
-  br label %ifcont
-
-common.ret:                                       ; preds = %then.i, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split", %ifcont
-  ret void
-
-ifcont:                                           ; preds = %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge", %"Vector::Vec<char*>_reserve_int.exit.thread", %entry
-  %data6 = phi ptr [ %data.pr, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %builtin_call.i, %"Vector::Vec<char*>_reserve_int.exit.thread" ], [ %data6.pre, %entry ]
-  %size5 = phi i32 [ %size5.pre, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %size511, %"Vector::Vec<char*>_reserve_int.exit.thread" ], [ %size, %entry ]
-  %5 = sext i32 %size5 to i64
-  %ptr_arr_asi = getelementptr [8 x i8], ptr %data6, i64 %5
-  store ptr %1, ptr %ptr_arr_asi, align 8
-  %inc_deref = load i32, ptr %3, align 8
-  %inc = add i32 %inc_deref, 1
-  store i32 %inc, ptr %3, align 8
-  br label %common.ret
-}
-
-define weak_odr i32 @"Vector::Vec<char*>_length"(ptr %0) local_unnamed_addr !qc.return_types !39 {
-entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 4
-  ret i32 %size
-}
-
-define weak_odr void @"Vector::Vec<char*>_pop"(ptr %0) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 4
-  %icmpgt = icmp sgt i32 %size, 0
-  br i1 %icmpgt, label %then, label %ifcont
-
-then:                                             ; preds = %entry
-  %dec = add nsw i32 %size, -1
-  store i32 %dec, ptr %1, align 4
-  br label %ifcont
-
-ifcont:                                           ; preds = %then, %entry
-  ret void
-}
-
-define weak_odr void @"Vector::Vec<char*>_shrinkToFit"(ptr %0) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 4
-  %icmpeq.i = icmp eq i32 %size, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<char*>_reserve_int.exit"
-
-ifcont.i:                                         ; preds = %entry
-  %promote_int.i = sext i32 %size to i64
-  %mul.i = shl nsw i64 %promote_int.i, 3
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<char*>_reserve_int.exit", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  %capacity_ptr7.i = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %size, ptr %capacity_ptr7.i, align 4
-  %size.i = load i32, ptr %1, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %size
-  br i1 %icmpgt.i, label %then8.i, label %ifcont9.i
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %size, ptr %1, align 8
-  br label %ifcont9.i
-
-ifcont9.i:                                        ; preds = %then8.i, %ifcont5.i
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %"Vector::Vec<char*>_reserve_int.exit"
-
-"Vector::Vec<char*>_reserve_int.exit":            ; preds = %then.i, %ifcont.i, %ifcont9.i
-  ret void
-}
-
-define weak_odr void @"Vector::Vec<char*>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %3, align 4
-  %icmpne.not = icmp eq i32 %size, 0
-  br i1 %icmpne.not, label %ifcont, label %then
-
-then:                                             ; preds = %entry
-  %data1 = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data1)
-  br label %ifcont
-
-ifcont:                                           ; preds = %then, %entry
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %trunc = trunc i64 %2 to i32
-  store i32 %trunc, ptr %capacity_ptr, align 4
-  store i32 %trunc, ptr %3, align 4
-  %sext = shl i64 %2, 32
-  %mul = ashr exact i64 %sext, 29
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 %mul)
-  store ptr %builtin_call, ptr %0, align 8
-  %size514 = load i32, ptr %3, align 8
-  %icmplt15 = icmp sgt i32 %size514, 0
-  br i1 %icmplt15, label %for.body, label %for.end
-
-for.body:                                         ; preds = %ifcont, %for.body
-  %indvars.iv = phi i64 [ %indvars.iv.next, %for.body ], [ 0, %ifcont ]
-  %data7 = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr [8 x i8], ptr %data7, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr [8 x i8], ptr %1, i64 %indvars.iv
-  %ptr_arr_val = load ptr, ptr %ptr_arr_addr, align 8
-  store ptr %ptr_arr_val, ptr %ptr_arr_asi, align 8
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
-  %size5 = load i32, ptr %3, align 8
-  %4 = sext i32 %size5 to i64
-  %icmplt = icmp slt i64 %indvars.iv.next, %4
-  br i1 %icmplt, label %for.body, label %for.end
-
-for.end:                                          ; preds = %for.body, %ifcont
-  ret void
-}
-
-define weak_odr ptr @"Vector::Vec<char*>_operator[]_addr_t"(ptr %0, i64 %1) local_unnamed_addr !qc.return_types !40 {
-entry:
-  %data = load ptr, ptr %0, align 8
-  %lval_ptr_arr_addr = getelementptr [8 x i8], ptr %data, i64 %1
-  ret ptr %lval_ptr_arr_addr
-}
-
-define weak_odr void @"Vector::Iterator::It<char*>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) local_unnamed_addr !qc.return_types !15 {
-entry:
-  store ptr %1, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %2, ptr %size_ptr, align 8
-  %select_val = select i1 %3, i32 %2, i32 0
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %select_val, ptr %current_index_ptr, align 4
-  ret void
-}
-
-define weak_odr i1 @"Vector::Iterator::It<char*>__atEnd"(ptr %0) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index = load i32, ptr %2, align 4
-  %icmple = icmp sle i32 %size, %current_index
-  ret i1 %icmple
-}
-
-define weak_odr ptr @"Vector::Iterator::It<char*>__next"(ptr %0) local_unnamed_addr !qc.return_types !41 {
-entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 4
-  %icmpeq = icmp eq i32 %size, 0
-  br i1 %icmpeq, label %then, label %ifcont
-
-then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.45, ptr nonnull @6, i32 132) #29
-  unreachable
-
-ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i.not = icmp sgt i32 %size, %current_index.i
-  br i1 %icmple.i.not, label %then1, label %ifcont2
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %sub.sink = phi i32 [ %sub, %ifcont2 ], [ %current_index.i, %then1 ]
-  %data4 = load ptr, ptr %0, align 8
-  %3 = sext i32 %sub.sink to i64
-  %ptr_arr_addr5 = getelementptr [8 x i8], ptr %data4, i64 %3
-  %common.ret.op = load ptr, ptr %ptr_arr_addr5, align 8
-  ret ptr %common.ret.op
-
-then1:                                            ; preds = %ifcont
-  %inc = add nsw i32 %current_index.i, 1
-  store i32 %inc, ptr %2, align 4
-  br label %common.ret
-
-ifcont2:                                          ; preds = %ifcont
-  %sub = add i32 %size, -1
-  br label %common.ret
-}
-
-define weak_odr i1 @"Vector::Iterator::It<char*>__atStart"(ptr %0) local_unnamed_addr !qc.return_types !27 {
-entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index = load i32, ptr %1, align 4
-  %icmple = icmp slt i32 %current_index, 1
-  ret i1 %icmple
-}
-
-define weak_odr ptr @"Vector::Iterator::It<char*>__prev"(ptr %0) local_unnamed_addr !qc.return_types !41 {
-entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 4
-  %icmpeq = icmp eq i32 %size, 0
-  br i1 %icmpeq, label %then, label %ifcont
-
-then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.46, ptr nonnull @6, i32 144) #29
-  unreachable
-
-ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i = icmp slt i32 %current_index.i, 1
-  br i1 %icmple.i, label %ifcont2, label %then1
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %common.ret.op.in = phi ptr [ %ptr_arr_addr, %then1 ], [ %ptr_arr_addr4, %ifcont2 ]
-  %common.ret.op = load ptr, ptr %common.ret.op.in, align 8
-  ret ptr %common.ret.op
-
-then1:                                            ; preds = %ifcont
-  %dec = add nsw i32 %current_index.i, -1
-  store i32 %dec, ptr %2, align 4
-  %data = load ptr, ptr %0, align 8
-  %3 = zext nneg i32 %dec to i64
-  %ptr_arr_addr = getelementptr [8 x i8], ptr %data, i64 %3
-  br label %common.ret
-
-ifcont2:                                          ; preds = %ifcont
-  %data3 = load ptr, ptr %0, align 8
-  %4 = sext i32 %current_index.i to i64
-  %ptr_arr_addr4 = getelementptr [8 x i8], ptr %data3, i64 %4
-  br label %common.ret
-}
-
-define weak_odr void @"Vector::Iterator::It<char*>__moveTo_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %"temp_Vector::Iterator::It<char*>" = alloca %"Vector::Iterator::It<char*>", align 8
+  store %"Vector::Iterator::It<char*>" zeroinitializer, ptr %"temp_Vector::Iterator::It<char*>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %2, align 4
-  %icmpge.not = icmp slt i32 %1, %size
-  %sub = add i32 %size, -1
-  %spec.store.select = tail call i32 @llvm.smax.i32(i32 %1, i32 0)
-  %index.0 = select i1 %icmpge.not, i32 %spec.store.select, i32 %sub
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %index.0, ptr %current_index_ptr, align 4
-  ret void
+  call void @"Vector::Iterator::It<char*>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<char*>", ptr %data, i32 %size, i1 false)
+  %"Vector::Iterator::It<char*>_inst" = load %"Vector::Iterator::It<char*>", ptr %"temp_Vector::Iterator::It<char*>", align 8
+  ret %"Vector::Iterator::It<char*>" %"Vector::Iterator::It<char*>_inst"
 }
 
-define weak_odr %"Vector::Iterator::It<char*>" @"Vector::Vec<char*>__begin"(ptr %0) local_unnamed_addr !qc.return_types !42 {
+define weak_odr %"Vector::Iterator::It<char*>" @"Vector::Vec<char*>__end"(ptr %0) !qc.return_types !33 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<char*>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<char*>" poison, ptr %data, 0
-  %"Vector::Iterator::It<char*>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<char*>" %"Vector::Iterator::It<char*>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<char*>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<char*>" %"Vector::Iterator::It<char*>_inst.fca.1.insert", i32 0, 2
-  ret %"Vector::Iterator::It<char*>" %"Vector::Iterator::It<char*>_inst.fca.2.insert"
+  %"temp_Vector::Iterator::It<char*>" = alloca %"Vector::Iterator::It<char*>", align 8
+  store %"Vector::Iterator::It<char*>" zeroinitializer, ptr %"temp_Vector::Iterator::It<char*>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<char*>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<char*>", ptr %data, i32 %size, i1 true)
+  %"Vector::Iterator::It<char*>_inst" = load %"Vector::Iterator::It<char*>", ptr %"temp_Vector::Iterator::It<char*>", align 8
+  ret %"Vector::Iterator::It<char*>" %"Vector::Iterator::It<char*>_inst"
 }
 
-define weak_odr %"Vector::Iterator::It<char*>" @"Vector::Vec<char*>__end"(ptr %0) local_unnamed_addr !qc.return_types !42 {
+define weak_odr void @"Vector::Vec<char*>__destroy"(ptr %0) !qc.return_types !21 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<char*>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<char*>" poison, ptr %data, 0
-  %"Vector::Iterator::It<char*>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<char*>" %"Vector::Iterator::It<char*>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<char*>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<char*>" %"Vector::Iterator::It<char*>_inst.fca.1.insert", i32 %size, 2
-  ret %"Vector::Iterator::It<char*>" %"Vector::Iterator::It<char*>_inst.fca.2.insert"
-}
-
-define weak_odr void @"Vector::Vec<char*>__destroy"(ptr %0) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %data = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data)
-  store ptr null, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 -1, ptr %size_ptr, align 8
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %1 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
+  store i32 -1, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
   store i32 -1, ptr %capacity_ptr, align 4
   ret void
 }
 
-define weak_odr ptr @"Vector::Vec<char*>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<char*>" %1) local_unnamed_addr !qc.return_types !43 {
+define weak_odr ptr @"Vector::Vec<char*>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<char*>" %1) !qc.return_types !34 {
 entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<char*>" %1, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<char*>" %1, 1
-  %.fca.2.extract = extractvalue %"Vector::Vec<char*>" %1, 2
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %capacity1 = load i32, ptr %2, align 4
-  %icmpne.not = icmp eq i32 %.fca.2.extract, %capacity1
-  br i1 %icmpne.not, label %ifcont, label %then
+  %"Vector::i" = alloca i32, align 4
+  %other = alloca %"Vector::Vec<char*>", align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %other, align 8
+  store %"Vector::Vec<char*>" %1, ptr %other, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %other, i32 0, i32 2
+  %capacity = load i32, ptr %2, align 4
+  %3 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, %capacity1
+  br i1 %icmpne, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %icmpeq.i = icmp eq i32 %.fca.2.extract, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
+  %4 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %other, i32 0, i32 2
+  %capacity2 = load i32, ptr %4, align 4
+  call void @"Vector::Vec<char*>_reserve_int"(ptr %0, i32 %capacity2)
   br label %ifcont
 
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %.fca.2.extract to i64
-  %mul.i = shl nsw i64 %promote_int.i, 3
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %ifcont, label %ifcont5.i
+ifcont:                                           ; preds = %then, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %other, i32 0, i32 1
+  %size = load i32, ptr %5, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
+  store i32 %size, ptr %size_ptr, align 4
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
 
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %.fca.2.extract, ptr %2, align 4
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %other, i32 0, i32 1
+  %size3 = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size3
+  br i1 %icmplt, label %for.body, label %for.end
 
-ifcont:                                           ; preds = %ifcont5.i, %ifcont.i, %then.i, %entry
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %.fca.1.extract, ptr %size_ptr, align 4
-  %icmplt12 = icmp sgt i32 %.fca.1.extract, 0
-  br i1 %icmplt12, label %for.body.preheader, label %for.end
-
-for.body.preheader:                               ; preds = %ifcont
-  %wide.trip.count = zext nneg i32 %.fca.1.extract to i64
-  %xtraiter = and i64 %wide.trip.count, 3
-  %3 = icmp ult i32 %.fca.1.extract, 4
-  br i1 %3, label %for.body.epil.preheader, label %for.body.preheader.new
-
-for.body.preheader.new:                           ; preds = %for.body.preheader
-  %unroll_iter = and i64 %wide.trip.count, 2147483644
-  br label %for.body
-
-for.body:                                         ; preds = %for.body, %for.body.preheader.new
-  %indvars.iv = phi i64 [ 0, %for.body.preheader.new ], [ %indvars.iv.next.3, %for.body ]
-  %niter = phi i64 [ 0, %for.body.preheader.new ], [ %niter.next.3, %for.body ]
-  %data = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr [8 x i8], ptr %data, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr [8 x i8], ptr %.fca.0.extract, i64 %indvars.iv
+for.body:                                         ; preds = %for.cond
+  %i4 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr ptr, ptr %data, i32 %i4
+  %i5 = load i32, ptr %"Vector::i", align 4
+  %8 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %other, i32 0, i32 0
+  %data6 = load ptr, ptr %8, align 8
+  %ptr_arr_addr = getelementptr ptr, ptr %data6, i32 %i5
   %ptr_arr_val = load ptr, ptr %ptr_arr_addr, align 8
   store ptr %ptr_arr_val, ptr %ptr_arr_asi, align 8
-  %indvars.iv.next = or disjoint i64 %indvars.iv, 1
-  %data.1 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.1 = getelementptr [8 x i8], ptr %data.1, i64 %indvars.iv.next
-  %ptr_arr_addr.1 = getelementptr [8 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next
-  %ptr_arr_val.1 = load ptr, ptr %ptr_arr_addr.1, align 8
-  store ptr %ptr_arr_val.1, ptr %ptr_arr_asi.1, align 8
-  %indvars.iv.next.1 = or disjoint i64 %indvars.iv, 2
-  %data.2 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.2 = getelementptr [8 x i8], ptr %data.2, i64 %indvars.iv.next.1
-  %ptr_arr_addr.2 = getelementptr [8 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next.1
-  %ptr_arr_val.2 = load ptr, ptr %ptr_arr_addr.2, align 8
-  store ptr %ptr_arr_val.2, ptr %ptr_arr_asi.2, align 8
-  %indvars.iv.next.2 = or disjoint i64 %indvars.iv, 3
-  %data.3 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.3 = getelementptr [8 x i8], ptr %data.3, i64 %indvars.iv.next.2
-  %ptr_arr_addr.3 = getelementptr [8 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next.2
-  %ptr_arr_val.3 = load ptr, ptr %ptr_arr_addr.3, align 8
-  store ptr %ptr_arr_val.3, ptr %ptr_arr_asi.3, align 8
-  %indvars.iv.next.3 = add nuw nsw i64 %indvars.iv, 4
-  %niter.next.3 = add i64 %niter, 4
-  %niter.ncmp.3 = icmp eq i64 %niter.next.3, %unroll_iter
-  br i1 %niter.ncmp.3, label %for.end.loopexit.unr-lcssa, label %for.body
+  br label %for.inc
 
-for.end.loopexit.unr-lcssa:                       ; preds = %for.body
-  %lcmp.mod.not = icmp eq i64 %xtraiter, 0
-  br i1 %lcmp.mod.not, label %for.end, label %for.body.epil.preheader
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
 
-for.body.epil.preheader:                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.preheader
-  %indvars.iv.epil.init = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next.3, %for.end.loopexit.unr-lcssa ]
-  %lcmp.mod15 = icmp ne i64 %xtraiter, 0
-  tail call void @llvm.assume(i1 %lcmp.mod15)
-  br label %for.body.epil
-
-for.body.epil:                                    ; preds = %for.body.epil, %for.body.epil.preheader
-  %indvars.iv.epil = phi i64 [ %indvars.iv.epil.init, %for.body.epil.preheader ], [ %indvars.iv.next.epil, %for.body.epil ]
-  %epil.iter = phi i64 [ 0, %for.body.epil.preheader ], [ %epil.iter.next, %for.body.epil ]
-  %data.epil = load ptr, ptr %0, align 8
-  %ptr_arr_asi.epil = getelementptr [8 x i8], ptr %data.epil, i64 %indvars.iv.epil
-  %ptr_arr_addr.epil = getelementptr [8 x i8], ptr %.fca.0.extract, i64 %indvars.iv.epil
-  %ptr_arr_val.epil = load ptr, ptr %ptr_arr_addr.epil, align 8
-  store ptr %ptr_arr_val.epil, ptr %ptr_arr_asi.epil, align 8
-  %indvars.iv.next.epil = add nuw nsw i64 %indvars.iv.epil, 1
-  %epil.iter.next = add i64 %epil.iter, 1
-  %epil.iter.cmp.not = icmp eq i64 %epil.iter.next, %xtraiter
-  br i1 %epil.iter.cmp.not, label %for.end, label %for.body.epil, !llvm.loop !48
-
-for.end:                                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.epil, %ifcont
+for.end:                                          ; preds = %for.cond
   ret ptr %0
 }
 
-define weak_odr i1 @"Vector::Vec<char*>_isEmpty"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Vec<char*>_isEmpty"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   ret i1 %icmpeq
 }
 
-define weak_odr void @"Vector::Vec<CQB::Build::Command>_Vec"(ptr %0) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"Vector::Vec<CQB::Build::Command>_Vec"(ptr %0) !qc.return_types !23 {
 entry:
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
   ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::Build::Command>_reserve_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::Build::Command>_reserve_int"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  %icmpeq = icmp eq i32 %1, 0
-  %data = load ptr, ptr %0, align 8
+  %"Vector::new_data" = alloca ptr, align 8
+  %cap = alloca i32, align 4
+  store i32 0, ptr %cap, align 4
+  store i32 %1, ptr %cap, align 4
+  %cap1 = load i32, ptr %cap, align 4
+  %icmpeq = icmp eq i32 %cap1, 0
   br i1 %icmpeq, label %then, label %ifcont
 
-common.ret:                                       ; preds = %ifcont, %ifcont9, %then
+then:                                             ; preds = %entry
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
   ret void
 
-then:                                             ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
 ifcont:                                           ; preds = %entry
-  %promote_int = sext i32 %1 to i64
-  %mul = mul nsw i64 %promote_int, 72
-  %builtin_call = tail call fastcc ptr @qc_realloc(ptr %data, i64 %mul)
-  %ptr_eq = icmp eq ptr %builtin_call, null
-  br i1 %ptr_eq, label %common.ret, label %ifcont5
+  store ptr null, ptr %"Vector::new_data", align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data2 = load ptr, ptr %3, align 8
+  %cap3 = load i32, ptr %cap, align 4
+  %promote_int = sext i32 %cap3 to i64
+  %mul = mul i64 72, %promote_int
+  %builtin_call = call ptr @qc_realloc(ptr %data2, i64 %mul)
+  store ptr %builtin_call, ptr %"Vector::new_data", align 8
+  %new_data = load ptr, ptr %"Vector::new_data", align 8
+  %ptr_eq = icmp eq ptr %new_data, null
+  br i1 %ptr_eq, label %then4, label %ifcont5
+
+then4:                                            ; preds = %ifcont
+  ret void
 
 ifcont5:                                          ; preds = %ifcont
-  %capacity_ptr7 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %1, ptr %capacity_ptr7, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %2, align 8
-  %icmpgt = icmp sgt i32 %size, %1
+  %cap6 = load i32, ptr %cap, align 4
+  %capacity_ptr7 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  store i32 %cap6, ptr %capacity_ptr7, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %4, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %5, align 4
+  %icmpgt = icmp sgt i32 %size, %capacity
   br i1 %icmpgt, label %then8, label %ifcont9
 
 then8:                                            ; preds = %ifcont5
-  store i32 %1, ptr %2, align 8
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  %capacity10 = load i32, ptr %6, align 4
+  %size_ptr11 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  store i32 %capacity10, ptr %size_ptr11, align 4
   br label %ifcont9
 
 ifcont9:                                          ; preds = %then8, %ifcont5
-  store ptr %builtin_call, ptr %0, align 8
-  br label %common.ret
+  %new_data12 = load ptr, ptr %"Vector::new_data", align 8
+  %data_ptr13 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  store ptr %new_data12, ptr %data_ptr13, align 8
+  ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr %0, %"CQB::Build::Command" %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr %0, %"CQB::Build::Command" %1) !qc.return_types !21 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %value = alloca %"CQB::Build::Command", align 8
+  call void @llvm.memset.inline.p0.i64(ptr align 8 %value, i8 0, i64 72, i1 false)
+  store %"CQB::Build::Command" %1, ptr %value, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
   %capacity = load i32, ptr %2, align 4
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %3, align 4
-  %icmple.not = icmp sgt i32 %capacity, %size
-  %data6.pre = load ptr, ptr %0, align 8
-  br i1 %icmple.not, label %ifcont, label %then
+  %icmple = icmp sle i32 %capacity, %size
+  br i1 %icmple, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %icmpeq = icmp eq i32 %capacity, 0
-  %mul = shl i32 %capacity, 1
-  %select_val = select i1 %icmpeq, i32 1, i32 %mul
-  %icmpeq.i = icmp eq i32 %select_val, 0
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %4, align 4
+  %icmpeq = icmp eq i32 %capacity1, 0
+  br i1 %icmpeq, label %ternary.true, label %ternary.false
 
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data6.pre)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %select_val to i64
-  %mul.i = mul nsw i64 %promote_int.i, 72
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<CQB::Build::Command>_reserve_int.exitthread-pre-split", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %select_val, ptr %2, align 4
-  %size.i = load i32, ptr %3, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %select_val
-  br i1 %icmpgt.i, label %then8.i, label %"Vector::Vec<CQB::Build::Command>_reserve_int.exit.thread"
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %select_val, ptr %3, align 8
-  br label %"Vector::Vec<CQB::Build::Command>_reserve_int.exit.thread"
-
-"Vector::Vec<CQB::Build::Command>_reserve_int.exit.thread": ; preds = %ifcont5.i, %then8.i
-  %size533 = phi i32 [ %size.i, %ifcont5.i ], [ %select_val, %then8.i ]
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
-
-"Vector::Vec<CQB::Build::Command>_reserve_int.exitthread-pre-split": ; preds = %ifcont.i
-  %data.pr = load ptr, ptr %0, align 8
-  %4 = icmp eq ptr %data.pr, null
-  br i1 %4, label %common.ret, label %"Vector::Vec<CQB::Build::Command>_reserve_int.exitthread-pre-split.ifcont_crit_edge"
-
-"Vector::Vec<CQB::Build::Command>_reserve_int.exitthread-pre-split.ifcont_crit_edge": ; preds = %"Vector::Vec<CQB::Build::Command>_reserve_int.exitthread-pre-split"
-  %size5.pre = load i32, ptr %3, align 8
-  br label %ifcont
-
-common.ret:                                       ; preds = %then.i, %"Vector::Vec<CQB::Build::Command>_reserve_int.exitthread-pre-split", %ifcont
+ifcont:                                           ; preds = %ifcont4, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  %size5 = load i32, ptr %5, align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data6 = load ptr, ptr %6, align 8
+  %ptr_arr_asi = getelementptr %"CQB::Build::Command", ptr %data6, i32 %size5
+  %value7 = load %"CQB::Build::Command", ptr %value, align 8
+  store %"CQB::Build::Command" %value7, ptr %ptr_arr_asi, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %size_ptr, align 4
   ret void
 
-ifcont:                                           ; preds = %"Vector::Vec<CQB::Build::Command>_reserve_int.exitthread-pre-split.ifcont_crit_edge", %"Vector::Vec<CQB::Build::Command>_reserve_int.exit.thread", %entry
-  %data6 = phi ptr [ %data.pr, %"Vector::Vec<CQB::Build::Command>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %builtin_call.i, %"Vector::Vec<CQB::Build::Command>_reserve_int.exit.thread" ], [ %data6.pre, %entry ]
-  %size5 = phi i32 [ %size5.pre, %"Vector::Vec<CQB::Build::Command>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %size533, %"Vector::Vec<CQB::Build::Command>_reserve_int.exit.thread" ], [ %size, %entry ]
-  %5 = sext i32 %size5 to i64
-  %ptr_arr_asi = getelementptr [72 x i8], ptr %data6, i64 %5
-  %.elt = extractvalue %"CQB::Build::Command" %1, 0
-  store ptr %.elt, ptr %ptr_arr_asi, align 8
-  %ptr_arr_asi.repack8 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 8
-  %.elt9 = extractvalue %"CQB::Build::Command" %1, 1
-  store ptr %.elt9, ptr %ptr_arr_asi.repack8, align 8
-  %ptr_arr_asi.repack10 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 16
-  %.elt11 = extractvalue %"CQB::Build::Command" %1, 2
-  %.elt11.elt = extractvalue %"Vector::Vec<char*>" %.elt11, 0
-  store ptr %.elt11.elt, ptr %ptr_arr_asi.repack10, align 8
-  %ptr_arr_asi.repack10.repack18 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 24
-  %.elt11.elt19 = extractvalue %"Vector::Vec<char*>" %.elt11, 1
-  store i32 %.elt11.elt19, ptr %ptr_arr_asi.repack10.repack18, align 8
-  %ptr_arr_asi.repack10.repack20 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 28
-  %.elt11.elt21 = extractvalue %"Vector::Vec<char*>" %.elt11, 2
-  store i32 %.elt11.elt21, ptr %ptr_arr_asi.repack10.repack20, align 4
-  %ptr_arr_asi.repack12 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 32
-  %.elt13 = extractvalue %"CQB::Build::Command" %1, 3
-  store ptr %.elt13, ptr %ptr_arr_asi.repack12, align 8
-  %ptr_arr_asi.repack14 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 40
-  %.elt15 = extractvalue %"CQB::Build::Command" %1, 4
-  %.elt15.elt = extractvalue %"Vector::Vec<char*>" %.elt15, 0
-  store ptr %.elt15.elt, ptr %ptr_arr_asi.repack14, align 8
-  %ptr_arr_asi.repack14.repack22 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 48
-  %.elt15.elt23 = extractvalue %"Vector::Vec<char*>" %.elt15, 1
-  store i32 %.elt15.elt23, ptr %ptr_arr_asi.repack14.repack22, align 8
-  %ptr_arr_asi.repack14.repack24 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 52
-  %.elt15.elt25 = extractvalue %"Vector::Vec<char*>" %.elt15, 2
-  store i32 %.elt15.elt25, ptr %ptr_arr_asi.repack14.repack24, align 4
-  %ptr_arr_asi.repack16 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 56
-  %.elt17 = extractvalue %"CQB::Build::Command" %1, 5
-  %.elt17.elt = extractvalue %"Vector::Vec<char*>" %.elt17, 0
-  store ptr %.elt17.elt, ptr %ptr_arr_asi.repack16, align 8
-  %ptr_arr_asi.repack16.repack26 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 64
-  %.elt17.elt27 = extractvalue %"Vector::Vec<char*>" %.elt17, 1
-  store i32 %.elt17.elt27, ptr %ptr_arr_asi.repack16.repack26, align 8
-  %ptr_arr_asi.repack16.repack28 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 68
-  %.elt17.elt29 = extractvalue %"Vector::Vec<char*>" %.elt17, 2
-  store i32 %.elt17.elt29, ptr %ptr_arr_asi.repack16.repack28, align 4
-  %inc_deref = load i32, ptr %3, align 8
-  %inc = add i32 %inc_deref, 1
-  store i32 %inc, ptr %3, align 8
-  br label %common.ret
+ternary.true:                                     ; preds = %then
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %then
+  %7 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  %capacity2 = load i32, ptr %7, align 4
+  %mul = mul i32 %capacity2, 2
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ 1, %ternary.true ], [ %mul, %ternary.false ]
+  call void @"Vector::Vec<CQB::Build::Command>_reserve_int"(ptr %0, i32 %ternary_val)
+  %8 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %8, align 8
+  %ptr_eq = icmp eq ptr %data, null
+  br i1 %ptr_eq, label %then3, label %ifcont4
+
+then3:                                            ; preds = %ternary.end
+  ret void
+
+ifcont4:                                          ; preds = %ternary.end
+  br label %ifcont
 }
 
-define weak_odr i32 @"Vector::Vec<CQB::Build::Command>_length"(ptr %0) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"Vector::Vec<CQB::Build::Command>_length"(ptr %0) !qc.return_types !30 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   ret i32 %size
 }
 
-define weak_odr void @"Vector::Vec<CQB::Build::Command>_pop"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::Build::Command>_pop"(ptr %0) !qc.return_types !21 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpgt = icmp sgt i32 %size, 0
   br i1 %icmpgt, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %dec = add nsw i32 %size, -1
-  store i32 %dec, ptr %1, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %size_ptr, align 4
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
   ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::Build::Command>_shrinkToFit"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::Build::Command>_shrinkToFit"(ptr %0) !qc.return_types !21 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
-  %icmpeq.i = icmp eq i32 %size, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<CQB::Build::Command>_reserve_int.exit"
-
-ifcont.i:                                         ; preds = %entry
-  %promote_int.i = sext i32 %size to i64
-  %mul.i = mul nsw i64 %promote_int.i, 72
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<CQB::Build::Command>_reserve_int.exit", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  %capacity_ptr7.i = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %size, ptr %capacity_ptr7.i, align 4
-  %size.i = load i32, ptr %1, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %size
-  br i1 %icmpgt.i, label %then8.i, label %ifcont9.i
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %size, ptr %1, align 8
-  br label %ifcont9.i
-
-ifcont9.i:                                        ; preds = %then8.i, %ifcont5.i
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %"Vector::Vec<CQB::Build::Command>_reserve_int.exit"
-
-"Vector::Vec<CQB::Build::Command>_reserve_int.exit": ; preds = %then.i, %ifcont.i, %ifcont9.i
+  call void @"Vector::Vec<CQB::Build::Command>_reserve_int"(ptr %0, i32 %size)
   ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::Build::Command>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::Build::Command>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) !qc.return_types !21 {
 entry:
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %3, align 4
-  %icmpne.not = icmp eq i32 %size, 0
-  br i1 %icmpne.not, label %ifcont, label %then
+  %"Vector::i" = alloca i32, align 4
+  %length = alloca i64, align 8
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i64 0, ptr %length, align 8
+  store i64 %2, ptr %length, align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, 0
+  br i1 %icmpne, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %data1 = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data1)
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data1 = load ptr, ptr %4, align 8
+  call void @qc_free(ptr %data1)
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %trunc = trunc i64 %2 to i32
+  %length2 = load i64, ptr %length, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  %trunc = trunc i64 %length2 to i32
   store i32 %trunc, ptr %capacity_ptr, align 4
-  store i32 %trunc, ptr %3, align 4
-  %sext = shl i64 %2, 32
-  %promote_int = ashr exact i64 %sext, 32
-  %mul = mul nsw i64 %promote_int, 72
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 %mul)
-  store ptr %builtin_call, ptr %0, align 8
-  %size562 = load i32, ptr %3, align 8
-  %icmplt63 = icmp sgt i32 %size562, 0
-  br i1 %icmplt63, label %for.body, label %for.end
+  %length3 = load i64, ptr %length, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  %trunc4 = trunc i64 %length3 to i32
+  store i32 %trunc4, ptr %size_ptr, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  %capacity5 = load i32, ptr %5, align 4
+  %promote_int = sext i32 %capacity5 to i64
+  %mul = mul i64 72, %promote_int
+  %builtin_call = call ptr @qc_malloc(i64 %mul)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  store ptr %builtin_call, ptr %data_ptr, align 8
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
 
-for.body:                                         ; preds = %ifcont, %for.body
-  %indvars.iv = phi i64 [ %indvars.iv.next, %for.body ], [ 0, %ifcont ]
-  %data7 = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr [72 x i8], ptr %data7, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr [72 x i8], ptr %1, i64 %indvars.iv
-  %ptr_arr_val.unpack = load ptr, ptr %ptr_arr_addr, align 8
-  %ptr_arr_val.elt14 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 8
-  %ptr_arr_val.unpack15 = load ptr, ptr %ptr_arr_val.elt14, align 8
-  %ptr_arr_val.elt16 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 16
-  %ptr_arr_val.unpack17.unpack = load ptr, ptr %ptr_arr_val.elt16, align 8
-  %ptr_arr_val.unpack17.elt25 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 24
-  %ptr_arr_val.unpack17.unpack26 = load i32, ptr %ptr_arr_val.unpack17.elt25, align 8
-  %ptr_arr_val.unpack17.elt27 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 28
-  %ptr_arr_val.unpack17.unpack28 = load i32, ptr %ptr_arr_val.unpack17.elt27, align 4
-  %ptr_arr_val.elt18 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 32
-  %ptr_arr_val.unpack19 = load ptr, ptr %ptr_arr_val.elt18, align 8
-  %ptr_arr_val.elt20 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 40
-  %ptr_arr_val.unpack21.unpack = load ptr, ptr %ptr_arr_val.elt20, align 8
-  %ptr_arr_val.unpack21.elt30 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 48
-  %ptr_arr_val.unpack21.unpack31 = load i32, ptr %ptr_arr_val.unpack21.elt30, align 8
-  %ptr_arr_val.unpack21.elt32 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 52
-  %ptr_arr_val.unpack21.unpack33 = load i32, ptr %ptr_arr_val.unpack21.elt32, align 4
-  %ptr_arr_val.elt22 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 56
-  %ptr_arr_val.unpack23.unpack = load ptr, ptr %ptr_arr_val.elt22, align 8
-  %ptr_arr_val.unpack23.elt35 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 64
-  %ptr_arr_val.unpack23.unpack36 = load i32, ptr %ptr_arr_val.unpack23.elt35, align 8
-  %ptr_arr_val.unpack23.elt37 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 68
-  %ptr_arr_val.unpack23.unpack38 = load i32, ptr %ptr_arr_val.unpack23.elt37, align 4
-  store ptr %ptr_arr_val.unpack, ptr %ptr_arr_asi, align 8
-  %ptr_arr_asi.repack40 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 8
-  store ptr %ptr_arr_val.unpack15, ptr %ptr_arr_asi.repack40, align 8
-  %ptr_arr_asi.repack42 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 16
-  store ptr %ptr_arr_val.unpack17.unpack, ptr %ptr_arr_asi.repack42, align 8
-  %ptr_arr_asi.repack42.repack50 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 24
-  store i32 %ptr_arr_val.unpack17.unpack26, ptr %ptr_arr_asi.repack42.repack50, align 8
-  %ptr_arr_asi.repack42.repack52 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 28
-  store i32 %ptr_arr_val.unpack17.unpack28, ptr %ptr_arr_asi.repack42.repack52, align 4
-  %ptr_arr_asi.repack44 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 32
-  store ptr %ptr_arr_val.unpack19, ptr %ptr_arr_asi.repack44, align 8
-  %ptr_arr_asi.repack46 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 40
-  store ptr %ptr_arr_val.unpack21.unpack, ptr %ptr_arr_asi.repack46, align 8
-  %ptr_arr_asi.repack46.repack54 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 48
-  store i32 %ptr_arr_val.unpack21.unpack31, ptr %ptr_arr_asi.repack46.repack54, align 8
-  %ptr_arr_asi.repack46.repack56 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 52
-  store i32 %ptr_arr_val.unpack21.unpack33, ptr %ptr_arr_asi.repack46.repack56, align 4
-  %ptr_arr_asi.repack48 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 56
-  store ptr %ptr_arr_val.unpack23.unpack, ptr %ptr_arr_asi.repack48, align 8
-  %ptr_arr_asi.repack48.repack58 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 64
-  store i32 %ptr_arr_val.unpack23.unpack36, ptr %ptr_arr_asi.repack48.repack58, align 8
-  %ptr_arr_asi.repack48.repack60 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 68
-  store i32 %ptr_arr_val.unpack23.unpack38, ptr %ptr_arr_asi.repack48.repack60, align 4
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
-  %size5 = load i32, ptr %3, align 8
-  %4 = sext i32 %size5 to i64
-  %icmplt = icmp slt i64 %indvars.iv.next, %4
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size
   br i1 %icmplt, label %for.body, label %for.end
 
-for.end:                                          ; preds = %for.body, %ifcont
+for.body:                                         ; preds = %for.cond
+  %i6 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data7 = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr %"CQB::Build::Command", ptr %data7, i32 %i6
+  %i8 = load i32, ptr %"Vector::i", align 4
+  %data9 = load ptr, ptr %data, align 8
+  %ptr_arr_addr = getelementptr %"CQB::Build::Command", ptr %data9, i32 %i8
+  %ptr_arr_val = load %"CQB::Build::Command", ptr %ptr_arr_addr, align 8
+  store %"CQB::Build::Command" %ptr_arr_val, ptr %ptr_arr_asi, align 8
+  br label %for.inc
+
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
+
+for.end:                                          ; preds = %for.cond
   ret void
 }
 
-define weak_odr ptr @"Vector::Vec<CQB::Build::Command>_operator[]_addr_t"(ptr %0, i64 %1) local_unnamed_addr !qc.return_types !40 {
+define weak_odr ptr @"Vector::Vec<CQB::Build::Command>_operator[]_addr_t"(ptr %0, i64 %1) !qc.return_types !31 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %lval_ptr_arr_addr = getelementptr [72 x i8], ptr %data, i64 %1
+  %index = alloca i64, align 8
+  store i64 0, ptr %index, align 8
+  store i64 %1, ptr %index, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %index1 = load i64, ptr %index, align 8
+  %lval_ptr_arr_addr = getelementptr %"CQB::Build::Command", ptr %data, i64 %index1
   ret ptr %lval_ptr_arr_addr
 }
 
-define weak_odr void @"Vector::Iterator::It<CQB::Build::Command>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"Vector::Iterator::It<CQB::Build::Command>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) !qc.return_types !23 {
 entry:
-  store ptr %1, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %2, ptr %size_ptr, align 8
-  %select_val = select i1 %3, i32 %2, i32 0
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %select_val, ptr %current_index_ptr, align 4
+  %is_end = alloca i1, align 1
+  %size = alloca i32, align 4
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i32 0, ptr %size, align 4
+  store i32 %2, ptr %size, align 4
+  store i1 false, ptr %is_end, align 1
+  store i1 %3, ptr %is_end, align 1
+  %data1 = load ptr, ptr %data, align 8
+  %data_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  store ptr %data1, ptr %data_ptr, align 8
+  %size2 = load i32, ptr %size, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  store i32 %size2, ptr %size_ptr, align 4
+  %is_end3 = load i1, ptr %is_end, align 1
+  br i1 %is_end3, label %ternary.true, label %ternary.false
+
+ternary.true:                                     ; preds = %entry
+  %size4 = load i32, ptr %size, align 4
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %entry
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ %size4, %ternary.true ], [ 0, %ternary.false ]
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  store i32 %ternary_val, ptr %current_index_ptr, align 4
   ret void
 }
 
-define weak_odr i1 @"Vector::Iterator::It<CQB::Build::Command>__atEnd"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Iterator::It<CQB::Build::Command>__atEnd"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 2
   %current_index = load i32, ptr %2, align 4
   %icmple = icmp sle i32 %size, %current_index
   ret i1 %icmple
 }
 
-define weak_odr %"CQB::Build::Command" @"Vector::Iterator::It<CQB::Build::Command>__next"(ptr %0) local_unnamed_addr !qc.return_types !41 {
+define weak_odr %"CQB::Build::Command" @"Vector::Iterator::It<CQB::Build::Command>__next"(ptr %0) !qc.return_types !32 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.49, ptr nonnull @6, i32 132) #29
+  call void @__qc_panic(ptr @.str.5, ptr @2, i32 40) #29
   unreachable
 
 ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i.not = icmp sgt i32 %size, %current_index.i
-  br i1 %icmple.i.not, label %then1, label %ifcont2
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %sub.sink = phi i32 [ %sub, %ifcont2 ], [ %current_index.i, %then1 ]
-  %data4 = load ptr, ptr %0, align 8
-  %3 = sext i32 %sub.sink to i64
-  %ptr_arr_addr5 = getelementptr [72 x i8], ptr %data4, i64 %3
-  %ptr_arr_val.unpack42.unpack57.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 68
-  %ptr_arr_val.unpack42.unpack57.pn = load i32, ptr %ptr_arr_val.unpack42.unpack57.pn.in, align 4
-  %ptr_arr_val.unpack42.unpack55.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 64
-  %ptr_arr_val.unpack42.unpack55.pn = load i32, ptr %ptr_arr_val.unpack42.unpack55.pn.in, align 8
-  %ptr_arr_val.unpack42.unpack.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 56
-  %ptr_arr_val.unpack42.unpack.pn = load ptr, ptr %ptr_arr_val.unpack42.unpack.pn.in, align 8
-  %.pn71 = insertvalue %"Vector::Vec<char*>" poison, ptr %ptr_arr_val.unpack42.unpack.pn, 0
-  %.pn70 = insertvalue %"Vector::Vec<char*>" %.pn71, i32 %ptr_arr_val.unpack42.unpack55.pn, 1
-  %ptr_arr_val.unpack4258.pn = insertvalue %"Vector::Vec<char*>" %.pn70, i32 %ptr_arr_val.unpack42.unpack57.pn, 2
-  %ptr_arr_val.unpack40.unpack52.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 52
-  %ptr_arr_val.unpack40.unpack52.pn = load i32, ptr %ptr_arr_val.unpack40.unpack52.pn.in, align 4
-  %ptr_arr_val.unpack40.unpack50.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 48
-  %ptr_arr_val.unpack40.unpack50.pn = load i32, ptr %ptr_arr_val.unpack40.unpack50.pn.in, align 8
-  %ptr_arr_val.unpack40.unpack.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 40
-  %ptr_arr_val.unpack40.unpack.pn = load ptr, ptr %ptr_arr_val.unpack40.unpack.pn.in, align 8
-  %.pn68 = insertvalue %"Vector::Vec<char*>" poison, ptr %ptr_arr_val.unpack40.unpack.pn, 0
-  %.pn67 = insertvalue %"Vector::Vec<char*>" %.pn68, i32 %ptr_arr_val.unpack40.unpack50.pn, 1
-  %ptr_arr_val.unpack4053.pn = insertvalue %"Vector::Vec<char*>" %.pn67, i32 %ptr_arr_val.unpack40.unpack52.pn, 2
-  %ptr_arr_val.unpack38.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 32
-  %ptr_arr_val.unpack38.pn = load ptr, ptr %ptr_arr_val.unpack38.pn.in, align 8
-  %ptr_arr_val.unpack36.unpack47.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 28
-  %ptr_arr_val.unpack36.unpack47.pn = load i32, ptr %ptr_arr_val.unpack36.unpack47.pn.in, align 4
-  %ptr_arr_val.unpack36.unpack45.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 24
-  %ptr_arr_val.unpack36.unpack45.pn = load i32, ptr %ptr_arr_val.unpack36.unpack45.pn.in, align 8
-  %ptr_arr_val.unpack36.unpack.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 16
-  %ptr_arr_val.unpack36.unpack.pn = load ptr, ptr %ptr_arr_val.unpack36.unpack.pn.in, align 8
-  %.pn65 = insertvalue %"Vector::Vec<char*>" poison, ptr %ptr_arr_val.unpack36.unpack.pn, 0
-  %.pn64 = insertvalue %"Vector::Vec<char*>" %.pn65, i32 %ptr_arr_val.unpack36.unpack45.pn, 1
-  %ptr_arr_val.unpack3648.pn = insertvalue %"Vector::Vec<char*>" %.pn64, i32 %ptr_arr_val.unpack36.unpack47.pn, 2
-  %ptr_arr_val.unpack34.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 8
-  %ptr_arr_val.unpack34.pn = load ptr, ptr %ptr_arr_val.unpack34.pn.in, align 8
-  %ptr_arr_val.unpack.pn = load ptr, ptr %ptr_arr_addr5, align 8
-  %.pn62 = insertvalue %"CQB::Build::Command" poison, ptr %ptr_arr_val.unpack.pn, 0
-  %.pn61 = insertvalue %"CQB::Build::Command" %.pn62, ptr %ptr_arr_val.unpack34.pn, 1
-  %.pn60 = insertvalue %"CQB::Build::Command" %.pn61, %"Vector::Vec<char*>" %ptr_arr_val.unpack3648.pn, 2
-  %.pn59 = insertvalue %"CQB::Build::Command" %.pn60, ptr %ptr_arr_val.unpack38.pn, 3
-  %.pn = insertvalue %"CQB::Build::Command" %.pn59, %"Vector::Vec<char*>" %ptr_arr_val.unpack4053.pn, 4
-  %common.ret.op = insertvalue %"CQB::Build::Command" %.pn, %"Vector::Vec<char*>" %ptr_arr_val.unpack4258.pn, 5
-  ret %"CQB::Build::Command" %common.ret.op
+  %_atEnd_result = call i1 @"Vector::Iterator::It<CQB::Build::Command>__atEnd"(ptr %0)
+  %not = xor i1 %_atEnd_result, true
+  br i1 %not, label %then1, label %ifcont2
 
 then1:                                            ; preds = %ifcont
-  %inc = add nsw i32 %current_index.i, 1
-  store i32 %inc, ptr %2, align 4
-  br label %common.ret
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr %"CQB::Build::Command", ptr %data, i32 %inc_deref
+  %ptr_arr_val = load %"CQB::Build::Command", ptr %ptr_arr_addr, align 8
+  ret %"CQB::Build::Command" %ptr_arr_val
 
 ifcont2:                                          ; preds = %ifcont
-  %sub = add i32 %size, -1
-  br label %common.ret
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  %size3 = load i32, ptr %3, align 4
+  %sub = sub i32 %size3, 1
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data4 = load ptr, ptr %4, align 8
+  %ptr_arr_addr5 = getelementptr %"CQB::Build::Command", ptr %data4, i32 %sub
+  %ptr_arr_val6 = load %"CQB::Build::Command", ptr %ptr_arr_addr5, align 8
+  ret %"CQB::Build::Command" %ptr_arr_val6
 }
 
-define weak_odr i1 @"Vector::Iterator::It<CQB::Build::Command>__atStart"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Iterator::It<CQB::Build::Command>__atStart"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 2
   %current_index = load i32, ptr %1, align 4
-  %icmple = icmp slt i32 %current_index, 1
+  %icmple = icmp sle i32 %current_index, 0
   ret i1 %icmple
 }
 
-define weak_odr %"CQB::Build::Command" @"Vector::Iterator::It<CQB::Build::Command>__prev"(ptr %0) local_unnamed_addr !qc.return_types !41 {
+define weak_odr %"CQB::Build::Command" @"Vector::Iterator::It<CQB::Build::Command>__prev"(ptr %0) !qc.return_types !32 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.50, ptr nonnull @6, i32 144) #29
+  call void @__qc_panic(ptr @.str.6, ptr @3, i32 56) #29
   unreachable
 
 ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i = icmp slt i32 %current_index.i, 1
-  br i1 %icmple.i, label %ifcont2, label %then1
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %ptr_arr_val.unpack.pn.in = phi ptr [ %ptr_arr_addr, %then1 ], [ %ptr_arr_addr4, %ifcont2 ]
-  %ptr_arr_val.unpack41.unpack56.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 68
-  %ptr_arr_val.unpack41.unpack56.pn = load i32, ptr %ptr_arr_val.unpack41.unpack56.pn.in, align 4
-  %ptr_arr_val.unpack41.unpack54.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 64
-  %ptr_arr_val.unpack41.unpack54.pn = load i32, ptr %ptr_arr_val.unpack41.unpack54.pn.in, align 8
-  %ptr_arr_val.unpack41.unpack.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 56
-  %ptr_arr_val.unpack41.unpack.pn = load ptr, ptr %ptr_arr_val.unpack41.unpack.pn.in, align 8
-  %.pn70 = insertvalue %"Vector::Vec<char*>" poison, ptr %ptr_arr_val.unpack41.unpack.pn, 0
-  %.pn69 = insertvalue %"Vector::Vec<char*>" %.pn70, i32 %ptr_arr_val.unpack41.unpack54.pn, 1
-  %ptr_arr_val.unpack4157.pn = insertvalue %"Vector::Vec<char*>" %.pn69, i32 %ptr_arr_val.unpack41.unpack56.pn, 2
-  %ptr_arr_val.unpack39.unpack51.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 52
-  %ptr_arr_val.unpack39.unpack51.pn = load i32, ptr %ptr_arr_val.unpack39.unpack51.pn.in, align 4
-  %ptr_arr_val.unpack39.unpack49.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 48
-  %ptr_arr_val.unpack39.unpack49.pn = load i32, ptr %ptr_arr_val.unpack39.unpack49.pn.in, align 8
-  %ptr_arr_val.unpack39.unpack.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 40
-  %ptr_arr_val.unpack39.unpack.pn = load ptr, ptr %ptr_arr_val.unpack39.unpack.pn.in, align 8
-  %.pn67 = insertvalue %"Vector::Vec<char*>" poison, ptr %ptr_arr_val.unpack39.unpack.pn, 0
-  %.pn66 = insertvalue %"Vector::Vec<char*>" %.pn67, i32 %ptr_arr_val.unpack39.unpack49.pn, 1
-  %ptr_arr_val.unpack3952.pn = insertvalue %"Vector::Vec<char*>" %.pn66, i32 %ptr_arr_val.unpack39.unpack51.pn, 2
-  %ptr_arr_val.unpack37.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 32
-  %ptr_arr_val.unpack37.pn = load ptr, ptr %ptr_arr_val.unpack37.pn.in, align 8
-  %ptr_arr_val.unpack35.unpack46.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 28
-  %ptr_arr_val.unpack35.unpack46.pn = load i32, ptr %ptr_arr_val.unpack35.unpack46.pn.in, align 4
-  %ptr_arr_val.unpack35.unpack44.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 24
-  %ptr_arr_val.unpack35.unpack44.pn = load i32, ptr %ptr_arr_val.unpack35.unpack44.pn.in, align 8
-  %ptr_arr_val.unpack35.unpack.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 16
-  %ptr_arr_val.unpack35.unpack.pn = load ptr, ptr %ptr_arr_val.unpack35.unpack.pn.in, align 8
-  %.pn64 = insertvalue %"Vector::Vec<char*>" poison, ptr %ptr_arr_val.unpack35.unpack.pn, 0
-  %.pn63 = insertvalue %"Vector::Vec<char*>" %.pn64, i32 %ptr_arr_val.unpack35.unpack44.pn, 1
-  %ptr_arr_val.unpack3547.pn = insertvalue %"Vector::Vec<char*>" %.pn63, i32 %ptr_arr_val.unpack35.unpack46.pn, 2
-  %ptr_arr_val.unpack33.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 8
-  %ptr_arr_val.unpack33.pn = load ptr, ptr %ptr_arr_val.unpack33.pn.in, align 8
-  %ptr_arr_val.unpack.pn = load ptr, ptr %ptr_arr_val.unpack.pn.in, align 8
-  %.pn61 = insertvalue %"CQB::Build::Command" poison, ptr %ptr_arr_val.unpack.pn, 0
-  %.pn60 = insertvalue %"CQB::Build::Command" %.pn61, ptr %ptr_arr_val.unpack33.pn, 1
-  %.pn59 = insertvalue %"CQB::Build::Command" %.pn60, %"Vector::Vec<char*>" %ptr_arr_val.unpack3547.pn, 2
-  %.pn58 = insertvalue %"CQB::Build::Command" %.pn59, ptr %ptr_arr_val.unpack37.pn, 3
-  %.pn = insertvalue %"CQB::Build::Command" %.pn58, %"Vector::Vec<char*>" %ptr_arr_val.unpack3952.pn, 4
-  %common.ret.op = insertvalue %"CQB::Build::Command" %.pn, %"Vector::Vec<char*>" %ptr_arr_val.unpack4157.pn, 5
-  ret %"CQB::Build::Command" %common.ret.op
+  %_atStart_result = call i1 @"Vector::Iterator::It<CQB::Build::Command>__atStart"(ptr %0)
+  %not = xor i1 %_atStart_result, true
+  br i1 %not, label %then1, label %ifcont2
 
 then1:                                            ; preds = %ifcont
-  %dec = add nsw i32 %current_index.i, -1
-  store i32 %dec, ptr %2, align 4
-  %data = load ptr, ptr %0, align 8
-  %3 = zext nneg i32 %dec to i64
-  %ptr_arr_addr = getelementptr [72 x i8], ptr %data, i64 %3
-  br label %common.ret
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr %"CQB::Build::Command", ptr %data, i32 %dec
+  %ptr_arr_val = load %"CQB::Build::Command", ptr %ptr_arr_addr, align 8
+  ret %"CQB::Build::Command" %ptr_arr_val
 
 ifcont2:                                          ; preds = %ifcont
-  %data3 = load ptr, ptr %0, align 8
-  %4 = sext i32 %current_index.i to i64
-  %ptr_arr_addr4 = getelementptr [72 x i8], ptr %data3, i64 %4
-  br label %common.ret
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  %current_index = load i32, ptr %3, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data3 = load ptr, ptr %4, align 8
+  %ptr_arr_addr4 = getelementptr %"CQB::Build::Command", ptr %data3, i32 %current_index
+  %ptr_arr_val5 = load %"CQB::Build::Command", ptr %ptr_arr_addr4, align 8
+  ret %"CQB::Build::Command" %ptr_arr_val5
 }
 
-define weak_odr void @"Vector::Iterator::It<CQB::Build::Command>__moveTo_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Iterator::It<CQB::Build::Command>__moveTo_int"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %index = alloca i32, align 4
+  store i32 0, ptr %index, align 4
+  store i32 %1, ptr %index, align 4
+  %index1 = load i32, ptr %index, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %2, align 4
-  %icmpge.not = icmp slt i32 %1, %size
-  %sub = add i32 %size, -1
-  %spec.store.select = tail call i32 @llvm.smax.i32(i32 %1, i32 0)
-  %index.0 = select i1 %icmpge.not, i32 %spec.store.select, i32 %sub
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %index.0, ptr %current_index_ptr, align 4
+  %icmpge = icmp sge i32 %index1, %size
+  br i1 %icmpge, label %then, label %elif.cond
+
+then:                                             ; preds = %entry
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  %size2 = load i32, ptr %3, align 4
+  %sub = sub i32 %size2, 1
+  store i32 %sub, ptr %index, align 4
+  br label %ifcont
+
+ifcont:                                           ; preds = %elif.body, %elif.cond, %then
+  %index4 = load i32, ptr %index, align 4
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  store i32 %index4, ptr %current_index_ptr, align 4
   ret void
+
+elif.cond:                                        ; preds = %entry
+  %index3 = load i32, ptr %index, align 4
+  %icmplt = icmp slt i32 %index3, 0
+  br i1 %icmplt, label %elif.body, label %ifcont
+
+elif.body:                                        ; preds = %elif.cond
+  store i32 0, ptr %index, align 4
+  br label %ifcont
 }
 
-define weak_odr %"Vector::Iterator::It<CQB::Build::Command>" @"Vector::Vec<CQB::Build::Command>__begin"(ptr %0) local_unnamed_addr !qc.return_types !42 {
+define weak_odr %"Vector::Iterator::It<CQB::Build::Command>" @"Vector::Vec<CQB::Build::Command>__begin"(ptr %0) !qc.return_types !33 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<CQB::Build::Command>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<CQB::Build::Command>" poison, ptr %data, 0
-  %"Vector::Iterator::It<CQB::Build::Command>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<CQB::Build::Command>" %"Vector::Iterator::It<CQB::Build::Command>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<CQB::Build::Command>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<CQB::Build::Command>" %"Vector::Iterator::It<CQB::Build::Command>_inst.fca.1.insert", i32 0, 2
-  ret %"Vector::Iterator::It<CQB::Build::Command>" %"Vector::Iterator::It<CQB::Build::Command>_inst.fca.2.insert"
+  %"temp_Vector::Iterator::It<CQB::Build::Command>" = alloca %"Vector::Iterator::It<CQB::Build::Command>", align 8
+  store %"Vector::Iterator::It<CQB::Build::Command>" zeroinitializer, ptr %"temp_Vector::Iterator::It<CQB::Build::Command>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<CQB::Build::Command>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<CQB::Build::Command>", ptr %data, i32 %size, i1 false)
+  %"Vector::Iterator::It<CQB::Build::Command>_inst" = load %"Vector::Iterator::It<CQB::Build::Command>", ptr %"temp_Vector::Iterator::It<CQB::Build::Command>", align 8
+  ret %"Vector::Iterator::It<CQB::Build::Command>" %"Vector::Iterator::It<CQB::Build::Command>_inst"
 }
 
-define weak_odr %"Vector::Iterator::It<CQB::Build::Command>" @"Vector::Vec<CQB::Build::Command>__end"(ptr %0) local_unnamed_addr !qc.return_types !42 {
+define weak_odr %"Vector::Iterator::It<CQB::Build::Command>" @"Vector::Vec<CQB::Build::Command>__end"(ptr %0) !qc.return_types !33 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<CQB::Build::Command>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<CQB::Build::Command>" poison, ptr %data, 0
-  %"Vector::Iterator::It<CQB::Build::Command>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<CQB::Build::Command>" %"Vector::Iterator::It<CQB::Build::Command>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<CQB::Build::Command>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<CQB::Build::Command>" %"Vector::Iterator::It<CQB::Build::Command>_inst.fca.1.insert", i32 %size, 2
-  ret %"Vector::Iterator::It<CQB::Build::Command>" %"Vector::Iterator::It<CQB::Build::Command>_inst.fca.2.insert"
+  %"temp_Vector::Iterator::It<CQB::Build::Command>" = alloca %"Vector::Iterator::It<CQB::Build::Command>", align 8
+  store %"Vector::Iterator::It<CQB::Build::Command>" zeroinitializer, ptr %"temp_Vector::Iterator::It<CQB::Build::Command>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<CQB::Build::Command>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<CQB::Build::Command>", ptr %data, i32 %size, i1 true)
+  %"Vector::Iterator::It<CQB::Build::Command>_inst" = load %"Vector::Iterator::It<CQB::Build::Command>", ptr %"temp_Vector::Iterator::It<CQB::Build::Command>", align 8
+  ret %"Vector::Iterator::It<CQB::Build::Command>" %"Vector::Iterator::It<CQB::Build::Command>_inst"
 }
 
-define weak_odr void @"Vector::Vec<CQB::Build::Command>__destroy"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::Build::Command>__destroy"(ptr %0) !qc.return_types !21 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data)
-  store ptr null, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 -1, ptr %size_ptr, align 8
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  store i32 -1, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
   store i32 -1, ptr %capacity_ptr, align 4
   ret void
 }
 
-define weak_odr ptr @"Vector::Vec<CQB::Build::Command>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<CQB::Build::Command>" %1) local_unnamed_addr !qc.return_types !43 {
+define weak_odr ptr @"Vector::Vec<CQB::Build::Command>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<CQB::Build::Command>" %1) !qc.return_types !34 {
 entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<CQB::Build::Command>" %1, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<CQB::Build::Command>" %1, 1
-  %.fca.2.extract = extractvalue %"Vector::Vec<CQB::Build::Command>" %1, 2
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %capacity1 = load i32, ptr %2, align 4
-  %icmpne.not = icmp eq i32 %.fca.2.extract, %capacity1
-  br i1 %icmpne.not, label %ifcont, label %then
+  %"Vector::i" = alloca i32, align 4
+  %other = alloca %"Vector::Vec<CQB::Build::Command>", align 8
+  store %"Vector::Vec<CQB::Build::Command>" zeroinitializer, ptr %other, align 8
+  store %"Vector::Vec<CQB::Build::Command>" %1, ptr %other, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %other, i32 0, i32 2
+  %capacity = load i32, ptr %2, align 4
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, %capacity1
+  br i1 %icmpne, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %icmpeq.i = icmp eq i32 %.fca.2.extract, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %other, i32 0, i32 2
+  %capacity2 = load i32, ptr %4, align 4
+  call void @"Vector::Vec<CQB::Build::Command>_reserve_int"(ptr %0, i32 %capacity2)
   br label %ifcont
 
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %.fca.2.extract to i64
-  %mul.i = mul nsw i64 %promote_int.i, 72
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %ifcont, label %ifcont5.i
+ifcont:                                           ; preds = %then, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %other, i32 0, i32 1
+  %size = load i32, ptr %5, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
+  store i32 %size, ptr %size_ptr, align 4
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
 
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %.fca.2.extract, ptr %2, align 4
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %other, i32 0, i32 1
+  %size3 = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size3
+  br i1 %icmplt, label %for.body, label %for.end
 
-ifcont:                                           ; preds = %ifcont5.i, %ifcont.i, %then.i, %entry
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %.fca.1.extract, ptr %size_ptr, align 4
-  %icmplt60 = icmp sgt i32 %.fca.1.extract, 0
-  br i1 %icmplt60, label %for.body.preheader, label %for.end
+for.body:                                         ; preds = %for.cond
+  %i4 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr %"CQB::Build::Command", ptr %data, i32 %i4
+  %i5 = load i32, ptr %"Vector::i", align 4
+  %8 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %other, i32 0, i32 0
+  %data6 = load ptr, ptr %8, align 8
+  %ptr_arr_addr = getelementptr %"CQB::Build::Command", ptr %data6, i32 %i5
+  %ptr_arr_val = load %"CQB::Build::Command", ptr %ptr_arr_addr, align 8
+  store %"CQB::Build::Command" %ptr_arr_val, ptr %ptr_arr_asi, align 8
+  br label %for.inc
 
-for.body.preheader:                               ; preds = %ifcont
-  %wide.trip.count = zext nneg i32 %.fca.1.extract to i64
-  br label %for.body
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
 
-for.body:                                         ; preds = %for.body.preheader, %for.body
-  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]
-  %data = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr [72 x i8], ptr %data, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr [72 x i8], ptr %.fca.0.extract, i64 %indvars.iv
-  %ptr_arr_val.unpack = load ptr, ptr %ptr_arr_addr, align 8
-  %ptr_arr_val.elt12 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 8
-  %ptr_arr_val.unpack13 = load ptr, ptr %ptr_arr_val.elt12, align 8
-  %ptr_arr_val.elt14 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 16
-  %ptr_arr_val.unpack15.unpack = load ptr, ptr %ptr_arr_val.elt14, align 8
-  %ptr_arr_val.unpack15.elt23 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 24
-  %ptr_arr_val.unpack15.unpack24 = load i32, ptr %ptr_arr_val.unpack15.elt23, align 8
-  %ptr_arr_val.unpack15.elt25 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 28
-  %ptr_arr_val.unpack15.unpack26 = load i32, ptr %ptr_arr_val.unpack15.elt25, align 4
-  %ptr_arr_val.elt16 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 32
-  %ptr_arr_val.unpack17 = load ptr, ptr %ptr_arr_val.elt16, align 8
-  %ptr_arr_val.elt18 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 40
-  %ptr_arr_val.unpack19.unpack = load ptr, ptr %ptr_arr_val.elt18, align 8
-  %ptr_arr_val.unpack19.elt28 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 48
-  %ptr_arr_val.unpack19.unpack29 = load i32, ptr %ptr_arr_val.unpack19.elt28, align 8
-  %ptr_arr_val.unpack19.elt30 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 52
-  %ptr_arr_val.unpack19.unpack31 = load i32, ptr %ptr_arr_val.unpack19.elt30, align 4
-  %ptr_arr_val.elt20 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 56
-  %ptr_arr_val.unpack21.unpack = load ptr, ptr %ptr_arr_val.elt20, align 8
-  %ptr_arr_val.unpack21.elt33 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 64
-  %ptr_arr_val.unpack21.unpack34 = load i32, ptr %ptr_arr_val.unpack21.elt33, align 8
-  %ptr_arr_val.unpack21.elt35 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 68
-  %ptr_arr_val.unpack21.unpack36 = load i32, ptr %ptr_arr_val.unpack21.elt35, align 4
-  store ptr %ptr_arr_val.unpack, ptr %ptr_arr_asi, align 8
-  %ptr_arr_asi.repack38 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 8
-  store ptr %ptr_arr_val.unpack13, ptr %ptr_arr_asi.repack38, align 8
-  %ptr_arr_asi.repack40 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 16
-  store ptr %ptr_arr_val.unpack15.unpack, ptr %ptr_arr_asi.repack40, align 8
-  %ptr_arr_asi.repack40.repack48 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 24
-  store i32 %ptr_arr_val.unpack15.unpack24, ptr %ptr_arr_asi.repack40.repack48, align 8
-  %ptr_arr_asi.repack40.repack50 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 28
-  store i32 %ptr_arr_val.unpack15.unpack26, ptr %ptr_arr_asi.repack40.repack50, align 4
-  %ptr_arr_asi.repack42 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 32
-  store ptr %ptr_arr_val.unpack17, ptr %ptr_arr_asi.repack42, align 8
-  %ptr_arr_asi.repack44 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 40
-  store ptr %ptr_arr_val.unpack19.unpack, ptr %ptr_arr_asi.repack44, align 8
-  %ptr_arr_asi.repack44.repack52 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 48
-  store i32 %ptr_arr_val.unpack19.unpack29, ptr %ptr_arr_asi.repack44.repack52, align 8
-  %ptr_arr_asi.repack44.repack54 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 52
-  store i32 %ptr_arr_val.unpack19.unpack31, ptr %ptr_arr_asi.repack44.repack54, align 4
-  %ptr_arr_asi.repack46 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 56
-  store ptr %ptr_arr_val.unpack21.unpack, ptr %ptr_arr_asi.repack46, align 8
-  %ptr_arr_asi.repack46.repack56 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 64
-  store i32 %ptr_arr_val.unpack21.unpack34, ptr %ptr_arr_asi.repack46.repack56, align 8
-  %ptr_arr_asi.repack46.repack58 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 68
-  store i32 %ptr_arr_val.unpack21.unpack36, ptr %ptr_arr_asi.repack46.repack58, align 4
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
-  %exitcond.not = icmp eq i64 %indvars.iv.next, %wide.trip.count
-  br i1 %exitcond.not, label %for.end, label %for.body
-
-for.end:                                          ; preds = %for.body, %ifcont
+for.end:                                          ; preds = %for.cond
   ret ptr %0
 }
 
-define weak_odr i1 @"Vector::Vec<CQB::Build::Command>_isEmpty"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Vec<CQB::Build::Command>_isEmpty"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Build::Command>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   ret i1 %icmpeq
 }
 
-define weak_odr ptr @"CQB::Build::Builder_current_command"(ptr %0) local_unnamed_addr !qc.return_types !49 {
+; Function Attrs: nocallback nofree nosync nounwind willreturn memory(argmem: write)
+declare void @llvm.memset.inline.p0.i64(ptr writeonly captures(none), i8, i64, i1 immarg) #21
+
+define weak_odr ptr @"CQB::Build::Builder_current_command"(ptr %0) !qc.return_types !35 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 16
-  %size.i = load i32, ptr %2, align 4
-  %icmpeq = icmp eq i32 %size.i, 0
+  %1 = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 1
+  %length_result = call i32 @"Vector::Vec<CQB::Build::Command>_length"(ptr %1)
+  %icmpeq = icmp eq i32 %length_result, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr nonnull %1, %"CQB::Build::Command" zeroinitializer)
-  %size.i2.pre = load i32, ptr %2, align 4
+  %2 = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 1
+  call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr %2, %"CQB::Build::Command" zeroinitializer)
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
-  %size.i2 = phi i32 [ %size.i2.pre, %then ], [ %size.i, %entry ]
-  %sub = add i32 %size.i2, -1
-  %3 = sext i32 %sub to i64
-  %data.i = load ptr, ptr %1, align 8
-  %lval_ptr_arr_addr.i = getelementptr [72 x i8], ptr %data.i, i64 %3
-  ret ptr %lval_ptr_arr_addr.i
+  %commands_ptr = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 1
+  %3 = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 1
+  %length_result1 = call i32 @"Vector::Vec<CQB::Build::Command>_length"(ptr %3)
+  %sub = sub i32 %length_result1, 1
+  %4 = sext i32 %sub to i64
+  %"operator[]_result" = call ptr @"Vector::Vec<CQB::Build::Command>_operator[]_addr_t"(ptr %commands_ptr, i64 %4)
+  ret ptr %"operator[]_result"
 }
 
-define weak_odr void @"CQB::Build::Builder_Builder"(ptr %0) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"CQB::Build::Builder_Builder"(ptr %0) !qc.return_types !23 {
 entry:
-  %commands_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %commands_ptr, i8 0, i64 16, i1 false)
+  %"temp_Vector::Vec<CQB::Build::Command>" = alloca %"Vector::Vec<CQB::Build::Command>", align 8
+  store %"Vector::Vec<CQB::Build::Command>" zeroinitializer, ptr %"temp_Vector::Vec<CQB::Build::Command>", align 8
+  call void @"Vector::Vec<CQB::Build::Command>_Vec"(ptr %"temp_Vector::Vec<CQB::Build::Command>")
+  %"Vector::Vec<CQB::Build::Command>_inst" = load %"Vector::Vec<CQB::Build::Command>", ptr %"temp_Vector::Vec<CQB::Build::Command>", align 8
+  %commands_ptr = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 1
+  store %"Vector::Vec<CQB::Build::Command>" %"Vector::Vec<CQB::Build::Command>_inst", ptr %commands_ptr, align 8
   ret void
 }
 
-define weak_odr ptr @"CQB::Build::Builder_project_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_project_char*"(ptr %0, ptr %1) !qc.return_types !36 {
 entry:
-  store ptr %1, ptr %0, align 8
+  %name = alloca ptr, align 8
+  store ptr null, ptr %name, align 8
+  store ptr %1, ptr %name, align 8
+  %name1 = load ptr, ptr %name, align 8
+  %project_ptr = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 0
+  store ptr %name1, ptr %project_ptr, align 8
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_alias_char*_char*"(ptr %0, ptr %1, ptr %2) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_alias_char*_char*"(ptr %0, ptr %1, ptr %2) !qc.return_types !36 {
 entry:
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr nonnull @.str.53)
-  %flag_result2 = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %1)
-  %flag_result4 = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %2)
+  %aliasName = alloca ptr, align 8
+  %fileName = alloca ptr, align 8
+  store ptr null, ptr %fileName, align 8
+  store ptr %1, ptr %fileName, align 8
+  store ptr null, ptr %aliasName, align 8
+  store ptr %2, ptr %aliasName, align 8
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr @.str.9)
+  %fileName1 = load ptr, ptr %fileName, align 8
+  %flag_result2 = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %fileName1)
+  %aliasName3 = load ptr, ptr %aliasName, align 8
+  %flag_result4 = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %aliasName3)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_aliasDir_char*_char*"(ptr %0, ptr %1, ptr %2) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_aliasDir_char*_char*"(ptr %0, ptr %1, ptr %2) !qc.return_types !36 {
 entry:
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr nonnull @.str.54)
-  %flag_result2 = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %1)
-  %flag_result4 = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %2)
+  %aliasName = alloca ptr, align 8
+  %dirName = alloca ptr, align 8
+  store ptr null, ptr %dirName, align 8
+  store ptr %1, ptr %dirName, align 8
+  store ptr null, ptr %aliasName, align 8
+  store ptr %2, ptr %aliasName, align 8
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr @.str.10)
+  %dirName1 = load ptr, ptr %dirName, align 8
+  %flag_result2 = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %dirName1)
+  %aliasName3 = load ptr, ptr %aliasName, align 8
+  %flag_result4 = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %aliasName3)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_define_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_define_char*"(ptr %0, ptr %1) !qc.return_types !36 {
 entry:
-  %builtin_call.i = tail call fastcc ptr @qc_malloc(i64 3)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i, ptr nonnull align 1 @.str.55, i64 3, i1 false)
-  %strlen.i3 = tail call i64 @strlen(ptr nonnull dereferenceable(1) %1)
-  %add.i5 = add i64 %strlen.i3, 1
-  %builtin_call.i6 = tail call fastcc ptr @qc_malloc(i64 %add.i5)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i6, ptr nonnull align 1 %1, i64 %add.i5, i1 false)
-  %add2.i = add i64 %strlen.i3, 3
-  %builtin_call.i9 = tail call fastcc ptr @qc_realloc(ptr %builtin_call.i, i64 %add2.i)
-  %icmplt27.i = icmp sgt i64 %strlen.i3, 0
-  br i1 %icmplt27.i, label %for.body.i.preheader, label %"String::Str_operator+=_Str.exit"
-
-for.body.i.preheader:                             ; preds = %entry
-  %2 = getelementptr i8, ptr %builtin_call.i9, i64 2
-  tail call void @llvm.memcpy.p0.p0.i64(ptr align 1 %2, ptr align 1 %builtin_call.i6, i64 %strlen.i3, i1 false)
-  br label %"String::Str_operator+=_Str.exit"
-
-"String::Str_operator+=_Str.exit":                ; preds = %for.body.i.preheader, %entry
-  %3 = getelementptr i8, ptr %builtin_call.i9, i64 %strlen.i3
-  %ptr_arr_asi15.i = getelementptr i8, ptr %3, i64 2
-  store i8 0, ptr %ptr_arr_asi15.i, align 1
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i6)
+  %toStr = alloca %"String::Str", align 8
+  %def = alloca %"String::Str", align 8
+  %to_define = alloca ptr, align 8
+  store ptr null, ptr %to_define, align 8
+  store ptr %1, ptr %to_define, align 8
+  store %"String::Str" zeroinitializer, ptr %def, align 8
+  call void @"String::Str_Str_char*"(ptr %def, ptr @.str.11)
+  store %"String::Str" zeroinitializer, ptr %toStr, align 8
+  %to_define1 = load ptr, ptr %to_define, align 8
+  call void @"String::Str_Str_char*"(ptr %toStr, ptr %to_define1)
+  %assign_lhs_val = load %"String::Str", ptr %def, align 8
+  %toStr2 = load %"String::Str", ptr %toStr, align 8
+  %op_assign_tmp = call %"String::Str" @"String::Str_operator+=_Str"(ptr %def, %"String::Str" %toStr2)
+  %c_str_result = call ptr @"String::Str_c_str"(ptr %def)
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %c_str_result)
+  call void @"String::Str__destroy"(ptr %def)
+  call void @"String::Str__destroy"(ptr %toStr)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_linkDir_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_linkDir_char*"(ptr %0, ptr %1) !qc.return_types !36 {
 entry:
-  %builtin_call.i = tail call fastcc ptr @qc_malloc(i64 3)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i, ptr nonnull align 1 @.str.56, i64 3, i1 false)
-  %strlen.i3 = tail call i64 @strlen(ptr nonnull dereferenceable(1) %1)
-  %add.i5 = add i64 %strlen.i3, 1
-  %builtin_call.i6 = tail call fastcc ptr @qc_malloc(i64 %add.i5)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i6, ptr nonnull align 1 %1, i64 %add.i5, i1 false)
-  %add2.i = add i64 %strlen.i3, 3
-  %builtin_call.i9 = tail call fastcc ptr @qc_realloc(ptr %builtin_call.i, i64 %add2.i)
-  %icmplt27.i = icmp sgt i64 %strlen.i3, 0
-  br i1 %icmplt27.i, label %for.body.i.preheader, label %"String::Str_operator+=_Str.exit"
-
-for.body.i.preheader:                             ; preds = %entry
-  %2 = getelementptr i8, ptr %builtin_call.i9, i64 2
-  tail call void @llvm.memcpy.p0.p0.i64(ptr align 1 %2, ptr align 1 %builtin_call.i6, i64 %strlen.i3, i1 false)
-  br label %"String::Str_operator+=_Str.exit"
-
-"String::Str_operator+=_Str.exit":                ; preds = %for.body.i.preheader, %entry
-  %3 = getelementptr i8, ptr %builtin_call.i9, i64 %strlen.i3
-  %ptr_arr_asi15.i = getelementptr i8, ptr %3, i64 2
-  store i8 0, ptr %ptr_arr_asi15.i, align 1
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i6)
+  %toStr = alloca %"String::Str", align 8
+  %def = alloca %"String::Str", align 8
+  %to_link = alloca ptr, align 8
+  store ptr null, ptr %to_link, align 8
+  store ptr %1, ptr %to_link, align 8
+  store %"String::Str" zeroinitializer, ptr %def, align 8
+  call void @"String::Str_Str_char*"(ptr %def, ptr @.str.12)
+  store %"String::Str" zeroinitializer, ptr %toStr, align 8
+  %to_link1 = load ptr, ptr %to_link, align 8
+  call void @"String::Str_Str_char*"(ptr %toStr, ptr %to_link1)
+  %assign_lhs_val = load %"String::Str", ptr %def, align 8
+  %toStr2 = load %"String::Str", ptr %toStr, align 8
+  %op_assign_tmp = call %"String::Str" @"String::Str_operator+=_Str"(ptr %def, %"String::Str" %toStr2)
+  %c_str_result = call ptr @"String::Str_c_str"(ptr %def)
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %c_str_result)
+  call void @"String::Str__destroy"(ptr %def)
+  call void @"String::Str__destroy"(ptr %toStr)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_link_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_link_char*"(ptr %0, ptr %1) !qc.return_types !36 {
 entry:
-  %builtin_call.i = tail call fastcc ptr @qc_malloc(i64 3)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i, ptr nonnull align 1 @.str.57, i64 3, i1 false)
-  %strlen.i3 = tail call i64 @strlen(ptr nonnull dereferenceable(1) %1)
-  %add.i5 = add i64 %strlen.i3, 1
-  %builtin_call.i6 = tail call fastcc ptr @qc_malloc(i64 %add.i5)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i6, ptr nonnull align 1 %1, i64 %add.i5, i1 false)
-  %add2.i = add i64 %strlen.i3, 3
-  %builtin_call.i9 = tail call fastcc ptr @qc_realloc(ptr %builtin_call.i, i64 %add2.i)
-  %icmplt27.i = icmp sgt i64 %strlen.i3, 0
-  br i1 %icmplt27.i, label %for.body.i.preheader, label %"String::Str_operator+=_Str.exit"
-
-for.body.i.preheader:                             ; preds = %entry
-  %2 = getelementptr i8, ptr %builtin_call.i9, i64 2
-  tail call void @llvm.memcpy.p0.p0.i64(ptr align 1 %2, ptr align 1 %builtin_call.i6, i64 %strlen.i3, i1 false)
-  br label %"String::Str_operator+=_Str.exit"
-
-"String::Str_operator+=_Str.exit":                ; preds = %for.body.i.preheader, %entry
-  %3 = getelementptr i8, ptr %builtin_call.i9, i64 %strlen.i3
-  %ptr_arr_asi15.i = getelementptr i8, ptr %3, i64 2
-  store i8 0, ptr %ptr_arr_asi15.i, align 1
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i6)
+  %toStr = alloca %"String::Str", align 8
+  %def = alloca %"String::Str", align 8
+  %to_link = alloca ptr, align 8
+  store ptr null, ptr %to_link, align 8
+  store ptr %1, ptr %to_link, align 8
+  store %"String::Str" zeroinitializer, ptr %def, align 8
+  call void @"String::Str_Str_char*"(ptr %def, ptr @.str.13)
+  store %"String::Str" zeroinitializer, ptr %toStr, align 8
+  %to_link1 = load ptr, ptr %to_link, align 8
+  call void @"String::Str_Str_char*"(ptr %toStr, ptr %to_link1)
+  %assign_lhs_val = load %"String::Str", ptr %def, align 8
+  %toStr2 = load %"String::Str", ptr %toStr, align 8
+  %op_assign_tmp = call %"String::Str" @"String::Str_operator+=_Str"(ptr %def, %"String::Str" %toStr2)
+  %c_str_result = call ptr @"String::Str_c_str"(ptr %def)
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %c_str_result)
+  call void @"String::Str__destroy"(ptr %def)
+  call void @"String::Str__destroy"(ptr %toStr)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_include_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_include_char*"(ptr %0, ptr %1) !qc.return_types !36 {
 entry:
-  %builtin_call.i = tail call fastcc ptr @qc_malloc(i64 3)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i, ptr nonnull align 1 @.str.58, i64 3, i1 false)
-  %strlen.i3 = tail call i64 @strlen(ptr nonnull dereferenceable(1) %1)
-  %add.i5 = add i64 %strlen.i3, 1
-  %builtin_call.i6 = tail call fastcc ptr @qc_malloc(i64 %add.i5)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i6, ptr nonnull align 1 %1, i64 %add.i5, i1 false)
-  %add2.i = add i64 %strlen.i3, 3
-  %builtin_call.i9 = tail call fastcc ptr @qc_realloc(ptr %builtin_call.i, i64 %add2.i)
-  %icmplt27.i = icmp sgt i64 %strlen.i3, 0
-  br i1 %icmplt27.i, label %for.body.i.preheader, label %"String::Str_operator+=_Str.exit"
-
-for.body.i.preheader:                             ; preds = %entry
-  %2 = getelementptr i8, ptr %builtin_call.i9, i64 2
-  tail call void @llvm.memcpy.p0.p0.i64(ptr align 1 %2, ptr align 1 %builtin_call.i6, i64 %strlen.i3, i1 false)
-  br label %"String::Str_operator+=_Str.exit"
-
-"String::Str_operator+=_Str.exit":                ; preds = %for.body.i.preheader, %entry
-  %3 = getelementptr i8, ptr %builtin_call.i9, i64 %strlen.i3
-  %ptr_arr_asi15.i = getelementptr i8, ptr %3, i64 2
-  store i8 0, ptr %ptr_arr_asi15.i, align 1
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i6)
+  %toStr = alloca %"String::Str", align 8
+  %def = alloca %"String::Str", align 8
+  %to_inc = alloca ptr, align 8
+  store ptr null, ptr %to_inc, align 8
+  store ptr %1, ptr %to_inc, align 8
+  store %"String::Str" zeroinitializer, ptr %def, align 8
+  call void @"String::Str_Str_char*"(ptr %def, ptr @.str.14)
+  store %"String::Str" zeroinitializer, ptr %toStr, align 8
+  %to_inc1 = load ptr, ptr %to_inc, align 8
+  call void @"String::Str_Str_char*"(ptr %toStr, ptr %to_inc1)
+  %assign_lhs_val = load %"String::Str", ptr %def, align 8
+  %toStr2 = load %"String::Str", ptr %toStr, align 8
+  %op_assign_tmp = call %"String::Str" @"String::Str_operator+=_Str"(ptr %def, %"String::Str" %toStr2)
+  %c_str_result = call ptr @"String::Str_c_str"(ptr %def)
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %c_str_result)
+  call void @"String::Str__destroy"(ptr %def)
+  call void @"String::Str__destroy"(ptr %toStr)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_linkerFlag_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_linkerFlag_char*"(ptr %0, ptr %1) !qc.return_types !36 {
 entry:
-  %builtin_call.i = tail call fastcc ptr @qc_malloc(i64 5)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i, ptr nonnull align 1 @.str.59, i64 5, i1 false)
-  %strlen.i3 = tail call i64 @strlen(ptr nonnull dereferenceable(1) %1)
-  %add.i5 = add i64 %strlen.i3, 1
-  %builtin_call.i6 = tail call fastcc ptr @qc_malloc(i64 %add.i5)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i6, ptr nonnull align 1 %1, i64 %add.i5, i1 false)
-  %add2.i = add i64 %strlen.i3, 5
-  %builtin_call.i9 = tail call fastcc ptr @qc_realloc(ptr %builtin_call.i, i64 %add2.i)
-  %icmplt27.i = icmp sgt i64 %strlen.i3, 0
-  br i1 %icmplt27.i, label %for.body.i.preheader, label %"String::Str_operator+=_Str.exit"
-
-for.body.i.preheader:                             ; preds = %entry
-  %2 = getelementptr i8, ptr %builtin_call.i9, i64 4
-  tail call void @llvm.memcpy.p0.p0.i64(ptr align 1 %2, ptr align 1 %builtin_call.i6, i64 %strlen.i3, i1 false)
-  br label %"String::Str_operator+=_Str.exit"
-
-"String::Str_operator+=_Str.exit":                ; preds = %for.body.i.preheader, %entry
-  %3 = getelementptr i8, ptr %builtin_call.i9, i64 %strlen.i3
-  %ptr_arr_asi15.i = getelementptr i8, ptr %3, i64 4
-  store i8 0, ptr %ptr_arr_asi15.i, align 1
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i6)
+  %toStr = alloca %"String::Str", align 8
+  %def = alloca %"String::Str", align 8
+  %to_flag = alloca ptr, align 8
+  store ptr null, ptr %to_flag, align 8
+  store ptr %1, ptr %to_flag, align 8
+  store %"String::Str" zeroinitializer, ptr %def, align 8
+  call void @"String::Str_Str_char*"(ptr %def, ptr @.str.15)
+  store %"String::Str" zeroinitializer, ptr %toStr, align 8
+  %to_flag1 = load ptr, ptr %to_flag, align 8
+  call void @"String::Str_Str_char*"(ptr %toStr, ptr %to_flag1)
+  %assign_lhs_val = load %"String::Str", ptr %def, align 8
+  %toStr2 = load %"String::Str", ptr %toStr, align 8
+  %op_assign_tmp = call %"String::Str" @"String::Str_operator+=_Str"(ptr %def, %"String::Str" %toStr2)
+  %c_str_result = call ptr @"String::Str_c_str"(ptr %def)
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %c_str_result)
+  call void @"String::Str__destroy"(ptr %def)
+  call void @"String::Str__destroy"(ptr %toStr)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_warn_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_warn_char*"(ptr %0, ptr %1) !qc.return_types !36 {
 entry:
-  %builtin_call.i = tail call fastcc ptr @qc_malloc(i64 3)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i, ptr nonnull align 1 @.str.60, i64 3, i1 false)
-  %strlen.i3 = tail call i64 @strlen(ptr nonnull dereferenceable(1) %1)
-  %add.i5 = add i64 %strlen.i3, 1
-  %builtin_call.i6 = tail call fastcc ptr @qc_malloc(i64 %add.i5)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i6, ptr nonnull align 1 %1, i64 %add.i5, i1 false)
-  %add2.i = add i64 %strlen.i3, 3
-  %builtin_call.i9 = tail call fastcc ptr @qc_realloc(ptr %builtin_call.i, i64 %add2.i)
-  %icmplt27.i = icmp sgt i64 %strlen.i3, 0
-  br i1 %icmplt27.i, label %for.body.i.preheader, label %"String::Str_operator+=_Str.exit"
-
-for.body.i.preheader:                             ; preds = %entry
-  %2 = getelementptr i8, ptr %builtin_call.i9, i64 2
-  tail call void @llvm.memcpy.p0.p0.i64(ptr align 1 %2, ptr align 1 %builtin_call.i6, i64 %strlen.i3, i1 false)
-  br label %"String::Str_operator+=_Str.exit"
-
-"String::Str_operator+=_Str.exit":                ; preds = %for.body.i.preheader, %entry
-  %3 = getelementptr i8, ptr %builtin_call.i9, i64 %strlen.i3
-  %ptr_arr_asi15.i = getelementptr i8, ptr %3, i64 2
-  store i8 0, ptr %ptr_arr_asi15.i, align 1
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i6)
+  %toStr = alloca %"String::Str", align 8
+  %def = alloca %"String::Str", align 8
+  %to_warn = alloca ptr, align 8
+  store ptr null, ptr %to_warn, align 8
+  store ptr %1, ptr %to_warn, align 8
+  store %"String::Str" zeroinitializer, ptr %def, align 8
+  call void @"String::Str_Str_char*"(ptr %def, ptr @.str.16)
+  store %"String::Str" zeroinitializer, ptr %toStr, align 8
+  %to_warn1 = load ptr, ptr %to_warn, align 8
+  call void @"String::Str_Str_char*"(ptr %toStr, ptr %to_warn1)
+  %assign_lhs_val = load %"String::Str", ptr %def, align 8
+  %toStr2 = load %"String::Str", ptr %toStr, align 8
+  %op_assign_tmp = call %"String::Str" @"String::Str_operator+=_Str"(ptr %def, %"String::Str" %toStr2)
+  %c_str_result = call ptr @"String::Str_c_str"(ptr %def)
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %c_str_result)
+  call void @"String::Str__destroy"(ptr %def)
+  call void @"String::Str__destroy"(ptr %toStr)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_noWarn_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_noWarn_char*"(ptr %0, ptr %1) !qc.return_types !36 {
 entry:
-  %builtin_call.i = tail call fastcc ptr @qc_malloc(i64 6)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i, ptr nonnull align 1 @.str.61, i64 6, i1 false)
-  %strlen.i3 = tail call i64 @strlen(ptr nonnull dereferenceable(1) %1)
-  %add.i5 = add i64 %strlen.i3, 1
-  %builtin_call.i6 = tail call fastcc ptr @qc_malloc(i64 %add.i5)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i6, ptr nonnull align 1 %1, i64 %add.i5, i1 false)
-  %add2.i = add i64 %strlen.i3, 6
-  %builtin_call.i9 = tail call fastcc ptr @qc_realloc(ptr %builtin_call.i, i64 %add2.i)
-  %icmplt27.i = icmp sgt i64 %strlen.i3, 0
-  br i1 %icmplt27.i, label %for.body.i.preheader, label %"String::Str_operator+=_Str.exit"
-
-for.body.i.preheader:                             ; preds = %entry
-  %2 = getelementptr i8, ptr %builtin_call.i9, i64 5
-  tail call void @llvm.memcpy.p0.p0.i64(ptr align 1 %2, ptr align 1 %builtin_call.i6, i64 %strlen.i3, i1 false)
-  br label %"String::Str_operator+=_Str.exit"
-
-"String::Str_operator+=_Str.exit":                ; preds = %for.body.i.preheader, %entry
-  %3 = getelementptr i8, ptr %builtin_call.i9, i64 %strlen.i3
-  %ptr_arr_asi15.i = getelementptr i8, ptr %3, i64 5
-  store i8 0, ptr %ptr_arr_asi15.i, align 1
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i6)
+  %toStr = alloca %"String::Str", align 8
+  %def = alloca %"String::Str", align 8
+  %to_warn = alloca ptr, align 8
+  store ptr null, ptr %to_warn, align 8
+  store ptr %1, ptr %to_warn, align 8
+  store %"String::Str" zeroinitializer, ptr %def, align 8
+  call void @"String::Str_Str_char*"(ptr %def, ptr @.str.17)
+  store %"String::Str" zeroinitializer, ptr %toStr, align 8
+  %to_warn1 = load ptr, ptr %to_warn, align 8
+  call void @"String::Str_Str_char*"(ptr %toStr, ptr %to_warn1)
+  %assign_lhs_val = load %"String::Str", ptr %def, align 8
+  %toStr2 = load %"String::Str", ptr %toStr, align 8
+  %op_assign_tmp = call %"String::Str" @"String::Str_operator+=_Str"(ptr %def, %"String::Str" %toStr2)
+  %c_str_result = call ptr @"String::Str_c_str"(ptr %def)
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %c_str_result)
+  call void @"String::Str__destroy"(ptr %def)
+  call void @"String::Str__destroy"(ptr %toStr)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_error_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_error_char*"(ptr %0, ptr %1) !qc.return_types !36 {
 entry:
-  %builtin_call.i = tail call fastcc ptr @qc_malloc(i64 3)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i, ptr nonnull align 1 @.str.62, i64 3, i1 false)
-  %strlen.i3 = tail call i64 @strlen(ptr nonnull dereferenceable(1) %1)
-  %add.i5 = add i64 %strlen.i3, 1
-  %builtin_call.i6 = tail call fastcc ptr @qc_malloc(i64 %add.i5)
-  tail call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i6, ptr nonnull align 1 %1, i64 %add.i5, i1 false)
-  %add2.i = add i64 %strlen.i3, 3
-  %builtin_call.i9 = tail call fastcc ptr @qc_realloc(ptr %builtin_call.i, i64 %add2.i)
-  %icmplt27.i = icmp sgt i64 %strlen.i3, 0
-  br i1 %icmplt27.i, label %for.body.i.preheader, label %"String::Str_operator+=_Str.exit"
-
-for.body.i.preheader:                             ; preds = %entry
-  %2 = getelementptr i8, ptr %builtin_call.i9, i64 2
-  tail call void @llvm.memcpy.p0.p0.i64(ptr align 1 %2, ptr align 1 %builtin_call.i6, i64 %strlen.i3, i1 false)
-  br label %"String::Str_operator+=_Str.exit"
-
-"String::Str_operator+=_Str.exit":                ; preds = %for.body.i.preheader, %entry
-  %3 = getelementptr i8, ptr %builtin_call.i9, i64 %strlen.i3
-  %ptr_arr_asi15.i = getelementptr i8, ptr %3, i64 2
-  store i8 0, ptr %ptr_arr_asi15.i, align 1
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i9)
-  tail call fastcc void @qc_free(ptr %builtin_call.i6)
+  %toStr = alloca %"String::Str", align 8
+  %def = alloca %"String::Str", align 8
+  %to_error = alloca ptr, align 8
+  store ptr null, ptr %to_error, align 8
+  store ptr %1, ptr %to_error, align 8
+  store %"String::Str" zeroinitializer, ptr %def, align 8
+  call void @"String::Str_Str_char*"(ptr %def, ptr @.str.18)
+  store %"String::Str" zeroinitializer, ptr %toStr, align 8
+  %to_error1 = load ptr, ptr %to_error, align 8
+  call void @"String::Str_Str_char*"(ptr %toStr, ptr %to_error1)
+  %assign_lhs_val = load %"String::Str", ptr %def, align 8
+  %toStr2 = load %"String::Str", ptr %toStr, align 8
+  %op_assign_tmp = call %"String::Str" @"String::Str_operator+=_Str"(ptr %def, %"String::Str" %toStr2)
+  %c_str_result = call ptr @"String::Str_c_str"(ptr %def)
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %c_str_result)
+  call void @"String::Str__destroy"(ptr %def)
+  call void @"String::Str__destroy"(ptr %toStr)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_cArgs"(ptr %0) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_cArgs"(ptr %0) !qc.return_types !36 {
 entry:
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr nonnull @.str.63)
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr @.str.19)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_addExecutable_char*_Vector::Vec<char*>"(ptr %0, ptr %1, %"Vector::Vec<char*>" %2) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_addExecutable_char*_Vector::Vec<char*>"(ptr %0, ptr %1, %"Vector::Vec<char*>" %2) !qc.return_types !36 {
 entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<char*>" %2, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<char*>" %2, 1
-  %.fca.2.extract = extractvalue %"Vector::Vec<char*>" %2, 2
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %cmd4.fca.0.insert = insertvalue %"CQB::Build::Command" poison, ptr %1, 0
-  %cmd4.fca.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.0.insert, ptr @.str.64, 1
-  %cmd4.fca.2.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.1.insert, ptr %.fca.0.extract, 2, 0
-  %cmd4.fca.2.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.0.insert, i32 %.fca.1.extract, 2, 1
-  %cmd4.fca.2.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.1.insert, i32 %.fca.2.extract, 2, 2
-  %cmd4.fca.3.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.2.insert, ptr %1, 3
-  %cmd4.fca.4.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.3.insert, ptr null, 4, 0
-  %cmd4.fca.4.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.0.insert, i32 0, 4, 1
-  %cmd4.fca.4.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.1.insert, i32 0, 4, 2
-  %cmd4.fca.5.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.2.insert, ptr null, 5, 0
-  %cmd4.fca.5.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.5.0.insert, i32 0, 5, 1
-  %cmd4.fca.5.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.5.1.insert, i32 0, 5, 2
-  tail call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr nonnull %3, %"CQB::Build::Command" %cmd4.fca.5.2.insert)
+  %"temp_Vector::Vec<char*>" = alloca %"Vector::Vec<char*>", align 8
+  %cmd = alloca %"CQB::Build::Command", align 8
+  %sourceFiles = alloca %"Vector::Vec<char*>", align 8
+  %outputName = alloca ptr, align 8
+  store ptr null, ptr %outputName, align 8
+  store ptr %1, ptr %outputName, align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %sourceFiles, align 8
+  store %"Vector::Vec<char*>" %2, ptr %sourceFiles, align 8
+  call void @llvm.memset.inline.p0.i64(ptr align 8 %cmd, i8 0, i64 72, i1 false)
+  store %"CQB::Build::Command" zeroinitializer, ptr %cmd, align 8
+  %outputName1 = load ptr, ptr %outputName, align 8
+  %targetName_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 0
+  store ptr %outputName1, ptr %targetName_ptr, align 8
+  %commandBin_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 1
+  store ptr @.str.20, ptr %commandBin_ptr, align 8
+  %sourceFiles2 = load %"Vector::Vec<char*>", ptr %sourceFiles, align 8
+  %inputs_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 2
+  store %"Vector::Vec<char*>" %sourceFiles2, ptr %inputs_ptr, align 8
+  %outputName3 = load ptr, ptr %outputName, align 8
+  %outputArtifact_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 3
+  store ptr %outputName3, ptr %outputArtifact_ptr, align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %"temp_Vector::Vec<char*>", align 8
+  call void @"Vector::Vec<char*>_Vec"(ptr %"temp_Vector::Vec<char*>")
+  %"Vector::Vec<char*>_inst" = load %"Vector::Vec<char*>", ptr %"temp_Vector::Vec<char*>", align 8
+  %dependencies_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 5
+  store %"Vector::Vec<char*>" %"Vector::Vec<char*>_inst", ptr %dependencies_ptr, align 8
+  %3 = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 1
+  %cmd4 = load %"CQB::Build::Command", ptr %cmd, align 8
+  call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr %3, %"CQB::Build::Command" %cmd4)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_addObject_char*_Vector::Vec<char*>"(ptr %0, ptr %1, %"Vector::Vec<char*>" %2) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_addObject_char*_Vector::Vec<char*>"(ptr %0, ptr %1, %"Vector::Vec<char*>" %2) !qc.return_types !36 {
 entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<char*>" %2, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<char*>" %2, 1
-  %.fca.2.extract = extractvalue %"Vector::Vec<char*>" %2, 2
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %cmd4.fca.0.insert = insertvalue %"CQB::Build::Command" poison, ptr %1, 0
-  %cmd4.fca.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.0.insert, ptr @.str.65, 1
-  %cmd4.fca.2.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.1.insert, ptr %.fca.0.extract, 2, 0
-  %cmd4.fca.2.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.0.insert, i32 %.fca.1.extract, 2, 1
-  %cmd4.fca.2.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.1.insert, i32 %.fca.2.extract, 2, 2
-  %cmd4.fca.3.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.2.insert, ptr %1, 3
-  %cmd4.fca.4.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.3.insert, ptr null, 4, 0
-  %cmd4.fca.4.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.0.insert, i32 0, 4, 1
-  %cmd4.fca.4.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.1.insert, i32 0, 4, 2
-  %cmd4.fca.5.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.2.insert, ptr null, 5, 0
-  %cmd4.fca.5.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.5.0.insert, i32 0, 5, 1
-  %cmd4.fca.5.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.5.1.insert, i32 0, 5, 2
-  tail call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr nonnull %3, %"CQB::Build::Command" %cmd4.fca.5.2.insert)
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr nonnull @.str.66)
+  %"temp_Vector::Vec<char*>" = alloca %"Vector::Vec<char*>", align 8
+  %cmd = alloca %"CQB::Build::Command", align 8
+  %sourceFiles = alloca %"Vector::Vec<char*>", align 8
+  %outputName = alloca ptr, align 8
+  store ptr null, ptr %outputName, align 8
+  store ptr %1, ptr %outputName, align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %sourceFiles, align 8
+  store %"Vector::Vec<char*>" %2, ptr %sourceFiles, align 8
+  call void @llvm.memset.inline.p0.i64(ptr align 8 %cmd, i8 0, i64 72, i1 false)
+  store %"CQB::Build::Command" zeroinitializer, ptr %cmd, align 8
+  %outputName1 = load ptr, ptr %outputName, align 8
+  %targetName_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 0
+  store ptr %outputName1, ptr %targetName_ptr, align 8
+  %commandBin_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 1
+  store ptr @.str.21, ptr %commandBin_ptr, align 8
+  %sourceFiles2 = load %"Vector::Vec<char*>", ptr %sourceFiles, align 8
+  %inputs_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 2
+  store %"Vector::Vec<char*>" %sourceFiles2, ptr %inputs_ptr, align 8
+  %outputName3 = load ptr, ptr %outputName, align 8
+  %outputArtifact_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 3
+  store ptr %outputName3, ptr %outputArtifact_ptr, align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %"temp_Vector::Vec<char*>", align 8
+  call void @"Vector::Vec<char*>_Vec"(ptr %"temp_Vector::Vec<char*>")
+  %"Vector::Vec<char*>_inst" = load %"Vector::Vec<char*>", ptr %"temp_Vector::Vec<char*>", align 8
+  %dependencies_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 5
+  store %"Vector::Vec<char*>" %"Vector::Vec<char*>_inst", ptr %dependencies_ptr, align 8
+  %3 = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 1
+  %cmd4 = load %"CQB::Build::Command", ptr %cmd, align 8
+  call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr %3, %"CQB::Build::Command" %cmd4)
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr @.str.22)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_addStaticLibrary_char*_Vector::Vec<char*>"(ptr %0, ptr %1, %"Vector::Vec<char*>" %2) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_addStaticLibrary_char*_Vector::Vec<char*>"(ptr %0, ptr %1, %"Vector::Vec<char*>" %2) !qc.return_types !36 {
 entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<char*>" %2, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<char*>" %2, 1
-  %.fca.2.extract = extractvalue %"Vector::Vec<char*>" %2, 2
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %cmd4.fca.0.insert = insertvalue %"CQB::Build::Command" poison, ptr %1, 0
-  %cmd4.fca.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.0.insert, ptr @.str.67, 1
-  %cmd4.fca.2.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.1.insert, ptr %.fca.0.extract, 2, 0
-  %cmd4.fca.2.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.0.insert, i32 %.fca.1.extract, 2, 1
-  %cmd4.fca.2.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.1.insert, i32 %.fca.2.extract, 2, 2
-  %cmd4.fca.3.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.2.insert, ptr %1, 3
-  %cmd4.fca.4.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.3.insert, ptr null, 4, 0
-  %cmd4.fca.4.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.0.insert, i32 0, 4, 1
-  %cmd4.fca.4.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.1.insert, i32 0, 4, 2
-  %cmd4.fca.5.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.2.insert, ptr null, 5, 0
-  %cmd4.fca.5.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.5.0.insert, i32 0, 5, 1
-  %cmd4.fca.5.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.5.1.insert, i32 0, 5, 2
-  tail call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr nonnull %3, %"CQB::Build::Command" %cmd4.fca.5.2.insert)
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr nonnull @.str.68)
+  %"temp_Vector::Vec<char*>" = alloca %"Vector::Vec<char*>", align 8
+  %cmd = alloca %"CQB::Build::Command", align 8
+  %objectFiles = alloca %"Vector::Vec<char*>", align 8
+  %outputName = alloca ptr, align 8
+  store ptr null, ptr %outputName, align 8
+  store ptr %1, ptr %outputName, align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %objectFiles, align 8
+  store %"Vector::Vec<char*>" %2, ptr %objectFiles, align 8
+  call void @llvm.memset.inline.p0.i64(ptr align 8 %cmd, i8 0, i64 72, i1 false)
+  store %"CQB::Build::Command" zeroinitializer, ptr %cmd, align 8
+  %outputName1 = load ptr, ptr %outputName, align 8
+  %targetName_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 0
+  store ptr %outputName1, ptr %targetName_ptr, align 8
+  %commandBin_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 1
+  store ptr @.str.23, ptr %commandBin_ptr, align 8
+  %objectFiles2 = load %"Vector::Vec<char*>", ptr %objectFiles, align 8
+  %inputs_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 2
+  store %"Vector::Vec<char*>" %objectFiles2, ptr %inputs_ptr, align 8
+  %outputName3 = load ptr, ptr %outputName, align 8
+  %outputArtifact_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 3
+  store ptr %outputName3, ptr %outputArtifact_ptr, align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %"temp_Vector::Vec<char*>", align 8
+  call void @"Vector::Vec<char*>_Vec"(ptr %"temp_Vector::Vec<char*>")
+  %"Vector::Vec<char*>_inst" = load %"Vector::Vec<char*>", ptr %"temp_Vector::Vec<char*>", align 8
+  %dependencies_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 5
+  store %"Vector::Vec<char*>" %"Vector::Vec<char*>_inst", ptr %dependencies_ptr, align 8
+  %3 = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 1
+  %cmd4 = load %"CQB::Build::Command", ptr %cmd, align 8
+  call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr %3, %"CQB::Build::Command" %cmd4)
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr @.str.24)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_addDynamicLibrary_char*_Vector::Vec<char*>"(ptr %0, ptr %1, %"Vector::Vec<char*>" %2) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_addDynamicLibrary_char*_Vector::Vec<char*>"(ptr %0, ptr %1, %"Vector::Vec<char*>" %2) !qc.return_types !36 {
 entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<char*>" %2, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<char*>" %2, 1
-  %.fca.2.extract = extractvalue %"Vector::Vec<char*>" %2, 2
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %cmd4.fca.0.insert = insertvalue %"CQB::Build::Command" poison, ptr %1, 0
-  %cmd4.fca.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.0.insert, ptr @.str.69, 1
-  %cmd4.fca.2.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.1.insert, ptr %.fca.0.extract, 2, 0
-  %cmd4.fca.2.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.0.insert, i32 %.fca.1.extract, 2, 1
-  %cmd4.fca.2.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.1.insert, i32 %.fca.2.extract, 2, 2
-  %cmd4.fca.3.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.2.insert, ptr %1, 3
-  %cmd4.fca.4.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.3.insert, ptr null, 4, 0
-  %cmd4.fca.4.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.0.insert, i32 0, 4, 1
-  %cmd4.fca.4.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.1.insert, i32 0, 4, 2
-  %cmd4.fca.5.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.2.insert, ptr null, 5, 0
-  %cmd4.fca.5.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.5.0.insert, i32 0, 5, 1
-  %cmd4.fca.5.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.5.1.insert, i32 0, 5, 2
-  tail call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr nonnull %3, %"CQB::Build::Command" %cmd4.fca.5.2.insert)
-  %flag_result = tail call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr nonnull @.str.70)
+  %"temp_Vector::Vec<char*>" = alloca %"Vector::Vec<char*>", align 8
+  %cmd = alloca %"CQB::Build::Command", align 8
+  %sourceFiles = alloca %"Vector::Vec<char*>", align 8
+  %outputName = alloca ptr, align 8
+  store ptr null, ptr %outputName, align 8
+  store ptr %1, ptr %outputName, align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %sourceFiles, align 8
+  store %"Vector::Vec<char*>" %2, ptr %sourceFiles, align 8
+  call void @llvm.memset.inline.p0.i64(ptr align 8 %cmd, i8 0, i64 72, i1 false)
+  store %"CQB::Build::Command" zeroinitializer, ptr %cmd, align 8
+  %outputName1 = load ptr, ptr %outputName, align 8
+  %targetName_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 0
+  store ptr %outputName1, ptr %targetName_ptr, align 8
+  %commandBin_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 1
+  store ptr @.str.25, ptr %commandBin_ptr, align 8
+  %sourceFiles2 = load %"Vector::Vec<char*>", ptr %sourceFiles, align 8
+  %inputs_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 2
+  store %"Vector::Vec<char*>" %sourceFiles2, ptr %inputs_ptr, align 8
+  %outputName3 = load ptr, ptr %outputName, align 8
+  %outputArtifact_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 3
+  store ptr %outputName3, ptr %outputArtifact_ptr, align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %"temp_Vector::Vec<char*>", align 8
+  call void @"Vector::Vec<char*>_Vec"(ptr %"temp_Vector::Vec<char*>")
+  %"Vector::Vec<char*>_inst" = load %"Vector::Vec<char*>", ptr %"temp_Vector::Vec<char*>", align 8
+  %dependencies_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 5
+  store %"Vector::Vec<char*>" %"Vector::Vec<char*>_inst", ptr %dependencies_ptr, align 8
+  %3 = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 1
+  %cmd4 = load %"CQB::Build::Command", ptr %cmd, align 8
+  call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr %3, %"CQB::Build::Command" %cmd4)
+  %flag_result = call ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr @.str.26)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_targetFlags_Vector::Vec<char*>"(ptr %0, %"Vector::Vec<char*>" %1) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_targetFlags_Vector::Vec<char*>"(ptr %0, %"Vector::Vec<char*>" %1) !qc.return_types !36 {
 entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<char*>" %1, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<char*>" %1, 1
-  %promote_int = sext i32 %.fca.1.extract to i64
-  %icmplt8 = icmp sgt i32 %.fca.1.extract, 0
-  br i1 %icmplt8, label %for.body.lr.ph, label %for.end
+  %"CQB::Build::i" = alloca i64, align 8
+  %targetflags = alloca %"Vector::Vec<char*>", align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %targetflags, align 8
+  store %"Vector::Vec<char*>" %1, ptr %targetflags, align 8
+  store i64 0, ptr %"CQB::Build::i", align 8
+  store i64 0, ptr %"CQB::Build::i", align 8
+  br label %for.cond
 
-for.body.lr.ph:                                   ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 16
-  br label %for.body
+for.cond:                                         ; preds = %for.inc, %entry
+  %i = load i64, ptr %"CQB::Build::i", align 8
+  %length_result = call i32 @"Vector::Vec<char*>_length"(ptr %targetflags)
+  %promote_int = sext i32 %length_result to i64
+  %icmplt = icmp slt i64 %i, %promote_int
+  br i1 %icmplt, label %for.body, label %for.end
 
-for.body:                                         ; preds = %for.body.lr.ph, %"Vector::Vec<char*>_push_T.exit"
-  %"CQB::Build::i.09" = phi i64 [ 0, %for.body.lr.ph ], [ %inc, %"Vector::Vec<char*>_push_T.exit" ]
-  %size.i.i = load i32, ptr %3, align 4
-  %icmpeq.i = icmp eq i32 %size.i.i, 0
-  br i1 %icmpeq.i, label %then.i, label %"CQB::Build::Builder_current_command.exit"
+for.body:                                         ; preds = %for.cond
+  %current_command_result = call ptr @"CQB::Build::Builder_current_command"(ptr %0)
+  %2 = getelementptr inbounds nuw %"CQB::Build::Command", ptr %current_command_result, i32 0, i32 4
+  %i1 = load i64, ptr %"CQB::Build::i", align 8
+  %"operator[]_result" = call ptr @"Vector::Vec<char*>_operator[]_addr_t"(ptr %targetflags, i64 %i1)
+  call void @"Vector::Vec<char*>_push_T"(ptr %2, ptr %"operator[]_result")
+  br label %for.inc
 
-then.i:                                           ; preds = %for.body
-  tail call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr nonnull %2, %"CQB::Build::Command" zeroinitializer)
-  %size.i2.pre.i = load i32, ptr %3, align 4
-  br label %"CQB::Build::Builder_current_command.exit"
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i64, ptr %"CQB::Build::i", align 8
+  %inc = add i64 %inc_deref, 1
+  store i64 %inc, ptr %"CQB::Build::i", align 8
+  br label %for.cond
 
-"CQB::Build::Builder_current_command.exit":       ; preds = %for.body, %then.i
-  %size.i2.i = phi i32 [ %size.i2.pre.i, %then.i ], [ %size.i.i, %for.body ]
-  %sub.i = add i32 %size.i2.i, -1
-  %4 = sext i32 %sub.i to i64
-  %data.i.i = load ptr, ptr %2, align 8
-  %lval_ptr_arr_addr.i.i = getelementptr [72 x i8], ptr %data.i.i, i64 %4
-  %5 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i.i, i64 40
-  %lval_ptr_arr_addr.i = getelementptr [8 x i8], ptr %.fca.0.extract, i64 %"CQB::Build::i.09"
-  %6 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i.i, i64 52
-  %capacity.i = load i32, ptr %6, align 4
-  %7 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i.i, i64 48
-  %size.i4 = load i32, ptr %7, align 4
-  %icmple.not.i = icmp sgt i32 %capacity.i, %size.i4
-  %data6.pre.i = load ptr, ptr %5, align 8
-  br i1 %icmple.not.i, label %ifcont.i, label %then.i5
-
-then.i5:                                          ; preds = %"CQB::Build::Builder_current_command.exit"
-  %icmpeq.i6 = icmp eq i32 %capacity.i, 0
-  %mul.i = shl i32 %capacity.i, 1
-  %select_val.i = select i1 %icmpeq.i6, i32 1, i32 %mul.i
-  %icmpeq.i.i = icmp eq i32 %select_val.i, 0
-  br i1 %icmpeq.i.i, label %then.i.i, label %ifcont.i.i
-
-then.i.i:                                         ; preds = %then.i5
-  tail call fastcc void @qc_free(ptr %data6.pre.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %5, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<char*>_push_T.exit"
-
-ifcont.i.i:                                       ; preds = %then.i5
-  %promote_int.i.i = sext i32 %select_val.i to i64
-  %mul.i.i = shl nsw i64 %promote_int.i.i, 3
-  %builtin_call.i.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre.i, i64 %mul.i.i)
-  %ptr_eq.i.i = icmp eq ptr %builtin_call.i.i, null
-  br i1 %ptr_eq.i.i, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i
-
-ifcont5.i.i:                                      ; preds = %ifcont.i.i
-  store i32 %select_val.i, ptr %6, align 4
-  %size.i.i7 = load i32, ptr %7, align 8
-  %icmpgt.i.i = icmp sgt i32 %size.i.i7, %select_val.i
-  br i1 %icmpgt.i.i, label %then8.i.i, label %"Vector::Vec<char*>_reserve_int.exit.thread.i"
-
-then8.i.i:                                        ; preds = %ifcont5.i.i
-  store i32 %select_val.i, ptr %7, align 8
-  br label %"Vector::Vec<char*>_reserve_int.exit.thread.i"
-
-"Vector::Vec<char*>_reserve_int.exit.thread.i":   ; preds = %then8.i.i, %ifcont5.i.i
-  %size511.i = phi i32 [ %size.i.i7, %ifcont5.i.i ], [ %select_val.i, %then8.i.i ]
-  store ptr %builtin_call.i.i, ptr %5, align 8
-  br label %ifcont.i
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i
-  %data.pr.i = load ptr, ptr %5, align 8
-  %8 = icmp eq ptr %data.pr.i, null
-  br i1 %8, label %"Vector::Vec<char*>_push_T.exit", label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i"
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i": ; preds = %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i"
-  %size5.pre.i = load i32, ptr %7, align 8
-  br label %ifcont.i
-
-ifcont.i:                                         ; preds = %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i", %"Vector::Vec<char*>_reserve_int.exit.thread.i", %"CQB::Build::Builder_current_command.exit"
-  %data6.i = phi ptr [ %data.pr.i, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %builtin_call.i.i, %"Vector::Vec<char*>_reserve_int.exit.thread.i" ], [ %data6.pre.i, %"CQB::Build::Builder_current_command.exit" ]
-  %size5.i = phi i32 [ %size5.pre.i, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %size511.i, %"Vector::Vec<char*>_reserve_int.exit.thread.i" ], [ %size.i4, %"CQB::Build::Builder_current_command.exit" ]
-  %9 = sext i32 %size5.i to i64
-  %ptr_arr_asi.i = getelementptr [8 x i8], ptr %data6.i, i64 %9
-  store ptr %lval_ptr_arr_addr.i, ptr %ptr_arr_asi.i, align 8
-  %inc_deref.i = load i32, ptr %7, align 8
-  %inc.i = add i32 %inc_deref.i, 1
-  store i32 %inc.i, ptr %7, align 8
-  br label %"Vector::Vec<char*>_push_T.exit"
-
-"Vector::Vec<char*>_push_T.exit":                 ; preds = %then.i.i, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", %ifcont.i
-  %inc = add nuw nsw i64 %"CQB::Build::i.09", 1
-  %exitcond.not = icmp eq i64 %inc, %promote_int
-  br i1 %exitcond.not, label %for.end, label %for.body
-
-for.end:                                          ; preds = %"Vector::Vec<char*>_push_T.exit", %entry
+for.end:                                          ; preds = %for.cond
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_addCustomCommand_char*_char*_char*"(ptr %0, ptr %1, ptr %2, ptr %3) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_addCustomCommand_char*_char*_char*"(ptr %0, ptr %1, ptr %2, ptr %3) !qc.return_types !36 {
 entry:
-  %4 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %cmd4.fca.0.insert = insertvalue %"CQB::Build::Command" poison, ptr %1, 0
-  %cmd4.fca.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.0.insert, ptr %2, 1
-  %cmd4.fca.2.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.1.insert, ptr null, 2, 0
-  %cmd4.fca.2.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.0.insert, i32 0, 2, 1
-  %cmd4.fca.2.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.1.insert, i32 0, 2, 2
-  %cmd4.fca.3.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.2.insert, ptr %3, 3
-  %cmd4.fca.4.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.3.insert, ptr null, 4, 0
-  %cmd4.fca.4.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.0.insert, i32 0, 4, 1
-  %cmd4.fca.4.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.1.insert, i32 0, 4, 2
-  %cmd4.fca.5.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.2.insert, ptr null, 5, 0
-  %cmd4.fca.5.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.5.0.insert, i32 0, 5, 1
-  %cmd4.fca.5.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.5.1.insert, i32 0, 5, 2
-  tail call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr nonnull %4, %"CQB::Build::Command" %cmd4.fca.5.2.insert)
+  %"temp_Vector::Vec<char*>" = alloca %"Vector::Vec<char*>", align 8
+  %cmd = alloca %"CQB::Build::Command", align 8
+  %outputArtifact = alloca ptr, align 8
+  %commandBin = alloca ptr, align 8
+  %targetName = alloca ptr, align 8
+  store ptr null, ptr %targetName, align 8
+  store ptr %1, ptr %targetName, align 8
+  store ptr null, ptr %commandBin, align 8
+  store ptr %2, ptr %commandBin, align 8
+  store ptr null, ptr %outputArtifact, align 8
+  store ptr %3, ptr %outputArtifact, align 8
+  call void @llvm.memset.inline.p0.i64(ptr align 8 %cmd, i8 0, i64 72, i1 false)
+  store %"CQB::Build::Command" zeroinitializer, ptr %cmd, align 8
+  %targetName1 = load ptr, ptr %targetName, align 8
+  %targetName_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 0
+  store ptr %targetName1, ptr %targetName_ptr, align 8
+  %commandBin2 = load ptr, ptr %commandBin, align 8
+  %commandBin_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 1
+  store ptr %commandBin2, ptr %commandBin_ptr, align 8
+  %outputArtifact3 = load ptr, ptr %outputArtifact, align 8
+  %outputArtifact_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 3
+  store ptr %outputArtifact3, ptr %outputArtifact_ptr, align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %"temp_Vector::Vec<char*>", align 8
+  call void @"Vector::Vec<char*>_Vec"(ptr %"temp_Vector::Vec<char*>")
+  %"Vector::Vec<char*>_inst" = load %"Vector::Vec<char*>", ptr %"temp_Vector::Vec<char*>", align 8
+  %dependencies_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 5
+  store %"Vector::Vec<char*>" %"Vector::Vec<char*>_inst", ptr %dependencies_ptr, align 8
+  %4 = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 1
+  %cmd4 = load %"CQB::Build::Command", ptr %cmd, align 8
+  call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr %4, %"CQB::Build::Command" %cmd4)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_flag_char*"(ptr %0, ptr %1) !qc.return_types !36 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 16
-  %size.i.i = load i32, ptr %3, align 4
-  %icmpeq.i = icmp eq i32 %size.i.i, 0
-  br i1 %icmpeq.i, label %then.i, label %"CQB::Build::Builder_current_command.exit"
-
-then.i:                                           ; preds = %entry
-  tail call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr nonnull %2, %"CQB::Build::Command" zeroinitializer)
-  %size.i2.pre.i = load i32, ptr %3, align 4
-  br label %"CQB::Build::Builder_current_command.exit"
-
-"CQB::Build::Builder_current_command.exit":       ; preds = %entry, %then.i
-  %size.i2.i = phi i32 [ %size.i2.pre.i, %then.i ], [ %size.i.i, %entry ]
-  %sub.i = add i32 %size.i2.i, -1
-  %4 = sext i32 %sub.i to i64
-  %data.i.i = load ptr, ptr %2, align 8
-  %lval_ptr_arr_addr.i.i = getelementptr [72 x i8], ptr %data.i.i, i64 %4
-  %5 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i.i, i64 40
-  %6 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i.i, i64 52
-  %capacity.i = load i32, ptr %6, align 4
-  %7 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i.i, i64 48
-  %size.i = load i32, ptr %7, align 4
-  %icmple.not.i = icmp sgt i32 %capacity.i, %size.i
-  %data6.pre.i = load ptr, ptr %5, align 8
-  br i1 %icmple.not.i, label %ifcont.i, label %then.i2
-
-then.i2:                                          ; preds = %"CQB::Build::Builder_current_command.exit"
-  %icmpeq.i3 = icmp eq i32 %capacity.i, 0
-  %mul.i = shl i32 %capacity.i, 1
-  %select_val.i = select i1 %icmpeq.i3, i32 1, i32 %mul.i
-  %icmpeq.i.i = icmp eq i32 %select_val.i, 0
-  br i1 %icmpeq.i.i, label %then.i.i, label %ifcont.i.i
-
-then.i.i:                                         ; preds = %then.i2
-  tail call fastcc void @qc_free(ptr %data6.pre.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %5, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<char*>_push_T.exit"
-
-ifcont.i.i:                                       ; preds = %then.i2
-  %promote_int.i.i = sext i32 %select_val.i to i64
-  %mul.i.i = shl nsw i64 %promote_int.i.i, 3
-  %builtin_call.i.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre.i, i64 %mul.i.i)
-  %ptr_eq.i.i = icmp eq ptr %builtin_call.i.i, null
-  br i1 %ptr_eq.i.i, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i
-
-ifcont5.i.i:                                      ; preds = %ifcont.i.i
-  store i32 %select_val.i, ptr %6, align 4
-  %size.i.i4 = load i32, ptr %7, align 8
-  %icmpgt.i.i = icmp sgt i32 %size.i.i4, %select_val.i
-  br i1 %icmpgt.i.i, label %then8.i.i, label %"Vector::Vec<char*>_reserve_int.exit.thread.i"
-
-then8.i.i:                                        ; preds = %ifcont5.i.i
-  store i32 %select_val.i, ptr %7, align 8
-  br label %"Vector::Vec<char*>_reserve_int.exit.thread.i"
-
-"Vector::Vec<char*>_reserve_int.exit.thread.i":   ; preds = %then8.i.i, %ifcont5.i.i
-  %size511.i = phi i32 [ %size.i.i4, %ifcont5.i.i ], [ %select_val.i, %then8.i.i ]
-  store ptr %builtin_call.i.i, ptr %5, align 8
-  br label %ifcont.i
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i
-  %data.pr.i = load ptr, ptr %5, align 8
-  %8 = icmp eq ptr %data.pr.i, null
-  br i1 %8, label %"Vector::Vec<char*>_push_T.exit", label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i"
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i": ; preds = %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i"
-  %size5.pre.i = load i32, ptr %7, align 8
-  br label %ifcont.i
-
-ifcont.i:                                         ; preds = %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i", %"Vector::Vec<char*>_reserve_int.exit.thread.i", %"CQB::Build::Builder_current_command.exit"
-  %data6.i = phi ptr [ %data.pr.i, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %builtin_call.i.i, %"Vector::Vec<char*>_reserve_int.exit.thread.i" ], [ %data6.pre.i, %"CQB::Build::Builder_current_command.exit" ]
-  %size5.i = phi i32 [ %size5.pre.i, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %size511.i, %"Vector::Vec<char*>_reserve_int.exit.thread.i" ], [ %size.i, %"CQB::Build::Builder_current_command.exit" ]
-  %9 = sext i32 %size5.i to i64
-  %ptr_arr_asi.i = getelementptr [8 x i8], ptr %data6.i, i64 %9
-  store ptr %1, ptr %ptr_arr_asi.i, align 8
-  %inc_deref.i = load i32, ptr %7, align 8
-  %inc.i = add i32 %inc_deref.i, 1
-  store i32 %inc.i, ptr %7, align 8
-  br label %"Vector::Vec<char*>_push_T.exit"
-
-"Vector::Vec<char*>_push_T.exit":                 ; preds = %then.i.i, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", %ifcont.i
+  %flag = alloca ptr, align 8
+  store ptr null, ptr %flag, align 8
+  store ptr %1, ptr %flag, align 8
+  %current_command_result = call ptr @"CQB::Build::Builder_current_command"(ptr %0)
+  %2 = getelementptr inbounds nuw %"CQB::Build::Command", ptr %current_command_result, i32 0, i32 4
+  %flag1 = load ptr, ptr %flag, align 8
+  call void @"Vector::Vec<char*>_push_T"(ptr %2, ptr %flag1)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_addCDependency_char*_Vector::Vec<char*>"(ptr %0, ptr %1, %"Vector::Vec<char*>" %2) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_addCDependency_char*_Vector::Vec<char*>"(ptr %0, ptr %1, %"Vector::Vec<char*>" %2) !qc.return_types !36 {
 entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<char*>" %2, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<char*>" %2, 1
-  %.fca.2.extract = extractvalue %"Vector::Vec<char*>" %2, 2
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %cmd4.fca.0.insert = insertvalue %"CQB::Build::Command" poison, ptr %1, 0
-  %cmd4.fca.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.0.insert, ptr @.str.71, 1
-  %cmd4.fca.2.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.1.insert, ptr %.fca.0.extract, 2, 0
-  %cmd4.fca.2.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.0.insert, i32 %.fca.1.extract, 2, 1
-  %cmd4.fca.2.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.1.insert, i32 %.fca.2.extract, 2, 2
-  %cmd4.fca.3.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.2.2.insert, ptr %1, 3
-  %cmd4.fca.4.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.3.insert, ptr null, 4, 0
-  %cmd4.fca.4.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.0.insert, i32 0, 4, 1
-  %cmd4.fca.4.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.1.insert, i32 0, 4, 2
-  %cmd4.fca.5.0.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.4.2.insert, ptr null, 5, 0
-  %cmd4.fca.5.1.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.5.0.insert, i32 0, 5, 1
-  %cmd4.fca.5.2.insert = insertvalue %"CQB::Build::Command" %cmd4.fca.5.1.insert, i32 0, 5, 2
-  tail call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr nonnull %3, %"CQB::Build::Command" %cmd4.fca.5.2.insert)
+  %"temp_Vector::Vec<char*>" = alloca %"Vector::Vec<char*>", align 8
+  %cmd = alloca %"CQB::Build::Command", align 8
+  %cSourceFiles = alloca %"Vector::Vec<char*>", align 8
+  %targetName = alloca ptr, align 8
+  store ptr null, ptr %targetName, align 8
+  store ptr %1, ptr %targetName, align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %cSourceFiles, align 8
+  store %"Vector::Vec<char*>" %2, ptr %cSourceFiles, align 8
+  call void @llvm.memset.inline.p0.i64(ptr align 8 %cmd, i8 0, i64 72, i1 false)
+  store %"CQB::Build::Command" zeroinitializer, ptr %cmd, align 8
+  %targetName1 = load ptr, ptr %targetName, align 8
+  %targetName_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 0
+  store ptr %targetName1, ptr %targetName_ptr, align 8
+  %commandBin_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 1
+  store ptr @.str.27, ptr %commandBin_ptr, align 8
+  %cSourceFiles2 = load %"Vector::Vec<char*>", ptr %cSourceFiles, align 8
+  %inputs_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 2
+  store %"Vector::Vec<char*>" %cSourceFiles2, ptr %inputs_ptr, align 8
+  %targetName3 = load ptr, ptr %targetName, align 8
+  %outputArtifact_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 3
+  store ptr %targetName3, ptr %outputArtifact_ptr, align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %"temp_Vector::Vec<char*>", align 8
+  call void @"Vector::Vec<char*>_Vec"(ptr %"temp_Vector::Vec<char*>")
+  %"Vector::Vec<char*>_inst" = load %"Vector::Vec<char*>", ptr %"temp_Vector::Vec<char*>", align 8
+  %dependencies_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %cmd, i32 0, i32 5
+  store %"Vector::Vec<char*>" %"Vector::Vec<char*>_inst", ptr %dependencies_ptr, align 8
+  %3 = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 1
+  %cmd4 = load %"CQB::Build::Command", ptr %cmd, align 8
+  call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr %3, %"CQB::Build::Command" %cmd4)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::Build::Builder_dependsOn_char*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !50 {
+define weak_odr ptr @"CQB::Build::Builder_dependsOn_char*"(ptr %0, ptr %1) !qc.return_types !36 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 16
-  %size.i.i = load i32, ptr %3, align 4
-  %icmpeq.i = icmp eq i32 %size.i.i, 0
-  br i1 %icmpeq.i, label %then.i, label %"CQB::Build::Builder_current_command.exit"
-
-then.i:                                           ; preds = %entry
-  tail call void @"Vector::Vec<CQB::Build::Command>_push_T"(ptr nonnull %2, %"CQB::Build::Command" zeroinitializer)
-  %size.i2.pre.i = load i32, ptr %3, align 4
-  br label %"CQB::Build::Builder_current_command.exit"
-
-"CQB::Build::Builder_current_command.exit":       ; preds = %entry, %then.i
-  %size.i2.i = phi i32 [ %size.i2.pre.i, %then.i ], [ %size.i.i, %entry ]
-  %sub.i = add i32 %size.i2.i, -1
-  %4 = sext i32 %sub.i to i64
-  %data.i.i = load ptr, ptr %2, align 8
-  %lval_ptr_arr_addr.i.i = getelementptr [72 x i8], ptr %data.i.i, i64 %4
-  %5 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i.i, i64 56
-  %6 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i.i, i64 68
-  %capacity.i = load i32, ptr %6, align 4
-  %7 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i.i, i64 64
-  %size.i = load i32, ptr %7, align 4
-  %icmple.not.i = icmp sgt i32 %capacity.i, %size.i
-  %data6.pre.i = load ptr, ptr %5, align 8
-  br i1 %icmple.not.i, label %ifcont.i, label %then.i2
-
-then.i2:                                          ; preds = %"CQB::Build::Builder_current_command.exit"
-  %icmpeq.i3 = icmp eq i32 %capacity.i, 0
-  %mul.i = shl i32 %capacity.i, 1
-  %select_val.i = select i1 %icmpeq.i3, i32 1, i32 %mul.i
-  %icmpeq.i.i = icmp eq i32 %select_val.i, 0
-  br i1 %icmpeq.i.i, label %then.i.i, label %ifcont.i.i
-
-then.i.i:                                         ; preds = %then.i2
-  tail call fastcc void @qc_free(ptr %data6.pre.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %5, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<char*>_push_T.exit"
-
-ifcont.i.i:                                       ; preds = %then.i2
-  %promote_int.i.i = sext i32 %select_val.i to i64
-  %mul.i.i = shl nsw i64 %promote_int.i.i, 3
-  %builtin_call.i.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre.i, i64 %mul.i.i)
-  %ptr_eq.i.i = icmp eq ptr %builtin_call.i.i, null
-  br i1 %ptr_eq.i.i, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i
-
-ifcont5.i.i:                                      ; preds = %ifcont.i.i
-  store i32 %select_val.i, ptr %6, align 4
-  %size.i.i4 = load i32, ptr %7, align 8
-  %icmpgt.i.i = icmp sgt i32 %size.i.i4, %select_val.i
-  br i1 %icmpgt.i.i, label %then8.i.i, label %"Vector::Vec<char*>_reserve_int.exit.thread.i"
-
-then8.i.i:                                        ; preds = %ifcont5.i.i
-  store i32 %select_val.i, ptr %7, align 8
-  br label %"Vector::Vec<char*>_reserve_int.exit.thread.i"
-
-"Vector::Vec<char*>_reserve_int.exit.thread.i":   ; preds = %then8.i.i, %ifcont5.i.i
-  %size511.i = phi i32 [ %size.i.i4, %ifcont5.i.i ], [ %select_val.i, %then8.i.i ]
-  store ptr %builtin_call.i.i, ptr %5, align 8
-  br label %ifcont.i
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i
-  %data.pr.i = load ptr, ptr %5, align 8
-  %8 = icmp eq ptr %data.pr.i, null
-  br i1 %8, label %"Vector::Vec<char*>_push_T.exit", label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i"
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i": ; preds = %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i"
-  %size5.pre.i = load i32, ptr %7, align 8
-  br label %ifcont.i
-
-ifcont.i:                                         ; preds = %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i", %"Vector::Vec<char*>_reserve_int.exit.thread.i", %"CQB::Build::Builder_current_command.exit"
-  %data6.i = phi ptr [ %data.pr.i, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %builtin_call.i.i, %"Vector::Vec<char*>_reserve_int.exit.thread.i" ], [ %data6.pre.i, %"CQB::Build::Builder_current_command.exit" ]
-  %size5.i = phi i32 [ %size5.pre.i, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %size511.i, %"Vector::Vec<char*>_reserve_int.exit.thread.i" ], [ %size.i, %"CQB::Build::Builder_current_command.exit" ]
-  %9 = sext i32 %size5.i to i64
-  %ptr_arr_asi.i = getelementptr [8 x i8], ptr %data6.i, i64 %9
-  store ptr %1, ptr %ptr_arr_asi.i, align 8
-  %inc_deref.i = load i32, ptr %7, align 8
-  %inc.i = add i32 %inc_deref.i, 1
-  store i32 %inc.i, ptr %7, align 8
-  br label %"Vector::Vec<char*>_push_T.exit"
-
-"Vector::Vec<char*>_push_T.exit":                 ; preds = %then.i.i, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", %ifcont.i
+  %dependencyName = alloca ptr, align 8
+  store ptr null, ptr %dependencyName, align 8
+  store ptr %1, ptr %dependencyName, align 8
+  %current_command_result = call ptr @"CQB::Build::Builder_current_command"(ptr %0)
+  %2 = getelementptr inbounds nuw %"CQB::Build::Command", ptr %current_command_result, i32 0, i32 5
+  %dependencyName1 = load ptr, ptr %dependencyName, align 8
+  call void @"Vector::Vec<char*>_push_T"(ptr %2, ptr %dependencyName1)
   ret ptr %0
 }
 
-define weak_odr %"Vector::Vec<CQB::Build::Command>" @"CQB::Build::Builder_extractGraph"(ptr %0) local_unnamed_addr !qc.return_types !51 {
+define weak_odr %"Vector::Vec<CQB::Build::Command>" @"CQB::Build::Builder_extractGraph"(ptr %0) !qc.return_types !37 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %commands.unpack = load ptr, ptr %1, align 8
-  %2 = insertvalue %"Vector::Vec<CQB::Build::Command>" poison, ptr %commands.unpack, 0
-  %commands.elt1 = getelementptr inbounds nuw i8, ptr %0, i64 16
-  %commands.unpack2 = load i32, ptr %commands.elt1, align 8
-  %3 = insertvalue %"Vector::Vec<CQB::Build::Command>" %2, i32 %commands.unpack2, 1
-  %commands.elt3 = getelementptr inbounds nuw i8, ptr %0, i64 20
-  %commands.unpack4 = load i32, ptr %commands.elt3, align 4
-  %commands5 = insertvalue %"Vector::Vec<CQB::Build::Command>" %3, i32 %commands.unpack4, 2
-  ret %"Vector::Vec<CQB::Build::Command>" %commands5
+  %1 = getelementptr inbounds nuw %"CQB::Build::Builder", ptr %0, i32 0, i32 1
+  %commands = load %"Vector::Vec<CQB::Build::Command>", ptr %1, align 8
+  ret %"Vector::Vec<CQB::Build::Command>" %commands
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Task*>_Vec"(ptr %0) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"Vector::Vec<CQB::CI::Task*>_Vec"(ptr %0) !qc.return_types !23 {
 entry:
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
   ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Task*>_reserve_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::CI::Task*>_reserve_int"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  %icmpeq = icmp eq i32 %1, 0
-  %data = load ptr, ptr %0, align 8
+  %"Vector::new_data" = alloca ptr, align 8
+  %cap = alloca i32, align 4
+  store i32 0, ptr %cap, align 4
+  store i32 %1, ptr %cap, align 4
+  %cap1 = load i32, ptr %cap, align 4
+  %icmpeq = icmp eq i32 %cap1, 0
   br i1 %icmpeq, label %then, label %ifcont
 
-common.ret:                                       ; preds = %ifcont, %ifcont9, %then
+then:                                             ; preds = %entry
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
   ret void
 
-then:                                             ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
 ifcont:                                           ; preds = %entry
-  %promote_int = sext i32 %1 to i64
-  %mul = shl nsw i64 %promote_int, 3
-  %builtin_call = tail call fastcc ptr @qc_realloc(ptr %data, i64 %mul)
-  %ptr_eq = icmp eq ptr %builtin_call, null
-  br i1 %ptr_eq, label %common.ret, label %ifcont5
+  store ptr null, ptr %"Vector::new_data", align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data2 = load ptr, ptr %3, align 8
+  %cap3 = load i32, ptr %cap, align 4
+  %promote_int = sext i32 %cap3 to i64
+  %mul = mul i64 8, %promote_int
+  %builtin_call = call ptr @qc_realloc(ptr %data2, i64 %mul)
+  store ptr %builtin_call, ptr %"Vector::new_data", align 8
+  %new_data = load ptr, ptr %"Vector::new_data", align 8
+  %ptr_eq = icmp eq ptr %new_data, null
+  br i1 %ptr_eq, label %then4, label %ifcont5
+
+then4:                                            ; preds = %ifcont
+  ret void
 
 ifcont5:                                          ; preds = %ifcont
-  %capacity_ptr7 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %1, ptr %capacity_ptr7, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %2, align 8
-  %icmpgt = icmp sgt i32 %size, %1
+  %cap6 = load i32, ptr %cap, align 4
+  %capacity_ptr7 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  store i32 %cap6, ptr %capacity_ptr7, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %4, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %5, align 4
+  %icmpgt = icmp sgt i32 %size, %capacity
   br i1 %icmpgt, label %then8, label %ifcont9
 
 then8:                                            ; preds = %ifcont5
-  store i32 %1, ptr %2, align 8
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  %capacity10 = load i32, ptr %6, align 4
+  %size_ptr11 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  store i32 %capacity10, ptr %size_ptr11, align 4
   br label %ifcont9
 
 ifcont9:                                          ; preds = %then8, %ifcont5
-  store ptr %builtin_call, ptr %0, align 8
-  br label %common.ret
+  %new_data12 = load ptr, ptr %"Vector::new_data", align 8
+  %data_ptr13 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  store ptr %new_data12, ptr %data_ptr13, align 8
+  ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Task*>_push_T"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::CI::Task*>_push_T"(ptr %0, ptr %1) !qc.return_types !21 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %value = alloca ptr, align 8
+  store ptr null, ptr %value, align 8
+  store ptr %1, ptr %value, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
   %capacity = load i32, ptr %2, align 4
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %3, align 4
-  %icmple.not = icmp sgt i32 %capacity, %size
-  %data6.pre = load ptr, ptr %0, align 8
-  br i1 %icmple.not, label %ifcont, label %then
+  %icmple = icmp sle i32 %capacity, %size
+  br i1 %icmple, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %icmpeq = icmp eq i32 %capacity, 0
-  %mul = shl i32 %capacity, 1
-  %select_val = select i1 %icmpeq, i32 1, i32 %mul
-  %icmpeq.i = icmp eq i32 %select_val, 0
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %4, align 4
+  %icmpeq = icmp eq i32 %capacity1, 0
+  br i1 %icmpeq, label %ternary.true, label %ternary.false
 
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data6.pre)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %select_val to i64
-  %mul.i = shl nsw i64 %promote_int.i, 3
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %select_val, ptr %2, align 4
-  %size.i = load i32, ptr %3, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %select_val
-  br i1 %icmpgt.i, label %then8.i, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread"
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %select_val, ptr %3, align 8
-  br label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread"
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread": ; preds = %ifcont5.i, %then8.i
-  %size511 = phi i32 [ %size.i, %ifcont5.i ], [ %select_val, %then8.i ]
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split": ; preds = %ifcont.i
-  %data.pr = load ptr, ptr %0, align 8
-  %4 = icmp eq ptr %data.pr, null
-  br i1 %4, label %common.ret, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge"
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge": ; preds = %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split"
-  %size5.pre = load i32, ptr %3, align 8
-  br label %ifcont
-
-common.ret:                                       ; preds = %then.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split", %ifcont
+ifcont:                                           ; preds = %ifcont4, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  %size5 = load i32, ptr %5, align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data6 = load ptr, ptr %6, align 8
+  %ptr_arr_asi = getelementptr ptr, ptr %data6, i32 %size5
+  %value7 = load ptr, ptr %value, align 8
+  store ptr %value7, ptr %ptr_arr_asi, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %size_ptr, align 4
   ret void
 
-ifcont:                                           ; preds = %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge", %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread", %entry
-  %data6 = phi ptr [ %data.pr, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %builtin_call.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread" ], [ %data6.pre, %entry ]
-  %size5 = phi i32 [ %size5.pre, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %size511, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread" ], [ %size, %entry ]
-  %5 = sext i32 %size5 to i64
-  %ptr_arr_asi = getelementptr [8 x i8], ptr %data6, i64 %5
-  store ptr %1, ptr %ptr_arr_asi, align 8
-  %inc_deref = load i32, ptr %3, align 8
-  %inc = add i32 %inc_deref, 1
-  store i32 %inc, ptr %3, align 8
-  br label %common.ret
+ternary.true:                                     ; preds = %then
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %then
+  %7 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  %capacity2 = load i32, ptr %7, align 4
+  %mul = mul i32 %capacity2, 2
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ 1, %ternary.true ], [ %mul, %ternary.false ]
+  call void @"Vector::Vec<CQB::CI::Task*>_reserve_int"(ptr %0, i32 %ternary_val)
+  %8 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %8, align 8
+  %ptr_eq = icmp eq ptr %data, null
+  br i1 %ptr_eq, label %then3, label %ifcont4
+
+then3:                                            ; preds = %ternary.end
+  ret void
+
+ifcont4:                                          ; preds = %ternary.end
+  br label %ifcont
 }
 
-define weak_odr i32 @"Vector::Vec<CQB::CI::Task*>_length"(ptr %0) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"Vector::Vec<CQB::CI::Task*>_length"(ptr %0) !qc.return_types !30 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   ret i32 %size
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Task*>_pop"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::CI::Task*>_pop"(ptr %0) !qc.return_types !21 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpgt = icmp sgt i32 %size, 0
   br i1 %icmpgt, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %dec = add nsw i32 %size, -1
-  store i32 %dec, ptr %1, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %size_ptr, align 4
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
   ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Task*>_shrinkToFit"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::CI::Task*>_shrinkToFit"(ptr %0) !qc.return_types !21 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
-  %icmpeq.i = icmp eq i32 %size, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit"
-
-ifcont.i:                                         ; preds = %entry
-  %promote_int.i = sext i32 %size to i64
-  %mul.i = shl nsw i64 %promote_int.i, 3
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  %capacity_ptr7.i = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %size, ptr %capacity_ptr7.i, align 4
-  %size.i = load i32, ptr %1, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %size
-  br i1 %icmpgt.i, label %then8.i, label %ifcont9.i
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %size, ptr %1, align 8
-  br label %ifcont9.i
-
-ifcont9.i:                                        ; preds = %then8.i, %ifcont5.i
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit"
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exit":   ; preds = %then.i, %ifcont.i, %ifcont9.i
+  call void @"Vector::Vec<CQB::CI::Task*>_reserve_int"(ptr %0, i32 %size)
   ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Task*>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::CI::Task*>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) !qc.return_types !21 {
 entry:
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %3, align 4
-  %icmpne.not = icmp eq i32 %size, 0
-  br i1 %icmpne.not, label %ifcont, label %then
+  %"Vector::i" = alloca i32, align 4
+  %length = alloca i64, align 8
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i64 0, ptr %length, align 8
+  store i64 %2, ptr %length, align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, 0
+  br i1 %icmpne, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %data1 = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data1)
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data1 = load ptr, ptr %4, align 8
+  call void @qc_free(ptr %data1)
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %trunc = trunc i64 %2 to i32
+  %length2 = load i64, ptr %length, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  %trunc = trunc i64 %length2 to i32
   store i32 %trunc, ptr %capacity_ptr, align 4
-  store i32 %trunc, ptr %3, align 4
-  %sext = shl i64 %2, 32
-  %mul = ashr exact i64 %sext, 29
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 %mul)
-  store ptr %builtin_call, ptr %0, align 8
-  %size514 = load i32, ptr %3, align 8
-  %icmplt15 = icmp sgt i32 %size514, 0
-  br i1 %icmplt15, label %for.body, label %for.end
+  %length3 = load i64, ptr %length, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  %trunc4 = trunc i64 %length3 to i32
+  store i32 %trunc4, ptr %size_ptr, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  %capacity5 = load i32, ptr %5, align 4
+  %promote_int = sext i32 %capacity5 to i64
+  %mul = mul i64 8, %promote_int
+  %builtin_call = call ptr @qc_malloc(i64 %mul)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  store ptr %builtin_call, ptr %data_ptr, align 8
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
 
-for.body:                                         ; preds = %ifcont, %for.body
-  %indvars.iv = phi i64 [ %indvars.iv.next, %for.body ], [ 0, %ifcont ]
-  %data7 = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr [8 x i8], ptr %data7, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr [8 x i8], ptr %1, i64 %indvars.iv
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size
+  br i1 %icmplt, label %for.body, label %for.end
+
+for.body:                                         ; preds = %for.cond
+  %i6 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data7 = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr ptr, ptr %data7, i32 %i6
+  %i8 = load i32, ptr %"Vector::i", align 4
+  %data9 = load ptr, ptr %data, align 8
+  %ptr_arr_addr = getelementptr ptr, ptr %data9, i32 %i8
   %ptr_arr_val = load ptr, ptr %ptr_arr_addr, align 8
   store ptr %ptr_arr_val, ptr %ptr_arr_asi, align 8
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
-  %size5 = load i32, ptr %3, align 8
-  %4 = sext i32 %size5 to i64
-  %icmplt = icmp slt i64 %indvars.iv.next, %4
-  br i1 %icmplt, label %for.body, label %for.end
+  br label %for.inc
 
-for.end:                                          ; preds = %for.body, %ifcont
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
+
+for.end:                                          ; preds = %for.cond
   ret void
 }
 
-define weak_odr ptr @"Vector::Vec<CQB::CI::Task*>_operator[]_addr_t"(ptr %0, i64 %1) local_unnamed_addr !qc.return_types !40 {
+define weak_odr ptr @"Vector::Vec<CQB::CI::Task*>_operator[]_addr_t"(ptr %0, i64 %1) !qc.return_types !31 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %lval_ptr_arr_addr = getelementptr [8 x i8], ptr %data, i64 %1
+  %index = alloca i64, align 8
+  store i64 0, ptr %index, align 8
+  store i64 %1, ptr %index, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %index1 = load i64, ptr %index, align 8
+  %lval_ptr_arr_addr = getelementptr ptr, ptr %data, i64 %index1
   ret ptr %lval_ptr_arr_addr
 }
 
-define weak_odr void @"Vector::Iterator::It<CQB::CI::Task*>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"Vector::Iterator::It<CQB::CI::Task*>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) !qc.return_types !23 {
 entry:
-  store ptr %1, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %2, ptr %size_ptr, align 8
-  %select_val = select i1 %3, i32 %2, i32 0
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %select_val, ptr %current_index_ptr, align 4
+  %is_end = alloca i1, align 1
+  %size = alloca i32, align 4
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i32 0, ptr %size, align 4
+  store i32 %2, ptr %size, align 4
+  store i1 false, ptr %is_end, align 1
+  store i1 %3, ptr %is_end, align 1
+  %data1 = load ptr, ptr %data, align 8
+  %data_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  store ptr %data1, ptr %data_ptr, align 8
+  %size2 = load i32, ptr %size, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  store i32 %size2, ptr %size_ptr, align 4
+  %is_end3 = load i1, ptr %is_end, align 1
+  br i1 %is_end3, label %ternary.true, label %ternary.false
+
+ternary.true:                                     ; preds = %entry
+  %size4 = load i32, ptr %size, align 4
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %entry
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ %size4, %ternary.true ], [ 0, %ternary.false ]
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  store i32 %ternary_val, ptr %current_index_ptr, align 4
   ret void
 }
 
-define weak_odr i1 @"Vector::Iterator::It<CQB::CI::Task*>__atEnd"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Iterator::It<CQB::CI::Task*>__atEnd"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 2
   %current_index = load i32, ptr %2, align 4
   %icmple = icmp sle i32 %size, %current_index
   ret i1 %icmple
 }
 
-define weak_odr ptr @"Vector::Iterator::It<CQB::CI::Task*>__next"(ptr %0) local_unnamed_addr !qc.return_types !41 {
+define weak_odr ptr @"Vector::Iterator::It<CQB::CI::Task*>__next"(ptr %0) !qc.return_types !32 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.72, ptr nonnull @6, i32 132) #29
+  call void @__qc_panic(ptr @.str.28, ptr @4, i32 40) #29
   unreachable
 
 ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i.not = icmp sgt i32 %size, %current_index.i
-  br i1 %icmple.i.not, label %then1, label %ifcont2
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %sub.sink = phi i32 [ %sub, %ifcont2 ], [ %current_index.i, %then1 ]
-  %data4 = load ptr, ptr %0, align 8
-  %3 = sext i32 %sub.sink to i64
-  %ptr_arr_addr5 = getelementptr [8 x i8], ptr %data4, i64 %3
-  %common.ret.op = load ptr, ptr %ptr_arr_addr5, align 8
-  ret ptr %common.ret.op
+  %_atEnd_result = call i1 @"Vector::Iterator::It<CQB::CI::Task*>__atEnd"(ptr %0)
+  %not = xor i1 %_atEnd_result, true
+  br i1 %not, label %then1, label %ifcont2
 
 then1:                                            ; preds = %ifcont
-  %inc = add nsw i32 %current_index.i, 1
-  store i32 %inc, ptr %2, align 4
-  br label %common.ret
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr ptr, ptr %data, i32 %inc_deref
+  %ptr_arr_val = load ptr, ptr %ptr_arr_addr, align 8
+  ret ptr %ptr_arr_val
 
 ifcont2:                                          ; preds = %ifcont
-  %sub = add i32 %size, -1
-  br label %common.ret
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  %size3 = load i32, ptr %3, align 4
+  %sub = sub i32 %size3, 1
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data4 = load ptr, ptr %4, align 8
+  %ptr_arr_addr5 = getelementptr ptr, ptr %data4, i32 %sub
+  %ptr_arr_val6 = load ptr, ptr %ptr_arr_addr5, align 8
+  ret ptr %ptr_arr_val6
 }
 
-define weak_odr i1 @"Vector::Iterator::It<CQB::CI::Task*>__atStart"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Iterator::It<CQB::CI::Task*>__atStart"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 2
   %current_index = load i32, ptr %1, align 4
-  %icmple = icmp slt i32 %current_index, 1
+  %icmple = icmp sle i32 %current_index, 0
   ret i1 %icmple
 }
 
-define weak_odr ptr @"Vector::Iterator::It<CQB::CI::Task*>__prev"(ptr %0) local_unnamed_addr !qc.return_types !41 {
+define weak_odr ptr @"Vector::Iterator::It<CQB::CI::Task*>__prev"(ptr %0) !qc.return_types !32 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.73, ptr nonnull @6, i32 144) #29
+  call void @__qc_panic(ptr @.str.29, ptr @5, i32 56) #29
   unreachable
 
 ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i = icmp slt i32 %current_index.i, 1
-  br i1 %icmple.i, label %ifcont2, label %then1
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %common.ret.op.in = phi ptr [ %ptr_arr_addr, %then1 ], [ %ptr_arr_addr4, %ifcont2 ]
-  %common.ret.op = load ptr, ptr %common.ret.op.in, align 8
-  ret ptr %common.ret.op
+  %_atStart_result = call i1 @"Vector::Iterator::It<CQB::CI::Task*>__atStart"(ptr %0)
+  %not = xor i1 %_atStart_result, true
+  br i1 %not, label %then1, label %ifcont2
 
 then1:                                            ; preds = %ifcont
-  %dec = add nsw i32 %current_index.i, -1
-  store i32 %dec, ptr %2, align 4
-  %data = load ptr, ptr %0, align 8
-  %3 = zext nneg i32 %dec to i64
-  %ptr_arr_addr = getelementptr [8 x i8], ptr %data, i64 %3
-  br label %common.ret
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr ptr, ptr %data, i32 %dec
+  %ptr_arr_val = load ptr, ptr %ptr_arr_addr, align 8
+  ret ptr %ptr_arr_val
 
 ifcont2:                                          ; preds = %ifcont
-  %data3 = load ptr, ptr %0, align 8
-  %4 = sext i32 %current_index.i to i64
-  %ptr_arr_addr4 = getelementptr [8 x i8], ptr %data3, i64 %4
-  br label %common.ret
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  %current_index = load i32, ptr %3, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data3 = load ptr, ptr %4, align 8
+  %ptr_arr_addr4 = getelementptr ptr, ptr %data3, i32 %current_index
+  %ptr_arr_val5 = load ptr, ptr %ptr_arr_addr4, align 8
+  ret ptr %ptr_arr_val5
 }
 
-define weak_odr void @"Vector::Iterator::It<CQB::CI::Task*>__moveTo_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Iterator::It<CQB::CI::Task*>__moveTo_int"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %index = alloca i32, align 4
+  store i32 0, ptr %index, align 4
+  store i32 %1, ptr %index, align 4
+  %index1 = load i32, ptr %index, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %2, align 4
-  %icmpge.not = icmp slt i32 %1, %size
-  %sub = add i32 %size, -1
-  %spec.store.select = tail call i32 @llvm.smax.i32(i32 %1, i32 0)
-  %index.0 = select i1 %icmpge.not, i32 %spec.store.select, i32 %sub
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %index.0, ptr %current_index_ptr, align 4
+  %icmpge = icmp sge i32 %index1, %size
+  br i1 %icmpge, label %then, label %elif.cond
+
+then:                                             ; preds = %entry
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  %size2 = load i32, ptr %3, align 4
+  %sub = sub i32 %size2, 1
+  store i32 %sub, ptr %index, align 4
+  br label %ifcont
+
+ifcont:                                           ; preds = %elif.body, %elif.cond, %then
+  %index4 = load i32, ptr %index, align 4
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  store i32 %index4, ptr %current_index_ptr, align 4
   ret void
+
+elif.cond:                                        ; preds = %entry
+  %index3 = load i32, ptr %index, align 4
+  %icmplt = icmp slt i32 %index3, 0
+  br i1 %icmplt, label %elif.body, label %ifcont
+
+elif.body:                                        ; preds = %elif.cond
+  store i32 0, ptr %index, align 4
+  br label %ifcont
 }
 
-define weak_odr %"Vector::Iterator::It<CQB::CI::Task*>" @"Vector::Vec<CQB::CI::Task*>__begin"(ptr %0) local_unnamed_addr !qc.return_types !42 {
+define weak_odr %"Vector::Iterator::It<CQB::CI::Task*>" @"Vector::Vec<CQB::CI::Task*>__begin"(ptr %0) !qc.return_types !33 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<CQB::CI::Task*>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<CQB::CI::Task*>" poison, ptr %data, 0
-  %"Vector::Iterator::It<CQB::CI::Task*>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<CQB::CI::Task*>" %"Vector::Iterator::It<CQB::CI::Task*>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<CQB::CI::Task*>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<CQB::CI::Task*>" %"Vector::Iterator::It<CQB::CI::Task*>_inst.fca.1.insert", i32 0, 2
-  ret %"Vector::Iterator::It<CQB::CI::Task*>" %"Vector::Iterator::It<CQB::CI::Task*>_inst.fca.2.insert"
+  %"temp_Vector::Iterator::It<CQB::CI::Task*>" = alloca %"Vector::Iterator::It<CQB::CI::Task*>", align 8
+  store %"Vector::Iterator::It<CQB::CI::Task*>" zeroinitializer, ptr %"temp_Vector::Iterator::It<CQB::CI::Task*>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<CQB::CI::Task*>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<CQB::CI::Task*>", ptr %data, i32 %size, i1 false)
+  %"Vector::Iterator::It<CQB::CI::Task*>_inst" = load %"Vector::Iterator::It<CQB::CI::Task*>", ptr %"temp_Vector::Iterator::It<CQB::CI::Task*>", align 8
+  ret %"Vector::Iterator::It<CQB::CI::Task*>" %"Vector::Iterator::It<CQB::CI::Task*>_inst"
 }
 
-define weak_odr %"Vector::Iterator::It<CQB::CI::Task*>" @"Vector::Vec<CQB::CI::Task*>__end"(ptr %0) local_unnamed_addr !qc.return_types !42 {
+define weak_odr %"Vector::Iterator::It<CQB::CI::Task*>" @"Vector::Vec<CQB::CI::Task*>__end"(ptr %0) !qc.return_types !33 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<CQB::CI::Task*>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<CQB::CI::Task*>" poison, ptr %data, 0
-  %"Vector::Iterator::It<CQB::CI::Task*>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<CQB::CI::Task*>" %"Vector::Iterator::It<CQB::CI::Task*>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<CQB::CI::Task*>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<CQB::CI::Task*>" %"Vector::Iterator::It<CQB::CI::Task*>_inst.fca.1.insert", i32 %size, 2
-  ret %"Vector::Iterator::It<CQB::CI::Task*>" %"Vector::Iterator::It<CQB::CI::Task*>_inst.fca.2.insert"
+  %"temp_Vector::Iterator::It<CQB::CI::Task*>" = alloca %"Vector::Iterator::It<CQB::CI::Task*>", align 8
+  store %"Vector::Iterator::It<CQB::CI::Task*>" zeroinitializer, ptr %"temp_Vector::Iterator::It<CQB::CI::Task*>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<CQB::CI::Task*>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<CQB::CI::Task*>", ptr %data, i32 %size, i1 true)
+  %"Vector::Iterator::It<CQB::CI::Task*>_inst" = load %"Vector::Iterator::It<CQB::CI::Task*>", ptr %"temp_Vector::Iterator::It<CQB::CI::Task*>", align 8
+  ret %"Vector::Iterator::It<CQB::CI::Task*>" %"Vector::Iterator::It<CQB::CI::Task*>_inst"
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Task*>__destroy"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::CI::Task*>__destroy"(ptr %0) !qc.return_types !21 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data)
-  store ptr null, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 -1, ptr %size_ptr, align 8
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  store i32 -1, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
   store i32 -1, ptr %capacity_ptr, align 4
   ret void
 }
 
-define weak_odr ptr @"Vector::Vec<CQB::CI::Task*>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<CQB::CI::Task*>" %1) local_unnamed_addr !qc.return_types !43 {
+define weak_odr ptr @"Vector::Vec<CQB::CI::Task*>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<CQB::CI::Task*>" %1) !qc.return_types !34 {
 entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<CQB::CI::Task*>" %1, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<CQB::CI::Task*>" %1, 1
-  %.fca.2.extract = extractvalue %"Vector::Vec<CQB::CI::Task*>" %1, 2
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %capacity1 = load i32, ptr %2, align 4
-  %icmpne.not = icmp eq i32 %.fca.2.extract, %capacity1
-  br i1 %icmpne.not, label %ifcont, label %then
+  %"Vector::i" = alloca i32, align 4
+  %other = alloca %"Vector::Vec<CQB::CI::Task*>", align 8
+  store %"Vector::Vec<CQB::CI::Task*>" zeroinitializer, ptr %other, align 8
+  store %"Vector::Vec<CQB::CI::Task*>" %1, ptr %other, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %other, i32 0, i32 2
+  %capacity = load i32, ptr %2, align 4
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, %capacity1
+  br i1 %icmpne, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %icmpeq.i = icmp eq i32 %.fca.2.extract, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %other, i32 0, i32 2
+  %capacity2 = load i32, ptr %4, align 4
+  call void @"Vector::Vec<CQB::CI::Task*>_reserve_int"(ptr %0, i32 %capacity2)
   br label %ifcont
 
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %.fca.2.extract to i64
-  %mul.i = shl nsw i64 %promote_int.i, 3
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %ifcont, label %ifcont5.i
+ifcont:                                           ; preds = %then, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %other, i32 0, i32 1
+  %size = load i32, ptr %5, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
+  store i32 %size, ptr %size_ptr, align 4
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
 
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %.fca.2.extract, ptr %2, align 4
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %other, i32 0, i32 1
+  %size3 = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size3
+  br i1 %icmplt, label %for.body, label %for.end
 
-ifcont:                                           ; preds = %ifcont5.i, %ifcont.i, %then.i, %entry
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %.fca.1.extract, ptr %size_ptr, align 4
-  %icmplt12 = icmp sgt i32 %.fca.1.extract, 0
-  br i1 %icmplt12, label %for.body.preheader, label %for.end
-
-for.body.preheader:                               ; preds = %ifcont
-  %wide.trip.count = zext nneg i32 %.fca.1.extract to i64
-  %xtraiter = and i64 %wide.trip.count, 3
-  %3 = icmp ult i32 %.fca.1.extract, 4
-  br i1 %3, label %for.body.epil.preheader, label %for.body.preheader.new
-
-for.body.preheader.new:                           ; preds = %for.body.preheader
-  %unroll_iter = and i64 %wide.trip.count, 2147483644
-  br label %for.body
-
-for.body:                                         ; preds = %for.body, %for.body.preheader.new
-  %indvars.iv = phi i64 [ 0, %for.body.preheader.new ], [ %indvars.iv.next.3, %for.body ]
-  %niter = phi i64 [ 0, %for.body.preheader.new ], [ %niter.next.3, %for.body ]
-  %data = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr [8 x i8], ptr %data, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr [8 x i8], ptr %.fca.0.extract, i64 %indvars.iv
+for.body:                                         ; preds = %for.cond
+  %i4 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr ptr, ptr %data, i32 %i4
+  %i5 = load i32, ptr %"Vector::i", align 4
+  %8 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %other, i32 0, i32 0
+  %data6 = load ptr, ptr %8, align 8
+  %ptr_arr_addr = getelementptr ptr, ptr %data6, i32 %i5
   %ptr_arr_val = load ptr, ptr %ptr_arr_addr, align 8
   store ptr %ptr_arr_val, ptr %ptr_arr_asi, align 8
-  %indvars.iv.next = or disjoint i64 %indvars.iv, 1
-  %data.1 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.1 = getelementptr [8 x i8], ptr %data.1, i64 %indvars.iv.next
-  %ptr_arr_addr.1 = getelementptr [8 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next
-  %ptr_arr_val.1 = load ptr, ptr %ptr_arr_addr.1, align 8
-  store ptr %ptr_arr_val.1, ptr %ptr_arr_asi.1, align 8
-  %indvars.iv.next.1 = or disjoint i64 %indvars.iv, 2
-  %data.2 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.2 = getelementptr [8 x i8], ptr %data.2, i64 %indvars.iv.next.1
-  %ptr_arr_addr.2 = getelementptr [8 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next.1
-  %ptr_arr_val.2 = load ptr, ptr %ptr_arr_addr.2, align 8
-  store ptr %ptr_arr_val.2, ptr %ptr_arr_asi.2, align 8
-  %indvars.iv.next.2 = or disjoint i64 %indvars.iv, 3
-  %data.3 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.3 = getelementptr [8 x i8], ptr %data.3, i64 %indvars.iv.next.2
-  %ptr_arr_addr.3 = getelementptr [8 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next.2
-  %ptr_arr_val.3 = load ptr, ptr %ptr_arr_addr.3, align 8
-  store ptr %ptr_arr_val.3, ptr %ptr_arr_asi.3, align 8
-  %indvars.iv.next.3 = add nuw nsw i64 %indvars.iv, 4
-  %niter.next.3 = add i64 %niter, 4
-  %niter.ncmp.3 = icmp eq i64 %niter.next.3, %unroll_iter
-  br i1 %niter.ncmp.3, label %for.end.loopexit.unr-lcssa, label %for.body
+  br label %for.inc
 
-for.end.loopexit.unr-lcssa:                       ; preds = %for.body
-  %lcmp.mod.not = icmp eq i64 %xtraiter, 0
-  br i1 %lcmp.mod.not, label %for.end, label %for.body.epil.preheader
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
 
-for.body.epil.preheader:                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.preheader
-  %indvars.iv.epil.init = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next.3, %for.end.loopexit.unr-lcssa ]
-  %lcmp.mod15 = icmp ne i64 %xtraiter, 0
-  tail call void @llvm.assume(i1 %lcmp.mod15)
-  br label %for.body.epil
-
-for.body.epil:                                    ; preds = %for.body.epil, %for.body.epil.preheader
-  %indvars.iv.epil = phi i64 [ %indvars.iv.epil.init, %for.body.epil.preheader ], [ %indvars.iv.next.epil, %for.body.epil ]
-  %epil.iter = phi i64 [ 0, %for.body.epil.preheader ], [ %epil.iter.next, %for.body.epil ]
-  %data.epil = load ptr, ptr %0, align 8
-  %ptr_arr_asi.epil = getelementptr [8 x i8], ptr %data.epil, i64 %indvars.iv.epil
-  %ptr_arr_addr.epil = getelementptr [8 x i8], ptr %.fca.0.extract, i64 %indvars.iv.epil
-  %ptr_arr_val.epil = load ptr, ptr %ptr_arr_addr.epil, align 8
-  store ptr %ptr_arr_val.epil, ptr %ptr_arr_asi.epil, align 8
-  %indvars.iv.next.epil = add nuw nsw i64 %indvars.iv.epil, 1
-  %epil.iter.next = add i64 %epil.iter, 1
-  %epil.iter.cmp.not = icmp eq i64 %epil.iter.next, %xtraiter
-  br i1 %epil.iter.cmp.not, label %for.end, label %for.body.epil, !llvm.loop !52
-
-for.end:                                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.epil, %ifcont
+for.end:                                          ; preds = %for.cond
   ret ptr %0
 }
 
-define weak_odr i1 @"Vector::Vec<CQB::CI::Task*>_isEmpty"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Vec<CQB::CI::Task*>_isEmpty"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Task*>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   ret i1 %icmpeq
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Step>_Vec"(ptr %0) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"Vector::Vec<CQB::CI::Step>_Vec"(ptr %0) !qc.return_types !23 {
 entry:
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
   ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Step>_reserve_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::CI::Step>_reserve_int"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  %icmpeq = icmp eq i32 %1, 0
-  %data = load ptr, ptr %0, align 8
+  %"Vector::new_data" = alloca ptr, align 8
+  %cap = alloca i32, align 4
+  store i32 0, ptr %cap, align 4
+  store i32 %1, ptr %cap, align 4
+  %cap1 = load i32, ptr %cap, align 4
+  %icmpeq = icmp eq i32 %cap1, 0
   br i1 %icmpeq, label %then, label %ifcont
 
-common.ret:                                       ; preds = %ifcont, %ifcont9, %then
+then:                                             ; preds = %entry
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
   ret void
 
-then:                                             ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
 ifcont:                                           ; preds = %entry
-  %promote_int = sext i32 %1 to i64
-  %mul = mul nsw i64 %promote_int, 24
-  %builtin_call = tail call fastcc ptr @qc_realloc(ptr %data, i64 %mul)
-  %ptr_eq = icmp eq ptr %builtin_call, null
-  br i1 %ptr_eq, label %common.ret, label %ifcont5
+  store ptr null, ptr %"Vector::new_data", align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data2 = load ptr, ptr %3, align 8
+  %cap3 = load i32, ptr %cap, align 4
+  %promote_int = sext i32 %cap3 to i64
+  %mul = mul i64 24, %promote_int
+  %builtin_call = call ptr @qc_realloc(ptr %data2, i64 %mul)
+  store ptr %builtin_call, ptr %"Vector::new_data", align 8
+  %new_data = load ptr, ptr %"Vector::new_data", align 8
+  %ptr_eq = icmp eq ptr %new_data, null
+  br i1 %ptr_eq, label %then4, label %ifcont5
+
+then4:                                            ; preds = %ifcont
+  ret void
 
 ifcont5:                                          ; preds = %ifcont
-  %capacity_ptr7 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %1, ptr %capacity_ptr7, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %2, align 8
-  %icmpgt = icmp sgt i32 %size, %1
+  %cap6 = load i32, ptr %cap, align 4
+  %capacity_ptr7 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  store i32 %cap6, ptr %capacity_ptr7, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %4, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %5, align 4
+  %icmpgt = icmp sgt i32 %size, %capacity
   br i1 %icmpgt, label %then8, label %ifcont9
 
 then8:                                            ; preds = %ifcont5
-  store i32 %1, ptr %2, align 8
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  %capacity10 = load i32, ptr %6, align 4
+  %size_ptr11 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  store i32 %capacity10, ptr %size_ptr11, align 4
   br label %ifcont9
 
 ifcont9:                                          ; preds = %then8, %ifcont5
-  store ptr %builtin_call, ptr %0, align 8
-  br label %common.ret
+  %new_data12 = load ptr, ptr %"Vector::new_data", align 8
+  %data_ptr13 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  store ptr %new_data12, ptr %data_ptr13, align 8
+  ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Step>_push_T"(ptr %0, %"CQB::CI::Step" %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::CI::Step>_push_T"(ptr %0, %"CQB::CI::Step" %1) !qc.return_types !21 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %value = alloca %"CQB::CI::Step", align 8
+  store %"CQB::CI::Step" zeroinitializer, ptr %value, align 8
+  store %"CQB::CI::Step" %1, ptr %value, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
   %capacity = load i32, ptr %2, align 4
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %3, align 4
-  %icmple.not = icmp sgt i32 %capacity, %size
-  %data6.pre = load ptr, ptr %0, align 8
-  br i1 %icmple.not, label %ifcont, label %then
+  %icmple = icmp sle i32 %capacity, %size
+  br i1 %icmple, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %icmpeq = icmp eq i32 %capacity, 0
-  %mul = shl i32 %capacity, 1
-  %select_val = select i1 %icmpeq, i32 1, i32 %mul
-  %icmpeq.i = icmp eq i32 %select_val, 0
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %4, align 4
+  %icmpeq = icmp eq i32 %capacity1, 0
+  br i1 %icmpeq, label %ternary.true, label %ternary.false
 
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data6.pre)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %select_val to i64
-  %mul.i = mul nsw i64 %promote_int.i, 24
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<CQB::CI::Step>_reserve_int.exitthread-pre-split", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %select_val, ptr %2, align 4
-  %size.i = load i32, ptr %3, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %select_val
-  br i1 %icmpgt.i, label %then8.i, label %"Vector::Vec<CQB::CI::Step>_reserve_int.exit.thread"
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %select_val, ptr %3, align 8
-  br label %"Vector::Vec<CQB::CI::Step>_reserve_int.exit.thread"
-
-"Vector::Vec<CQB::CI::Step>_reserve_int.exit.thread": ; preds = %ifcont5.i, %then8.i
-  %size517 = phi i32 [ %size.i, %ifcont5.i ], [ %select_val, %then8.i ]
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
-
-"Vector::Vec<CQB::CI::Step>_reserve_int.exitthread-pre-split": ; preds = %ifcont.i
-  %data.pr = load ptr, ptr %0, align 8
-  %4 = icmp eq ptr %data.pr, null
-  br i1 %4, label %common.ret, label %"Vector::Vec<CQB::CI::Step>_reserve_int.exitthread-pre-split.ifcont_crit_edge"
-
-"Vector::Vec<CQB::CI::Step>_reserve_int.exitthread-pre-split.ifcont_crit_edge": ; preds = %"Vector::Vec<CQB::CI::Step>_reserve_int.exitthread-pre-split"
-  %size5.pre = load i32, ptr %3, align 8
-  br label %ifcont
-
-common.ret:                                       ; preds = %then.i, %"Vector::Vec<CQB::CI::Step>_reserve_int.exitthread-pre-split", %ifcont
+ifcont:                                           ; preds = %ifcont4, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  %size5 = load i32, ptr %5, align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data6 = load ptr, ptr %6, align 8
+  %ptr_arr_asi = getelementptr %"CQB::CI::Step", ptr %data6, i32 %size5
+  %value7 = load %"CQB::CI::Step", ptr %value, align 8
+  store %"CQB::CI::Step" %value7, ptr %ptr_arr_asi, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %size_ptr, align 4
   ret void
 
-ifcont:                                           ; preds = %"Vector::Vec<CQB::CI::Step>_reserve_int.exitthread-pre-split.ifcont_crit_edge", %"Vector::Vec<CQB::CI::Step>_reserve_int.exit.thread", %entry
-  %data6 = phi ptr [ %data.pr, %"Vector::Vec<CQB::CI::Step>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %builtin_call.i, %"Vector::Vec<CQB::CI::Step>_reserve_int.exit.thread" ], [ %data6.pre, %entry ]
-  %size5 = phi i32 [ %size5.pre, %"Vector::Vec<CQB::CI::Step>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %size517, %"Vector::Vec<CQB::CI::Step>_reserve_int.exit.thread" ], [ %size, %entry ]
-  %5 = sext i32 %size5 to i64
-  %ptr_arr_asi = getelementptr [24 x i8], ptr %data6, i64 %5
-  %.elt = extractvalue %"CQB::CI::Step" %1, 0
-  store ptr %.elt, ptr %ptr_arr_asi, align 8
-  %ptr_arr_asi.repack8 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 8
-  %.elt9 = extractvalue %"CQB::CI::Step" %1, 1
-  %.elt9.elt = extractvalue %"Vector::Vec<char*>" %.elt9, 0
-  store ptr %.elt9.elt, ptr %ptr_arr_asi.repack8, align 8
-  %ptr_arr_asi.repack8.repack10 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 16
-  %.elt9.elt11 = extractvalue %"Vector::Vec<char*>" %.elt9, 1
-  store i32 %.elt9.elt11, ptr %ptr_arr_asi.repack8.repack10, align 8
-  %ptr_arr_asi.repack8.repack12 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 20
-  %.elt9.elt13 = extractvalue %"Vector::Vec<char*>" %.elt9, 2
-  store i32 %.elt9.elt13, ptr %ptr_arr_asi.repack8.repack12, align 4
-  %inc_deref = load i32, ptr %3, align 8
-  %inc = add i32 %inc_deref, 1
-  store i32 %inc, ptr %3, align 8
-  br label %common.ret
+ternary.true:                                     ; preds = %then
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %then
+  %7 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  %capacity2 = load i32, ptr %7, align 4
+  %mul = mul i32 %capacity2, 2
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ 1, %ternary.true ], [ %mul, %ternary.false ]
+  call void @"Vector::Vec<CQB::CI::Step>_reserve_int"(ptr %0, i32 %ternary_val)
+  %8 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %8, align 8
+  %ptr_eq = icmp eq ptr %data, null
+  br i1 %ptr_eq, label %then3, label %ifcont4
+
+then3:                                            ; preds = %ternary.end
+  ret void
+
+ifcont4:                                          ; preds = %ternary.end
+  br label %ifcont
 }
 
-define weak_odr i32 @"Vector::Vec<CQB::CI::Step>_length"(ptr %0) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"Vector::Vec<CQB::CI::Step>_length"(ptr %0) !qc.return_types !30 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   ret i32 %size
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Step>_pop"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::CI::Step>_pop"(ptr %0) !qc.return_types !21 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpgt = icmp sgt i32 %size, 0
   br i1 %icmpgt, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %dec = add nsw i32 %size, -1
-  store i32 %dec, ptr %1, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %size_ptr, align 4
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
   ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Step>_shrinkToFit"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::CI::Step>_shrinkToFit"(ptr %0) !qc.return_types !21 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
-  %icmpeq.i = icmp eq i32 %size, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<CQB::CI::Step>_reserve_int.exit"
-
-ifcont.i:                                         ; preds = %entry
-  %promote_int.i = sext i32 %size to i64
-  %mul.i = mul nsw i64 %promote_int.i, 24
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<CQB::CI::Step>_reserve_int.exit", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  %capacity_ptr7.i = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %size, ptr %capacity_ptr7.i, align 4
-  %size.i = load i32, ptr %1, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %size
-  br i1 %icmpgt.i, label %then8.i, label %ifcont9.i
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %size, ptr %1, align 8
-  br label %ifcont9.i
-
-ifcont9.i:                                        ; preds = %then8.i, %ifcont5.i
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %"Vector::Vec<CQB::CI::Step>_reserve_int.exit"
-
-"Vector::Vec<CQB::CI::Step>_reserve_int.exit":    ; preds = %then.i, %ifcont.i, %ifcont9.i
+  call void @"Vector::Vec<CQB::CI::Step>_reserve_int"(ptr %0, i32 %size)
   ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Step>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::CI::Step>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) !qc.return_types !21 {
 entry:
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %3, align 4
-  %icmpne.not = icmp eq i32 %size, 0
-  br i1 %icmpne.not, label %ifcont, label %then
+  %"Vector::i" = alloca i32, align 4
+  %length = alloca i64, align 8
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i64 0, ptr %length, align 8
+  store i64 %2, ptr %length, align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, 0
+  br i1 %icmpne, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %data1 = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data1)
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data1 = load ptr, ptr %4, align 8
+  call void @qc_free(ptr %data1)
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %trunc = trunc i64 %2 to i32
+  %length2 = load i64, ptr %length, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  %trunc = trunc i64 %length2 to i32
   store i32 %trunc, ptr %capacity_ptr, align 4
-  store i32 %trunc, ptr %3, align 4
-  %sext = shl i64 %2, 32
-  %promote_int = ashr exact i64 %sext, 32
-  %mul = mul nsw i64 %promote_int, 24
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 %mul)
-  store ptr %builtin_call, ptr %0, align 8
-  %size528 = load i32, ptr %3, align 8
-  %icmplt29 = icmp sgt i32 %size528, 0
-  br i1 %icmplt29, label %for.body, label %for.end
+  %length3 = load i64, ptr %length, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  %trunc4 = trunc i64 %length3 to i32
+  store i32 %trunc4, ptr %size_ptr, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  %capacity5 = load i32, ptr %5, align 4
+  %promote_int = sext i32 %capacity5 to i64
+  %mul = mul i64 24, %promote_int
+  %builtin_call = call ptr @qc_malloc(i64 %mul)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  store ptr %builtin_call, ptr %data_ptr, align 8
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
 
-for.body:                                         ; preds = %ifcont, %for.body
-  %indvars.iv = phi i64 [ %indvars.iv.next, %for.body ], [ 0, %ifcont ]
-  %data7 = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr [24 x i8], ptr %data7, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr [24 x i8], ptr %1, i64 %indvars.iv
-  %ptr_arr_val.unpack = load ptr, ptr %ptr_arr_addr, align 8
-  %ptr_arr_val.elt14 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 8
-  %ptr_arr_val.unpack15.unpack = load ptr, ptr %ptr_arr_val.elt14, align 8
-  %ptr_arr_val.unpack15.elt17 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 16
-  %ptr_arr_val.unpack15.unpack18 = load i32, ptr %ptr_arr_val.unpack15.elt17, align 8
-  %ptr_arr_val.unpack15.elt19 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 20
-  %ptr_arr_val.unpack15.unpack20 = load i32, ptr %ptr_arr_val.unpack15.elt19, align 4
-  store ptr %ptr_arr_val.unpack, ptr %ptr_arr_asi, align 8
-  %ptr_arr_asi.repack22 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 8
-  store ptr %ptr_arr_val.unpack15.unpack, ptr %ptr_arr_asi.repack22, align 8
-  %ptr_arr_asi.repack22.repack24 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 16
-  store i32 %ptr_arr_val.unpack15.unpack18, ptr %ptr_arr_asi.repack22.repack24, align 8
-  %ptr_arr_asi.repack22.repack26 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 20
-  store i32 %ptr_arr_val.unpack15.unpack20, ptr %ptr_arr_asi.repack22.repack26, align 4
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
-  %size5 = load i32, ptr %3, align 8
-  %4 = sext i32 %size5 to i64
-  %icmplt = icmp slt i64 %indvars.iv.next, %4
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size
   br i1 %icmplt, label %for.body, label %for.end
 
-for.end:                                          ; preds = %for.body, %ifcont
+for.body:                                         ; preds = %for.cond
+  %i6 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data7 = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr %"CQB::CI::Step", ptr %data7, i32 %i6
+  %i8 = load i32, ptr %"Vector::i", align 4
+  %data9 = load ptr, ptr %data, align 8
+  %ptr_arr_addr = getelementptr %"CQB::CI::Step", ptr %data9, i32 %i8
+  %ptr_arr_val = load %"CQB::CI::Step", ptr %ptr_arr_addr, align 8
+  store %"CQB::CI::Step" %ptr_arr_val, ptr %ptr_arr_asi, align 8
+  br label %for.inc
+
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
+
+for.end:                                          ; preds = %for.cond
   ret void
 }
 
-define weak_odr ptr @"Vector::Vec<CQB::CI::Step>_operator[]_addr_t"(ptr %0, i64 %1) local_unnamed_addr !qc.return_types !40 {
+define weak_odr ptr @"Vector::Vec<CQB::CI::Step>_operator[]_addr_t"(ptr %0, i64 %1) !qc.return_types !31 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %lval_ptr_arr_addr = getelementptr [24 x i8], ptr %data, i64 %1
+  %index = alloca i64, align 8
+  store i64 0, ptr %index, align 8
+  store i64 %1, ptr %index, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %index1 = load i64, ptr %index, align 8
+  %lval_ptr_arr_addr = getelementptr %"CQB::CI::Step", ptr %data, i64 %index1
   ret ptr %lval_ptr_arr_addr
 }
 
-define weak_odr void @"Vector::Iterator::It<CQB::CI::Step>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"Vector::Iterator::It<CQB::CI::Step>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) !qc.return_types !23 {
 entry:
-  store ptr %1, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %2, ptr %size_ptr, align 8
-  %select_val = select i1 %3, i32 %2, i32 0
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %select_val, ptr %current_index_ptr, align 4
+  %is_end = alloca i1, align 1
+  %size = alloca i32, align 4
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i32 0, ptr %size, align 4
+  store i32 %2, ptr %size, align 4
+  store i1 false, ptr %is_end, align 1
+  store i1 %3, ptr %is_end, align 1
+  %data1 = load ptr, ptr %data, align 8
+  %data_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  store ptr %data1, ptr %data_ptr, align 8
+  %size2 = load i32, ptr %size, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  store i32 %size2, ptr %size_ptr, align 4
+  %is_end3 = load i1, ptr %is_end, align 1
+  br i1 %is_end3, label %ternary.true, label %ternary.false
+
+ternary.true:                                     ; preds = %entry
+  %size4 = load i32, ptr %size, align 4
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %entry
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ %size4, %ternary.true ], [ 0, %ternary.false ]
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  store i32 %ternary_val, ptr %current_index_ptr, align 4
   ret void
 }
 
-define weak_odr i1 @"Vector::Iterator::It<CQB::CI::Step>__atEnd"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Iterator::It<CQB::CI::Step>__atEnd"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 2
   %current_index = load i32, ptr %2, align 4
   %icmple = icmp sle i32 %size, %current_index
   ret i1 %icmple
 }
 
-define weak_odr %"CQB::CI::Step" @"Vector::Iterator::It<CQB::CI::Step>__next"(ptr %0) local_unnamed_addr !qc.return_types !41 {
+define weak_odr %"CQB::CI::Step" @"Vector::Iterator::It<CQB::CI::Step>__next"(ptr %0) !qc.return_types !32 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.76, ptr nonnull @6, i32 132) #29
+  call void @__qc_panic(ptr @.str.32, ptr @6, i32 40) #29
   unreachable
 
 ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i.not = icmp sgt i32 %size, %current_index.i
-  br i1 %icmple.i.not, label %then1, label %ifcont2
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %sub.sink = phi i32 [ %sub, %ifcont2 ], [ %current_index.i, %then1 ]
-  %data4 = load ptr, ptr %0, align 8
-  %3 = sext i32 %sub.sink to i64
-  %ptr_arr_addr5 = getelementptr [24 x i8], ptr %data4, i64 %3
-  %ptr_arr_val.unpack16.unpack21.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 20
-  %ptr_arr_val.unpack16.unpack21.pn = load i32, ptr %ptr_arr_val.unpack16.unpack21.pn.in, align 4
-  %ptr_arr_val.unpack16.unpack19.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 16
-  %ptr_arr_val.unpack16.unpack19.pn = load i32, ptr %ptr_arr_val.unpack16.unpack19.pn.in, align 8
-  %ptr_arr_val.unpack16.unpack.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_addr5, i64 8
-  %ptr_arr_val.unpack16.unpack.pn = load ptr, ptr %ptr_arr_val.unpack16.unpack.pn.in, align 8
-  %.pn25 = insertvalue %"Vector::Vec<char*>" poison, ptr %ptr_arr_val.unpack16.unpack.pn, 0
-  %.pn24 = insertvalue %"Vector::Vec<char*>" %.pn25, i32 %ptr_arr_val.unpack16.unpack19.pn, 1
-  %ptr_arr_val.unpack1622.pn = insertvalue %"Vector::Vec<char*>" %.pn24, i32 %ptr_arr_val.unpack16.unpack21.pn, 2
-  %ptr_arr_val.unpack.pn = load ptr, ptr %ptr_arr_addr5, align 8
-  %.pn = insertvalue %"CQB::CI::Step" poison, ptr %ptr_arr_val.unpack.pn, 0
-  %common.ret.op = insertvalue %"CQB::CI::Step" %.pn, %"Vector::Vec<char*>" %ptr_arr_val.unpack1622.pn, 1
-  ret %"CQB::CI::Step" %common.ret.op
+  %_atEnd_result = call i1 @"Vector::Iterator::It<CQB::CI::Step>__atEnd"(ptr %0)
+  %not = xor i1 %_atEnd_result, true
+  br i1 %not, label %then1, label %ifcont2
 
 then1:                                            ; preds = %ifcont
-  %inc = add nsw i32 %current_index.i, 1
-  store i32 %inc, ptr %2, align 4
-  br label %common.ret
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr %"CQB::CI::Step", ptr %data, i32 %inc_deref
+  %ptr_arr_val = load %"CQB::CI::Step", ptr %ptr_arr_addr, align 8
+  ret %"CQB::CI::Step" %ptr_arr_val
 
 ifcont2:                                          ; preds = %ifcont
-  %sub = add i32 %size, -1
-  br label %common.ret
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  %size3 = load i32, ptr %3, align 4
+  %sub = sub i32 %size3, 1
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data4 = load ptr, ptr %4, align 8
+  %ptr_arr_addr5 = getelementptr %"CQB::CI::Step", ptr %data4, i32 %sub
+  %ptr_arr_val6 = load %"CQB::CI::Step", ptr %ptr_arr_addr5, align 8
+  ret %"CQB::CI::Step" %ptr_arr_val6
 }
 
-define weak_odr i1 @"Vector::Iterator::It<CQB::CI::Step>__atStart"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Iterator::It<CQB::CI::Step>__atStart"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 2
   %current_index = load i32, ptr %1, align 4
-  %icmple = icmp slt i32 %current_index, 1
+  %icmple = icmp sle i32 %current_index, 0
   ret i1 %icmple
 }
 
-define weak_odr %"CQB::CI::Step" @"Vector::Iterator::It<CQB::CI::Step>__prev"(ptr %0) local_unnamed_addr !qc.return_types !41 {
+define weak_odr %"CQB::CI::Step" @"Vector::Iterator::It<CQB::CI::Step>__prev"(ptr %0) !qc.return_types !32 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.77, ptr nonnull @6, i32 144) #29
+  call void @__qc_panic(ptr @.str.33, ptr @7, i32 56) #29
   unreachable
 
 ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i = icmp slt i32 %current_index.i, 1
-  br i1 %icmple.i, label %ifcont2, label %then1
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %ptr_arr_val.unpack.pn.in = phi ptr [ %ptr_arr_addr, %then1 ], [ %ptr_arr_addr4, %ifcont2 ]
-  %ptr_arr_val.unpack15.unpack20.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 20
-  %ptr_arr_val.unpack15.unpack20.pn = load i32, ptr %ptr_arr_val.unpack15.unpack20.pn.in, align 4
-  %ptr_arr_val.unpack15.unpack18.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 16
-  %ptr_arr_val.unpack15.unpack18.pn = load i32, ptr %ptr_arr_val.unpack15.unpack18.pn.in, align 8
-  %ptr_arr_val.unpack15.unpack.pn.in = getelementptr inbounds nuw i8, ptr %ptr_arr_val.unpack.pn.in, i64 8
-  %ptr_arr_val.unpack15.unpack.pn = load ptr, ptr %ptr_arr_val.unpack15.unpack.pn.in, align 8
-  %.pn24 = insertvalue %"Vector::Vec<char*>" poison, ptr %ptr_arr_val.unpack15.unpack.pn, 0
-  %.pn23 = insertvalue %"Vector::Vec<char*>" %.pn24, i32 %ptr_arr_val.unpack15.unpack18.pn, 1
-  %ptr_arr_val.unpack1521.pn = insertvalue %"Vector::Vec<char*>" %.pn23, i32 %ptr_arr_val.unpack15.unpack20.pn, 2
-  %ptr_arr_val.unpack.pn = load ptr, ptr %ptr_arr_val.unpack.pn.in, align 8
-  %.pn = insertvalue %"CQB::CI::Step" poison, ptr %ptr_arr_val.unpack.pn, 0
-  %common.ret.op = insertvalue %"CQB::CI::Step" %.pn, %"Vector::Vec<char*>" %ptr_arr_val.unpack1521.pn, 1
-  ret %"CQB::CI::Step" %common.ret.op
+  %_atStart_result = call i1 @"Vector::Iterator::It<CQB::CI::Step>__atStart"(ptr %0)
+  %not = xor i1 %_atStart_result, true
+  br i1 %not, label %then1, label %ifcont2
 
 then1:                                            ; preds = %ifcont
-  %dec = add nsw i32 %current_index.i, -1
-  store i32 %dec, ptr %2, align 4
-  %data = load ptr, ptr %0, align 8
-  %3 = zext nneg i32 %dec to i64
-  %ptr_arr_addr = getelementptr [24 x i8], ptr %data, i64 %3
-  br label %common.ret
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr %"CQB::CI::Step", ptr %data, i32 %dec
+  %ptr_arr_val = load %"CQB::CI::Step", ptr %ptr_arr_addr, align 8
+  ret %"CQB::CI::Step" %ptr_arr_val
 
 ifcont2:                                          ; preds = %ifcont
-  %data3 = load ptr, ptr %0, align 8
-  %4 = sext i32 %current_index.i to i64
-  %ptr_arr_addr4 = getelementptr [24 x i8], ptr %data3, i64 %4
-  br label %common.ret
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  %current_index = load i32, ptr %3, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data3 = load ptr, ptr %4, align 8
+  %ptr_arr_addr4 = getelementptr %"CQB::CI::Step", ptr %data3, i32 %current_index
+  %ptr_arr_val5 = load %"CQB::CI::Step", ptr %ptr_arr_addr4, align 8
+  ret %"CQB::CI::Step" %ptr_arr_val5
 }
 
-define weak_odr void @"Vector::Iterator::It<CQB::CI::Step>__moveTo_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Iterator::It<CQB::CI::Step>__moveTo_int"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %index = alloca i32, align 4
+  store i32 0, ptr %index, align 4
+  store i32 %1, ptr %index, align 4
+  %index1 = load i32, ptr %index, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %2, align 4
-  %icmpge.not = icmp slt i32 %1, %size
-  %sub = add i32 %size, -1
-  %spec.store.select = tail call i32 @llvm.smax.i32(i32 %1, i32 0)
-  %index.0 = select i1 %icmpge.not, i32 %spec.store.select, i32 %sub
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %index.0, ptr %current_index_ptr, align 4
+  %icmpge = icmp sge i32 %index1, %size
+  br i1 %icmpge, label %then, label %elif.cond
+
+then:                                             ; preds = %entry
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  %size2 = load i32, ptr %3, align 4
+  %sub = sub i32 %size2, 1
+  store i32 %sub, ptr %index, align 4
+  br label %ifcont
+
+ifcont:                                           ; preds = %elif.body, %elif.cond, %then
+  %index4 = load i32, ptr %index, align 4
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  store i32 %index4, ptr %current_index_ptr, align 4
   ret void
+
+elif.cond:                                        ; preds = %entry
+  %index3 = load i32, ptr %index, align 4
+  %icmplt = icmp slt i32 %index3, 0
+  br i1 %icmplt, label %elif.body, label %ifcont
+
+elif.body:                                        ; preds = %elif.cond
+  store i32 0, ptr %index, align 4
+  br label %ifcont
 }
 
-define weak_odr %"Vector::Iterator::It<CQB::CI::Step>" @"Vector::Vec<CQB::CI::Step>__begin"(ptr %0) local_unnamed_addr !qc.return_types !42 {
+define weak_odr %"Vector::Iterator::It<CQB::CI::Step>" @"Vector::Vec<CQB::CI::Step>__begin"(ptr %0) !qc.return_types !33 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<CQB::CI::Step>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<CQB::CI::Step>" poison, ptr %data, 0
-  %"Vector::Iterator::It<CQB::CI::Step>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<CQB::CI::Step>" %"Vector::Iterator::It<CQB::CI::Step>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<CQB::CI::Step>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<CQB::CI::Step>" %"Vector::Iterator::It<CQB::CI::Step>_inst.fca.1.insert", i32 0, 2
-  ret %"Vector::Iterator::It<CQB::CI::Step>" %"Vector::Iterator::It<CQB::CI::Step>_inst.fca.2.insert"
+  %"temp_Vector::Iterator::It<CQB::CI::Step>" = alloca %"Vector::Iterator::It<CQB::CI::Step>", align 8
+  store %"Vector::Iterator::It<CQB::CI::Step>" zeroinitializer, ptr %"temp_Vector::Iterator::It<CQB::CI::Step>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<CQB::CI::Step>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<CQB::CI::Step>", ptr %data, i32 %size, i1 false)
+  %"Vector::Iterator::It<CQB::CI::Step>_inst" = load %"Vector::Iterator::It<CQB::CI::Step>", ptr %"temp_Vector::Iterator::It<CQB::CI::Step>", align 8
+  ret %"Vector::Iterator::It<CQB::CI::Step>" %"Vector::Iterator::It<CQB::CI::Step>_inst"
 }
 
-define weak_odr %"Vector::Iterator::It<CQB::CI::Step>" @"Vector::Vec<CQB::CI::Step>__end"(ptr %0) local_unnamed_addr !qc.return_types !42 {
+define weak_odr %"Vector::Iterator::It<CQB::CI::Step>" @"Vector::Vec<CQB::CI::Step>__end"(ptr %0) !qc.return_types !33 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<CQB::CI::Step>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<CQB::CI::Step>" poison, ptr %data, 0
-  %"Vector::Iterator::It<CQB::CI::Step>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<CQB::CI::Step>" %"Vector::Iterator::It<CQB::CI::Step>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<CQB::CI::Step>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<CQB::CI::Step>" %"Vector::Iterator::It<CQB::CI::Step>_inst.fca.1.insert", i32 %size, 2
-  ret %"Vector::Iterator::It<CQB::CI::Step>" %"Vector::Iterator::It<CQB::CI::Step>_inst.fca.2.insert"
+  %"temp_Vector::Iterator::It<CQB::CI::Step>" = alloca %"Vector::Iterator::It<CQB::CI::Step>", align 8
+  store %"Vector::Iterator::It<CQB::CI::Step>" zeroinitializer, ptr %"temp_Vector::Iterator::It<CQB::CI::Step>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<CQB::CI::Step>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<CQB::CI::Step>", ptr %data, i32 %size, i1 true)
+  %"Vector::Iterator::It<CQB::CI::Step>_inst" = load %"Vector::Iterator::It<CQB::CI::Step>", ptr %"temp_Vector::Iterator::It<CQB::CI::Step>", align 8
+  ret %"Vector::Iterator::It<CQB::CI::Step>" %"Vector::Iterator::It<CQB::CI::Step>_inst"
 }
 
-define weak_odr void @"Vector::Vec<CQB::CI::Step>__destroy"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::CI::Step>__destroy"(ptr %0) !qc.return_types !21 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data)
-  store ptr null, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 -1, ptr %size_ptr, align 8
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  store i32 -1, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
   store i32 -1, ptr %capacity_ptr, align 4
   ret void
 }
 
-define weak_odr ptr @"Vector::Vec<CQB::CI::Step>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<CQB::CI::Step>" %1) local_unnamed_addr !qc.return_types !43 {
+define weak_odr ptr @"Vector::Vec<CQB::CI::Step>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<CQB::CI::Step>" %1) !qc.return_types !34 {
 entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<CQB::CI::Step>" %1, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<CQB::CI::Step>" %1, 1
-  %.fca.2.extract = extractvalue %"Vector::Vec<CQB::CI::Step>" %1, 2
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %capacity1 = load i32, ptr %2, align 4
-  %icmpne.not = icmp eq i32 %.fca.2.extract, %capacity1
-  br i1 %icmpne.not, label %ifcont, label %then
+  %"Vector::i" = alloca i32, align 4
+  %other = alloca %"Vector::Vec<CQB::CI::Step>", align 8
+  store %"Vector::Vec<CQB::CI::Step>" zeroinitializer, ptr %other, align 8
+  store %"Vector::Vec<CQB::CI::Step>" %1, ptr %other, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %other, i32 0, i32 2
+  %capacity = load i32, ptr %2, align 4
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, %capacity1
+  br i1 %icmpne, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %icmpeq.i = icmp eq i32 %.fca.2.extract, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %other, i32 0, i32 2
+  %capacity2 = load i32, ptr %4, align 4
+  call void @"Vector::Vec<CQB::CI::Step>_reserve_int"(ptr %0, i32 %capacity2)
   br label %ifcont
 
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %.fca.2.extract to i64
-  %mul.i = mul nsw i64 %promote_int.i, 24
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %ifcont, label %ifcont5.i
+ifcont:                                           ; preds = %then, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %other, i32 0, i32 1
+  %size = load i32, ptr %5, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
+  store i32 %size, ptr %size_ptr, align 4
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
 
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %.fca.2.extract, ptr %2, align 4
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %other, i32 0, i32 1
+  %size3 = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size3
+  br i1 %icmplt, label %for.body, label %for.end
 
-ifcont:                                           ; preds = %ifcont5.i, %ifcont.i, %then.i, %entry
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %.fca.1.extract, ptr %size_ptr, align 4
-  %icmplt26 = icmp sgt i32 %.fca.1.extract, 0
-  br i1 %icmplt26, label %for.body.preheader, label %for.end
+for.body:                                         ; preds = %for.cond
+  %i4 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr %"CQB::CI::Step", ptr %data, i32 %i4
+  %i5 = load i32, ptr %"Vector::i", align 4
+  %8 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %other, i32 0, i32 0
+  %data6 = load ptr, ptr %8, align 8
+  %ptr_arr_addr = getelementptr %"CQB::CI::Step", ptr %data6, i32 %i5
+  %ptr_arr_val = load %"CQB::CI::Step", ptr %ptr_arr_addr, align 8
+  store %"CQB::CI::Step" %ptr_arr_val, ptr %ptr_arr_asi, align 8
+  br label %for.inc
 
-for.body.preheader:                               ; preds = %ifcont
-  %wide.trip.count = zext nneg i32 %.fca.1.extract to i64
-  %xtraiter = and i64 %wide.trip.count, 1
-  %3 = icmp eq i32 %.fca.1.extract, 1
-  br i1 %3, label %for.body.epil.preheader, label %for.body.preheader.new
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
 
-for.body.preheader.new:                           ; preds = %for.body.preheader
-  %unroll_iter = and i64 %wide.trip.count, 2147483646
-  br label %for.body
-
-for.body:                                         ; preds = %for.body, %for.body.preheader.new
-  %indvars.iv = phi i64 [ 0, %for.body.preheader.new ], [ %indvars.iv.next.1, %for.body ]
-  %niter = phi i64 [ 0, %for.body.preheader.new ], [ %niter.next.1, %for.body ]
-  %data = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr [24 x i8], ptr %data, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr [24 x i8], ptr %.fca.0.extract, i64 %indvars.iv
-  %ptr_arr_val.unpack = load ptr, ptr %ptr_arr_addr, align 8
-  %ptr_arr_val.elt12 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 8
-  %ptr_arr_val.unpack13.unpack = load ptr, ptr %ptr_arr_val.elt12, align 8
-  %ptr_arr_val.unpack13.elt15 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 16
-  %ptr_arr_val.unpack13.unpack16 = load i32, ptr %ptr_arr_val.unpack13.elt15, align 8
-  %ptr_arr_val.unpack13.elt17 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr, i64 20
-  %ptr_arr_val.unpack13.unpack18 = load i32, ptr %ptr_arr_val.unpack13.elt17, align 4
-  store ptr %ptr_arr_val.unpack, ptr %ptr_arr_asi, align 8
-  %ptr_arr_asi.repack20 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 8
-  store ptr %ptr_arr_val.unpack13.unpack, ptr %ptr_arr_asi.repack20, align 8
-  %ptr_arr_asi.repack20.repack22 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 16
-  store i32 %ptr_arr_val.unpack13.unpack16, ptr %ptr_arr_asi.repack20.repack22, align 8
-  %ptr_arr_asi.repack20.repack24 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi, i64 20
-  store i32 %ptr_arr_val.unpack13.unpack18, ptr %ptr_arr_asi.repack20.repack24, align 4
-  %indvars.iv.next = or disjoint i64 %indvars.iv, 1
-  %data.1 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.1 = getelementptr [24 x i8], ptr %data.1, i64 %indvars.iv.next
-  %ptr_arr_addr.1 = getelementptr [24 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next
-  %ptr_arr_val.unpack.1 = load ptr, ptr %ptr_arr_addr.1, align 8
-  %ptr_arr_val.elt12.1 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr.1, i64 8
-  %ptr_arr_val.unpack13.unpack.1 = load ptr, ptr %ptr_arr_val.elt12.1, align 8
-  %ptr_arr_val.unpack13.elt15.1 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr.1, i64 16
-  %ptr_arr_val.unpack13.unpack16.1 = load i32, ptr %ptr_arr_val.unpack13.elt15.1, align 8
-  %ptr_arr_val.unpack13.elt17.1 = getelementptr inbounds nuw i8, ptr %ptr_arr_addr.1, i64 20
-  %ptr_arr_val.unpack13.unpack18.1 = load i32, ptr %ptr_arr_val.unpack13.elt17.1, align 4
-  store ptr %ptr_arr_val.unpack.1, ptr %ptr_arr_asi.1, align 8
-  %ptr_arr_asi.repack20.1 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi.1, i64 8
-  store ptr %ptr_arr_val.unpack13.unpack.1, ptr %ptr_arr_asi.repack20.1, align 8
-  %ptr_arr_asi.repack20.repack22.1 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi.1, i64 16
-  store i32 %ptr_arr_val.unpack13.unpack16.1, ptr %ptr_arr_asi.repack20.repack22.1, align 8
-  %ptr_arr_asi.repack20.repack24.1 = getelementptr inbounds nuw i8, ptr %ptr_arr_asi.1, i64 20
-  store i32 %ptr_arr_val.unpack13.unpack18.1, ptr %ptr_arr_asi.repack20.repack24.1, align 4
-  %indvars.iv.next.1 = add nuw nsw i64 %indvars.iv, 2
-  %niter.next.1 = add i64 %niter, 2
-  %niter.ncmp.1 = icmp eq i64 %niter.next.1, %unroll_iter
-  br i1 %niter.ncmp.1, label %for.end.loopexit.unr-lcssa, label %for.body
-
-for.end.loopexit.unr-lcssa:                       ; preds = %for.body
-  %lcmp.mod.not = icmp eq i64 %xtraiter, 0
-  br i1 %lcmp.mod.not, label %for.end, label %for.body.epil.preheader
-
-for.body.epil.preheader:                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.preheader
-  %indvars.iv.epil.init = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next.1, %for.end.loopexit.unr-lcssa ]
-  %lcmp.mod29 = trunc i32 %.fca.1.extract to i1
-  tail call void @llvm.assume(i1 %lcmp.mod29)
-  %data.epil = load ptr, ptr %0, align 8
-  %ptr_arr_asi.epil = getelementptr [24 x i8], ptr %data.epil, i64 %indvars.iv.epil.init
-  %ptr_arr_addr.epil = getelementptr [24 x i8], ptr %.fca.0.extract, i64 %indvars.iv.epil.init
-  %ptr_arr_val.unpack.epil = load ptr, ptr %ptr_arr_addr.epil, align 8
-  %ptr_arr_val.elt12.epil = getelementptr inbounds nuw i8, ptr %ptr_arr_addr.epil, i64 8
-  %ptr_arr_val.unpack13.unpack.epil = load ptr, ptr %ptr_arr_val.elt12.epil, align 8
-  %ptr_arr_val.unpack13.elt15.epil = getelementptr inbounds nuw i8, ptr %ptr_arr_addr.epil, i64 16
-  %ptr_arr_val.unpack13.unpack16.epil = load i32, ptr %ptr_arr_val.unpack13.elt15.epil, align 8
-  %ptr_arr_val.unpack13.elt17.epil = getelementptr inbounds nuw i8, ptr %ptr_arr_addr.epil, i64 20
-  %ptr_arr_val.unpack13.unpack18.epil = load i32, ptr %ptr_arr_val.unpack13.elt17.epil, align 4
-  store ptr %ptr_arr_val.unpack.epil, ptr %ptr_arr_asi.epil, align 8
-  %ptr_arr_asi.repack20.epil = getelementptr inbounds nuw i8, ptr %ptr_arr_asi.epil, i64 8
-  store ptr %ptr_arr_val.unpack13.unpack.epil, ptr %ptr_arr_asi.repack20.epil, align 8
-  %ptr_arr_asi.repack20.repack22.epil = getelementptr inbounds nuw i8, ptr %ptr_arr_asi.epil, i64 16
-  store i32 %ptr_arr_val.unpack13.unpack16.epil, ptr %ptr_arr_asi.repack20.repack22.epil, align 8
-  %ptr_arr_asi.repack20.repack24.epil = getelementptr inbounds nuw i8, ptr %ptr_arr_asi.epil, i64 20
-  store i32 %ptr_arr_val.unpack13.unpack18.epil, ptr %ptr_arr_asi.repack20.repack24.epil, align 4
-  br label %for.end
-
-for.end:                                          ; preds = %for.body.epil.preheader, %for.end.loopexit.unr-lcssa, %ifcont
+for.end:                                          ; preds = %for.cond
   ret ptr %0
 }
 
-define weak_odr i1 @"Vector::Vec<CQB::CI::Step>_isEmpty"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Vec<CQB::CI::Step>_isEmpty"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::CI::Step>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   ret i1 %icmpeq
 }
 
-define weak_odr void @"CQB::CI::Job_Job_char*_Vector::Vec<Step>"(ptr %0, ptr %1, %"Vector::Vec<CQB::CI::Step>" %2) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"CQB::CI::Job_Job_char*_Vector::Vec<Step>"(ptr %0, ptr %1, %"Vector::Vec<CQB::CI::Step>" %2) !qc.return_types !23 {
 entry:
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 48)
-  %3 = insertvalue %"CQB::CI::Task" zeroinitializer, ptr %1, 0
-  %4 = insertvalue %"CQB::CI::Task" %3, %"Vector::Vec<CQB::CI::Step>" %2, 1
-  store %"CQB::CI::Task" %4, ptr %builtin_call, align 8
-  %next_ptr = getelementptr inbounds nuw i8, ptr %builtin_call, i64 24
-  %5 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %next_ptr, i8 0, i64 16, i1 false)
-  %capacity.i = load i32, ptr %5, align 4
-  %6 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size.i = load i32, ptr %6, align 4
-  %icmple.not.i = icmp sgt i32 %capacity.i, %size.i
-  %data6.pre.i = load ptr, ptr %0, align 8
-  br i1 %icmple.not.i, label %ifcont.i, label %then.i
-
-then.i:                                           ; preds = %entry
-  %icmpeq.i = icmp eq i32 %capacity.i, 0
-  %mul.i = shl i32 %capacity.i, 1
-  %select_val.i = select i1 %icmpeq.i, i32 1, i32 %mul.i
-  %icmpeq.i.i = icmp eq i32 %select_val.i, 0
-  br i1 %icmpeq.i.i, label %then.i.i, label %ifcont.i.i
-
-then.i.i:                                         ; preds = %then.i
-  tail call fastcc void @qc_free(ptr %data6.pre.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<CQB::CI::Task*>_push_T.exit"
-
-ifcont.i.i:                                       ; preds = %then.i
-  %promote_int.i.i = sext i32 %select_val.i to i64
-  %mul.i.i = shl nsw i64 %promote_int.i.i, 3
-  %builtin_call.i.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre.i, i64 %mul.i.i)
-  %ptr_eq.i.i = icmp eq ptr %builtin_call.i.i, null
-  br i1 %ptr_eq.i.i, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i
-
-ifcont5.i.i:                                      ; preds = %ifcont.i.i
-  store i32 %select_val.i, ptr %5, align 4
-  %size.i.i = load i32, ptr %6, align 8
-  %icmpgt.i.i = icmp sgt i32 %size.i.i, %select_val.i
-  br i1 %icmpgt.i.i, label %then8.i.i, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i"
-
-then8.i.i:                                        ; preds = %ifcont5.i.i
-  store i32 %select_val.i, ptr %6, align 8
-  br label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i"
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i": ; preds = %then8.i.i, %ifcont5.i.i
-  %size511.i = phi i32 [ %size.i.i, %ifcont5.i.i ], [ %select_val.i, %then8.i.i ]
-  store ptr %builtin_call.i.i, ptr %0, align 8
-  br label %ifcont.i
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i
-  %data.pr.i = load ptr, ptr %0, align 8
-  %7 = icmp eq ptr %data.pr.i, null
-  br i1 %7, label %"Vector::Vec<CQB::CI::Task*>_push_T.exit", label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i"
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i": ; preds = %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i"
-  %size5.pre.i = load i32, ptr %6, align 8
-  br label %ifcont.i
-
-ifcont.i:                                         ; preds = %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i", %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i", %entry
-  %data6.i = phi ptr [ %data.pr.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %builtin_call.i.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i" ], [ %data6.pre.i, %entry ]
-  %size5.i = phi i32 [ %size5.pre.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %size511.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i" ], [ %size.i, %entry ]
-  %8 = sext i32 %size5.i to i64
-  %ptr_arr_asi.i = getelementptr [8 x i8], ptr %data6.i, i64 %8
-  store ptr %builtin_call, ptr %ptr_arr_asi.i, align 8
-  %inc_deref.i = load i32, ptr %6, align 8
-  %inc.i = add i32 %inc_deref.i, 1
-  store i32 %inc.i, ptr %6, align 8
-  br label %"Vector::Vec<CQB::CI::Task*>_push_T.exit"
-
-"Vector::Vec<CQB::CI::Task*>_push_T.exit":        ; preds = %then.i.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i", %ifcont.i
-  %entry_ptr = getelementptr inbounds nuw i8, ptr %0, i64 16
-  store ptr %builtin_call, ptr %entry_ptr, align 8
-  %current_ptr = getelementptr inbounds nuw i8, ptr %0, i64 24
-  store ptr %builtin_call, ptr %current_ptr, align 8
+  %"temp_Vector::Vec<CQB::CI::Task*>" = alloca %"Vector::Vec<CQB::CI::Task*>", align 8
+  %"CQB::CI::task" = alloca ptr, align 8
+  %steps = alloca %"Vector::Vec<CQB::CI::Step>", align 8
+  %name = alloca ptr, align 8
+  store ptr null, ptr %name, align 8
+  store ptr %1, ptr %name, align 8
+  store %"Vector::Vec<CQB::CI::Step>" zeroinitializer, ptr %steps, align 8
+  store %"Vector::Vec<CQB::CI::Step>" %2, ptr %steps, align 8
+  store ptr null, ptr %"CQB::CI::task", align 8
+  %builtin_call = call ptr @qc_malloc(i64 48)
+  store ptr %builtin_call, ptr %"CQB::CI::task", align 8
+  %task = load ptr, ptr %"CQB::CI::task", align 8
+  %name1 = load ptr, ptr %name, align 8
+  %3 = insertvalue %"CQB::CI::Task" zeroinitializer, ptr %name1, 0
+  %steps2 = load %"Vector::Vec<CQB::CI::Step>", ptr %steps, align 8
+  %4 = insertvalue %"CQB::CI::Task" %3, %"Vector::Vec<CQB::CI::Step>" %steps2, 1
+  store %"CQB::CI::Task" %4, ptr %task, align 8
+  store %"Vector::Vec<CQB::CI::Task*>" zeroinitializer, ptr %"temp_Vector::Vec<CQB::CI::Task*>", align 8
+  call void @"Vector::Vec<CQB::CI::Task*>_Vec"(ptr %"temp_Vector::Vec<CQB::CI::Task*>")
+  %"Vector::Vec<CQB::CI::Task*>_inst" = load %"Vector::Vec<CQB::CI::Task*>", ptr %"temp_Vector::Vec<CQB::CI::Task*>", align 8
+  %task3 = load ptr, ptr %"CQB::CI::task", align 8
+  %next_ptr = getelementptr inbounds nuw %"CQB::CI::Task", ptr %task3, i32 0, i32 2
+  store %"Vector::Vec<CQB::CI::Task*>" %"Vector::Vec<CQB::CI::Task*>_inst", ptr %next_ptr, align 8
+  %5 = getelementptr inbounds nuw %"CQB::CI::Job", ptr %0, i32 0, i32 0
+  %task4 = load ptr, ptr %"CQB::CI::task", align 8
+  call void @"Vector::Vec<CQB::CI::Task*>_push_T"(ptr %5, ptr %task4)
+  %task5 = load ptr, ptr %"CQB::CI::task", align 8
+  %entry_ptr = getelementptr inbounds nuw %"CQB::CI::Job", ptr %0, i32 0, i32 1
+  store ptr %task5, ptr %entry_ptr, align 8
+  %task6 = load ptr, ptr %"CQB::CI::task", align 8
+  %current_ptr = getelementptr inbounds nuw %"CQB::CI::Job", ptr %0, i32 0, i32 2
+  store ptr %task6, ptr %current_ptr, align 8
   ret void
 }
 
-define weak_odr ptr @"CQB::CI::Job_addTask_char*_Vector::Vec<Step>_bool"(ptr %0, ptr %1, %"Vector::Vec<CQB::CI::Step>" %2, i1 %3) local_unnamed_addr !qc.return_types !53 {
+define weak_odr ptr @"CQB::CI::Job_addTask_char*_Vector::Vec<Step>_bool"(ptr %0, ptr %1, %"Vector::Vec<CQB::CI::Step>" %2, i1 %3) !qc.return_types !38 {
 entry:
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 48)
-  %4 = insertvalue %"CQB::CI::Task" zeroinitializer, ptr %1, 0
-  %5 = insertvalue %"CQB::CI::Task" %4, %"Vector::Vec<CQB::CI::Step>" %2, 1
-  store %"CQB::CI::Task" %5, ptr %builtin_call, align 8
-  %6 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %capacity.i = load i32, ptr %6, align 4
-  %7 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size.i = load i32, ptr %7, align 4
-  %icmple.not.i = icmp sgt i32 %capacity.i, %size.i
-  %data6.pre.i = load ptr, ptr %0, align 8
-  br i1 %icmple.not.i, label %ifcont.i, label %then.i
+  %"CQB::CI::task" = alloca ptr, align 8
+  %advance = alloca i1, align 1
+  %steps = alloca %"Vector::Vec<CQB::CI::Step>", align 8
+  %name = alloca ptr, align 8
+  store ptr null, ptr %name, align 8
+  store ptr %1, ptr %name, align 8
+  store %"Vector::Vec<CQB::CI::Step>" zeroinitializer, ptr %steps, align 8
+  store %"Vector::Vec<CQB::CI::Step>" %2, ptr %steps, align 8
+  store i1 false, ptr %advance, align 1
+  store i1 %3, ptr %advance, align 1
+  store ptr null, ptr %"CQB::CI::task", align 8
+  %builtin_call = call ptr @qc_malloc(i64 48)
+  store ptr %builtin_call, ptr %"CQB::CI::task", align 8
+  %task = load ptr, ptr %"CQB::CI::task", align 8
+  %name1 = load ptr, ptr %name, align 8
+  %4 = insertvalue %"CQB::CI::Task" zeroinitializer, ptr %name1, 0
+  %steps2 = load %"Vector::Vec<CQB::CI::Step>", ptr %steps, align 8
+  %5 = insertvalue %"CQB::CI::Task" %4, %"Vector::Vec<CQB::CI::Step>" %steps2, 1
+  store %"CQB::CI::Task" %5, ptr %task, align 8
+  %6 = getelementptr inbounds nuw %"CQB::CI::Job", ptr %0, i32 0, i32 0
+  %task3 = load ptr, ptr %"CQB::CI::task", align 8
+  call void @"Vector::Vec<CQB::CI::Task*>_push_T"(ptr %6, ptr %task3)
+  %7 = getelementptr inbounds nuw %"CQB::CI::Job", ptr %0, i32 0, i32 2
+  %current = load ptr, ptr %7, align 8
+  %8 = getelementptr inbounds nuw %"CQB::CI::Task", ptr %current, i32 0, i32 2
+  %task4 = load ptr, ptr %"CQB::CI::task", align 8
+  call void @"Vector::Vec<CQB::CI::Task*>_push_T"(ptr %8, ptr %task4)
+  %advance5 = load i1, ptr %advance, align 1
+  br i1 %advance5, label %then, label %ifcont
 
-then.i:                                           ; preds = %entry
-  %icmpeq.i = icmp eq i32 %capacity.i, 0
-  %mul.i = shl i32 %capacity.i, 1
-  %select_val.i = select i1 %icmpeq.i, i32 1, i32 %mul.i
-  %icmpeq.i.i = icmp eq i32 %select_val.i, 0
-  br i1 %icmpeq.i.i, label %then.i.i, label %ifcont.i.i
-
-then.i.i:                                         ; preds = %then.i
-  tail call fastcc void @qc_free(ptr %data6.pre.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<CQB::CI::Task*>_push_T.exit"
-
-ifcont.i.i:                                       ; preds = %then.i
-  %promote_int.i.i = sext i32 %select_val.i to i64
-  %mul.i.i = shl nsw i64 %promote_int.i.i, 3
-  %builtin_call.i.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre.i, i64 %mul.i.i)
-  %ptr_eq.i.i = icmp eq ptr %builtin_call.i.i, null
-  br i1 %ptr_eq.i.i, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i
-
-ifcont5.i.i:                                      ; preds = %ifcont.i.i
-  store i32 %select_val.i, ptr %6, align 4
-  %size.i.i = load i32, ptr %7, align 8
-  %icmpgt.i.i = icmp sgt i32 %size.i.i, %select_val.i
-  br i1 %icmpgt.i.i, label %then8.i.i, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i"
-
-then8.i.i:                                        ; preds = %ifcont5.i.i
-  store i32 %select_val.i, ptr %7, align 8
-  br label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i"
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i": ; preds = %then8.i.i, %ifcont5.i.i
-  %size511.i = phi i32 [ %size.i.i, %ifcont5.i.i ], [ %select_val.i, %then8.i.i ]
-  store ptr %builtin_call.i.i, ptr %0, align 8
-  br label %ifcont.i
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i
-  %data.pr.i = load ptr, ptr %0, align 8
-  %8 = icmp eq ptr %data.pr.i, null
-  br i1 %8, label %"Vector::Vec<CQB::CI::Task*>_push_T.exit", label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i"
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i": ; preds = %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i"
-  %size5.pre.i = load i32, ptr %7, align 8
-  br label %ifcont.i
-
-ifcont.i:                                         ; preds = %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i", %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i", %entry
-  %data6.i = phi ptr [ %data.pr.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %builtin_call.i.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i" ], [ %data6.pre.i, %entry ]
-  %size5.i = phi i32 [ %size5.pre.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %size511.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i" ], [ %size.i, %entry ]
-  %9 = sext i32 %size5.i to i64
-  %ptr_arr_asi.i = getelementptr [8 x i8], ptr %data6.i, i64 %9
-  store ptr %builtin_call, ptr %ptr_arr_asi.i, align 8
-  %inc_deref.i = load i32, ptr %7, align 8
-  %inc.i = add i32 %inc_deref.i, 1
-  store i32 %inc.i, ptr %7, align 8
-  br label %"Vector::Vec<CQB::CI::Task*>_push_T.exit"
-
-"Vector::Vec<CQB::CI::Task*>_push_T.exit":        ; preds = %then.i.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i", %ifcont.i
-  %10 = getelementptr inbounds nuw i8, ptr %0, i64 24
-  %current = load ptr, ptr %10, align 8
-  %11 = getelementptr inbounds nuw i8, ptr %current, i64 24
-  %12 = getelementptr inbounds nuw i8, ptr %current, i64 36
-  %capacity.i8 = load i32, ptr %12, align 4
-  %13 = getelementptr inbounds nuw i8, ptr %current, i64 32
-  %size.i9 = load i32, ptr %13, align 4
-  %icmple.not.i10 = icmp sgt i32 %capacity.i8, %size.i9
-  %data6.pre.i11 = load ptr, ptr %11, align 8
-  br i1 %icmple.not.i10, label %ifcont.i27, label %then.i12
-
-then.i12:                                         ; preds = %"Vector::Vec<CQB::CI::Task*>_push_T.exit"
-  %icmpeq.i13 = icmp eq i32 %capacity.i8, 0
-  %mul.i14 = shl i32 %capacity.i8, 1
-  %select_val.i15 = select i1 %icmpeq.i13, i32 1, i32 %mul.i14
-  %icmpeq.i.i16 = icmp eq i32 %select_val.i15, 0
-  br i1 %icmpeq.i.i16, label %then.i.i38, label %ifcont.i.i17
-
-then.i.i38:                                       ; preds = %then.i12
-  tail call fastcc void @qc_free(ptr %data6.pre.i11)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %11, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<CQB::CI::Task*>_push_T.exit39"
-
-ifcont.i.i17:                                     ; preds = %then.i12
-  %promote_int.i.i18 = sext i32 %select_val.i15 to i64
-  %mul.i.i19 = shl nsw i64 %promote_int.i.i18, 3
-  %builtin_call.i.i20 = tail call fastcc ptr @qc_realloc(ptr %data6.pre.i11, i64 %mul.i.i19)
-  %ptr_eq.i.i21 = icmp eq ptr %builtin_call.i.i20, null
-  br i1 %ptr_eq.i.i21, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i34", label %ifcont5.i.i22
-
-ifcont5.i.i22:                                    ; preds = %ifcont.i.i17
-  store i32 %select_val.i15, ptr %12, align 4
-  %size.i.i23 = load i32, ptr %13, align 8
-  %icmpgt.i.i24 = icmp sgt i32 %size.i.i23, %select_val.i15
-  br i1 %icmpgt.i.i24, label %then8.i.i33, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i25"
-
-then8.i.i33:                                      ; preds = %ifcont5.i.i22
-  store i32 %select_val.i15, ptr %13, align 8
-  br label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i25"
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i25": ; preds = %then8.i.i33, %ifcont5.i.i22
-  %size511.i26 = phi i32 [ %size.i.i23, %ifcont5.i.i22 ], [ %select_val.i15, %then8.i.i33 ]
-  store ptr %builtin_call.i.i20, ptr %11, align 8
-  br label %ifcont.i27
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i34": ; preds = %ifcont.i.i17
-  %data.pr.i35 = load ptr, ptr %11, align 8
-  %14 = icmp eq ptr %data.pr.i35, null
-  br i1 %14, label %"Vector::Vec<CQB::CI::Task*>_push_T.exit39", label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i36"
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i36": ; preds = %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i34"
-  %size5.pre.i37 = load i32, ptr %13, align 8
-  br label %ifcont.i27
-
-ifcont.i27:                                       ; preds = %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i36", %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i25", %"Vector::Vec<CQB::CI::Task*>_push_T.exit"
-  %data6.i28 = phi ptr [ %data.pr.i35, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i36" ], [ %builtin_call.i.i20, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i25" ], [ %data6.pre.i11, %"Vector::Vec<CQB::CI::Task*>_push_T.exit" ]
-  %size5.i29 = phi i32 [ %size5.pre.i37, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i36" ], [ %size511.i26, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i25" ], [ %size.i9, %"Vector::Vec<CQB::CI::Task*>_push_T.exit" ]
-  %15 = sext i32 %size5.i29 to i64
-  %ptr_arr_asi.i30 = getelementptr [8 x i8], ptr %data6.i28, i64 %15
-  store ptr %builtin_call, ptr %ptr_arr_asi.i30, align 8
-  %inc_deref.i31 = load i32, ptr %13, align 8
-  %inc.i32 = add i32 %inc_deref.i31, 1
-  store i32 %inc.i32, ptr %13, align 8
-  br label %"Vector::Vec<CQB::CI::Task*>_push_T.exit39"
-
-"Vector::Vec<CQB::CI::Task*>_push_T.exit39":      ; preds = %then.i.i38, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i34", %ifcont.i27
-  br i1 %3, label %then, label %ifcont
-
-then:                                             ; preds = %"Vector::Vec<CQB::CI::Task*>_push_T.exit39"
-  store ptr %builtin_call, ptr %10, align 8
+then:                                             ; preds = %entry
+  %task6 = load ptr, ptr %"CQB::CI::task", align 8
+  %current_ptr = getelementptr inbounds nuw %"CQB::CI::Job", ptr %0, i32 0, i32 2
+  store ptr %task6, ptr %current_ptr, align 8
   br label %ifcont
 
-ifcont:                                           ; preds = %then, %"Vector::Vec<CQB::CI::Task*>_push_T.exit39"
-  ret ptr %builtin_call
+ifcont:                                           ; preds = %then, %entry
+  %task7 = load ptr, ptr %"CQB::CI::task", align 8
+  ret ptr %task7
 }
 
-define weak_odr ptr @"CQB::CI::Job_focus_Task*"(ptr %0, ptr %1) local_unnamed_addr !qc.return_types !54 {
+define weak_odr ptr @"CQB::CI::Job_focus_Task*"(ptr %0, ptr %1) !qc.return_types !39 {
 entry:
-  %current_ptr = getelementptr inbounds nuw i8, ptr %0, i64 24
-  store ptr %1, ptr %current_ptr, align 8
+  %task = alloca ptr, align 8
+  store ptr null, ptr %task, align 8
+  store ptr %1, ptr %task, align 8
+  %task1 = load ptr, ptr %task, align 8
+  %current_ptr = getelementptr inbounds nuw %"CQB::CI::Job", ptr %0, i32 0, i32 2
+  store ptr %task1, ptr %current_ptr, align 8
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::CI::Job_link_Task*_Task*"(ptr %0, ptr %1, ptr %2) local_unnamed_addr !qc.return_types !54 {
+define weak_odr ptr @"CQB::CI::Job_link_Task*_Task*"(ptr %0, ptr %1, ptr %2) !qc.return_types !39 {
 entry:
-  %3 = getelementptr inbounds nuw i8, ptr %1, i64 24
-  %4 = getelementptr inbounds nuw i8, ptr %1, i64 36
-  %capacity.i = load i32, ptr %4, align 4
-  %5 = getelementptr inbounds nuw i8, ptr %1, i64 32
-  %size.i = load i32, ptr %5, align 4
-  %icmple.not.i = icmp sgt i32 %capacity.i, %size.i
-  %data6.pre.i = load ptr, ptr %3, align 8
-  br i1 %icmple.not.i, label %ifcont.i, label %then.i
-
-then.i:                                           ; preds = %entry
-  %icmpeq.i = icmp eq i32 %capacity.i, 0
-  %mul.i = shl i32 %capacity.i, 1
-  %select_val.i = select i1 %icmpeq.i, i32 1, i32 %mul.i
-  %icmpeq.i.i = icmp eq i32 %select_val.i, 0
-  br i1 %icmpeq.i.i, label %then.i.i, label %ifcont.i.i
-
-then.i.i:                                         ; preds = %then.i
-  tail call fastcc void @qc_free(ptr %data6.pre.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %3, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<CQB::CI::Task*>_push_T.exit"
-
-ifcont.i.i:                                       ; preds = %then.i
-  %promote_int.i.i = sext i32 %select_val.i to i64
-  %mul.i.i = shl nsw i64 %promote_int.i.i, 3
-  %builtin_call.i.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre.i, i64 %mul.i.i)
-  %ptr_eq.i.i = icmp eq ptr %builtin_call.i.i, null
-  br i1 %ptr_eq.i.i, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i
-
-ifcont5.i.i:                                      ; preds = %ifcont.i.i
-  store i32 %select_val.i, ptr %4, align 4
-  %size.i.i = load i32, ptr %5, align 8
-  %icmpgt.i.i = icmp sgt i32 %size.i.i, %select_val.i
-  br i1 %icmpgt.i.i, label %then8.i.i, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i"
-
-then8.i.i:                                        ; preds = %ifcont5.i.i
-  store i32 %select_val.i, ptr %5, align 8
-  br label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i"
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i": ; preds = %then8.i.i, %ifcont5.i.i
-  %size511.i = phi i32 [ %size.i.i, %ifcont5.i.i ], [ %select_val.i, %then8.i.i ]
-  store ptr %builtin_call.i.i, ptr %3, align 8
-  br label %ifcont.i
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i
-  %data.pr.i = load ptr, ptr %3, align 8
-  %6 = icmp eq ptr %data.pr.i, null
-  br i1 %6, label %"Vector::Vec<CQB::CI::Task*>_push_T.exit", label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i"
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i": ; preds = %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i"
-  %size5.pre.i = load i32, ptr %5, align 8
-  br label %ifcont.i
-
-ifcont.i:                                         ; preds = %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i", %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i", %entry
-  %data6.i = phi ptr [ %data.pr.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %builtin_call.i.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i" ], [ %data6.pre.i, %entry ]
-  %size5.i = phi i32 [ %size5.pre.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %size511.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exit.thread.i" ], [ %size.i, %entry ]
-  %7 = sext i32 %size5.i to i64
-  %ptr_arr_asi.i = getelementptr [8 x i8], ptr %data6.i, i64 %7
-  store ptr %2, ptr %ptr_arr_asi.i, align 8
-  %inc_deref.i = load i32, ptr %5, align 8
-  %inc.i = add i32 %inc_deref.i, 1
-  store i32 %inc.i, ptr %5, align 8
-  br label %"Vector::Vec<CQB::CI::Task*>_push_T.exit"
-
-"Vector::Vec<CQB::CI::Task*>_push_T.exit":        ; preds = %then.i.i, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i", %ifcont.i
+  %child = alloca ptr, align 8
+  %parent = alloca ptr, align 8
+  store ptr null, ptr %parent, align 8
+  store ptr %1, ptr %parent, align 8
+  store ptr null, ptr %child, align 8
+  store ptr %2, ptr %child, align 8
+  %parent1 = load ptr, ptr %parent, align 8
+  %3 = getelementptr inbounds nuw %"CQB::CI::Task", ptr %parent1, i32 0, i32 2
+  %child2 = load ptr, ptr %child, align 8
+  call void @"Vector::Vec<CQB::CI::Task*>_push_T"(ptr %3, ptr %child2)
   ret ptr %0
 }
 
-define weak_odr ptr @"CQB::CI::Job_getGraphRoot"(ptr %0) local_unnamed_addr !qc.return_types !53 {
+define weak_odr ptr @"CQB::CI::Job_getGraphRoot"(ptr %0) !qc.return_types !38 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 16
+  %1 = getelementptr inbounds nuw %"CQB::CI::Job", ptr %0, i32 0, i32 1
   %entry1 = load ptr, ptr %1, align 8
   ret ptr %entry1
 }
 
-define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>_Vec"(ptr %0) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>_Vec"(ptr %0) !qc.return_types !23 {
 entry:
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
   ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>_reserve_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>_reserve_int"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  %icmpeq = icmp eq i32 %1, 0
-  %data = load ptr, ptr %0, align 8
+  %"Vector::new_data" = alloca ptr, align 8
+  %cap = alloca i32, align 4
+  store i32 0, ptr %cap, align 4
+  store i32 %1, ptr %cap, align 4
+  %cap1 = load i32, ptr %cap, align 4
+  %icmpeq = icmp eq i32 %cap1, 0
   br i1 %icmpeq, label %then, label %ifcont
 
-common.ret:                                       ; preds = %ifcont, %ifcont9, %then
+then:                                             ; preds = %entry
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
   ret void
 
-then:                                             ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
 ifcont:                                           ; preds = %entry
-  %promote_int = sext i32 %1 to i64
-  %mul = shl nsw i64 %promote_int, 6
-  %builtin_call = tail call fastcc ptr @qc_realloc(ptr %data, i64 %mul)
-  %ptr_eq = icmp eq ptr %builtin_call, null
-  br i1 %ptr_eq, label %common.ret, label %ifcont5
+  store ptr null, ptr %"Vector::new_data", align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data2 = load ptr, ptr %3, align 8
+  %cap3 = load i32, ptr %cap, align 4
+  %promote_int = sext i32 %cap3 to i64
+  %mul = mul i64 64, %promote_int
+  %builtin_call = call ptr @qc_realloc(ptr %data2, i64 %mul)
+  store ptr %builtin_call, ptr %"Vector::new_data", align 8
+  %new_data = load ptr, ptr %"Vector::new_data", align 8
+  %ptr_eq = icmp eq ptr %new_data, null
+  br i1 %ptr_eq, label %then4, label %ifcont5
+
+then4:                                            ; preds = %ifcont
+  ret void
 
 ifcont5:                                          ; preds = %ifcont
-  %capacity_ptr7 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %1, ptr %capacity_ptr7, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %2, align 8
-  %icmpgt = icmp sgt i32 %size, %1
+  %cap6 = load i32, ptr %cap, align 4
+  %capacity_ptr7 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  store i32 %cap6, ptr %capacity_ptr7, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %4, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %5, align 4
+  %icmpgt = icmp sgt i32 %size, %capacity
   br i1 %icmpgt, label %then8, label %ifcont9
 
 then8:                                            ; preds = %ifcont5
-  store i32 %1, ptr %2, align 8
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  %capacity10 = load i32, ptr %6, align 4
+  %size_ptr11 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  store i32 %capacity10, ptr %size_ptr11, align 4
   br label %ifcont9
 
 ifcont9:                                          ; preds = %then8, %ifcont5
-  store ptr %builtin_call, ptr %0, align 8
-  br label %common.ret
+  %new_data12 = load ptr, ptr %"Vector::new_data", align 8
+  %data_ptr13 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  store ptr %new_data12, ptr %data_ptr13, align 8
+  ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>_push_T"(ptr %0, %"CQB::Engine::TaskState" %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>_push_T"(ptr %0, %"CQB::Engine::TaskState" %1) !qc.return_types !21 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %value = alloca %"CQB::Engine::TaskState", align 8
+  store %"CQB::Engine::TaskState" zeroinitializer, ptr %value, align 8
+  store %"CQB::Engine::TaskState" %1, ptr %value, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
   %capacity = load i32, ptr %2, align 4
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %3, align 4
-  %icmple.not = icmp sgt i32 %capacity, %size
-  %data6.pre = load ptr, ptr %0, align 8
-  br i1 %icmple.not, label %ifcont, label %then
+  %icmple = icmp sle i32 %capacity, %size
+  br i1 %icmple, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %icmpeq = icmp eq i32 %capacity, 0
-  %mul = shl i32 %capacity, 1
-  %select_val = select i1 %icmpeq, i32 1, i32 %mul
-  %icmpeq.i = icmp eq i32 %select_val, 0
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %4, align 4
+  %icmpeq = icmp eq i32 %capacity1, 0
+  br i1 %icmpeq, label %ternary.true, label %ternary.false
 
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data6.pre)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %select_val to i64
-  %mul.i = shl nsw i64 %promote_int.i, 6
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %select_val, ptr %2, align 4
-  %size.i = load i32, ptr %3, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %select_val
-  br i1 %icmpgt.i, label %then8.i, label %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit.thread"
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %select_val, ptr %3, align 8
-  br label %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit.thread"
-
-"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit.thread": ; preds = %ifcont5.i, %then8.i
-  %size512 = phi i32 [ %size.i, %ifcont5.i ], [ %select_val, %then8.i ]
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
-
-"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split": ; preds = %ifcont.i
-  %data.pr = load ptr, ptr %0, align 8
-  %4 = icmp eq ptr %data.pr, null
-  br i1 %4, label %common.ret, label %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split.ifcont_crit_edge"
-
-"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split.ifcont_crit_edge": ; preds = %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split"
-  %size5.pre = load i32, ptr %3, align 8
-  br label %ifcont
-
-common.ret:                                       ; preds = %then.i, %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split", %ifcont
+ifcont:                                           ; preds = %ifcont4, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  %size5 = load i32, ptr %5, align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data6 = load ptr, ptr %6, align 8
+  %ptr_arr_asi = getelementptr %"CQB::Engine::TaskState", ptr %data6, i32 %size5
+  %value7 = load %"CQB::Engine::TaskState", ptr %value, align 8
+  store %"CQB::Engine::TaskState" %value7, ptr %ptr_arr_asi, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %size_ptr, align 4
   ret void
 
-ifcont:                                           ; preds = %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split.ifcont_crit_edge", %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit.thread", %entry
-  %data6 = phi ptr [ %data.pr, %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %builtin_call.i, %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit.thread" ], [ %data6.pre, %entry ]
-  %size5 = phi i32 [ %size5.pre, %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %size512, %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit.thread" ], [ %size, %entry ]
-  %5 = sext i32 %size5 to i64
-  %ptr_arr_asi = getelementptr [64 x i8], ptr %data6, i64 %5
-  store %"CQB::Engine::TaskState" %1, ptr %ptr_arr_asi, align 8
-  %inc_deref = load i32, ptr %3, align 8
-  %inc = add i32 %inc_deref, 1
-  store i32 %inc, ptr %3, align 8
-  br label %common.ret
+ternary.true:                                     ; preds = %then
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %then
+  %7 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  %capacity2 = load i32, ptr %7, align 4
+  %mul = mul i32 %capacity2, 2
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ 1, %ternary.true ], [ %mul, %ternary.false ]
+  call void @"Vector::Vec<CQB::Engine::TaskState>_reserve_int"(ptr %0, i32 %ternary_val)
+  %8 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %8, align 8
+  %ptr_eq = icmp eq ptr %data, null
+  br i1 %ptr_eq, label %then3, label %ifcont4
+
+then3:                                            ; preds = %ternary.end
+  ret void
+
+ifcont4:                                          ; preds = %ternary.end
+  br label %ifcont
 }
 
-define weak_odr i32 @"Vector::Vec<CQB::Engine::TaskState>_length"(ptr %0) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"Vector::Vec<CQB::Engine::TaskState>_length"(ptr %0) !qc.return_types !30 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   ret i32 %size
 }
 
-define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>_pop"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>_pop"(ptr %0) !qc.return_types !21 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpgt = icmp sgt i32 %size, 0
   br i1 %icmpgt, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %dec = add nsw i32 %size, -1
-  store i32 %dec, ptr %1, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %size_ptr, align 4
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
   ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>_shrinkToFit"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>_shrinkToFit"(ptr %0) !qc.return_types !21 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
-  %icmpeq.i = icmp eq i32 %size, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit"
-
-ifcont.i:                                         ; preds = %entry
-  %promote_int.i = sext i32 %size to i64
-  %mul.i = shl nsw i64 %promote_int.i, 6
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  %capacity_ptr7.i = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %size, ptr %capacity_ptr7.i, align 4
-  %size.i = load i32, ptr %1, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %size
-  br i1 %icmpgt.i, label %then8.i, label %ifcont9.i
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %size, ptr %1, align 8
-  br label %ifcont9.i
-
-ifcont9.i:                                        ; preds = %then8.i, %ifcont5.i
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit"
-
-"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit": ; preds = %then.i, %ifcont.i, %ifcont9.i
+  call void @"Vector::Vec<CQB::Engine::TaskState>_reserve_int"(ptr %0, i32 %size)
   ret void
 }
 
-define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) !qc.return_types !21 {
 entry:
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %3, align 4
-  %icmpne.not = icmp eq i32 %size, 0
-  br i1 %icmpne.not, label %ifcont, label %then
+  %"Vector::i" = alloca i32, align 4
+  %length = alloca i64, align 8
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i64 0, ptr %length, align 8
+  store i64 %2, ptr %length, align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, 0
+  br i1 %icmpne, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %data1 = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data1)
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data1 = load ptr, ptr %4, align 8
+  call void @qc_free(ptr %data1)
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %trunc = trunc i64 %2 to i32
+  %length2 = load i64, ptr %length, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  %trunc = trunc i64 %length2 to i32
   store i32 %trunc, ptr %capacity_ptr, align 4
-  store i32 %trunc, ptr %3, align 4
-  %sext = shl i64 %2, 32
-  %mul = ashr exact i64 %sext, 26
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 %mul)
-  store ptr %builtin_call, ptr %0, align 8
-  %size514 = load i32, ptr %3, align 8
-  %icmplt15 = icmp sgt i32 %size514, 0
-  br i1 %icmplt15, label %for.body, label %for.end
+  %length3 = load i64, ptr %length, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  %trunc4 = trunc i64 %length3 to i32
+  store i32 %trunc4, ptr %size_ptr, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  %capacity5 = load i32, ptr %5, align 4
+  %promote_int = sext i32 %capacity5 to i64
+  %mul = mul i64 64, %promote_int
+  %builtin_call = call ptr @qc_malloc(i64 %mul)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  store ptr %builtin_call, ptr %data_ptr, align 8
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
 
-for.body:                                         ; preds = %ifcont, %for.body
-  %indvars.iv = phi i64 [ %indvars.iv.next, %for.body ], [ 0, %ifcont ]
-  %data7 = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr [64 x i8], ptr %data7, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr [64 x i8], ptr %1, i64 %indvars.iv
-  tail call void @llvm.memmove.p0.p0.i64(ptr noundef nonnull align 8 dereferenceable(64) %ptr_arr_asi, ptr noundef nonnull align 8 dereferenceable(64) %ptr_arr_addr, i64 64, i1 false)
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
-  %size5 = load i32, ptr %3, align 8
-  %4 = sext i32 %size5 to i64
-  %icmplt = icmp slt i64 %indvars.iv.next, %4
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size
   br i1 %icmplt, label %for.body, label %for.end
 
-for.end:                                          ; preds = %for.body, %ifcont
+for.body:                                         ; preds = %for.cond
+  %i6 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data7 = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr %"CQB::Engine::TaskState", ptr %data7, i32 %i6
+  %i8 = load i32, ptr %"Vector::i", align 4
+  %data9 = load ptr, ptr %data, align 8
+  %ptr_arr_addr = getelementptr %"CQB::Engine::TaskState", ptr %data9, i32 %i8
+  %ptr_arr_val = load %"CQB::Engine::TaskState", ptr %ptr_arr_addr, align 8
+  store %"CQB::Engine::TaskState" %ptr_arr_val, ptr %ptr_arr_asi, align 8
+  br label %for.inc
+
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
+
+for.end:                                          ; preds = %for.cond
   ret void
 }
 
-define weak_odr ptr @"Vector::Vec<CQB::Engine::TaskState>_operator[]_addr_t"(ptr %0, i64 %1) local_unnamed_addr !qc.return_types !40 {
+define weak_odr ptr @"Vector::Vec<CQB::Engine::TaskState>_operator[]_addr_t"(ptr %0, i64 %1) !qc.return_types !31 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %lval_ptr_arr_addr = getelementptr [64 x i8], ptr %data, i64 %1
+  %index = alloca i64, align 8
+  store i64 0, ptr %index, align 8
+  store i64 %1, ptr %index, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %index1 = load i64, ptr %index, align 8
+  %lval_ptr_arr_addr = getelementptr %"CQB::Engine::TaskState", ptr %data, i64 %index1
   ret ptr %lval_ptr_arr_addr
 }
 
-define weak_odr void @"Vector::Iterator::It<CQB::Engine::TaskState>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"Vector::Iterator::It<CQB::Engine::TaskState>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) !qc.return_types !23 {
 entry:
-  store ptr %1, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %2, ptr %size_ptr, align 8
-  %select_val = select i1 %3, i32 %2, i32 0
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %select_val, ptr %current_index_ptr, align 4
+  %is_end = alloca i1, align 1
+  %size = alloca i32, align 4
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i32 0, ptr %size, align 4
+  store i32 %2, ptr %size, align 4
+  store i1 false, ptr %is_end, align 1
+  store i1 %3, ptr %is_end, align 1
+  %data1 = load ptr, ptr %data, align 8
+  %data_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  store ptr %data1, ptr %data_ptr, align 8
+  %size2 = load i32, ptr %size, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  store i32 %size2, ptr %size_ptr, align 4
+  %is_end3 = load i1, ptr %is_end, align 1
+  br i1 %is_end3, label %ternary.true, label %ternary.false
+
+ternary.true:                                     ; preds = %entry
+  %size4 = load i32, ptr %size, align 4
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %entry
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ %size4, %ternary.true ], [ 0, %ternary.false ]
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  store i32 %ternary_val, ptr %current_index_ptr, align 4
   ret void
 }
 
-define weak_odr i1 @"Vector::Iterator::It<CQB::Engine::TaskState>__atEnd"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Iterator::It<CQB::Engine::TaskState>__atEnd"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
   %current_index = load i32, ptr %2, align 4
   %icmple = icmp sle i32 %size, %current_index
   ret i1 %icmple
 }
 
-define weak_odr %"CQB::Engine::TaskState" @"Vector::Iterator::It<CQB::Engine::TaskState>__next"(ptr %0) local_unnamed_addr !qc.return_types !41 {
+define weak_odr %"CQB::Engine::TaskState" @"Vector::Iterator::It<CQB::Engine::TaskState>__next"(ptr %0) !qc.return_types !32 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.82, ptr nonnull @6, i32 132) #29
+  call void @__qc_panic(ptr @.str.38, ptr @8, i32 40) #29
   unreachable
 
 ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i.not = icmp sgt i32 %size, %current_index.i
-  br i1 %icmple.i.not, label %then1, label %ifcont2
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %sub.sink = phi i32 [ %sub, %ifcont2 ], [ %current_index.i, %then1 ]
-  %data4 = load ptr, ptr %0, align 8
-  %3 = sext i32 %sub.sink to i64
-  %ptr_arr_addr5 = getelementptr [64 x i8], ptr %data4, i64 %3
-  %common.ret.op = load %"CQB::Engine::TaskState", ptr %ptr_arr_addr5, align 8
-  ret %"CQB::Engine::TaskState" %common.ret.op
+  %_atEnd_result = call i1 @"Vector::Iterator::It<CQB::Engine::TaskState>__atEnd"(ptr %0)
+  %not = xor i1 %_atEnd_result, true
+  br i1 %not, label %then1, label %ifcont2
 
 then1:                                            ; preds = %ifcont
-  %inc = add nsw i32 %current_index.i, 1
-  store i32 %inc, ptr %2, align 4
-  br label %common.ret
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr %"CQB::Engine::TaskState", ptr %data, i32 %inc_deref
+  %ptr_arr_val = load %"CQB::Engine::TaskState", ptr %ptr_arr_addr, align 8
+  ret %"CQB::Engine::TaskState" %ptr_arr_val
 
 ifcont2:                                          ; preds = %ifcont
-  %sub = add i32 %size, -1
-  br label %common.ret
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  %size3 = load i32, ptr %3, align 4
+  %sub = sub i32 %size3, 1
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data4 = load ptr, ptr %4, align 8
+  %ptr_arr_addr5 = getelementptr %"CQB::Engine::TaskState", ptr %data4, i32 %sub
+  %ptr_arr_val6 = load %"CQB::Engine::TaskState", ptr %ptr_arr_addr5, align 8
+  ret %"CQB::Engine::TaskState" %ptr_arr_val6
 }
 
-define weak_odr i1 @"Vector::Iterator::It<CQB::Engine::TaskState>__atStart"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Iterator::It<CQB::Engine::TaskState>__atStart"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
   %current_index = load i32, ptr %1, align 4
-  %icmple = icmp slt i32 %current_index, 1
+  %icmple = icmp sle i32 %current_index, 0
   ret i1 %icmple
 }
 
-define weak_odr %"CQB::Engine::TaskState" @"Vector::Iterator::It<CQB::Engine::TaskState>__prev"(ptr %0) local_unnamed_addr !qc.return_types !41 {
+define weak_odr %"CQB::Engine::TaskState" @"Vector::Iterator::It<CQB::Engine::TaskState>__prev"(ptr %0) !qc.return_types !32 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.83, ptr nonnull @6, i32 144) #29
+  call void @__qc_panic(ptr @.str.39, ptr @9, i32 56) #29
   unreachable
 
 ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i = icmp slt i32 %current_index.i, 1
-  br i1 %icmple.i, label %ifcont2, label %then1
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %common.ret.op.in = phi ptr [ %ptr_arr_addr, %then1 ], [ %ptr_arr_addr4, %ifcont2 ]
-  %common.ret.op = load %"CQB::Engine::TaskState", ptr %common.ret.op.in, align 8
-  ret %"CQB::Engine::TaskState" %common.ret.op
+  %_atStart_result = call i1 @"Vector::Iterator::It<CQB::Engine::TaskState>__atStart"(ptr %0)
+  %not = xor i1 %_atStart_result, true
+  br i1 %not, label %then1, label %ifcont2
 
 then1:                                            ; preds = %ifcont
-  %dec = add nsw i32 %current_index.i, -1
-  store i32 %dec, ptr %2, align 4
-  %data = load ptr, ptr %0, align 8
-  %3 = zext nneg i32 %dec to i64
-  %ptr_arr_addr = getelementptr [64 x i8], ptr %data, i64 %3
-  br label %common.ret
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr %"CQB::Engine::TaskState", ptr %data, i32 %dec
+  %ptr_arr_val = load %"CQB::Engine::TaskState", ptr %ptr_arr_addr, align 8
+  ret %"CQB::Engine::TaskState" %ptr_arr_val
 
 ifcont2:                                          ; preds = %ifcont
-  %data3 = load ptr, ptr %0, align 8
-  %4 = sext i32 %current_index.i to i64
-  %ptr_arr_addr4 = getelementptr [64 x i8], ptr %data3, i64 %4
-  br label %common.ret
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  %current_index = load i32, ptr %3, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data3 = load ptr, ptr %4, align 8
+  %ptr_arr_addr4 = getelementptr %"CQB::Engine::TaskState", ptr %data3, i32 %current_index
+  %ptr_arr_val5 = load %"CQB::Engine::TaskState", ptr %ptr_arr_addr4, align 8
+  ret %"CQB::Engine::TaskState" %ptr_arr_val5
 }
 
-define weak_odr void @"Vector::Iterator::It<CQB::Engine::TaskState>__moveTo_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Iterator::It<CQB::Engine::TaskState>__moveTo_int"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %index = alloca i32, align 4
+  store i32 0, ptr %index, align 4
+  store i32 %1, ptr %index, align 4
+  %index1 = load i32, ptr %index, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %2, align 4
-  %icmpge.not = icmp slt i32 %1, %size
-  %sub = add i32 %size, -1
-  %spec.store.select = tail call i32 @llvm.smax.i32(i32 %1, i32 0)
-  %index.0 = select i1 %icmpge.not, i32 %spec.store.select, i32 %sub
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %index.0, ptr %current_index_ptr, align 4
+  %icmpge = icmp sge i32 %index1, %size
+  br i1 %icmpge, label %then, label %elif.cond
+
+then:                                             ; preds = %entry
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  %size2 = load i32, ptr %3, align 4
+  %sub = sub i32 %size2, 1
+  store i32 %sub, ptr %index, align 4
+  br label %ifcont
+
+ifcont:                                           ; preds = %elif.body, %elif.cond, %then
+  %index4 = load i32, ptr %index, align 4
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  store i32 %index4, ptr %current_index_ptr, align 4
   ret void
+
+elif.cond:                                        ; preds = %entry
+  %index3 = load i32, ptr %index, align 4
+  %icmplt = icmp slt i32 %index3, 0
+  br i1 %icmplt, label %elif.body, label %ifcont
+
+elif.body:                                        ; preds = %elif.cond
+  store i32 0, ptr %index, align 4
+  br label %ifcont
 }
 
-define weak_odr %"Vector::Iterator::It<CQB::Engine::TaskState>" @"Vector::Vec<CQB::Engine::TaskState>__begin"(ptr %0) local_unnamed_addr !qc.return_types !42 {
+define weak_odr %"Vector::Iterator::It<CQB::Engine::TaskState>" @"Vector::Vec<CQB::Engine::TaskState>__begin"(ptr %0) !qc.return_types !33 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<CQB::Engine::TaskState>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<CQB::Engine::TaskState>" poison, ptr %data, 0
-  %"Vector::Iterator::It<CQB::Engine::TaskState>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<CQB::Engine::TaskState>" %"Vector::Iterator::It<CQB::Engine::TaskState>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<CQB::Engine::TaskState>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<CQB::Engine::TaskState>" %"Vector::Iterator::It<CQB::Engine::TaskState>_inst.fca.1.insert", i32 0, 2
-  ret %"Vector::Iterator::It<CQB::Engine::TaskState>" %"Vector::Iterator::It<CQB::Engine::TaskState>_inst.fca.2.insert"
+  %"temp_Vector::Iterator::It<CQB::Engine::TaskState>" = alloca %"Vector::Iterator::It<CQB::Engine::TaskState>", align 8
+  store %"Vector::Iterator::It<CQB::Engine::TaskState>" zeroinitializer, ptr %"temp_Vector::Iterator::It<CQB::Engine::TaskState>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<CQB::Engine::TaskState>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<CQB::Engine::TaskState>", ptr %data, i32 %size, i1 false)
+  %"Vector::Iterator::It<CQB::Engine::TaskState>_inst" = load %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %"temp_Vector::Iterator::It<CQB::Engine::TaskState>", align 8
+  ret %"Vector::Iterator::It<CQB::Engine::TaskState>" %"Vector::Iterator::It<CQB::Engine::TaskState>_inst"
 }
 
-define weak_odr %"Vector::Iterator::It<CQB::Engine::TaskState>" @"Vector::Vec<CQB::Engine::TaskState>__end"(ptr %0) local_unnamed_addr !qc.return_types !42 {
+define weak_odr %"Vector::Iterator::It<CQB::Engine::TaskState>" @"Vector::Vec<CQB::Engine::TaskState>__end"(ptr %0) !qc.return_types !33 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<CQB::Engine::TaskState>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<CQB::Engine::TaskState>" poison, ptr %data, 0
-  %"Vector::Iterator::It<CQB::Engine::TaskState>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<CQB::Engine::TaskState>" %"Vector::Iterator::It<CQB::Engine::TaskState>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<CQB::Engine::TaskState>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<CQB::Engine::TaskState>" %"Vector::Iterator::It<CQB::Engine::TaskState>_inst.fca.1.insert", i32 %size, 2
-  ret %"Vector::Iterator::It<CQB::Engine::TaskState>" %"Vector::Iterator::It<CQB::Engine::TaskState>_inst.fca.2.insert"
+  %"temp_Vector::Iterator::It<CQB::Engine::TaskState>" = alloca %"Vector::Iterator::It<CQB::Engine::TaskState>", align 8
+  store %"Vector::Iterator::It<CQB::Engine::TaskState>" zeroinitializer, ptr %"temp_Vector::Iterator::It<CQB::Engine::TaskState>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<CQB::Engine::TaskState>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<CQB::Engine::TaskState>", ptr %data, i32 %size, i1 true)
+  %"Vector::Iterator::It<CQB::Engine::TaskState>_inst" = load %"Vector::Iterator::It<CQB::Engine::TaskState>", ptr %"temp_Vector::Iterator::It<CQB::Engine::TaskState>", align 8
+  ret %"Vector::Iterator::It<CQB::Engine::TaskState>" %"Vector::Iterator::It<CQB::Engine::TaskState>_inst"
 }
 
-define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>__destroy"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<CQB::Engine::TaskState>__destroy"(ptr %0) !qc.return_types !21 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data)
-  store ptr null, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 -1, ptr %size_ptr, align 8
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  store i32 -1, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
   store i32 -1, ptr %capacity_ptr, align 4
   ret void
 }
 
-define weak_odr ptr @"Vector::Vec<CQB::Engine::TaskState>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<CQB::Engine::TaskState>" %1) local_unnamed_addr !qc.return_types !43 {
+define weak_odr ptr @"Vector::Vec<CQB::Engine::TaskState>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<CQB::Engine::TaskState>" %1) !qc.return_types !34 {
 entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<CQB::Engine::TaskState>" %1, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<CQB::Engine::TaskState>" %1, 1
-  %.fca.2.extract = extractvalue %"Vector::Vec<CQB::Engine::TaskState>" %1, 2
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %capacity1 = load i32, ptr %2, align 4
-  %icmpne.not = icmp eq i32 %.fca.2.extract, %capacity1
-  br i1 %icmpne.not, label %ifcont, label %then
+  %"Vector::i" = alloca i32, align 4
+  %other = alloca %"Vector::Vec<CQB::Engine::TaskState>", align 8
+  store %"Vector::Vec<CQB::Engine::TaskState>" zeroinitializer, ptr %other, align 8
+  store %"Vector::Vec<CQB::Engine::TaskState>" %1, ptr %other, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %other, i32 0, i32 2
+  %capacity = load i32, ptr %2, align 4
+  %3 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, %capacity1
+  br i1 %icmpne, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %icmpeq.i = icmp eq i32 %.fca.2.extract, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
+  %4 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %other, i32 0, i32 2
+  %capacity2 = load i32, ptr %4, align 4
+  call void @"Vector::Vec<CQB::Engine::TaskState>_reserve_int"(ptr %0, i32 %capacity2)
   br label %ifcont
 
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %.fca.2.extract to i64
-  %mul.i = shl nsw i64 %promote_int.i, 6
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %mul.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %ifcont, label %ifcont5.i
+ifcont:                                           ; preds = %then, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %other, i32 0, i32 1
+  %size = load i32, ptr %5, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
+  store i32 %size, ptr %size_ptr, align 4
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
 
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %.fca.2.extract, ptr %2, align 4
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %other, i32 0, i32 1
+  %size3 = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size3
+  br i1 %icmplt, label %for.body, label %for.end
 
-ifcont:                                           ; preds = %ifcont5.i, %ifcont.i, %then.i, %entry
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %.fca.1.extract, ptr %size_ptr, align 4
-  %icmplt12 = icmp sgt i32 %.fca.1.extract, 0
-  br i1 %icmplt12, label %for.body.preheader, label %for.end
+for.body:                                         ; preds = %for.cond
+  %i4 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr %"CQB::Engine::TaskState", ptr %data, i32 %i4
+  %i5 = load i32, ptr %"Vector::i", align 4
+  %8 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %other, i32 0, i32 0
+  %data6 = load ptr, ptr %8, align 8
+  %ptr_arr_addr = getelementptr %"CQB::Engine::TaskState", ptr %data6, i32 %i5
+  %ptr_arr_val = load %"CQB::Engine::TaskState", ptr %ptr_arr_addr, align 8
+  store %"CQB::Engine::TaskState" %ptr_arr_val, ptr %ptr_arr_asi, align 8
+  br label %for.inc
 
-for.body.preheader:                               ; preds = %ifcont
-  %wide.trip.count = zext nneg i32 %.fca.1.extract to i64
-  %xtraiter = and i64 %wide.trip.count, 3
-  %3 = icmp ult i32 %.fca.1.extract, 4
-  br i1 %3, label %for.body.epil.preheader, label %for.body.preheader.new
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
 
-for.body.preheader.new:                           ; preds = %for.body.preheader
-  %unroll_iter = and i64 %wide.trip.count, 2147483644
-  br label %for.body
-
-for.body:                                         ; preds = %for.body, %for.body.preheader.new
-  %indvars.iv = phi i64 [ 0, %for.body.preheader.new ], [ %indvars.iv.next.3, %for.body ]
-  %niter = phi i64 [ 0, %for.body.preheader.new ], [ %niter.next.3, %for.body ]
-  %data = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr [64 x i8], ptr %data, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr [64 x i8], ptr %.fca.0.extract, i64 %indvars.iv
-  tail call void @llvm.memmove.p0.p0.i64(ptr noundef nonnull align 8 dereferenceable(64) %ptr_arr_asi, ptr noundef nonnull align 8 dereferenceable(64) %ptr_arr_addr, i64 64, i1 false)
-  %indvars.iv.next = or disjoint i64 %indvars.iv, 1
-  %data.1 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.1 = getelementptr [64 x i8], ptr %data.1, i64 %indvars.iv.next
-  %ptr_arr_addr.1 = getelementptr [64 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next
-  tail call void @llvm.memmove.p0.p0.i64(ptr noundef nonnull align 8 dereferenceable(64) %ptr_arr_asi.1, ptr noundef nonnull align 8 dereferenceable(64) %ptr_arr_addr.1, i64 64, i1 false)
-  %indvars.iv.next.1 = or disjoint i64 %indvars.iv, 2
-  %data.2 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.2 = getelementptr [64 x i8], ptr %data.2, i64 %indvars.iv.next.1
-  %ptr_arr_addr.2 = getelementptr [64 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next.1
-  tail call void @llvm.memmove.p0.p0.i64(ptr noundef nonnull align 8 dereferenceable(64) %ptr_arr_asi.2, ptr noundef nonnull align 8 dereferenceable(64) %ptr_arr_addr.2, i64 64, i1 false)
-  %indvars.iv.next.2 = or disjoint i64 %indvars.iv, 3
-  %data.3 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.3 = getelementptr [64 x i8], ptr %data.3, i64 %indvars.iv.next.2
-  %ptr_arr_addr.3 = getelementptr [64 x i8], ptr %.fca.0.extract, i64 %indvars.iv.next.2
-  tail call void @llvm.memmove.p0.p0.i64(ptr noundef nonnull align 8 dereferenceable(64) %ptr_arr_asi.3, ptr noundef nonnull align 8 dereferenceable(64) %ptr_arr_addr.3, i64 64, i1 false)
-  %indvars.iv.next.3 = add nuw nsw i64 %indvars.iv, 4
-  %niter.next.3 = add i64 %niter, 4
-  %niter.ncmp.3 = icmp eq i64 %niter.next.3, %unroll_iter
-  br i1 %niter.ncmp.3, label %for.end.loopexit.unr-lcssa, label %for.body
-
-for.end.loopexit.unr-lcssa:                       ; preds = %for.body
-  %lcmp.mod.not = icmp eq i64 %xtraiter, 0
-  br i1 %lcmp.mod.not, label %for.end, label %for.body.epil.preheader
-
-for.body.epil.preheader:                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.preheader
-  %indvars.iv.epil.init = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next.3, %for.end.loopexit.unr-lcssa ]
-  %lcmp.mod15 = icmp ne i64 %xtraiter, 0
-  tail call void @llvm.assume(i1 %lcmp.mod15)
-  br label %for.body.epil
-
-for.body.epil:                                    ; preds = %for.body.epil, %for.body.epil.preheader
-  %indvars.iv.epil = phi i64 [ %indvars.iv.epil.init, %for.body.epil.preheader ], [ %indvars.iv.next.epil, %for.body.epil ]
-  %epil.iter = phi i64 [ 0, %for.body.epil.preheader ], [ %epil.iter.next, %for.body.epil ]
-  %data.epil = load ptr, ptr %0, align 8
-  %ptr_arr_asi.epil = getelementptr [64 x i8], ptr %data.epil, i64 %indvars.iv.epil
-  %ptr_arr_addr.epil = getelementptr [64 x i8], ptr %.fca.0.extract, i64 %indvars.iv.epil
-  tail call void @llvm.memmove.p0.p0.i64(ptr noundef nonnull align 8 dereferenceable(64) %ptr_arr_asi.epil, ptr noundef nonnull align 8 dereferenceable(64) %ptr_arr_addr.epil, i64 64, i1 false)
-  %indvars.iv.next.epil = add nuw nsw i64 %indvars.iv.epil, 1
-  %epil.iter.next = add i64 %epil.iter, 1
-  %epil.iter.cmp.not = icmp eq i64 %epil.iter.next, %xtraiter
-  br i1 %epil.iter.cmp.not, label %for.end, label %for.body.epil, !llvm.loop !55
-
-for.end:                                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.epil, %ifcont
+for.end:                                          ; preds = %for.cond
   ret ptr %0
 }
 
-define weak_odr i1 @"Vector::Vec<CQB::Engine::TaskState>_isEmpty"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Vec<CQB::Engine::TaskState>_isEmpty"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<CQB::Engine::TaskState>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   ret i1 %icmpeq
 }
 
-define weak_odr i32 @"CQB::Engine::Runner_indexOf_Vector::Vec<Build::Command>&_char*"(ptr %0, ptr %1, ptr %2) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"CQB::Engine::Runner_indexOf_Vector::Vec<Build::Command>&_char*"(ptr %0, ptr %1, ptr %2) !qc.return_types !30 {
 entry:
-  %3 = getelementptr inbounds nuw i8, ptr %1, i64 8
-  %size.i = load i32, ptr %3, align 4
-  %icmplt9 = icmp sgt i32 %size.i, 0
-  br i1 %icmplt9, label %for.body.lr.ph, label %common.ret
+  %"CQB::Engine::i" = alloca i32, align 4
+  %name = alloca ptr, align 8
+  %g = alloca ptr, align 8
+  store ptr null, ptr %g, align 8
+  store ptr %1, ptr %g, align 8
+  store ptr null, ptr %name, align 8
+  store ptr %2, ptr %name, align 8
+  store i32 0, ptr %"CQB::Engine::i", align 4
+  store i32 0, ptr %"CQB::Engine::i", align 4
+  br label %for.cond
 
-for.body.lr.ph:                                   ; preds = %entry
-  %data.i = load ptr, ptr %1, align 8
-  %wide.trip.count = zext nneg i32 %size.i to i64
-  br label %for.body
+for.cond:                                         ; preds = %for.inc, %entry
+  %i = load i32, ptr %"CQB::Engine::i", align 4
+  %3 = load ptr, ptr %g, align 8
+  %4 = load ptr, ptr %g, align 8
+  %length_result = call i32 @"Vector::Vec<CQB::Build::Command>_length"(ptr %4)
+  %icmplt = icmp slt i32 %i, %length_result
+  br i1 %icmplt, label %for.body, label %for.end
 
-for.body:                                         ; preds = %for.body.lr.ph, %ifcont
-  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %ifcont ]
-  %lval_ptr_arr_addr.i = getelementptr [72 x i8], ptr %data.i, i64 %indvars.iv
-  %targetName = load ptr, ptr %lval_ptr_arr_addr.i, align 8
-  %ptr_eq = icmp eq ptr %targetName, %2
-  br i1 %ptr_eq, label %common.ret.loopexit.split.loop.exit, label %ifcont
+for.body:                                         ; preds = %for.cond
+  %5 = load ptr, ptr %g, align 8
+  %i1 = load i32, ptr %"CQB::Engine::i", align 4
+  %6 = sext i32 %i1 to i64
+  %"operator[]_result" = call ptr @"Vector::Vec<CQB::Build::Command>_operator[]_addr_t"(ptr %5, i64 %6)
+  %targetName_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %"operator[]_result", i32 0, i32 0
+  %targetName = load ptr, ptr %targetName_ptr, align 8
+  %name2 = load ptr, ptr %name, align 8
+  %ptr_eq = icmp eq ptr %targetName, %name2
+  br i1 %ptr_eq, label %then, label %ifcont
 
-common.ret.loopexit.split.loop.exit:              ; preds = %for.body
-  %4 = trunc nuw nsw i64 %indvars.iv to i32
-  br label %common.ret
+for.inc:                                          ; preds = %ifcont
+  %inc_deref = load i32, ptr %"CQB::Engine::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"CQB::Engine::i", align 4
+  br label %for.cond
 
-common.ret:                                       ; preds = %ifcont, %common.ret.loopexit.split.loop.exit, %entry
-  %common.ret.op = phi i32 [ -1, %entry ], [ %4, %common.ret.loopexit.split.loop.exit ], [ -1, %ifcont ]
-  ret i32 %common.ret.op
+for.end:                                          ; preds = %for.cond
+  ret i32 -1
+
+then:                                             ; preds = %for.body
+  %i3 = load i32, ptr %"CQB::Engine::i", align 4
+  ret i32 %i3
 
 ifcont:                                           ; preds = %for.body
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
-  %exitcond.not = icmp eq i64 %indvars.iv.next, %wide.trip.count
-  br i1 %exitcond.not, label %common.ret, label %for.body
+  br label %for.inc
 }
 
-define weak_odr i32 @"CQB::Engine::Runner_runBuildPipeline"(ptr %0) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"CQB::Engine::Runner_runBuildPipeline_char*"(ptr %0, ptr %1) !qc.return_types !30 {
 entry:
-  %ts.i570 = alloca %timespec, align 8
-  %ts.i561 = alloca %timespec, align 8
-  %ts.i = alloca %timespec, align 8
-  %"CQB::Engine::tty.sroa.0" = alloca i8, align 1
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 40
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 48
-  %size.i = load i32, ptr %2, align 4
-  %icmplt1048 = icmp sgt i32 %size.i, 0
-  br i1 %icmplt1048, label %for.body.preheader, label %while.cond.preheader.split
+  %"CQB::Engine::total" = alloca i64, align 8
+  %"CQB::Engine::steps" = alloca i32, align 4
+  %"CQB::Engine::ms" = alloca i64, align 8
+  %res = alloca %"CQB::Engine::RunResult", align 8
+  %"CQB::Engine::t0" = alloca i64, align 8
+  %lb = alloca %"String::Str", align 8
+  %slash = alloca %"String::Str", align 8
+  %num2 = alloca %"String::Str", align 8
+  %num = alloca %"String::Str", align 8
+  %label = alloca %"String::Str", align 8
+  %flag125 = alloca ptr, align 8
+  %__foreach_i_flag124 = alloca i32, align 4
+  %__iter_flag122 = alloca %"Vector::Iterator::It<char*>", align 8
+  %flag108 = alloca ptr, align 8
+  %__foreach_i_flag107 = alloca i32, align 4
+  %__iter_flag105 = alloca %"Vector::Iterator::It<char*>", align 8
+  %"CQB::Engine::hasProgress" = alloca i1, align 1
+  %flag = alloca ptr, align 8
+  %__foreach_i_flag = alloca i32, align 4
+  %__iter_flag = alloca %"Vector::Iterator::It<char*>", align 8
+  %input = alloca ptr, align 8
+  %__foreach_i_input = alloca i32, align 4
+  %__iter_input = alloca %"Vector::Iterator::It<char*>", align 8
+  %temp_op_lhs = alloca %"String::Str", align 8
+  %"CQB::Engine::isQc" = alloca i1, align 1
+  %qc = alloca %"String::Str", align 8
+  %arr_lit = alloca [1 x ptr], align 8
+  %comm = alloca %"Vector::Vec<char*>", align 8
+  %command = alloca %"CQB::Build::Command", align 8
+  %"CQB::Engine::k" = alloca i32, align 4
+  %"CQB::Engine::totalStart" = alloca i64, align 8
+  %"CQB::Engine::tty" = alloca i1, align 1
+  %dep46 = alloca ptr, align 8
+  %__foreach_i_dep45 = alloca i32, align 4
+  %__iter_dep43 = alloca %"Vector::Iterator::It<char*>", align 8
+  %"CQB::Engine::j" = alloca i32, align 4
+  %"CQB::Engine::i16" = alloca i32, align 4
+  %"CQB::Engine::progressed" = alloca i1, align 1
+  %dep = alloca ptr, align 8
+  %__foreach_i_dep = alloca i32, align 4
+  %__iter_dep = alloca %"Vector::Iterator::It<char*>", align 8
+  %"CQB::Engine::i" = alloca i32, align 4
+  %done = alloca %"Vector::Vec<bool>", align 8
+  %remaining = alloca %"Vector::Vec<int>", align 8
+  %"CQB::Engine::n" = alloca i32, align 4
+  %order = alloca %"Vector::Vec<int>", align 8
+  %qc_exe = alloca ptr, align 8
+  store ptr null, ptr %qc_exe, align 8
+  store ptr %1, ptr %qc_exe, align 8
+  store %"Vector::Vec<int>" zeroinitializer, ptr %order, align 8
+  call void @"Vector::Vec<int>_Vec"(ptr %order)
+  store i32 0, ptr %"CQB::Engine::n", align 4
+  %2 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 5
+  %length_result = call i32 @"Vector::Vec<CQB::Build::Command>_length"(ptr %2)
+  store i32 %length_result, ptr %"CQB::Engine::n", align 4
+  store %"Vector::Vec<int>" zeroinitializer, ptr %remaining, align 8
+  call void @"Vector::Vec<int>_Vec"(ptr %remaining)
+  store %"Vector::Vec<bool>" zeroinitializer, ptr %done, align 8
+  call void @"Vector::Vec<bool>_Vec"(ptr %done)
+  store i32 0, ptr %"CQB::Engine::i", align 4
+  store i32 0, ptr %"CQB::Engine::i", align 4
+  br label %for.cond
 
-for.body.preheader:                               ; preds = %entry
-  %wide.trip.count1128 = zext nneg i32 %size.i to i64
-  %data.i.pre = load ptr, ptr %1, align 8
-  br label %for.body
+for.cond:                                         ; preds = %for.inc, %entry
+  %i = load i32, ptr %"CQB::Engine::i", align 4
+  %n = load i32, ptr %"CQB::Engine::n", align 4
+  %icmplt = icmp slt i32 %i, %n
+  br i1 %icmplt, label %for.body, label %for.end
 
-while.cond.preheader.split:                       ; preds = %foreach.end, %entry
-  %done.sroa.0.0.lcssa = phi ptr [ null, %entry ], [ %done.sroa.0.2, %foreach.end ]
-  %remaining.sroa.0.0.lcssa = phi ptr [ null, %entry ], [ %remaining.sroa.0.2, %foreach.end ]
-  %wide.trip.count1143 = zext nneg i32 %size.i to i64
+for.body:                                         ; preds = %for.cond
+  %buildGraph_ptr = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 5
+  %i1 = load i32, ptr %"CQB::Engine::i", align 4
+  %3 = sext i32 %i1 to i64
+  %"operator[]_result" = call ptr @"Vector::Vec<CQB::Build::Command>_operator[]_addr_t"(ptr %buildGraph_ptr, i64 %3)
+  %4 = getelementptr inbounds nuw %"CQB::Build::Command", ptr %"operator[]_result", i32 0, i32 5
+  %length_result2 = call i32 @"Vector::Vec<char*>_length"(ptr %4)
+  call void @"Vector::Vec<int>_push_T"(ptr %remaining, i32 %length_result2)
+  call void @"Vector::Vec<bool>_push_T"(ptr %done, i1 false)
+  %buildGraph_ptr3 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 5
+  %i4 = load i32, ptr %"CQB::Engine::i", align 4
+  %5 = sext i32 %i4 to i64
+  %"operator[]_result5" = call ptr @"Vector::Vec<CQB::Build::Command>_operator[]_addr_t"(ptr %buildGraph_ptr3, i64 %5)
+  %dependencies_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %"operator[]_result5", i32 0, i32 5
+  store %"Vector::Iterator::It<char*>" zeroinitializer, ptr %__iter_dep, align 8
+  %_begin_result = call %"Vector::Iterator::It<char*>" @"Vector::Vec<char*>__begin"(ptr %dependencies_ptr)
+  store %"Vector::Iterator::It<char*>" %_begin_result, ptr %__iter_dep, align 8
+  store i32 0, ptr %__foreach_i_dep, align 4
+  store ptr null, ptr %dep, align 8
+  store i32 0, ptr %__foreach_i_dep, align 4
+  br label %foreach.cond
+
+for.inc:                                          ; preds = %foreach.end
+  %inc_deref = load i32, ptr %"CQB::Engine::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"CQB::Engine::i", align 4
+  br label %for.cond
+
+for.end:                                          ; preds = %for.cond
   br label %while.cond
 
-for.body:                                         ; preds = %for.body.preheader, %foreach.end
-  %data.i = phi ptr [ %data.i.pre, %for.body.preheader ], [ %data.i330, %foreach.end ]
-  %indvars.iv1125 = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next1126, %foreach.end ]
-  %remaining.sroa.26.01054 = phi i32 [ 0, %for.body.preheader ], [ %remaining.sroa.26.2, %foreach.end ]
-  %remaining.sroa.16.01053 = phi i32 [ 0, %for.body.preheader ], [ %remaining.sroa.16.3, %foreach.end ]
-  %remaining.sroa.0.01052 = phi ptr [ null, %for.body.preheader ], [ %remaining.sroa.0.2, %foreach.end ]
-  %done.sroa.26.01051 = phi i32 [ 0, %for.body.preheader ], [ %done.sroa.26.2, %foreach.end ]
-  %done.sroa.16.01050 = phi i32 [ 0, %for.body.preheader ], [ %done.sroa.16.3, %foreach.end ]
-  %done.sroa.0.01049 = phi ptr [ null, %for.body.preheader ], [ %done.sroa.0.2, %foreach.end ]
-  %lval_ptr_arr_addr.i = getelementptr [72 x i8], ptr %data.i, i64 %indvars.iv1125
-  %3 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i, i64 64
-  %size.i301 = load i32, ptr %3, align 4
-  %icmple.not.i = icmp sgt i32 %remaining.sroa.26.01054, %remaining.sroa.16.01053
-  br i1 %icmple.not.i, label %ifcont.i, label %then.i
+foreach.cond:                                     ; preds = %ifcont, %for.body
+  %_atEnd_result = call i1 @"Vector::Iterator::It<char*>__atEnd"(ptr %__iter_dep)
+  br i1 %_atEnd_result, label %foreach.end, label %foreach.body
 
-then.i:                                           ; preds = %for.body
-  %icmpeq.i = icmp eq i32 %remaining.sroa.26.01054, 0
-  %mul.i = shl i32 %remaining.sroa.26.01054, 1
-  %select_val.i = select i1 %icmpeq.i, i32 1, i32 %mul.i
-  %icmpeq.i.i = icmp eq i32 %select_val.i, 0
-  br i1 %icmpeq.i.i, label %then.i.i, label %ifcont.i.i
+foreach.body:                                     ; preds = %foreach.cond
+  %6 = load %"Vector::Iterator::It<char*>", ptr %__iter_dep, align 8
+  %_next_result = call ptr @"Vector::Iterator::It<char*>__next"(ptr %__iter_dep)
+  store ptr %_next_result, ptr %dep, align 8
+  %buildGraph_ptr6 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 5
+  %dep7 = load ptr, ptr %dep, align 8
+  %indexOf_result = call i32 @"CQB::Engine::Runner_indexOf_Vector::Vec<Build::Command>&_char*"(ptr %0, ptr %buildGraph_ptr6, ptr %dep7)
+  %icmplt8 = icmp slt i32 %indexOf_result, 0
+  br i1 %icmplt8, label %then, label %ifcont
 
-then.i.i:                                         ; preds = %then.i
-  tail call fastcc void @qc_free(ptr %remaining.sroa.0.01052)
-  br label %"Vector::Vec<int>_push_T.exit"
+foreach.end:                                      ; preds = %foreach.cond
+  br label %for.inc
 
-ifcont.i.i:                                       ; preds = %then.i
-  %promote_int.i.i = sext i32 %select_val.i to i64
-  %mul.i.i = shl nsw i64 %promote_int.i.i, 2
-  %builtin_call.i.i = tail call fastcc ptr @qc_realloc(ptr %remaining.sroa.0.01052, i64 %mul.i.i)
-  %ptr_eq.i.i = icmp eq ptr %builtin_call.i.i, null
-  br i1 %ptr_eq.i.i, label %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i
+then:                                             ; preds = %foreach.body
+  %buildGraph_ptr9 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 5
+  %i10 = load i32, ptr %"CQB::Engine::i", align 4
+  %7 = sext i32 %i10 to i64
+  %"operator[]_result11" = call ptr @"Vector::Vec<CQB::Build::Command>_operator[]_addr_t"(ptr %buildGraph_ptr9, i64 %7)
+  %targetName_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %"operator[]_result11", i32 0, i32 0
+  %targetName = load ptr, ptr %targetName_ptr, align 8
+  %dep12 = load ptr, ptr %dep, align 8
+  %varadics_array = alloca ptr, i32 2, align 8
+  %8 = getelementptr ptr, ptr %varadics_array, i32 0
+  store ptr %targetName, ptr %8, align 8
+  %9 = getelementptr ptr, ptr %varadics_array, i32 1
+  store ptr %dep12, ptr %9, align 8
+  %variadic_struct = alloca { ptr, i32, i32 }, align 8
+  %10 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct, i32 0, i32 0
+  store ptr %varadics_array, ptr %10, align 8
+  %11 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct, i32 0, i32 1
+  store i32 2, ptr %11, align 4
+  %12 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct, i32 0, i32 2
+  store i32 0, ptr %12, align 4
+  call void @"IO::qout"(ptr @.str.57, ptr %variadic_struct)
+  call void @"Vector::Vec<int>__destroy"(ptr %order)
+  call void @"Vector::Vec<bool>__destroy"(ptr %done)
+  call void @"Vector::Vec<int>__destroy"(ptr %remaining)
+  ret i32 1
 
-ifcont5.i.i:                                      ; preds = %ifcont.i.i
-  %spec.select = tail call i32 @llvm.smin.i32(i32 %remaining.sroa.16.01053, i32 %select_val.i)
-  br label %ifcont.i
+ifcont:                                           ; preds = %foreach.body
+  br label %foreach.cond
 
-"Vector::Vec<int>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i
-  %4 = icmp eq ptr %remaining.sroa.0.01052, null
-  br i1 %4, label %"Vector::Vec<int>_push_T.exit", label %ifcont.i
-
-ifcont.i:                                         ; preds = %ifcont5.i.i, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i", %for.body
-  %remaining.sroa.0.1 = phi ptr [ %remaining.sroa.0.01052, %for.body ], [ %builtin_call.i.i, %ifcont5.i.i ], [ %remaining.sroa.0.01052, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i" ]
-  %remaining.sroa.16.2 = phi i32 [ %remaining.sroa.16.01053, %for.body ], [ %spec.select, %ifcont5.i.i ], [ %remaining.sroa.16.01053, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i" ]
-  %remaining.sroa.26.1 = phi i32 [ %remaining.sroa.26.01054, %for.body ], [ %select_val.i, %ifcont5.i.i ], [ %remaining.sroa.26.01054, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i" ]
-  %5 = sext i32 %remaining.sroa.16.2 to i64
-  %ptr_arr_asi.i = getelementptr [4 x i8], ptr %remaining.sroa.0.1, i64 %5
-  store i32 %size.i301, ptr %ptr_arr_asi.i, align 4
-  %inc.i = add i32 %remaining.sroa.16.2, 1
-  br label %"Vector::Vec<int>_push_T.exit"
-
-"Vector::Vec<int>_push_T.exit":                   ; preds = %then.i.i, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i", %ifcont.i
-  %remaining.sroa.0.2 = phi ptr [ %remaining.sroa.0.1, %ifcont.i ], [ null, %then.i.i ], [ null, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i" ]
-  %remaining.sroa.16.3 = phi i32 [ %inc.i, %ifcont.i ], [ 0, %then.i.i ], [ %remaining.sroa.16.01053, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i" ]
-  %remaining.sroa.26.2 = phi i32 [ %remaining.sroa.26.1, %ifcont.i ], [ 0, %then.i.i ], [ %remaining.sroa.26.01054, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i" ]
-  %icmple.not.i305 = icmp sgt i32 %done.sroa.26.01051, %done.sroa.16.01050
-  br i1 %icmple.not.i305, label %ifcont.i320, label %then.i307
-
-then.i307:                                        ; preds = %"Vector::Vec<int>_push_T.exit"
-  %icmpeq.i308 = icmp eq i32 %done.sroa.26.01051, 0
-  %mul.i309 = shl i32 %done.sroa.26.01051, 1
-  %select_val.i310 = select i1 %icmpeq.i308, i32 1, i32 %mul.i309
-  %icmpeq.i.i311 = icmp eq i32 %select_val.i310, 0
-  br i1 %icmpeq.i.i311, label %then.i.i329, label %ifcont.i.i312
-
-then.i.i329:                                      ; preds = %then.i307
-  tail call fastcc void @qc_free(ptr %done.sroa.0.01049)
-  br label %"Vector::Vec<bool>_push_T.exit"
-
-ifcont.i.i312:                                    ; preds = %then.i307
-  %promote_int.i.i313 = sext i32 %select_val.i310 to i64
-  %builtin_call.i.i314 = tail call fastcc ptr @qc_realloc(ptr %done.sroa.0.01049, i64 %promote_int.i.i313)
-  %ptr_eq.i.i315 = icmp eq ptr %builtin_call.i.i314, null
-  br i1 %ptr_eq.i.i315, label %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i316
-
-ifcont5.i.i316:                                   ; preds = %ifcont.i.i312
-  %spec.select992 = tail call i32 @llvm.smin.i32(i32 %done.sroa.16.01050, i32 %select_val.i310)
-  br label %ifcont.i320
-
-"Vector::Vec<bool>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i312
-  %6 = icmp eq ptr %done.sroa.0.01049, null
-  br i1 %6, label %"Vector::Vec<bool>_push_T.exit", label %ifcont.i320
-
-ifcont.i320:                                      ; preds = %ifcont5.i.i316, %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.i", %"Vector::Vec<int>_push_T.exit"
-  %done.sroa.0.1 = phi ptr [ %done.sroa.0.01049, %"Vector::Vec<int>_push_T.exit" ], [ %builtin_call.i.i314, %ifcont5.i.i316 ], [ %done.sroa.0.01049, %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.i" ]
-  %done.sroa.16.2 = phi i32 [ %done.sroa.16.01050, %"Vector::Vec<int>_push_T.exit" ], [ %spec.select992, %ifcont5.i.i316 ], [ %done.sroa.16.01050, %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.i" ]
-  %done.sroa.26.1 = phi i32 [ %done.sroa.26.01051, %"Vector::Vec<int>_push_T.exit" ], [ %select_val.i310, %ifcont5.i.i316 ], [ %done.sroa.26.01051, %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.i" ]
-  %7 = sext i32 %done.sroa.16.2 to i64
-  %ptr_arr_asi.i323 = getelementptr i8, ptr %done.sroa.0.1, i64 %7
-  store i1 false, ptr %ptr_arr_asi.i323, align 1
-  %inc.i325 = add i32 %done.sroa.16.2, 1
-  br label %"Vector::Vec<bool>_push_T.exit"
-
-"Vector::Vec<bool>_push_T.exit":                  ; preds = %then.i.i329, %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.i", %ifcont.i320
-  %done.sroa.0.2 = phi ptr [ %done.sroa.0.1, %ifcont.i320 ], [ null, %then.i.i329 ], [ null, %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.i" ]
-  %done.sroa.16.3 = phi i32 [ %inc.i325, %ifcont.i320 ], [ 0, %then.i.i329 ], [ %done.sroa.16.01050, %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.i" ]
-  %done.sroa.26.2 = phi i32 [ %done.sroa.26.1, %ifcont.i320 ], [ 0, %then.i.i329 ], [ %done.sroa.26.01051, %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.i" ]
-  %data.i330 = load ptr, ptr %1, align 8
-  %lval_ptr_arr_addr.i331 = getelementptr [72 x i8], ptr %data.i330, i64 %indvars.iv1125
-  %dependencies_ptr = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i331, i64 56
-  %data.i332 = load ptr, ptr %dependencies_ptr, align 8
-  %8 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i331, i64 64
-  %size.i333 = load i32, ptr %8, align 8
-  %icmple.i.not1046 = icmp sgt i32 %size.i333, 0
-  br i1 %icmple.i.not1046, label %foreach.body.lr.ph, label %foreach.end
-
-foreach.body.lr.ph:                               ; preds = %"Vector::Vec<bool>_push_T.exit"
-  %size.i.i340 = load i32, ptr %2, align 8
-  %icmplt9.i = icmp sgt i32 %size.i.i340, 0
-  %wide.trip.count.i = zext nneg i32 %size.i.i340 to i64
-  %wide.trip.count = zext nneg i32 %size.i333 to i64
-  br label %foreach.body
-
-foreach.cond.loopexit:                            ; preds = %for.body.i
-  %exitcond.not = icmp eq i64 %indvars.iv.next, %wide.trip.count
-  br i1 %exitcond.not, label %foreach.end, label %foreach.body
-
-foreach.body:                                     ; preds = %foreach.body.lr.ph, %foreach.cond.loopexit
-  %indvars.iv = phi i64 [ 0, %foreach.body.lr.ph ], [ %indvars.iv.next, %foreach.cond.loopexit ]
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
-  %ptr_arr_addr5.i = getelementptr [8 x i8], ptr %data.i332, i64 %indvars.iv
-  %common.ret.op.i = load ptr, ptr %ptr_arr_addr5.i, align 8
-  br i1 %icmplt9.i, label %for.body.i, label %then
-
-for.body.i:                                       ; preds = %foreach.body, %ifcont.i342
-  %indvars.iv.i = phi i64 [ %indvars.iv.next.i, %ifcont.i342 ], [ 0, %foreach.body ]
-  %lval_ptr_arr_addr.i.i = getelementptr [72 x i8], ptr %data.i330, i64 %indvars.iv.i
-  %targetName.i = load ptr, ptr %lval_ptr_arr_addr.i.i, align 8
-  %ptr_eq.i = icmp eq ptr %targetName.i, %common.ret.op.i
-  br i1 %ptr_eq.i, label %foreach.cond.loopexit, label %ifcont.i342
-
-ifcont.i342:                                      ; preds = %for.body.i
-  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1
-  %exitcond.not.i = icmp eq i64 %indvars.iv.next.i, %wide.trip.count.i
-  br i1 %exitcond.not.i, label %then, label %for.body.i
-
-foreach.end:                                      ; preds = %foreach.cond.loopexit, %"Vector::Vec<bool>_push_T.exit"
-  %indvars.iv.next1126 = add nuw nsw i64 %indvars.iv1125, 1
-  %exitcond1129.not = icmp eq i64 %indvars.iv.next1126, %wide.trip.count1128
-  br i1 %exitcond1129.not, label %while.cond.preheader.split, label %for.body
-
-common.ret:                                       ; preds = %else149, %for.end74, %then67, %then
-  %common.ret.op = phi i32 [ 1, %then ], [ 2, %then67 ], [ 0, %for.end74 ], [ %calltmp141.fca.0.extract, %else149 ]
-  ret i32 %common.ret.op
-
-then:                                             ; preds = %foreach.body, %ifcont.i342
-  %targetName = load ptr, ptr %lval_ptr_arr_addr.i331, align 8
-  tail call fastcc void @qc_print_string(ptr nonnull @7)
-  tail call fastcc void @qc_fmt_string(ptr %targetName)
-  tail call fastcc void @qc_print_string(ptr nonnull @8)
-  tail call fastcc void @qc_fmt_string(ptr %common.ret.op.i)
-  tail call fastcc void @qc_print_string(ptr nonnull @9)
-  tail call fastcc void @qc_free(ptr null)
-  tail call fastcc void @qc_free(ptr %done.sroa.0.2)
-  tail call fastcc void @qc_free(ptr %remaining.sroa.0.2)
-  br label %common.ret
-
-while.cond:                                       ; preds = %while.cond.preheader.split, %for.end20
-  %order.sroa.0.0 = phi ptr [ %order.sroa.0.2, %for.end20 ], [ null, %while.cond.preheader.split ]
-  %order.sroa.15.0 = phi i32 [ %order.sroa.15.2, %for.end20 ], [ 0, %while.cond.preheader.split ]
-  %order.sroa.32.0 = phi i32 [ %order.sroa.32.2, %for.end20 ], [ 0, %while.cond.preheader.split ]
-  %icmplt15 = icmp slt i32 %order.sroa.15.0, %size.i
+while.cond:                                       ; preds = %ifcont68, %for.end
+  %length_result13 = call i32 @"Vector::Vec<int>_length"(ptr %order)
+  %n14 = load i32, ptr %"CQB::Engine::n", align 4
+  %icmplt15 = icmp slt i32 %length_result13, %n14
   br i1 %icmplt15, label %while.body, label %while.end
 
 while.body:                                       ; preds = %while.cond
-  br i1 %icmplt1048, label %for.body18, label %then67
+  store i1 false, ptr %"CQB::Engine::progressed", align 1
+  store i1 false, ptr %"CQB::Engine::progressed", align 1
+  store i32 0, ptr %"CQB::Engine::i16", align 4
+  store i32 0, ptr %"CQB::Engine::i16", align 4
+  br label %for.cond17
 
 while.end:                                        ; preds = %while.cond
-  %calltmp = tail call i32 @isatty(i32 1)
-  %icmpne69 = icmp ne i32 %calltmp, 0
-  store i1 %icmpne69, ptr %"CQB::Engine::tty.sroa.0", align 1
-  call void @llvm.lifetime.start.p0(ptr nonnull %ts.i)
-  %.fca.1.gep.i = getelementptr inbounds nuw i8, ptr %ts.i, i64 8
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %ts.i, i8 0, i64 16, i1 false)
-  %calltmp.i = call i32 @clock_gettime(i32 1, ptr nonnull %ts.i)
-  %tv_sec.i = load i64, ptr %ts.i, align 8
-  %mul.i353.neg = mul i64 %tv_sec.i, -1000
-  %tv_nsec.i = load i64, ptr %.fca.1.gep.i, align 8
-  %sdiv.i.neg = sdiv i64 %tv_nsec.i, -1000000
-  %add.i.neg = add i64 %sdiv.i.neg, %mul.i353.neg
-  call void @llvm.lifetime.end.p0(ptr nonnull %ts.i)
-  %icmplt761097 = icmp sgt i32 %order.sroa.15.0, 0
-  br i1 %icmplt761097, label %"Vector::Vec<char*>_operator[]=_T*_addr_t.exit.lr.ph", label %for.end74
+  store i1 false, ptr %"CQB::Engine::tty", align 1
+  %calltmp = call i32 @isatty(i32 1)
+  %icmpne71 = icmp ne i32 %calltmp, 0
+  store i1 %icmpne71, ptr %"CQB::Engine::tty", align 1
+  store i64 0, ptr %"CQB::Engine::totalStart", align 8
+  %calltmp72 = call i64 @"CQB::Engine::nowMs"()
+  store i64 %calltmp72, ptr %"CQB::Engine::totalStart", align 8
+  store i32 0, ptr %"CQB::Engine::k", align 4
+  store i32 0, ptr %"CQB::Engine::k", align 4
+  br label %for.cond73
 
-"Vector::Vec<char*>_operator[]=_T*_addr_t.exit.lr.ph": ; preds = %while.end
-  %.fca.1.gep.i562 = getelementptr inbounds nuw i8, ptr %ts.i561, i64 8
-  %.fca.1.gep.i571 = getelementptr inbounds nuw i8, ptr %ts.i570, i64 8
-  %9 = zext nneg i32 %order.sroa.15.0 to i64
-  br label %"Vector::Vec<char*>_operator[]=_T*_addr_t.exit"
+for.cond17:                                       ; preds = %for.inc19, %while.body
+  %i21 = load i32, ptr %"CQB::Engine::i16", align 4
+  %n22 = load i32, ptr %"CQB::Engine::n", align 4
+  %icmplt23 = icmp slt i32 %i21, %n22
+  br i1 %icmplt23, label %for.body18, label %for.end20
 
-for.body18:                                       ; preds = %while.body, %for.inc19
-  %"CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.0.progressed1174" = phi i1 [ %"CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.0.progressed1173", %for.inc19 ], [ false, %while.body ]
-  %indvars.iv1140 = phi i64 [ %indvars.iv.next1141, %for.inc19 ], [ 0, %while.body ]
-  %order.sroa.32.11064 = phi i32 [ %order.sroa.32.2, %for.inc19 ], [ %order.sroa.32.0, %while.body ]
-  %order.sroa.15.11063 = phi i32 [ %order.sroa.15.2, %for.inc19 ], [ %order.sroa.15.0, %while.body ]
-  %order.sroa.0.11062 = phi ptr [ %order.sroa.0.2, %for.inc19 ], [ %order.sroa.0.0, %while.body ]
-  %lval_ptr_arr_addr.i355 = getelementptr i8, ptr %done.sroa.0.0.lcssa, i64 %indvars.iv1140
-  %10 = load i1, ptr %lval_ptr_arr_addr.i355, align 1
-  br i1 %10, label %for.inc19, label %or.rhs
+for.body18:                                       ; preds = %for.cond17
+  %i24 = load i32, ptr %"CQB::Engine::i16", align 4
+  %13 = sext i32 %i24 to i64
+  %"operator[]_result25" = call ptr @"Vector::Vec<bool>_operator[]_addr_t"(ptr %done, i64 %13)
+  %14 = load i1, ptr %"operator[]_result25", align 1
+  br i1 %14, label %or.end, label %or.rhs
 
-for.inc19:                                        ; preds = %foreach.end49, %for.body18, %or.rhs
-  %"CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.0.progressed1173" = phi i1 [ %"CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.0.progressed1174", %for.body18 ], [ %"CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.0.progressed1174", %or.rhs ], [ true, %foreach.end49 ]
-  %order.sroa.0.2 = phi ptr [ %order.sroa.0.11062, %for.body18 ], [ %order.sroa.0.11062, %or.rhs ], [ %order.sroa.0.4, %foreach.end49 ]
-  %order.sroa.15.2 = phi i32 [ %order.sroa.15.11063, %for.body18 ], [ %order.sroa.15.11063, %or.rhs ], [ %order.sroa.15.5, %foreach.end49 ]
-  %order.sroa.32.2 = phi i32 [ %order.sroa.32.11064, %for.body18 ], [ %order.sroa.32.11064, %or.rhs ], [ %order.sroa.32.4, %foreach.end49 ]
-  %indvars.iv.next1141 = add nuw nsw i64 %indvars.iv1140, 1
-  %exitcond1144.not = icmp eq i64 %indvars.iv.next1141, %wide.trip.count1143
-  br i1 %exitcond1144.not, label %for.end20, label %for.body18
+for.inc19:                                        ; preds = %for.end36, %then28
+  %inc_deref65 = load i32, ptr %"CQB::Engine::i16", align 4
+  %inc66 = add i32 %inc_deref65, 1
+  store i32 %inc66, ptr %"CQB::Engine::i16", align 4
+  br label %for.cond17
 
-for.end20:                                        ; preds = %for.inc19
-  br i1 %"CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.sroa.0.0.CQB::Engine::progressed.0.progressed1173", label %while.cond, label %then67
+for.end20:                                        ; preds = %for.cond17
+  %progressed = load i1, ptr %"CQB::Engine::progressed", align 1
+  %not = xor i1 %progressed, true
+  br i1 %not, label %then67, label %ifcont68
 
 or.rhs:                                           ; preds = %for.body18
-  %lval_ptr_arr_addr.i357 = getelementptr [4 x i8], ptr %remaining.sroa.0.0.lcssa, i64 %indvars.iv1140
-  %11 = load i32, ptr %lval_ptr_arr_addr.i357, align 4
-  %icmpne.not = icmp eq i32 %11, 0
-  br i1 %icmpne.not, label %ifcont29, label %for.inc19
+  %i26 = load i32, ptr %"CQB::Engine::i16", align 4
+  %15 = sext i32 %i26 to i64
+  %"operator[]_result27" = call ptr @"Vector::Vec<int>_operator[]_addr_t"(ptr %remaining, i64 %15)
+  %16 = load i32, ptr %"operator[]_result27", align 4
+  %icmpne = icmp ne i32 %16, 0
+  br label %or.end
 
-ifcont29:                                         ; preds = %or.rhs
-  store i1 true, ptr %lval_ptr_arr_addr.i355, align 1
-  %icmple.not.i362 = icmp sgt i32 %order.sroa.32.11064, %order.sroa.15.11063
-  br i1 %icmple.not.i362, label %ifcont.i379, label %then.i364
+or.end:                                           ; preds = %or.rhs, %for.body18
+  %or = phi i1 [ true, %for.body18 ], [ %icmpne, %or.rhs ]
+  br i1 %or, label %then28, label %ifcont29
 
-then.i364:                                        ; preds = %ifcont29
-  %icmpeq.i365 = icmp eq i32 %order.sroa.32.11064, 0
-  %mul.i366 = shl i32 %order.sroa.32.11064, 1
-  %select_val.i367 = select i1 %icmpeq.i365, i32 1, i32 %mul.i366
-  %icmpeq.i.i368 = icmp eq i32 %select_val.i367, 0
-  br i1 %icmpeq.i.i368, label %then.i.i390, label %ifcont.i.i369
+then28:                                           ; preds = %or.end
+  br label %for.inc19
 
-then.i.i390:                                      ; preds = %then.i364
-  tail call fastcc void @qc_free(ptr %order.sroa.0.11062)
-  br label %"Vector::Vec<int>_push_T.exit391"
+ifcont29:                                         ; preds = %or.end
+  %i30 = load i32, ptr %"CQB::Engine::i16", align 4
+  %17 = sext i32 %i30 to i64
+  %"operator[]_result31" = call ptr @"Vector::Vec<bool>_operator[]_addr_t"(ptr %done, i64 %17)
+  store i1 true, ptr %"operator[]_result31", align 1
+  %i32 = load i32, ptr %"CQB::Engine::i16", align 4
+  call void @"Vector::Vec<int>_push_T"(ptr %order, i32 %i32)
+  store i1 true, ptr %"CQB::Engine::progressed", align 1
+  store i32 0, ptr %"CQB::Engine::j", align 4
+  store i32 0, ptr %"CQB::Engine::j", align 4
+  br label %for.cond33
 
-ifcont.i.i369:                                    ; preds = %then.i364
-  %promote_int.i.i370 = sext i32 %select_val.i367 to i64
-  %mul.i.i371 = shl nsw i64 %promote_int.i.i370, 2
-  %builtin_call.i.i372 = tail call fastcc ptr @qc_realloc(ptr %order.sroa.0.11062, i64 %mul.i.i371)
-  %ptr_eq.i.i373 = icmp eq ptr %builtin_call.i.i372, null
-  br i1 %ptr_eq.i.i373, label %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i386", label %ifcont5.i.i374
+for.cond33:                                       ; preds = %for.inc35, %ifcont29
+  %j = load i32, ptr %"CQB::Engine::j", align 4
+  %n37 = load i32, ptr %"CQB::Engine::n", align 4
+  %icmplt38 = icmp slt i32 %j, %n37
+  br i1 %icmplt38, label %for.body34, label %for.end36
 
-ifcont5.i.i374:                                   ; preds = %ifcont.i.i369
-  %spec.select994 = tail call i32 @llvm.smin.i32(i32 %order.sroa.15.11063, i32 %select_val.i367)
-  br label %ifcont.i379
+for.body34:                                       ; preds = %for.cond33
+  %buildGraph_ptr39 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 5
+  %j40 = load i32, ptr %"CQB::Engine::j", align 4
+  %18 = sext i32 %j40 to i64
+  %"operator[]_result41" = call ptr @"Vector::Vec<CQB::Build::Command>_operator[]_addr_t"(ptr %buildGraph_ptr39, i64 %18)
+  %dependencies_ptr42 = getelementptr inbounds nuw %"CQB::Build::Command", ptr %"operator[]_result41", i32 0, i32 5
+  store %"Vector::Iterator::It<char*>" zeroinitializer, ptr %__iter_dep43, align 8
+  %_begin_result44 = call %"Vector::Iterator::It<char*>" @"Vector::Vec<char*>__begin"(ptr %dependencies_ptr42)
+  store %"Vector::Iterator::It<char*>" %_begin_result44, ptr %__iter_dep43, align 8
+  store i32 0, ptr %__foreach_i_dep45, align 4
+  store ptr null, ptr %dep46, align 8
+  store i32 0, ptr %__foreach_i_dep45, align 4
+  br label %foreach.cond47
 
-"Vector::Vec<int>_reserve_int.exitthread-pre-split.i386": ; preds = %ifcont.i.i369
-  %12 = icmp eq ptr %order.sroa.0.11062, null
-  br i1 %12, label %"Vector::Vec<int>_push_T.exit391", label %ifcont.i379
+for.inc35:                                        ; preds = %foreach.end49
+  %inc_deref63 = load i32, ptr %"CQB::Engine::j", align 4
+  %inc64 = add i32 %inc_deref63, 1
+  store i32 %inc64, ptr %"CQB::Engine::j", align 4
+  br label %for.cond33
 
-ifcont.i379:                                      ; preds = %ifcont5.i.i374, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i386", %ifcont29
-  %order.sroa.0.3 = phi ptr [ %order.sroa.0.11062, %ifcont29 ], [ %builtin_call.i.i372, %ifcont5.i.i374 ], [ %order.sroa.0.11062, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i386" ]
-  %order.sroa.15.4 = phi i32 [ %order.sroa.15.11063, %ifcont29 ], [ %spec.select994, %ifcont5.i.i374 ], [ %order.sroa.15.11063, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i386" ]
-  %order.sroa.32.3 = phi i32 [ %order.sroa.32.11064, %ifcont29 ], [ %select_val.i367, %ifcont5.i.i374 ], [ %order.sroa.32.11064, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i386" ]
-  %13 = sext i32 %order.sroa.15.4 to i64
-  %ptr_arr_asi.i382 = getelementptr [4 x i8], ptr %order.sroa.0.3, i64 %13
-  %14 = trunc nuw nsw i64 %indvars.iv1140 to i32
-  store i32 %14, ptr %ptr_arr_asi.i382, align 4
-  %inc.i384 = add i32 %order.sroa.15.4, 1
-  br label %"Vector::Vec<int>_push_T.exit391"
+for.end36:                                        ; preds = %for.cond33
+  br label %for.inc19
 
-"Vector::Vec<int>_push_T.exit391":                ; preds = %then.i.i390, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i386", %ifcont.i379
-  %order.sroa.0.4 = phi ptr [ %order.sroa.0.3, %ifcont.i379 ], [ null, %then.i.i390 ], [ null, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i386" ]
-  %order.sroa.15.5 = phi i32 [ %inc.i384, %ifcont.i379 ], [ 0, %then.i.i390 ], [ %order.sroa.15.11063, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i386" ]
-  %order.sroa.32.4 = phi i32 [ %order.sroa.32.3, %ifcont.i379 ], [ 0, %then.i.i390 ], [ %order.sroa.32.11064, %"Vector::Vec<int>_reserve_int.exitthread-pre-split.i386" ]
-  br label %for.body34
+foreach.cond47:                                   ; preds = %ifcont59, %for.body34
+  %_atEnd_result50 = call i1 @"Vector::Iterator::It<char*>__atEnd"(ptr %__iter_dep43)
+  br i1 %_atEnd_result50, label %foreach.end49, label %foreach.body48
 
-for.body34:                                       ; preds = %"Vector::Vec<int>_push_T.exit391", %foreach.end49
-  %indvars.iv1135 = phi i64 [ 0, %"Vector::Vec<int>_push_T.exit391" ], [ %indvars.iv.next1136, %foreach.end49 ]
-  %data.i392 = load ptr, ptr %1, align 8
-  %lval_ptr_arr_addr.i393 = getelementptr [72 x i8], ptr %data.i392, i64 %indvars.iv1135
-  %dependencies_ptr42 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i393, i64 56
-  %data.i394 = load ptr, ptr %dependencies_ptr42, align 8
-  %15 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i393, i64 64
-  %size.i395 = load i32, ptr %15, align 8
-  %icmple.i401.not1057 = icmp sgt i32 %size.i395, 0
-  br i1 %icmple.i401.not1057, label %foreach.body48.lr.ph, label %foreach.end49
-
-foreach.body48.lr.ph:                             ; preds = %for.body34
-  %lval_ptr_arr_addr.i420 = getelementptr [4 x i8], ptr %remaining.sroa.0.0.lcssa, i64 %indvars.iv1135
-  %wide.trip.count1133 = zext nneg i32 %size.i395 to i64
-  %xtraiter = and i64 %wide.trip.count1133, 1
-  %16 = icmp eq i32 %size.i395, 1
-  br i1 %16, label %foreach.body48.epil.preheader, label %foreach.body48.lr.ph.new
-
-foreach.body48.lr.ph.new:                         ; preds = %foreach.body48.lr.ph
-  %unroll_iter = and i64 %wide.trip.count1133, 2147483646
-  br label %foreach.body48
-
-foreach.body48:                                   ; preds = %ifcont59.1, %foreach.body48.lr.ph.new
-  %indvars.iv1130 = phi i64 [ 0, %foreach.body48.lr.ph.new ], [ %indvars.iv.next1131.1, %ifcont59.1 ]
-  %niter = phi i64 [ 0, %foreach.body48.lr.ph.new ], [ %niter.next.1, %ifcont59.1 ]
-  %ptr_arr_addr5.i411 = getelementptr [8 x i8], ptr %data.i394, i64 %indvars.iv1130
-  %common.ret.op.i412 = load ptr, ptr %ptr_arr_addr5.i411, align 8
-  %data.i417 = load ptr, ptr %1, align 8
-  %lval_ptr_arr_addr.i418 = getelementptr [72 x i8], ptr %data.i417, i64 %indvars.iv1140
-  %targetName57 = load ptr, ptr %lval_ptr_arr_addr.i418, align 8
-  %ptr_eq = icmp eq ptr %common.ret.op.i412, %targetName57
+foreach.body48:                                   ; preds = %foreach.cond47
+  %19 = load %"Vector::Iterator::It<char*>", ptr %__iter_dep43, align 8
+  %_next_result51 = call ptr @"Vector::Iterator::It<char*>__next"(ptr %__iter_dep43)
+  store ptr %_next_result51, ptr %dep46, align 8
+  %dep52 = load ptr, ptr %dep46, align 8
+  %buildGraph_ptr53 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 5
+  %i54 = load i32, ptr %"CQB::Engine::i16", align 4
+  %20 = sext i32 %i54 to i64
+  %"operator[]_result55" = call ptr @"Vector::Vec<CQB::Build::Command>_operator[]_addr_t"(ptr %buildGraph_ptr53, i64 %20)
+  %targetName_ptr56 = getelementptr inbounds nuw %"CQB::Build::Command", ptr %"operator[]_result55", i32 0, i32 0
+  %targetName57 = load ptr, ptr %targetName_ptr56, align 8
+  %ptr_eq = icmp eq ptr %dep52, %targetName57
   br i1 %ptr_eq, label %then58, label %ifcont59
 
-foreach.end49.loopexit.unr-lcssa:                 ; preds = %ifcont59.1
-  %lcmp.mod.not = icmp eq i64 %xtraiter, 0
-  br i1 %lcmp.mod.not, label %foreach.end49, label %foreach.body48.epil.preheader
-
-foreach.body48.epil.preheader:                    ; preds = %foreach.end49.loopexit.unr-lcssa, %foreach.body48.lr.ph
-  %indvars.iv1130.epil.init = phi i64 [ 0, %foreach.body48.lr.ph ], [ %indvars.iv.next1131.1, %foreach.end49.loopexit.unr-lcssa ]
-  %lcmp.mod1260 = trunc i32 %size.i395 to i1
-  tail call void @llvm.assume(i1 %lcmp.mod1260)
-  %ptr_arr_addr5.i411.epil = getelementptr [8 x i8], ptr %data.i394, i64 %indvars.iv1130.epil.init
-  %common.ret.op.i412.epil = load ptr, ptr %ptr_arr_addr5.i411.epil, align 8
-  %data.i417.epil = load ptr, ptr %1, align 8
-  %lval_ptr_arr_addr.i418.epil = getelementptr [72 x i8], ptr %data.i417.epil, i64 %indvars.iv1140
-  %targetName57.epil = load ptr, ptr %lval_ptr_arr_addr.i418.epil, align 8
-  %ptr_eq.epil = icmp eq ptr %common.ret.op.i412.epil, %targetName57.epil
-  br i1 %ptr_eq.epil, label %then58.epil, label %foreach.end49
-
-then58.epil:                                      ; preds = %foreach.body48.epil.preheader
-  %inc_deref62.epil = load i32, ptr %lval_ptr_arr_addr.i420, align 4
-  %dec.epil = add i32 %inc_deref62.epil, -1
-  store i32 %dec.epil, ptr %lval_ptr_arr_addr.i420, align 4
-  br label %foreach.end49
-
-foreach.end49:                                    ; preds = %foreach.end49.loopexit.unr-lcssa, %then58.epil, %foreach.body48.epil.preheader, %for.body34
-  %indvars.iv.next1136 = add nuw nsw i64 %indvars.iv1135, 1
-  %exitcond1139.not = icmp eq i64 %indvars.iv.next1136, %wide.trip.count1143
-  br i1 %exitcond1139.not, label %for.inc19, label %for.body34
+foreach.end49:                                    ; preds = %foreach.cond47
+  br label %for.inc35
 
 then58:                                           ; preds = %foreach.body48
-  %inc_deref62 = load i32, ptr %lval_ptr_arr_addr.i420, align 4
-  %dec = add i32 %inc_deref62, -1
-  store i32 %dec, ptr %lval_ptr_arr_addr.i420, align 4
+  %j60 = load i32, ptr %"CQB::Engine::j", align 4
+  %21 = sext i32 %j60 to i64
+  %"operator[]_result61" = call ptr @"Vector::Vec<int>_operator[]_addr_t"(ptr %remaining, i64 %21)
+  %inc_deref62 = load i32, ptr %"operator[]_result61", align 4
+  %dec = sub i32 %inc_deref62, 1
+  store i32 %dec, ptr %"operator[]_result61", align 4
   br label %ifcont59
 
 ifcont59:                                         ; preds = %then58, %foreach.body48
-  %indvars.iv.next1131.1 = add nuw nsw i64 %indvars.iv1130, 2
-  %17 = getelementptr [8 x i8], ptr %data.i394, i64 %indvars.iv1130
-  %ptr_arr_addr5.i411.1 = getelementptr i8, ptr %17, i64 8
-  %common.ret.op.i412.1 = load ptr, ptr %ptr_arr_addr5.i411.1, align 8
-  %data.i417.1 = load ptr, ptr %1, align 8
-  %lval_ptr_arr_addr.i418.1 = getelementptr [72 x i8], ptr %data.i417.1, i64 %indvars.iv1140
-  %targetName57.1 = load ptr, ptr %lval_ptr_arr_addr.i418.1, align 8
-  %ptr_eq.1 = icmp eq ptr %common.ret.op.i412.1, %targetName57.1
-  br i1 %ptr_eq.1, label %then58.1, label %ifcont59.1
+  br label %foreach.cond47
 
-then58.1:                                         ; preds = %ifcont59
-  %inc_deref62.1 = load i32, ptr %lval_ptr_arr_addr.i420, align 4
-  %dec.1 = add i32 %inc_deref62.1, -1
-  store i32 %dec.1, ptr %lval_ptr_arr_addr.i420, align 4
-  br label %ifcont59.1
+then67:                                           ; preds = %for.end20
+  %varadics_array69 = alloca ptr, i32 0, align 8
+  %variadic_struct70 = alloca { ptr, i32, i32 }, align 8
+  %22 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct70, i32 0, i32 0
+  store ptr %varadics_array69, ptr %22, align 8
+  %23 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct70, i32 0, i32 1
+  store i32 0, ptr %23, align 4
+  %24 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct70, i32 0, i32 2
+  store i32 0, ptr %24, align 4
+  call void @"IO::qout"(ptr @.str.58, ptr %variadic_struct70)
+  call void @"Vector::Vec<int>__destroy"(ptr %order)
+  call void @"Vector::Vec<bool>__destroy"(ptr %done)
+  call void @"Vector::Vec<int>__destroy"(ptr %remaining)
+  ret i32 2
 
-ifcont59.1:                                       ; preds = %then58.1, %ifcont59
-  %niter.next.1 = add i64 %niter, 2
-  %niter.ncmp.1 = icmp eq i64 %niter.next.1, %unroll_iter
-  br i1 %niter.ncmp.1, label %foreach.end49.loopexit.unr-lcssa, label %foreach.body48
+ifcont68:                                         ; preds = %for.end20
+  br label %while.cond
 
-then67:                                           ; preds = %while.body, %for.end20
-  %order.sroa.0.1.lcssa1179 = phi ptr [ %order.sroa.0.2, %for.end20 ], [ %order.sroa.0.0, %while.body ]
-  tail call fastcc void @qc_print_string(ptr nonnull @10)
-  tail call fastcc void @qc_free(ptr %order.sroa.0.1.lcssa1179)
-  tail call fastcc void @qc_free(ptr %done.sroa.0.0.lcssa)
-  tail call fastcc void @qc_free(ptr %remaining.sroa.0.0.lcssa)
-  br label %common.ret
+for.cond73:                                       ; preds = %for.inc75, %while.end
+  %k = load i32, ptr %"CQB::Engine::k", align 4
+  %length_result77 = call i32 @"Vector::Vec<int>_length"(ptr %order)
+  %icmplt78 = icmp slt i32 %k, %length_result77
+  br i1 %icmplt78, label %for.body74, label %for.end76
 
-"Vector::Vec<char*>_operator[]=_T*_addr_t.exit":  ; preds = %"Vector::Vec<char*>_operator[]=_T*_addr_t.exit.lr.ph", %ifcont152
-  %indvars.iv1164 = phi i64 [ 0, %"Vector::Vec<char*>_operator[]=_T*_addr_t.exit.lr.ph" ], [ %indvars.iv.next1165, %ifcont152 ]
-  %lval_ptr_arr_addr.i432 = getelementptr [4 x i8], ptr %order.sroa.0.0, i64 %indvars.iv1164
-  %18 = load i64, ptr %lval_ptr_arr_addr.i432, align 8
-  %data.i433 = load ptr, ptr %1, align 8
-  %lval_ptr_arr_addr.i434 = getelementptr [72 x i8], ptr %data.i433, i64 %18
-  %strip_ref.unpack = load ptr, ptr %lval_ptr_arr_addr.i434, align 8
-  %strip_ref.elt275 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i434, i64 8
-  %strip_ref.unpack276 = load ptr, ptr %strip_ref.elt275, align 8
-  %strip_ref.elt277 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i434, i64 16
-  %strip_ref.unpack278.unpack = load ptr, ptr %strip_ref.elt277, align 8
-  %strip_ref.unpack278.elt286 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i434, i64 24
-  %strip_ref.unpack278.unpack287 = load i32, ptr %strip_ref.unpack278.elt286, align 8
-  %strip_ref.elt279 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i434, i64 32
-  %strip_ref.unpack280 = load ptr, ptr %strip_ref.elt279, align 8
-  %strip_ref.elt281 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i434, i64 40
-  %strip_ref.unpack282.unpack = load ptr, ptr %strip_ref.elt281, align 8
-  %strip_ref.unpack282.elt291 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i434, i64 48
-  %strip_ref.unpack282.unpack292 = load i32, ptr %strip_ref.unpack282.elt291, align 8
-  %builtin_call.i = call fastcc ptr @qc_malloc(i64 8)
-  store ptr %strip_ref.unpack276, ptr %builtin_call.i, align 8
-  %ptr_eq82 = icmp eq ptr %strip_ref.unpack276, @.str.99
-  br i1 %ptr_eq82, label %foreach.cond86.preheader.split, label %foreach.cond121.preheader.split
+for.body74:                                       ; preds = %for.cond73
+  %buildGraph_ptr79 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 5
+  %k80 = load i32, ptr %"CQB::Engine::k", align 4
+  %25 = sext i32 %k80 to i64
+  %"operator[]_result81" = call ptr @"Vector::Vec<int>_operator[]_addr_t"(ptr %order, i64 %25)
+  %26 = load i64, ptr %"operator[]_result81", align 8
+  %"operator[]_result82" = call ptr @"Vector::Vec<CQB::Build::Command>_operator[]_addr_t"(ptr %buildGraph_ptr79, i64 %26)
+  call void @llvm.memset.inline.p0.i64(ptr align 8 %command, i8 0, i64 72, i1 false)
+  %strip_ref = load %"CQB::Build::Command", ptr %"operator[]_result82", align 8
+  store %"CQB::Build::Command" %strip_ref, ptr %command, align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %comm, align 8
+  %commandBin_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %command, i32 0, i32 1
+  %commandBin = load ptr, ptr %commandBin_ptr, align 8
+  store [1 x ptr] zeroinitializer, ptr %arr_lit, align 8
+  %arr_elem_ptr = getelementptr inbounds [1 x ptr], ptr %arr_lit, i32 0, i32 0
+  store ptr %commandBin, ptr %arr_elem_ptr, align 8
+  %decayptr = getelementptr inbounds [1 x ptr], ptr %arr_lit, i32 0, i32 0
+  call void @"Vector::Vec<char*>_operator[]=_T*_addr_t"(ptr %comm, ptr %decayptr, i64 1)
+  store %"String::Str" zeroinitializer, ptr %qc, align 8
+  %"operator[]_result83" = call ptr @"Vector::Vec<char*>_operator[]_addr_t"(ptr %comm, i64 0)
+  %strip_ref84 = load ptr, ptr %"operator[]_result83", align 8
+  call void @"String::Str_Str_char*"(ptr %qc, ptr %strip_ref84)
+  store i1 false, ptr %"CQB::Engine::isQc", align 1
+  %qc85 = load %"String::Str", ptr %qc, align 8
+  store %"String::Str" zeroinitializer, ptr %temp_op_lhs, align 8
+  store %"String::Str" %qc85, ptr %temp_op_lhs, align 8
+  %op_result = call i1 @"String::Str_operator==_char*"(ptr %temp_op_lhs, ptr @.str.59)
+  store i1 %op_result, ptr %"CQB::Engine::isQc", align 1
+  %isQc = load i1, ptr %"CQB::Engine::isQc", align 1
+  br i1 %isQc, label %then86, label %else
 
-foreach.cond121.preheader.split:                  ; preds = %"Vector::Vec<char*>_operator[]=_T*_addr_t.exit"
-  %icmple.i808.not1070 = icmp sgt i32 %strip_ref.unpack282.unpack292, 0
-  br i1 %icmple.i808.not1070, label %foreach.body122.preheader, label %ifcont84
+for.inc75:                                        ; preds = %ifcont155
+  %inc_deref207 = load i32, ptr %"CQB::Engine::k", align 4
+  %inc208 = add i32 %inc_deref207, 1
+  store i32 %inc208, ptr %"CQB::Engine::k", align 4
+  br label %for.cond73
 
-foreach.body122.preheader:                        ; preds = %foreach.cond121.preheader.split
-  %wide.trip.count1148 = zext nneg i32 %strip_ref.unpack282.unpack292 to i64
-  br label %foreach.body122
-
-foreach.cond86.preheader.split:                   ; preds = %"Vector::Vec<char*>_operator[]=_T*_addr_t.exit"
-  %icmple.i588.not1078 = icmp sgt i32 %strip_ref.unpack278.unpack287, 0
-  br i1 %icmple.i588.not1078, label %foreach.body87.preheader, label %foreach.cond93.preheader.split
-
-foreach.body87.preheader:                         ; preds = %foreach.cond86.preheader.split
-  %wide.trip.count1153 = zext nneg i32 %strip_ref.unpack278.unpack287 to i64
-  br label %foreach.body87
-
-for.end74:                                        ; preds = %ifcont152, %while.end
-  %calltmp185 = call i64 @"CQB::Engine::nowMs"()
-  %sub186 = add i64 %add.i.neg, %calltmp185
-  %19 = sext i32 %order.sroa.15.0 to i64
-  call fastcc void @qc_print_string(ptr nonnull @19)
-  call fastcc void @qc_fmt_int(i64 %19, i32 -1, i1 false)
-  %sdiv188 = sdiv i64 %sub186, 1000
-  call fastcc void @qc_print_string(ptr nonnull @20)
-  call fastcc void @qc_fmt_int(i64 %sdiv188, i32 -1, i1 false)
-  %srem190 = srem i64 %sub186, 1000
-  call fastcc void @qc_print_string(ptr nonnull @21)
-  call fastcc void @qc_fmt_int(i64 %srem190, i32 3, i1 true)
-  call fastcc void @qc_print_string(ptr nonnull @22)
-  %buildDone_ptr = getelementptr inbounds nuw i8, ptr %0, i64 1
+for.end76:                                        ; preds = %for.cond73
+  store i64 0, ptr %"CQB::Engine::total", align 8
+  %calltmp209 = call i64 @"CQB::Engine::nowMs"()
+  %totalStart = load i64, ptr %"CQB::Engine::totalStart", align 8
+  %sub210 = sub i64 %calltmp209, %totalStart
+  store i64 %sub210, ptr %"CQB::Engine::total", align 8
+  %length_result211 = call i32 @"Vector::Vec<int>_length"(ptr %order)
+  %total = load i64, ptr %"CQB::Engine::total", align 8
+  %sdiv212 = sdiv i64 %total, 1000
+  %total213 = load i64, ptr %"CQB::Engine::total", align 8
+  %srem214 = srem i64 %total213, 1000
+  %varadics_array215 = alloca ptr, i32 3, align 8
+  %27 = getelementptr ptr, ptr %varadics_array215, i32 0
+  %vararg_int_to_ptr216 = inttoptr i32 %length_result211 to ptr
+  store ptr %vararg_int_to_ptr216, ptr %27, align 8
+  %28 = getelementptr ptr, ptr %varadics_array215, i32 1
+  %vararg_int_to_ptr217 = inttoptr i64 %sdiv212 to ptr
+  store ptr %vararg_int_to_ptr217, ptr %28, align 8
+  %29 = getelementptr ptr, ptr %varadics_array215, i32 2
+  %vararg_int_to_ptr218 = inttoptr i64 %srem214 to ptr
+  store ptr %vararg_int_to_ptr218, ptr %29, align 8
+  %variadic_struct219 = alloca { ptr, i32, i32 }, align 8
+  %30 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct219, i32 0, i32 0
+  store ptr %varadics_array215, ptr %30, align 8
+  %31 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct219, i32 0, i32 1
+  store i32 3, ptr %31, align 4
+  %32 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct219, i32 0, i32 2
+  store i32 0, ptr %32, align 4
+  call void @"IO::qout"(ptr @.str.71, ptr %variadic_struct219)
+  %buildDone_ptr = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 1
   store i1 true, ptr %buildDone_ptr, align 1
-  call fastcc void @qc_free(ptr %order.sroa.0.0)
-  call fastcc void @qc_free(ptr %done.sroa.0.0.lcssa)
-  call fastcc void @qc_free(ptr %remaining.sroa.0.0.lcssa)
-  br label %common.ret
-
-ifcont84:                                         ; preds = %"Vector::Vec<char*>_push_T.exit855", %foreach.cond121.preheader.split, %ifcont.i793, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i800", %then.i.i804, %foreach.end106
-  %comm.sroa.0.0 = phi ptr [ %comm.sroa.0.11, %foreach.end106 ], [ null, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i800" ], [ %comm.sroa.0.12, %ifcont.i793 ], [ null, %then.i.i804 ], [ %builtin_call.i, %foreach.cond121.preheader.split ], [ %comm.sroa.0.15, %"Vector::Vec<char*>_push_T.exit855" ]
-  %comm.sroa.32.0 = phi i32 [ %comm.sroa.32.15, %foreach.end106 ], [ %comm.sroa.32.15, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i800" ], [ %inc.i798, %ifcont.i793 ], [ 0, %then.i.i804 ], [ 1, %foreach.cond121.preheader.split ], [ %comm.sroa.32.21, %"Vector::Vec<char*>_push_T.exit855" ]
-  %comm.sroa.74.0 = phi i32 [ %comm.sroa.74.11, %foreach.end106 ], [ %comm.sroa.74.11, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i800" ], [ %comm.sroa.74.12, %ifcont.i793 ], [ 0, %then.i.i804 ], [ 1, %foreach.cond121.preheader.split ], [ %comm.sroa.74.15, %"Vector::Vec<char*>_push_T.exit855" ]
-  %builtin_call.i462 = call fastcc ptr @qc_malloc(i64 2)
-  store i16 91, ptr %builtin_call.i462, align 1
-  %indvars.iv.next1165 = add nuw nsw i64 %indvars.iv1164, 1
-  %20 = trunc nuw nsw i64 %indvars.iv.next1165 to i32
-  %21 = call %"String::Str" @"String::toStr<int>"(i32 %20)
-  %.fca.0.extract = extractvalue %"String::Str" %21, 0
-  %.fca.1.extract = extractvalue %"String::Str" %21, 1
-  %22 = call %"String::Str" @"String::toStr<int>"(i32 %order.sroa.15.0)
-  %.fca.0.extract261 = extractvalue %"String::Str" %22, 0
-  %.fca.1.extract263 = extractvalue %"String::Str" %22, 1
-  %add.i465 = add i64 %.fca.1.extract, 1
-  %add2.i = add i64 %.fca.1.extract, 2
-  %builtin_call.i467 = call fastcc ptr @qc_realloc(ptr nonnull %builtin_call.i462, i64 %add2.i)
-  %icmplt27.i = icmp sgt i64 %.fca.1.extract, 0
-  br i1 %icmplt27.i, label %for.body.i469.preheader, label %"String::Str_operator+=_Str.exit"
-
-for.body.i469.preheader:                          ; preds = %ifcont84
-  %23 = getelementptr i8, ptr %builtin_call.i467, i64 1
-  call void @llvm.memcpy.p0.p0.i64(ptr align 1 %23, ptr align 1 %.fca.0.extract, i64 %.fca.1.extract, i1 false)
-  br label %"String::Str_operator+=_Str.exit"
-
-"String::Str_operator+=_Str.exit":                ; preds = %for.body.i469.preheader, %ifcont84
-  %ptr_arr_asi15.i = getelementptr i8, ptr %builtin_call.i467, i64 %add.i465
-  store i8 0, ptr %ptr_arr_asi15.i, align 1
-  %builtin_call.i479 = call fastcc ptr @qc_malloc(i64 2)
-  store i16 47, ptr %builtin_call.i479, align 1
-  %add2.i484 = add i64 %.fca.1.extract, 3
-  %builtin_call.i485 = call fastcc ptr @qc_realloc(ptr %builtin_call.i467, i64 %add2.i484)
-  %24 = getelementptr i8, ptr %builtin_call.i485, i64 %add.i465
-  store i8 47, ptr %24, align 1
-  %ptr_arr_asi15.i489 = getelementptr i8, ptr %builtin_call.i485, i64 %add2.i
-  store i8 0, ptr %ptr_arr_asi15.i489, align 1
-  %add.i507 = add i64 %add2.i, %.fca.1.extract263
-  %add2.i509 = add i64 %add.i507, 1
-  %builtin_call.i510 = call fastcc ptr @qc_realloc(ptr %builtin_call.i485, i64 %add2.i509)
-  %icmplt27.i511 = icmp sgt i64 %.fca.1.extract263, 0
-  br i1 %icmplt27.i511, label %for.body.i519.preheader, label %"String::Str_operator+=_Str.exit530"
-
-for.body.i519.preheader:                          ; preds = %"String::Str_operator+=_Str.exit"
-  %25 = getelementptr i8, ptr %builtin_call.i510, i64 %add2.i
-  call void @llvm.memcpy.p0.p0.i64(ptr align 1 %25, ptr align 1 %.fca.0.extract261, i64 %.fca.1.extract263, i1 false)
-  br label %"String::Str_operator+=_Str.exit530"
-
-"String::Str_operator+=_Str.exit530":             ; preds = %for.body.i519.preheader, %"String::Str_operator+=_Str.exit"
-  %ptr_arr_asi15.i514 = getelementptr i8, ptr %builtin_call.i510, i64 %add.i507
-  store i8 0, ptr %ptr_arr_asi15.i514, align 1
-  %builtin_call.i534 = call fastcc ptr @qc_malloc(i64 2)
-  store i16 93, ptr %builtin_call.i534, align 1
-  %add2.i539 = add i64 %add.i507, 2
-  %builtin_call.i540 = call fastcc ptr @qc_realloc(ptr %builtin_call.i510, i64 %add2.i539)
-  %26 = getelementptr i8, ptr %builtin_call.i540, i64 %add.i507
-  store i8 93, ptr %26, align 1
-  %ptr_arr_asi15.i544 = getelementptr i8, ptr %26, i64 1
-  store i8 0, ptr %ptr_arr_asi15.i544, align 1
-  call void @llvm.lifetime.start.p0(ptr nonnull %ts.i561)
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %ts.i561, i8 0, i64 16, i1 false)
-  %calltmp.i563 = call i32 @clock_gettime(i32 1, ptr nonnull %ts.i561)
-  %tv_sec.i564 = load i64, ptr %ts.i561, align 8
-  %tv_nsec.i566 = load i64, ptr %.fca.1.gep.i562, align 8
-  %sdiv.i567.neg = sdiv i64 %tv_nsec.i566, -1000000
-  call void @llvm.lifetime.end.p0(ptr nonnull %ts.i561)
-  %comm140.fca.0.insert = insertvalue %"Vector::Vec<char*>" poison, ptr %comm.sroa.0.0, 0
-  %comm140.fca.1.insert = insertvalue %"Vector::Vec<char*>" %comm140.fca.0.insert, i32 %comm.sroa.32.0, 1
-  %comm140.fca.2.insert = insertvalue %"Vector::Vec<char*>" %comm140.fca.1.insert, i32 %comm.sroa.74.0, 2
-  %"CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.0.tty" = load i1, ptr %"CQB::Engine::tty.sroa.0", align 1
-  %calltmp141 = call %"CQB::Engine::RunResult" @"CQB::Engine::runCommand"(%"Vector::Vec<char*>" %comm140.fca.2.insert, ptr %builtin_call.i540, i1 %"CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.0.tty")
-  %calltmp141.fca.0.extract = extractvalue %"CQB::Engine::RunResult" %calltmp141, 0
-  %calltmp141.fca.1.extract = extractvalue %"CQB::Engine::RunResult" %calltmp141, 1
-  call void @llvm.lifetime.start.p0(ptr nonnull %ts.i570)
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %ts.i570, i8 0, i64 16, i1 false)
-  %calltmp.i572 = call i32 @clock_gettime(i32 1, ptr nonnull %ts.i570)
-  %tv_sec.i573 = load i64, ptr %ts.i570, align 8
-  %tv_nsec.i575 = load i64, ptr %.fca.1.gep.i571, align 8
-  %sdiv.i576 = sdiv i64 %tv_nsec.i575, 1000000
-  call void @llvm.lifetime.end.p0(ptr nonnull %ts.i570)
-  %reass.add = sub i64 %tv_sec.i573, %tv_sec.i564
-  %reass.mul = mul i64 %reass.add, 1000
-  %add.i568.neg = add nsw i64 %sdiv.i576, %sdiv.i567.neg
-  %sub = add i64 %add.i568.neg, %reass.mul
-  call fastcc void @qc_free(ptr %comm.sroa.0.0)
-  %"CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.0.tty143" = load i1, ptr %"CQB::Engine::tty.sroa.0", align 1
-  br i1 %"CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.sroa.0.0.CQB::Engine::tty.0.tty143", label %then144, label %ifcont145
-
-foreach.cond93.preheader.split:                   ; preds = %"Vector::Vec<char*>_push_T.exit", %foreach.cond86.preheader.split
-  %comm.sroa.0.1.lcssa = phi ptr [ %builtin_call.i, %foreach.cond86.preheader.split ], [ %comm.sroa.0.5, %"Vector::Vec<char*>_push_T.exit" ]
-  %comm.sroa.32.1.lcssa = phi i32 [ 1, %foreach.cond86.preheader.split ], [ %comm.sroa.32.6, %"Vector::Vec<char*>_push_T.exit" ]
-  %comm.sroa.74.1.lcssa = phi i32 [ 1, %foreach.cond86.preheader.split ], [ %comm.sroa.74.5, %"Vector::Vec<char*>_push_T.exit" ]
-  %icmple.i639.not1086 = icmp sgt i32 %strip_ref.unpack282.unpack292, 0
-  br i1 %icmple.i639.not1086, label %foreach.body94.preheader, label %foreach.end95
-
-foreach.body94.preheader:                         ; preds = %foreach.cond93.preheader.split
-  %wide.trip.count1158 = zext nneg i32 %strip_ref.unpack282.unpack292 to i64
-  br label %foreach.body94
-
-foreach.body87:                                   ; preds = %foreach.body87.preheader, %"Vector::Vec<char*>_push_T.exit"
-  %indvars.iv1150 = phi i64 [ 0, %foreach.body87.preheader ], [ %indvars.iv.next1151, %"Vector::Vec<char*>_push_T.exit" ]
-  %comm.sroa.74.11082 = phi i32 [ 1, %foreach.body87.preheader ], [ %comm.sroa.74.5, %"Vector::Vec<char*>_push_T.exit" ]
-  %comm.sroa.32.11081 = phi i32 [ 1, %foreach.body87.preheader ], [ %comm.sroa.32.6, %"Vector::Vec<char*>_push_T.exit" ]
-  %comm.sroa.0.11080 = phi ptr [ %builtin_call.i, %foreach.body87.preheader ], [ %comm.sroa.0.5, %"Vector::Vec<char*>_push_T.exit" ]
-  %indvars.iv.next1151 = add nuw nsw i64 %indvars.iv1150, 1
-  %ptr_arr_addr5.i598 = getelementptr [8 x i8], ptr %strip_ref.unpack278.unpack, i64 %indvars.iv1150
-  %common.ret.op.i599 = load ptr, ptr %ptr_arr_addr5.i598, align 8
-  %icmple.not.i606 = icmp sgt i32 %comm.sroa.74.11082, %comm.sroa.32.11081
-  br i1 %icmple.not.i606, label %ifcont.i622, label %then.i608
-
-then.i608:                                        ; preds = %foreach.body87
-  %icmpeq.i609 = icmp eq i32 %comm.sroa.74.11082, 0
-  %mul.i610 = shl i32 %comm.sroa.74.11082, 1
-  %select_val.i611 = select i1 %icmpeq.i609, i32 1, i32 %mul.i610
-  %icmpeq.i.i612 = icmp eq i32 %select_val.i611, 0
-  br i1 %icmpeq.i.i612, label %then.i.i631, label %ifcont.i.i613
-
-then.i.i631:                                      ; preds = %then.i608
-  call fastcc void @qc_free(ptr %comm.sroa.0.11080)
-  br label %"Vector::Vec<char*>_push_T.exit"
-
-ifcont.i.i613:                                    ; preds = %then.i608
-  %promote_int.i.i614 = sext i32 %select_val.i611 to i64
-  %mul.i.i615 = shl nsw i64 %promote_int.i.i614, 3
-  %builtin_call.i.i616 = call fastcc ptr @qc_realloc(ptr %comm.sroa.0.11080, i64 %mul.i.i615)
-  %ptr_eq.i.i617 = icmp eq ptr %builtin_call.i.i616, null
-  br i1 %ptr_eq.i.i617, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i618
-
-ifcont5.i.i618:                                   ; preds = %ifcont.i.i613
-  %spec.select996 = call i32 @llvm.smin.i32(i32 %comm.sroa.32.11081, i32 %select_val.i611)
-  br label %ifcont.i622
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i613
-  %27 = icmp eq ptr %comm.sroa.0.11080, null
-  br i1 %27, label %"Vector::Vec<char*>_push_T.exit", label %ifcont.i622
-
-ifcont.i622:                                      ; preds = %ifcont5.i.i618, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", %foreach.body87
-  %comm.sroa.0.4 = phi ptr [ %comm.sroa.0.11080, %foreach.body87 ], [ %builtin_call.i.i616, %ifcont5.i.i618 ], [ %comm.sroa.0.11080, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i" ]
-  %comm.sroa.32.5 = phi i32 [ %comm.sroa.32.11081, %foreach.body87 ], [ %spec.select996, %ifcont5.i.i618 ], [ %comm.sroa.32.11081, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i" ]
-  %comm.sroa.74.4 = phi i32 [ %comm.sroa.74.11082, %foreach.body87 ], [ %select_val.i611, %ifcont5.i.i618 ], [ %comm.sroa.74.11082, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i" ]
-  %28 = sext i32 %comm.sroa.32.5 to i64
-  %ptr_arr_asi.i625 = getelementptr [8 x i8], ptr %comm.sroa.0.4, i64 %28
-  store ptr %common.ret.op.i599, ptr %ptr_arr_asi.i625, align 8
-  %inc.i627 = add i32 %comm.sroa.32.5, 1
-  br label %"Vector::Vec<char*>_push_T.exit"
-
-"Vector::Vec<char*>_push_T.exit":                 ; preds = %then.i.i631, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", %ifcont.i622
-  %comm.sroa.0.5 = phi ptr [ %comm.sroa.0.4, %ifcont.i622 ], [ null, %then.i.i631 ], [ null, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i" ]
-  %comm.sroa.32.6 = phi i32 [ %inc.i627, %ifcont.i622 ], [ 0, %then.i.i631 ], [ %comm.sroa.32.11081, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i" ]
-  %comm.sroa.74.5 = phi i32 [ %comm.sroa.74.4, %ifcont.i622 ], [ 0, %then.i.i631 ], [ %comm.sroa.74.11082, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i" ]
-  %exitcond1154.not = icmp eq i64 %indvars.iv.next1151, %wide.trip.count1153
-  br i1 %exitcond1154.not, label %foreach.cond93.preheader.split, label %foreach.body87
-
-foreach.body94:                                   ; preds = %foreach.body94.preheader, %"Vector::Vec<char*>_push_T.exit686"
-  %indvars.iv1155 = phi i64 [ 0, %foreach.body94.preheader ], [ %indvars.iv.next1156, %"Vector::Vec<char*>_push_T.exit686" ]
-  %comm.sroa.74.21090 = phi i32 [ %comm.sroa.74.1.lcssa, %foreach.body94.preheader ], [ %comm.sroa.74.7, %"Vector::Vec<char*>_push_T.exit686" ]
-  %comm.sroa.32.21089 = phi i32 [ %comm.sroa.32.1.lcssa, %foreach.body94.preheader ], [ %comm.sroa.32.9, %"Vector::Vec<char*>_push_T.exit686" ]
-  %comm.sroa.0.21088 = phi ptr [ %comm.sroa.0.1.lcssa, %foreach.body94.preheader ], [ %comm.sroa.0.7, %"Vector::Vec<char*>_push_T.exit686" ]
-  %indvars.iv.next1156 = add nuw nsw i64 %indvars.iv1155, 1
-  %ptr_arr_addr5.i649 = getelementptr [8 x i8], ptr %strip_ref.unpack282.unpack, i64 %indvars.iv1155
-  %common.ret.op.i650 = load ptr, ptr %ptr_arr_addr5.i649, align 8
-  %icmple.not.i657 = icmp sgt i32 %comm.sroa.74.21090, %comm.sroa.32.21089
-  br i1 %icmple.not.i657, label %ifcont.i674, label %then.i659
-
-then.i659:                                        ; preds = %foreach.body94
-  %icmpeq.i660 = icmp eq i32 %comm.sroa.74.21090, 0
-  %mul.i661 = shl i32 %comm.sroa.74.21090, 1
-  %select_val.i662 = select i1 %icmpeq.i660, i32 1, i32 %mul.i661
-  %icmpeq.i.i663 = icmp eq i32 %select_val.i662, 0
-  br i1 %icmpeq.i.i663, label %then.i.i685, label %ifcont.i.i664
-
-then.i.i685:                                      ; preds = %then.i659
-  call fastcc void @qc_free(ptr %comm.sroa.0.21088)
-  br label %"Vector::Vec<char*>_push_T.exit686"
-
-ifcont.i.i664:                                    ; preds = %then.i659
-  %promote_int.i.i665 = sext i32 %select_val.i662 to i64
-  %mul.i.i666 = shl nsw i64 %promote_int.i.i665, 3
-  %builtin_call.i.i667 = call fastcc ptr @qc_realloc(ptr %comm.sroa.0.21088, i64 %mul.i.i666)
-  %ptr_eq.i.i668 = icmp eq ptr %builtin_call.i.i667, null
-  br i1 %ptr_eq.i.i668, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i681", label %ifcont5.i.i669
-
-ifcont5.i.i669:                                   ; preds = %ifcont.i.i664
-  %spec.select998 = call i32 @llvm.smin.i32(i32 %comm.sroa.32.21089, i32 %select_val.i662)
-  br label %ifcont.i674
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i681": ; preds = %ifcont.i.i664
-  %29 = icmp eq ptr %comm.sroa.0.21088, null
-  br i1 %29, label %"Vector::Vec<char*>_push_T.exit686", label %ifcont.i674
-
-ifcont.i674:                                      ; preds = %ifcont5.i.i669, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i681", %foreach.body94
-  %comm.sroa.0.6 = phi ptr [ %comm.sroa.0.21088, %foreach.body94 ], [ %builtin_call.i.i667, %ifcont5.i.i669 ], [ %comm.sroa.0.21088, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i681" ]
-  %comm.sroa.32.8 = phi i32 [ %comm.sroa.32.21089, %foreach.body94 ], [ %spec.select998, %ifcont5.i.i669 ], [ %comm.sroa.32.21089, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i681" ]
-  %comm.sroa.74.6 = phi i32 [ %comm.sroa.74.21090, %foreach.body94 ], [ %select_val.i662, %ifcont5.i.i669 ], [ %comm.sroa.74.21090, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i681" ]
-  %30 = sext i32 %comm.sroa.32.8 to i64
-  %ptr_arr_asi.i677 = getelementptr [8 x i8], ptr %comm.sroa.0.6, i64 %30
-  store ptr %common.ret.op.i650, ptr %ptr_arr_asi.i677, align 8
-  %inc.i679 = add i32 %comm.sroa.32.8, 1
-  br label %"Vector::Vec<char*>_push_T.exit686"
-
-"Vector::Vec<char*>_push_T.exit686":              ; preds = %then.i.i685, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i681", %ifcont.i674
-  %comm.sroa.0.7 = phi ptr [ %comm.sroa.0.6, %ifcont.i674 ], [ null, %then.i.i685 ], [ null, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i681" ]
-  %comm.sroa.32.9 = phi i32 [ %inc.i679, %ifcont.i674 ], [ 0, %then.i.i685 ], [ %comm.sroa.32.21089, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i681" ]
-  %comm.sroa.74.7 = phi i32 [ %comm.sroa.74.6, %ifcont.i674 ], [ 0, %then.i.i685 ], [ %comm.sroa.74.21090, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i681" ]
-  %exitcond1159.not = icmp eq i64 %indvars.iv.next1156, %wide.trip.count1158
-  br i1 %exitcond1159.not, label %foreach.end95, label %foreach.body94
-
-foreach.end95:                                    ; preds = %"Vector::Vec<char*>_push_T.exit686", %foreach.cond93.preheader.split
-  %comm.sroa.0.2.lcssa = phi ptr [ %comm.sroa.0.1.lcssa, %foreach.cond93.preheader.split ], [ %comm.sroa.0.7, %"Vector::Vec<char*>_push_T.exit686" ]
-  %comm.sroa.32.2.lcssa = phi i32 [ %comm.sroa.32.1.lcssa, %foreach.cond93.preheader.split ], [ %comm.sroa.32.9, %"Vector::Vec<char*>_push_T.exit686" ]
-  %comm.sroa.74.2.lcssa = phi i32 [ %comm.sroa.74.1.lcssa, %foreach.cond93.preheader.split ], [ %comm.sroa.74.7, %"Vector::Vec<char*>_push_T.exit686" ]
-  %icmple.not.i689 = icmp sgt i32 %comm.sroa.74.2.lcssa, %comm.sroa.32.2.lcssa
-  br i1 %icmple.not.i689, label %ifcont.i706, label %then.i691
-
-then.i691:                                        ; preds = %foreach.end95
-  %icmpeq.i692 = icmp eq i32 %comm.sroa.74.2.lcssa, 0
-  %mul.i693 = shl i32 %comm.sroa.74.2.lcssa, 1
-  %select_val.i694 = select i1 %icmpeq.i692, i32 1, i32 %mul.i693
-  %icmpeq.i.i695 = icmp eq i32 %select_val.i694, 0
-  br i1 %icmpeq.i.i695, label %then.i723.thread, label %ifcont.i.i696
-
-then.i723.thread:                                 ; preds = %then.i691
-  call fastcc void @qc_free(ptr %comm.sroa.0.2.lcssa)
-  br label %ifcont.i.i728
-
-ifcont.i.i696:                                    ; preds = %then.i691
-  %promote_int.i.i697 = sext i32 %select_val.i694 to i64
-  %mul.i.i698 = shl nsw i64 %promote_int.i.i697, 3
-  %builtin_call.i.i699 = call fastcc ptr @qc_realloc(ptr %comm.sroa.0.2.lcssa, i64 %mul.i.i698)
-  %ptr_eq.i.i700 = icmp eq ptr %builtin_call.i.i699, null
-  br i1 %ptr_eq.i.i700, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i713", label %ifcont5.i.i701
-
-ifcont5.i.i701:                                   ; preds = %ifcont.i.i696
-  %spec.select1000 = call i32 @llvm.smin.i32(i32 %comm.sroa.32.2.lcssa, i32 %select_val.i694)
-  br label %ifcont.i706
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i713": ; preds = %ifcont.i.i696
-  %31 = icmp eq ptr %comm.sroa.0.2.lcssa, null
-  br i1 %31, label %"Vector::Vec<char*>_push_T.exit718", label %ifcont.i706
-
-ifcont.i706:                                      ; preds = %ifcont5.i.i701, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i713", %foreach.end95
-  %comm.sroa.0.8 = phi ptr [ %comm.sroa.0.2.lcssa, %foreach.end95 ], [ %builtin_call.i.i699, %ifcont5.i.i701 ], [ %comm.sroa.0.2.lcssa, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i713" ]
-  %comm.sroa.32.11 = phi i32 [ %comm.sroa.32.2.lcssa, %foreach.end95 ], [ %spec.select1000, %ifcont5.i.i701 ], [ %comm.sroa.32.2.lcssa, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i713" ]
-  %comm.sroa.74.8 = phi i32 [ %comm.sroa.74.2.lcssa, %foreach.end95 ], [ %select_val.i694, %ifcont5.i.i701 ], [ %comm.sroa.74.2.lcssa, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i713" ]
-  %32 = sext i32 %comm.sroa.32.11 to i64
-  %ptr_arr_asi.i709 = getelementptr [8 x i8], ptr %comm.sroa.0.8, i64 %32
-  store ptr @.str.100, ptr %ptr_arr_asi.i709, align 8
-  %inc.i711 = add i32 %comm.sroa.32.11, 1
-  br label %"Vector::Vec<char*>_push_T.exit718"
-
-"Vector::Vec<char*>_push_T.exit718":              ; preds = %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i713", %ifcont.i706
-  %comm.sroa.0.9 = phi ptr [ %comm.sroa.0.8, %ifcont.i706 ], [ null, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i713" ]
-  %comm.sroa.32.12 = phi i32 [ %inc.i711, %ifcont.i706 ], [ %comm.sroa.32.2.lcssa, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i713" ]
-  %comm.sroa.74.9 = phi i32 [ %comm.sroa.74.8, %ifcont.i706 ], [ %comm.sroa.74.2.lcssa, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i713" ]
-  %comm.sroa.74.9.fr = freeze i32 %comm.sroa.74.9
-  %icmple.not.i721 = icmp sgt i32 %comm.sroa.74.9.fr, %comm.sroa.32.12
-  br i1 %icmple.not.i721, label %ifcont.i738, label %then.i723
-
-then.i723:                                        ; preds = %"Vector::Vec<char*>_push_T.exit718"
-  %icmpeq.i724 = icmp eq i32 %comm.sroa.74.9.fr, 0
-  br i1 %icmpeq.i724, label %ifcont.i.i728, label %33
-
-33:                                               ; preds = %then.i723
-  %mul.i725 = shl i32 %comm.sroa.74.9.fr, 1
-  %icmpeq.i.i727 = icmp eq i32 %mul.i725, 0
-  br i1 %icmpeq.i.i727, label %then.i.i749, label %ifcont.i.i728
-
-then.i.i749:                                      ; preds = %33
-  call fastcc void @qc_free(ptr %comm.sroa.0.9)
-  br label %"Vector::Vec<char*>_push_T.exit750"
-
-ifcont.i.i728:                                    ; preds = %then.i723, %then.i723.thread, %33
-  %34 = phi i32 [ %mul.i725, %33 ], [ 1, %then.i723.thread ], [ 1, %then.i723 ]
-  %comm.sroa.74.9969976988 = phi i32 [ %comm.sroa.74.9.fr, %33 ], [ 0, %then.i723.thread ], [ 0, %then.i723 ]
-  %comm.sroa.32.12968978987 = phi i32 [ %comm.sroa.32.12, %33 ], [ 0, %then.i723.thread ], [ %comm.sroa.32.12, %then.i723 ]
-  %comm.sroa.0.9967980986 = phi ptr [ %comm.sroa.0.9, %33 ], [ null, %then.i723.thread ], [ %comm.sroa.0.9, %then.i723 ]
-  %promote_int.i.i729 = sext i32 %34 to i64
-  %mul.i.i730 = shl nsw i64 %promote_int.i.i729, 3
-  %builtin_call.i.i731 = call fastcc ptr @qc_realloc(ptr %comm.sroa.0.9967980986, i64 %mul.i.i730)
-  %ptr_eq.i.i732 = icmp eq ptr %builtin_call.i.i731, null
-  br i1 %ptr_eq.i.i732, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i745", label %ifcont5.i.i733
-
-ifcont5.i.i733:                                   ; preds = %ifcont.i.i728
-  %spec.select1002 = call i32 @llvm.smin.i32(i32 %comm.sroa.32.12968978987, i32 %34)
-  br label %ifcont.i738
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i745": ; preds = %ifcont.i.i728
-  %35 = icmp eq ptr %comm.sroa.0.9967980986, null
-  br i1 %35, label %"Vector::Vec<char*>_push_T.exit750", label %ifcont.i738
-
-ifcont.i738:                                      ; preds = %ifcont5.i.i733, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i745", %"Vector::Vec<char*>_push_T.exit718"
-  %comm.sroa.0.10 = phi ptr [ %comm.sroa.0.9, %"Vector::Vec<char*>_push_T.exit718" ], [ %builtin_call.i.i731, %ifcont5.i.i733 ], [ %comm.sroa.0.9967980986, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i745" ]
-  %comm.sroa.32.14 = phi i32 [ %comm.sroa.32.12, %"Vector::Vec<char*>_push_T.exit718" ], [ %spec.select1002, %ifcont5.i.i733 ], [ %comm.sroa.32.12968978987, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i745" ]
-  %comm.sroa.74.10 = phi i32 [ %comm.sroa.74.9.fr, %"Vector::Vec<char*>_push_T.exit718" ], [ %34, %ifcont5.i.i733 ], [ %comm.sroa.74.9969976988, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i745" ]
-  %36 = sext i32 %comm.sroa.32.14 to i64
-  %ptr_arr_asi.i741 = getelementptr [8 x i8], ptr %comm.sroa.0.10, i64 %36
-  store ptr %strip_ref.unpack280, ptr %ptr_arr_asi.i741, align 8
-  %inc.i743 = add i32 %comm.sroa.32.14, 1
-  br label %"Vector::Vec<char*>_push_T.exit750"
-
-"Vector::Vec<char*>_push_T.exit750":              ; preds = %then.i.i749, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i745", %ifcont.i738
-  %comm.sroa.0.11 = phi ptr [ %comm.sroa.0.10, %ifcont.i738 ], [ null, %then.i.i749 ], [ null, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i745" ]
-  %comm.sroa.32.15 = phi i32 [ %inc.i743, %ifcont.i738 ], [ 0, %then.i.i749 ], [ %comm.sroa.32.12968978987, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i745" ]
-  %comm.sroa.74.11 = phi i32 [ %comm.sroa.74.10, %ifcont.i738 ], [ 0, %then.i.i749 ], [ %comm.sroa.74.9969976988, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i745" ]
-  br i1 %icmple.i639.not1086, label %foreach.body105.preheader, label %then114
-
-foreach.body105.preheader:                        ; preds = %"Vector::Vec<char*>_push_T.exit750"
-  %wide.trip.count1162 = zext nneg i32 %strip_ref.unpack282.unpack292 to i64
-  %min.iters.check = icmp ult i32 %strip_ref.unpack282.unpack292, 4
-  br i1 %min.iters.check, label %foreach.body105.preheader1233, label %vector.ph
-
-vector.ph:                                        ; preds = %foreach.body105.preheader
-  %n.vec = and i64 %wide.trip.count1162, 2147483644
-  br label %vector.body
-
-vector.body:                                      ; preds = %vector.body, %vector.ph
-  %index = phi i64 [ 0, %vector.ph ], [ %index.next, %vector.body ]
-  %vec.phi = phi <2 x i1> [ zeroinitializer, %vector.ph ], [ %41, %vector.body ]
-  %vec.phi1231 = phi <2 x i1> [ zeroinitializer, %vector.ph ], [ %42, %vector.body ]
-  %37 = getelementptr [8 x i8], ptr %strip_ref.unpack282.unpack, i64 %index
-  %38 = getelementptr i8, ptr %37, i64 16
-  %wide.load = load <2 x ptr>, ptr %37, align 8
-  %wide.load1232 = load <2 x ptr>, ptr %38, align 8
-  %39 = icmp eq <2 x ptr> %wide.load, <ptr @.str.101, ptr @.str.101>
-  %40 = icmp eq <2 x ptr> %wide.load1232, <ptr @.str.101, ptr @.str.101>
-  %41 = or <2 x i1> %vec.phi, %39
-  %42 = or <2 x i1> %vec.phi1231, %40
-  %index.next = add nuw i64 %index, 4
-  %43 = icmp eq i64 %index.next, %n.vec
-  br i1 %43, label %middle.block, label %vector.body, !llvm.loop !56
-
-middle.block:                                     ; preds = %vector.body
-  %bin.rdx = or <2 x i1> %42, %41
-  %bin.rdx.fr = freeze <2 x i1> %bin.rdx
-  %44 = bitcast <2 x i1> %bin.rdx.fr to i2
-  %45 = icmp ne i2 %44, 0
-  %cmp.n = icmp eq i64 %n.vec, %wide.trip.count1162
-  br i1 %cmp.n, label %foreach.end106, label %foreach.body105.preheader1233
-
-foreach.body105.preheader1233:                    ; preds = %foreach.body105.preheader, %middle.block
-  %indvars.iv1160.ph = phi i64 [ 0, %foreach.body105.preheader ], [ %n.vec, %middle.block ]
-  %.ph = phi i1 [ false, %foreach.body105.preheader ], [ %45, %middle.block ]
-  br label %foreach.body105
-
-foreach.body105:                                  ; preds = %foreach.body105.preheader1233, %foreach.body105
-  %indvars.iv1160 = phi i64 [ %indvars.iv.next1161, %foreach.body105 ], [ %indvars.iv1160.ph, %foreach.body105.preheader1233 ]
-  %46 = phi i1 [ %spec.select1099, %foreach.body105 ], [ %.ph, %foreach.body105.preheader1233 ]
-  %indvars.iv.next1161 = add nuw nsw i64 %indvars.iv1160, 1
-  %ptr_arr_addr5.i768 = getelementptr [8 x i8], ptr %strip_ref.unpack282.unpack, i64 %indvars.iv1160
-  %common.ret.op.i769 = load ptr, ptr %ptr_arr_addr5.i768, align 8
-  %ptr_eq110 = icmp eq ptr %common.ret.op.i769, @.str.101
-  %spec.select1099 = select i1 %ptr_eq110, i1 true, i1 %46
-  %exitcond1163.not = icmp eq i64 %indvars.iv.next1161, %wide.trip.count1162
-  br i1 %exitcond1163.not, label %foreach.end106, label %foreach.body105, !llvm.loop !57
-
-foreach.end106:                                   ; preds = %foreach.body105, %middle.block
-  %spec.select1099.lcssa = phi i1 [ %45, %middle.block ], [ %spec.select1099, %foreach.body105 ]
-  br i1 %spec.select1099.lcssa, label %ifcont84, label %then114
-
-then114:                                          ; preds = %"Vector::Vec<char*>_push_T.exit750", %foreach.end106
-  %icmple.not.i776 = icmp sgt i32 %comm.sroa.74.11, %comm.sroa.32.15
-  br i1 %icmple.not.i776, label %ifcont.i793, label %then.i778
-
-then.i778:                                        ; preds = %then114
-  %icmpeq.i779 = icmp eq i32 %comm.sroa.74.11, 0
-  %mul.i780 = shl i32 %comm.sroa.74.11, 1
-  %select_val.i781 = select i1 %icmpeq.i779, i32 1, i32 %mul.i780
-  %icmpeq.i.i782 = icmp eq i32 %select_val.i781, 0
-  br i1 %icmpeq.i.i782, label %then.i.i804, label %ifcont.i.i783
-
-then.i.i804:                                      ; preds = %then.i778
-  call fastcc void @qc_free(ptr %comm.sroa.0.11)
-  br label %ifcont84
-
-ifcont.i.i783:                                    ; preds = %then.i778
-  %promote_int.i.i784 = sext i32 %select_val.i781 to i64
-  %mul.i.i785 = shl nsw i64 %promote_int.i.i784, 3
-  %builtin_call.i.i786 = call fastcc ptr @qc_realloc(ptr %comm.sroa.0.11, i64 %mul.i.i785)
-  %ptr_eq.i.i787 = icmp eq ptr %builtin_call.i.i786, null
-  br i1 %ptr_eq.i.i787, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i800", label %ifcont5.i.i788
-
-ifcont5.i.i788:                                   ; preds = %ifcont.i.i783
-  %spec.select1004 = call i32 @llvm.smin.i32(i32 %comm.sroa.32.15, i32 %select_val.i781)
-  br label %ifcont.i793
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i800": ; preds = %ifcont.i.i783
-  %47 = icmp eq ptr %comm.sroa.0.11, null
-  br i1 %47, label %ifcont84, label %ifcont.i793
-
-ifcont.i793:                                      ; preds = %ifcont5.i.i788, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i800", %then114
-  %comm.sroa.0.12 = phi ptr [ %comm.sroa.0.11, %then114 ], [ %builtin_call.i.i786, %ifcont5.i.i788 ], [ %comm.sroa.0.11, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i800" ]
-  %comm.sroa.32.17 = phi i32 [ %comm.sroa.32.15, %then114 ], [ %spec.select1004, %ifcont5.i.i788 ], [ %comm.sroa.32.15, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i800" ]
-  %comm.sroa.74.12 = phi i32 [ %comm.sroa.74.11, %then114 ], [ %select_val.i781, %ifcont5.i.i788 ], [ %comm.sroa.74.11, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i800" ]
-  %48 = sext i32 %comm.sroa.32.17 to i64
-  %ptr_arr_asi.i796 = getelementptr [8 x i8], ptr %comm.sroa.0.12, i64 %48
-  store ptr @.str.102, ptr %ptr_arr_asi.i796, align 8
-  %inc.i798 = add i32 %comm.sroa.32.17, 1
-  br label %ifcont84
-
-foreach.body122:                                  ; preds = %foreach.body122.preheader, %"Vector::Vec<char*>_push_T.exit855"
-  %indvars.iv1145 = phi i64 [ 0, %foreach.body122.preheader ], [ %indvars.iv.next1146, %"Vector::Vec<char*>_push_T.exit855" ]
-  %comm.sroa.74.31074 = phi i32 [ 1, %foreach.body122.preheader ], [ %comm.sroa.74.15, %"Vector::Vec<char*>_push_T.exit855" ]
-  %comm.sroa.32.31073 = phi i32 [ 1, %foreach.body122.preheader ], [ %comm.sroa.32.21, %"Vector::Vec<char*>_push_T.exit855" ]
-  %comm.sroa.0.31072 = phi ptr [ %builtin_call.i, %foreach.body122.preheader ], [ %comm.sroa.0.15, %"Vector::Vec<char*>_push_T.exit855" ]
-  %indvars.iv.next1146 = add nuw nsw i64 %indvars.iv1145, 1
-  %ptr_arr_addr5.i818 = getelementptr [8 x i8], ptr %strip_ref.unpack282.unpack, i64 %indvars.iv1145
-  %common.ret.op.i819 = load ptr, ptr %ptr_arr_addr5.i818, align 8
-  %icmple.not.i826 = icmp sgt i32 %comm.sroa.74.31074, %comm.sroa.32.31073
-  br i1 %icmple.not.i826, label %ifcont.i843, label %then.i828
-
-then.i828:                                        ; preds = %foreach.body122
-  %icmpeq.i829 = icmp eq i32 %comm.sroa.74.31074, 0
-  %mul.i830 = shl i32 %comm.sroa.74.31074, 1
-  %select_val.i831 = select i1 %icmpeq.i829, i32 1, i32 %mul.i830
-  %icmpeq.i.i832 = icmp eq i32 %select_val.i831, 0
-  br i1 %icmpeq.i.i832, label %then.i.i854, label %ifcont.i.i833
-
-then.i.i854:                                      ; preds = %then.i828
-  call fastcc void @qc_free(ptr %comm.sroa.0.31072)
-  br label %"Vector::Vec<char*>_push_T.exit855"
-
-ifcont.i.i833:                                    ; preds = %then.i828
-  %promote_int.i.i834 = sext i32 %select_val.i831 to i64
-  %mul.i.i835 = shl nsw i64 %promote_int.i.i834, 3
-  %builtin_call.i.i836 = call fastcc ptr @qc_realloc(ptr %comm.sroa.0.31072, i64 %mul.i.i835)
-  %ptr_eq.i.i837 = icmp eq ptr %builtin_call.i.i836, null
-  br i1 %ptr_eq.i.i837, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i850", label %ifcont5.i.i838
-
-ifcont5.i.i838:                                   ; preds = %ifcont.i.i833
-  %spec.select1006 = call i32 @llvm.smin.i32(i32 %comm.sroa.32.31073, i32 %select_val.i831)
-  br label %ifcont.i843
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i850": ; preds = %ifcont.i.i833
-  %49 = icmp eq ptr %comm.sroa.0.31072, null
-  br i1 %49, label %"Vector::Vec<char*>_push_T.exit855", label %ifcont.i843
-
-ifcont.i843:                                      ; preds = %ifcont5.i.i838, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i850", %foreach.body122
-  %comm.sroa.0.14 = phi ptr [ %comm.sroa.0.31072, %foreach.body122 ], [ %builtin_call.i.i836, %ifcont5.i.i838 ], [ %comm.sroa.0.31072, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i850" ]
-  %comm.sroa.32.20 = phi i32 [ %comm.sroa.32.31073, %foreach.body122 ], [ %spec.select1006, %ifcont5.i.i838 ], [ %comm.sroa.32.31073, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i850" ]
-  %comm.sroa.74.14 = phi i32 [ %comm.sroa.74.31074, %foreach.body122 ], [ %select_val.i831, %ifcont5.i.i838 ], [ %comm.sroa.74.31074, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i850" ]
-  %50 = sext i32 %comm.sroa.32.20 to i64
-  %ptr_arr_asi.i846 = getelementptr [8 x i8], ptr %comm.sroa.0.14, i64 %50
-  store ptr %common.ret.op.i819, ptr %ptr_arr_asi.i846, align 8
-  %inc.i848 = add i32 %comm.sroa.32.20, 1
-  br label %"Vector::Vec<char*>_push_T.exit855"
-
-"Vector::Vec<char*>_push_T.exit855":              ; preds = %then.i.i854, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i850", %ifcont.i843
-  %comm.sroa.0.15 = phi ptr [ %comm.sroa.0.14, %ifcont.i843 ], [ null, %then.i.i854 ], [ null, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i850" ]
-  %comm.sroa.32.21 = phi i32 [ %inc.i848, %ifcont.i843 ], [ 0, %then.i.i854 ], [ %comm.sroa.32.31073, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i850" ]
-  %comm.sroa.74.15 = phi i32 [ %comm.sroa.74.14, %ifcont.i843 ], [ 0, %then.i.i854 ], [ %comm.sroa.74.31074, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i850" ]
-  %exitcond1149.not = icmp eq i64 %indvars.iv.next1146, %wide.trip.count1148
-  br i1 %exitcond1149.not, label %ifcont84, label %foreach.body122
-
-then144:                                          ; preds = %"String::Str_operator+=_Str.exit530"
-  call fastcc void @qc_print_string(ptr nonnull @11)
-  %calltmp146 = call i32 @fflush(ptr null)
-  br label %ifcont145
-
-ifcont145:                                        ; preds = %then144, %"String::Str_operator+=_Str.exit530"
-  %icmpeq = icmp eq i32 %calltmp141.fca.0.extract, 0
-  br i1 %icmpeq, label %then147, label %else149
-
-then147:                                          ; preds = %ifcont145
-  %ptr_arr_val42.i = load i8, ptr %calltmp141.fca.1.extract, align 1
-  %icmpne.not43.i = icmp eq i8 %ptr_arr_val42.i, 0
-  br i1 %icmpne.not43.i, label %else153, label %while.body.i
-
-while.body.i:                                     ; preds = %then147, %while.end11.i
-  %ptr_arr_addr46.i = phi ptr [ %ptr_arr_addr.i859, %while.end11.i ], [ %calltmp141.fca.1.extract, %then147 ]
-  %"CQB::Engine::n.045.i" = phi i32 [ %spec.select.i, %while.end11.i ], [ 0, %then147 ]
-  %"CQB::Engine::i.044.i" = phi i32 [ %spec.select41.i, %while.end11.i ], [ 0, %then147 ]
-  %calltmp.i856 = call i32 @strncmp(ptr noundef nonnull dereferenceable(1) %ptr_arr_addr46.i, ptr noundef nonnull dereferenceable(7) @.str.86, i64 6)
-  %icmpeq.i857 = icmp eq i32 %calltmp.i856, 0
-  %inc.i858 = zext i1 %icmpeq.i857 to i32
-  %spec.select.i = add i32 %"CQB::Engine::n.045.i", %inc.i858
-  br label %while.cond9.i
-
-while.cond9.i:                                    ; preds = %while.body10.i, %while.body.i
-  %"CQB::Engine::i.1.i" = phi i32 [ %"CQB::Engine::i.044.i", %while.body.i ], [ %inc23.i, %while.body10.i ]
-  %51 = sext i32 %"CQB::Engine::i.1.i" to i64
-  %ptr_arr_addr14.i = getelementptr i8, ptr %calltmp141.fca.1.extract, i64 %51
-  %ptr_arr_val15.i = load i8, ptr %ptr_arr_addr14.i, align 1
-  switch i8 %ptr_arr_val15.i, label %while.body10.i [
-    i8 10, label %while.end11.i
-    i8 0, label %while.end11.i
-  ]
-
-while.body10.i:                                   ; preds = %while.cond9.i
-  %inc23.i = add i32 %"CQB::Engine::i.1.i", 1
-  br label %while.cond9.i
-
-while.end11.i:                                    ; preds = %while.cond9.i, %while.cond9.i
-  %icmpeq28.i = icmp eq i8 %ptr_arr_val15.i, 10
-  %inc32.i = zext i1 %icmpeq28.i to i32
-  %spec.select41.i = add i32 %"CQB::Engine::i.1.i", %inc32.i
-  %52 = sext i32 %spec.select41.i to i64
-  %ptr_arr_addr.i859 = getelementptr i8, ptr %calltmp141.fca.1.extract, i64 %52
-  %ptr_arr_val.i860 = load i8, ptr %ptr_arr_addr.i859, align 1
-  %icmpne.not.i861 = icmp eq i8 %ptr_arr_val.i860, 0
-  br i1 %icmpne.not.i861, label %"CQB::Engine::countDone.exit", label %while.body.i
-
-"CQB::Engine::countDone.exit":                    ; preds = %while.end11.i
-  %icmpgt = icmp sgt i32 %spec.select.i, 0
-  br i1 %icmpgt, label %then151, label %else153
-
-else149:                                          ; preds = %ifcont145
-  call fastcc void @qc_print_string(ptr nonnull @15)
-  call fastcc void @qc_fmt_int(i64 %indvars.iv.next1165, i32 -1, i1 false)
-  call fastcc void @qc_print_string(ptr nonnull @16)
-  call fastcc void @qc_fmt_int(i64 %9, i32 -1, i1 false)
-  call fastcc void @qc_print_string(ptr nonnull @25)
-  call fastcc void @qc_fmt_string(ptr %strip_ref.unpack)
-  %53 = sext i32 %calltmp141.fca.0.extract to i64
-  call fastcc void @qc_print_string(ptr nonnull @17)
-  call fastcc void @qc_fmt_int(i64 %53, i32 -1, i1 false)
-  call fastcc void @qc_print_string(ptr nonnull @18)
-  call void @"CQB::Engine::printWithoutProgress"(ptr %calltmp141.fca.1.extract)
-  call fastcc void @qc_free(ptr nonnull %builtin_call.i534)
-  call fastcc void @qc_free(ptr nonnull %builtin_call.i479)
-  call fastcc void @qc_free(ptr %.fca.0.extract261)
-  call fastcc void @qc_free(ptr %.fca.0.extract)
-  call fastcc void @qc_free(ptr nonnull %builtin_call.i540)
-  call fastcc void @qc_free(ptr %order.sroa.0.0)
-  call fastcc void @qc_free(ptr %done.sroa.0.0.lcssa)
-  call fastcc void @qc_free(ptr %remaining.sroa.0.0.lcssa)
-  br label %common.ret
-
-then151:                                          ; preds = %"CQB::Engine::countDone.exit"
-  call fastcc void @qc_print_string(ptr nonnull @15)
-  call fastcc void @qc_fmt_int(i64 %indvars.iv.next1165, i32 -1, i1 false)
-  call fastcc void @qc_print_string(ptr nonnull @16)
-  call fastcc void @qc_fmt_int(i64 %9, i32 -1, i1 false)
-  call fastcc void @qc_print_string(ptr nonnull @25)
-  call fastcc void @qc_fmt_string(ptr %strip_ref.unpack)
-  %54 = zext nneg i32 %spec.select.i to i64
-  call fastcc void @qc_print_string(ptr nonnull @13)
-  call fastcc void @qc_fmt_int(i64 %54, i32 -1, i1 false)
-  br label %ifcont152
-
-ifcont152:                                        ; preds = %else153, %then151
-  %.sink1206 = phi ptr [ @13, %else153 ], [ @12, %then151 ]
-  %.sink1205 = phi ptr [ @21, %else153 ], [ @21, %then151 ]
-  %.sink = phi ptr [ @14, %else153 ], [ @14, %then151 ]
-  %sdiv167 = sdiv i64 %sub, 1000
-  call fastcc void @qc_print_string(ptr nonnull %.sink1206)
-  call fastcc void @qc_fmt_int(i64 %sdiv167, i32 -1, i1 false)
-  %srem169 = srem i64 %sub, 1000
-  call fastcc void @qc_print_string(ptr nonnull %.sink1205)
-  call fastcc void @qc_fmt_int(i64 %srem169, i32 3, i1 true)
-  call fastcc void @qc_print_string(ptr nonnull %.sink)
-  call fastcc void @qc_free(ptr nonnull %calltmp141.fca.1.extract)
-  call fastcc void @qc_free(ptr nonnull %builtin_call.i534)
-  call fastcc void @qc_free(ptr nonnull %builtin_call.i479)
-  call fastcc void @qc_free(ptr %.fca.0.extract261)
-  call fastcc void @qc_free(ptr %.fca.0.extract)
-  call fastcc void @qc_free(ptr %builtin_call.i540)
-  %exitcond1170.not = icmp eq i64 %indvars.iv.next1165, %9
-  br i1 %exitcond1170.not, label %for.end74, label %"Vector::Vec<char*>_operator[]=_T*_addr_t.exit"
-
-else153:                                          ; preds = %then147, %"CQB::Engine::countDone.exit"
-  call fastcc void @qc_print_string(ptr nonnull @15)
-  call fastcc void @qc_fmt_int(i64 %indvars.iv.next1165, i32 -1, i1 false)
-  call fastcc void @qc_print_string(ptr nonnull @16)
-  call fastcc void @qc_fmt_int(i64 %9, i32 -1, i1 false)
-  call fastcc void @qc_print_string(ptr nonnull @25)
-  call fastcc void @qc_fmt_string(ptr %strip_ref.unpack)
-  br label %ifcont152
+  call void @"Vector::Vec<int>__destroy"(ptr %order)
+  call void @"Vector::Vec<bool>__destroy"(ptr %done)
+  call void @"Vector::Vec<int>__destroy"(ptr %remaining)
+  ret i32 0
+
+then86:                                           ; preds = %for.body74
+  %"operator[]_result88" = call ptr @"Vector::Vec<char*>_operator[]_addr_t"(ptr %comm, i64 0)
+  %qc_exe89 = load ptr, ptr %qc_exe, align 8
+  store ptr %qc_exe89, ptr %"operator[]_result88", align 8
+  %inputs_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %command, i32 0, i32 2
+  store %"Vector::Iterator::It<char*>" zeroinitializer, ptr %__iter_input, align 8
+  %_begin_result90 = call %"Vector::Iterator::It<char*>" @"Vector::Vec<char*>__begin"(ptr %inputs_ptr)
+  store %"Vector::Iterator::It<char*>" %_begin_result90, ptr %__iter_input, align 8
+  store i32 0, ptr %__foreach_i_input, align 4
+  store ptr null, ptr %input, align 8
+  store i32 0, ptr %__foreach_i_input, align 4
+  br label %foreach.cond91
+
+ifcont87:                                         ; preds = %foreach.end128, %ifcont120
+  call void @"String::Str__destroy"(ptr %qc)
+  store %"String::Str" zeroinitializer, ptr %label, align 8
+  call void @"String::Str_Str_char*"(ptr %label, ptr @.str.63)
+  store %"String::Str" zeroinitializer, ptr %num, align 8
+  %k132 = load i32, ptr %"CQB::Engine::k", align 4
+  %add = add i32 %k132, 1
+  %33 = call %"String::Str" @"String::toStr<int>"(i32 %add)
+  store %"String::Str" %33, ptr %num, align 8
+  store %"String::Str" zeroinitializer, ptr %num2, align 8
+  %length_result133 = call i32 @"Vector::Vec<int>_length"(ptr %order)
+  %34 = call %"String::Str" @"String::toStr<int>"(i32 %length_result133)
+  store %"String::Str" %34, ptr %num2, align 8
+  %assign_lhs_val = load %"String::Str", ptr %label, align 8
+  %num134 = load %"String::Str", ptr %num, align 8
+  %op_assign_tmp = call %"String::Str" @"String::Str_operator+=_Str"(ptr %label, %"String::Str" %num134)
+  store %"String::Str" zeroinitializer, ptr %slash, align 8
+  call void @"String::Str_Str_char*"(ptr %slash, ptr @.str.65)
+  %assign_lhs_val135 = load %"String::Str", ptr %label, align 8
+  %slash136 = load %"String::Str", ptr %slash, align 8
+  %op_assign_tmp137 = call %"String::Str" @"String::Str_operator+=_Str"(ptr %label, %"String::Str" %slash136)
+  %assign_lhs_val138 = load %"String::Str", ptr %label, align 8
+  %num2139 = load %"String::Str", ptr %num2, align 8
+  %op_assign_tmp140 = call %"String::Str" @"String::Str_operator+=_Str"(ptr %label, %"String::Str" %num2139)
+  store %"String::Str" zeroinitializer, ptr %lb, align 8
+  call void @"String::Str_Str_char*"(ptr %lb, ptr @.str.66)
+  %assign_lhs_val141 = load %"String::Str", ptr %label, align 8
+  %lb142 = load %"String::Str", ptr %lb, align 8
+  %op_assign_tmp143 = call %"String::Str" @"String::Str_operator+=_Str"(ptr %label, %"String::Str" %lb142)
+  store i64 0, ptr %"CQB::Engine::t0", align 8
+  %calltmp144 = call i64 @"CQB::Engine::nowMs"()
+  store i64 %calltmp144, ptr %"CQB::Engine::t0", align 8
+  %comm145 = load %"Vector::Vec<char*>", ptr %comm, align 8
+  %c_str_result = call ptr @"String::Str_c_str"(ptr %label)
+  %tty = load i1, ptr %"CQB::Engine::tty", align 1
+  %calltmp146 = call %"CQB::Engine::RunResult" @"CQB::Engine::runCommand"(%"Vector::Vec<char*>" %comm145, ptr %c_str_result, i1 %tty)
+  store %"CQB::Engine::RunResult" zeroinitializer, ptr %res, align 8
+  store %"CQB::Engine::RunResult" %calltmp146, ptr %res, align 8
+  store i64 0, ptr %"CQB::Engine::ms", align 8
+  %calltmp147 = call i64 @"CQB::Engine::nowMs"()
+  %t0 = load i64, ptr %"CQB::Engine::t0", align 8
+  %sub = sub i64 %calltmp147, %t0
+  store i64 %sub, ptr %"CQB::Engine::ms", align 8
+  call void @"Vector::Vec<char*>__destroy"(ptr %comm)
+  %tty148 = load i1, ptr %"CQB::Engine::tty", align 1
+  br i1 %tty148, label %then149, label %ifcont150
+
+else:                                             ; preds = %for.body74
+  %flags_ptr121 = getelementptr inbounds nuw %"CQB::Build::Command", ptr %command, i32 0, i32 4
+  store %"Vector::Iterator::It<char*>" zeroinitializer, ptr %__iter_flag122, align 8
+  %_begin_result123 = call %"Vector::Iterator::It<char*>" @"Vector::Vec<char*>__begin"(ptr %flags_ptr121)
+  store %"Vector::Iterator::It<char*>" %_begin_result123, ptr %__iter_flag122, align 8
+  store i32 0, ptr %__foreach_i_flag124, align 4
+  store ptr null, ptr %flag125, align 8
+  store i32 0, ptr %__foreach_i_flag124, align 4
+  br label %foreach.cond126
+
+foreach.cond91:                                   ; preds = %foreach.body92, %then86
+  %_atEnd_result94 = call i1 @"Vector::Iterator::It<char*>__atEnd"(ptr %__iter_input)
+  br i1 %_atEnd_result94, label %foreach.end93, label %foreach.body92
+
+foreach.body92:                                   ; preds = %foreach.cond91
+  %35 = load %"Vector::Iterator::It<char*>", ptr %__iter_input, align 8
+  %_next_result95 = call ptr @"Vector::Iterator::It<char*>__next"(ptr %__iter_input)
+  store ptr %_next_result95, ptr %input, align 8
+  %input96 = load ptr, ptr %input, align 8
+  call void @"Vector::Vec<char*>_push_T"(ptr %comm, ptr %input96)
+  br label %foreach.cond91
+
+foreach.end93:                                    ; preds = %foreach.cond91
+  %flags_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %command, i32 0, i32 4
+  store %"Vector::Iterator::It<char*>" zeroinitializer, ptr %__iter_flag, align 8
+  %_begin_result97 = call %"Vector::Iterator::It<char*>" @"Vector::Vec<char*>__begin"(ptr %flags_ptr)
+  store %"Vector::Iterator::It<char*>" %_begin_result97, ptr %__iter_flag, align 8
+  store i32 0, ptr %__foreach_i_flag, align 4
+  store ptr null, ptr %flag, align 8
+  store i32 0, ptr %__foreach_i_flag, align 4
+  br label %foreach.cond98
+
+foreach.cond98:                                   ; preds = %foreach.body99, %foreach.end93
+  %_atEnd_result101 = call i1 @"Vector::Iterator::It<char*>__atEnd"(ptr %__iter_flag)
+  br i1 %_atEnd_result101, label %foreach.end100, label %foreach.body99
+
+foreach.body99:                                   ; preds = %foreach.cond98
+  %36 = load %"Vector::Iterator::It<char*>", ptr %__iter_flag, align 8
+  %_next_result102 = call ptr @"Vector::Iterator::It<char*>__next"(ptr %__iter_flag)
+  store ptr %_next_result102, ptr %flag, align 8
+  %flag103 = load ptr, ptr %flag, align 8
+  call void @"Vector::Vec<char*>_push_T"(ptr %comm, ptr %flag103)
+  br label %foreach.cond98
+
+foreach.end100:                                   ; preds = %foreach.cond98
+  call void @"Vector::Vec<char*>_push_T"(ptr %comm, ptr @.str.60)
+  %outputArtifact_ptr = getelementptr inbounds nuw %"CQB::Build::Command", ptr %command, i32 0, i32 3
+  %outputArtifact = load ptr, ptr %outputArtifact_ptr, align 8
+  call void @"Vector::Vec<char*>_push_T"(ptr %comm, ptr %outputArtifact)
+  store i1 false, ptr %"CQB::Engine::hasProgress", align 1
+  store i1 false, ptr %"CQB::Engine::hasProgress", align 1
+  %flags_ptr104 = getelementptr inbounds nuw %"CQB::Build::Command", ptr %command, i32 0, i32 4
+  store %"Vector::Iterator::It<char*>" zeroinitializer, ptr %__iter_flag105, align 8
+  %_begin_result106 = call %"Vector::Iterator::It<char*>" @"Vector::Vec<char*>__begin"(ptr %flags_ptr104)
+  store %"Vector::Iterator::It<char*>" %_begin_result106, ptr %__iter_flag105, align 8
+  store i32 0, ptr %__foreach_i_flag107, align 4
+  store ptr null, ptr %flag108, align 8
+  store i32 0, ptr %__foreach_i_flag107, align 4
+  br label %foreach.cond109
+
+foreach.cond109:                                  ; preds = %ifcont117, %foreach.end100
+  %_atEnd_result112 = call i1 @"Vector::Iterator::It<char*>__atEnd"(ptr %__iter_flag105)
+  br i1 %_atEnd_result112, label %foreach.end111, label %foreach.body110
+
+foreach.body110:                                  ; preds = %foreach.cond109
+  %37 = load %"Vector::Iterator::It<char*>", ptr %__iter_flag105, align 8
+  %_next_result113 = call ptr @"Vector::Iterator::It<char*>__next"(ptr %__iter_flag105)
+  store ptr %_next_result113, ptr %flag108, align 8
+  %flag114 = load ptr, ptr %flag108, align 8
+  %ptr_eq115 = icmp eq ptr %flag114, @.str.61
+  br i1 %ptr_eq115, label %then116, label %ifcont117
+
+foreach.end111:                                   ; preds = %foreach.cond109
+  %hasProgress = load i1, ptr %"CQB::Engine::hasProgress", align 1
+  %not118 = xor i1 %hasProgress, true
+  br i1 %not118, label %then119, label %ifcont120
+
+then116:                                          ; preds = %foreach.body110
+  store i1 true, ptr %"CQB::Engine::hasProgress", align 1
+  br label %ifcont117
+
+ifcont117:                                        ; preds = %then116, %foreach.body110
+  br label %foreach.cond109
+
+then119:                                          ; preds = %foreach.end111
+  call void @"Vector::Vec<char*>_push_T"(ptr %comm, ptr @.str.62)
+  br label %ifcont120
+
+ifcont120:                                        ; preds = %then119, %foreach.end111
+  br label %ifcont87
+
+foreach.cond126:                                  ; preds = %foreach.body127, %else
+  %_atEnd_result129 = call i1 @"Vector::Iterator::It<char*>__atEnd"(ptr %__iter_flag122)
+  br i1 %_atEnd_result129, label %foreach.end128, label %foreach.body127
+
+foreach.body127:                                  ; preds = %foreach.cond126
+  %38 = load %"Vector::Iterator::It<char*>", ptr %__iter_flag122, align 8
+  %_next_result130 = call ptr @"Vector::Iterator::It<char*>__next"(ptr %__iter_flag122)
+  store ptr %_next_result130, ptr %flag125, align 8
+  %flag131 = load ptr, ptr %flag125, align 8
+  call void @"Vector::Vec<char*>_push_T"(ptr %comm, ptr %flag131)
+  br label %foreach.cond126
+
+foreach.end128:                                   ; preds = %foreach.cond126
+  br label %ifcont87
+
+then149:                                          ; preds = %ifcont87
+  %varadics_array151 = alloca ptr, i32 0, align 8
+  %variadic_struct152 = alloca { ptr, i32, i32 }, align 8
+  %39 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct152, i32 0, i32 0
+  store ptr %varadics_array151, ptr %39, align 8
+  %40 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct152, i32 0, i32 1
+  store i32 0, ptr %40, align 4
+  %41 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct152, i32 0, i32 2
+  store i32 0, ptr %41, align 4
+  call void @"IO::qout"(ptr @.str.67, ptr %variadic_struct152)
+  %calltmp153 = call i32 @fflush(ptr null)
+  br label %ifcont150
+
+ifcont150:                                        ; preds = %then149, %ifcont87
+  %exitCode_ptr = getelementptr inbounds nuw %"CQB::Engine::RunResult", ptr %res, i32 0, i32 0
+  %exitCode = load i32, ptr %exitCode_ptr, align 4
+  %icmpeq = icmp eq i32 %exitCode, 0
+  br i1 %icmpeq, label %then154, label %else156
+
+then154:                                          ; preds = %ifcont150
+  store i32 0, ptr %"CQB::Engine::steps", align 4
+  %output_ptr = getelementptr inbounds nuw %"CQB::Engine::RunResult", ptr %res, i32 0, i32 1
+  %output = load ptr, ptr %output_ptr, align 8
+  %calltmp157 = call i32 @"CQB::Engine::countDone"(ptr %output)
+  store i32 %calltmp157, ptr %"CQB::Engine::steps", align 4
+  %steps = load i32, ptr %"CQB::Engine::steps", align 4
+  %icmpgt = icmp sgt i32 %steps, 0
+  br i1 %icmpgt, label %then158, label %else160
+
+ifcont155:                                        ; preds = %ifcont159
+  %output_ptr205 = getelementptr inbounds nuw %"CQB::Engine::RunResult", ptr %res, i32 0, i32 1
+  %output206 = load ptr, ptr %output_ptr205, align 8
+  call void @qc_free(ptr %output206)
+  call void @"String::Str__destroy"(ptr %lb)
+  call void @"String::Str__destroy"(ptr %slash)
+  call void @"String::Str__destroy"(ptr %num2)
+  call void @"String::Str__destroy"(ptr %num)
+  call void @"String::Str__destroy"(ptr %label)
+  br label %for.inc75
+
+else156:                                          ; preds = %ifcont150
+  %k189 = load i32, ptr %"CQB::Engine::k", align 4
+  %add190 = add i32 %k189, 1
+  %length_result191 = call i32 @"Vector::Vec<int>_length"(ptr %order)
+  %targetName_ptr192 = getelementptr inbounds nuw %"CQB::Build::Command", ptr %command, i32 0, i32 0
+  %targetName193 = load ptr, ptr %targetName_ptr192, align 8
+  %exitCode_ptr194 = getelementptr inbounds nuw %"CQB::Engine::RunResult", ptr %res, i32 0, i32 0
+  %exitCode195 = load i32, ptr %exitCode_ptr194, align 4
+  %varadics_array196 = alloca ptr, i32 4, align 8
+  %42 = getelementptr ptr, ptr %varadics_array196, i32 0
+  %vararg_int_to_ptr197 = inttoptr i32 %add190 to ptr
+  store ptr %vararg_int_to_ptr197, ptr %42, align 8
+  %43 = getelementptr ptr, ptr %varadics_array196, i32 1
+  %vararg_int_to_ptr198 = inttoptr i32 %length_result191 to ptr
+  store ptr %vararg_int_to_ptr198, ptr %43, align 8
+  %44 = getelementptr ptr, ptr %varadics_array196, i32 2
+  store ptr %targetName193, ptr %44, align 8
+  %45 = getelementptr ptr, ptr %varadics_array196, i32 3
+  %vararg_int_to_ptr199 = inttoptr i32 %exitCode195 to ptr
+  store ptr %vararg_int_to_ptr199, ptr %45, align 8
+  %variadic_struct200 = alloca { ptr, i32, i32 }, align 8
+  %46 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct200, i32 0, i32 0
+  store ptr %varadics_array196, ptr %46, align 8
+  %47 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct200, i32 0, i32 1
+  store i32 4, ptr %47, align 4
+  %48 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct200, i32 0, i32 2
+  store i32 0, ptr %48, align 4
+  call void @"IO::qout"(ptr @.str.70, ptr %variadic_struct200)
+  %output_ptr201 = getelementptr inbounds nuw %"CQB::Engine::RunResult", ptr %res, i32 0, i32 1
+  %output202 = load ptr, ptr %output_ptr201, align 8
+  call void @"CQB::Engine::printWithoutProgress"(ptr %output202)
+  call void @"String::Str__destroy"(ptr %lb)
+  call void @"String::Str__destroy"(ptr %slash)
+  call void @"String::Str__destroy"(ptr %num2)
+  call void @"String::Str__destroy"(ptr %num)
+  call void @"String::Str__destroy"(ptr %label)
+  call void @"Vector::Vec<int>__destroy"(ptr %order)
+  call void @"Vector::Vec<bool>__destroy"(ptr %done)
+  call void @"Vector::Vec<int>__destroy"(ptr %remaining)
+  %exitCode_ptr203 = getelementptr inbounds nuw %"CQB::Engine::RunResult", ptr %res, i32 0, i32 0
+  %exitCode204 = load i32, ptr %exitCode_ptr203, align 4
+  ret i32 %exitCode204
+
+then158:                                          ; preds = %then154
+  %k161 = load i32, ptr %"CQB::Engine::k", align 4
+  %add162 = add i32 %k161, 1
+  %length_result163 = call i32 @"Vector::Vec<int>_length"(ptr %order)
+  %targetName_ptr164 = getelementptr inbounds nuw %"CQB::Build::Command", ptr %command, i32 0, i32 0
+  %targetName165 = load ptr, ptr %targetName_ptr164, align 8
+  %steps166 = load i32, ptr %"CQB::Engine::steps", align 4
+  %ms = load i64, ptr %"CQB::Engine::ms", align 8
+  %sdiv = sdiv i64 %ms, 1000
+  %ms167 = load i64, ptr %"CQB::Engine::ms", align 8
+  %srem = srem i64 %ms167, 1000
+  %varadics_array168 = alloca ptr, i32 6, align 8
+  %49 = getelementptr ptr, ptr %varadics_array168, i32 0
+  %vararg_int_to_ptr = inttoptr i32 %add162 to ptr
+  store ptr %vararg_int_to_ptr, ptr %49, align 8
+  %50 = getelementptr ptr, ptr %varadics_array168, i32 1
+  %vararg_int_to_ptr169 = inttoptr i32 %length_result163 to ptr
+  store ptr %vararg_int_to_ptr169, ptr %50, align 8
+  %51 = getelementptr ptr, ptr %varadics_array168, i32 2
+  store ptr %targetName165, ptr %51, align 8
+  %52 = getelementptr ptr, ptr %varadics_array168, i32 3
+  %vararg_int_to_ptr170 = inttoptr i32 %steps166 to ptr
+  store ptr %vararg_int_to_ptr170, ptr %52, align 8
+  %53 = getelementptr ptr, ptr %varadics_array168, i32 4
+  %vararg_int_to_ptr171 = inttoptr i64 %sdiv to ptr
+  store ptr %vararg_int_to_ptr171, ptr %53, align 8
+  %54 = getelementptr ptr, ptr %varadics_array168, i32 5
+  %vararg_int_to_ptr172 = inttoptr i64 %srem to ptr
+  store ptr %vararg_int_to_ptr172, ptr %54, align 8
+  %variadic_struct173 = alloca { ptr, i32, i32 }, align 8
+  %55 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct173, i32 0, i32 0
+  store ptr %varadics_array168, ptr %55, align 8
+  %56 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct173, i32 0, i32 1
+  store i32 6, ptr %56, align 4
+  %57 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct173, i32 0, i32 2
+  store i32 0, ptr %57, align 4
+  call void @"IO::qout"(ptr @.str.68, ptr %variadic_struct173)
+  br label %ifcont159
+
+ifcont159:                                        ; preds = %else160, %then158
+  br label %ifcont155
+
+else160:                                          ; preds = %then154
+  %k174 = load i32, ptr %"CQB::Engine::k", align 4
+  %add175 = add i32 %k174, 1
+  %length_result176 = call i32 @"Vector::Vec<int>_length"(ptr %order)
+  %targetName_ptr177 = getelementptr inbounds nuw %"CQB::Build::Command", ptr %command, i32 0, i32 0
+  %targetName178 = load ptr, ptr %targetName_ptr177, align 8
+  %ms179 = load i64, ptr %"CQB::Engine::ms", align 8
+  %sdiv180 = sdiv i64 %ms179, 1000
+  %ms181 = load i64, ptr %"CQB::Engine::ms", align 8
+  %srem182 = srem i64 %ms181, 1000
+  %varadics_array183 = alloca ptr, i32 5, align 8
+  %58 = getelementptr ptr, ptr %varadics_array183, i32 0
+  %vararg_int_to_ptr184 = inttoptr i32 %add175 to ptr
+  store ptr %vararg_int_to_ptr184, ptr %58, align 8
+  %59 = getelementptr ptr, ptr %varadics_array183, i32 1
+  %vararg_int_to_ptr185 = inttoptr i32 %length_result176 to ptr
+  store ptr %vararg_int_to_ptr185, ptr %59, align 8
+  %60 = getelementptr ptr, ptr %varadics_array183, i32 2
+  store ptr %targetName178, ptr %60, align 8
+  %61 = getelementptr ptr, ptr %varadics_array183, i32 3
+  %vararg_int_to_ptr186 = inttoptr i64 %sdiv180 to ptr
+  store ptr %vararg_int_to_ptr186, ptr %61, align 8
+  %62 = getelementptr ptr, ptr %varadics_array183, i32 4
+  %vararg_int_to_ptr187 = inttoptr i64 %srem182 to ptr
+  store ptr %vararg_int_to_ptr187, ptr %62, align 8
+  %variadic_struct188 = alloca { ptr, i32, i32 }, align 8
+  %63 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct188, i32 0, i32 0
+  store ptr %varadics_array183, ptr %63, align 8
+  %64 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct188, i32 0, i32 1
+  store i32 5, ptr %64, align 4
+  %65 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct188, i32 0, i32 2
+  store i32 0, ptr %65, align 4
+  call void @"IO::qout"(ptr @.str.69, ptr %variadic_struct188)
+  br label %ifcont159
 }
 
-define weak_odr i32 @"CQB::Engine::Runner_runCIPipeline"(ptr %0) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"CQB::Engine::Runner_runCIPipeline"(ptr %0) !qc.return_types !30 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %child = alloca ptr, align 8
+  %__foreach_i_child = alloca i32, align 4
+  %__iter_child = alloca %"Vector::Iterator::It<CQB::CI::Task*>", align 8
+  %res = alloca %"CQB::Engine::RunResult", align 8
+  %step = alloca %"CQB::CI::Step", align 8
+  %"CQB::Engine::i49" = alloca i32, align 4
+  %"CQB::Engine::failed" = alloca i1, align 1
+  %"CQB::Engine::state" = alloca ptr, align 8
+  %state = alloca %"CQB::Engine::TaskState", align 8
+  %"temp_Vector::Vec<char*>" = alloca %"Vector::Vec<char*>", align 8
+  %"CQB::Engine::i" = alloca i32, align 4
+  %"CQB::Engine::stateIndex" = alloca i32, align 4
+  %previous = alloca ptr, align 8
+  %__foreach_i_previous = alloca i32, align 4
+  %__iter_previous = alloca %"Vector::Iterator::It<CQB::CI::Task*>", align 8
+  %"CQB::Engine::seen" = alloca i1, align 1
+  %"CQB::Engine::task" = alloca ptr, align 8
+  %"CQB::Engine::head" = alloca i32, align 4
+  %"temp_Vector::Vec<CQB::CI::Task*>1" = alloca %"Vector::Vec<CQB::CI::Task*>", align 8
+  %visited = alloca %"Vector::Vec<CQB::CI::Task*>", align 8
+  %"temp_Vector::Vec<CQB::CI::Task*>" = alloca %"Vector::Vec<CQB::CI::Task*>", align 8
+  %pending = alloca %"Vector::Vec<CQB::CI::Task*>", align 8
+  %1 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 2
   %ciRoot = load ptr, ptr %1, align 8
   %ptr_eq = icmp eq ptr %ciRoot, null
-  br i1 %ptr_eq, label %then, label %ifcont.i.i
-
-common.ret:                                       ; preds = %then98, %while.end, %then
-  %common.ret.op = phi i32 [ 1, %then ], [ 0, %while.end ], [ 1, %then98 ]
-  ret i32 %common.ret.op
+  br i1 %ptr_eq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @qc_print_string(ptr nonnull @23)
-  br label %common.ret
+  %varadics_array = alloca ptr, i32 0, align 8
+  %variadic_struct = alloca { ptr, i32, i32 }, align 8
+  %2 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct, i32 0, i32 0
+  store ptr %varadics_array, ptr %2, align 8
+  %3 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct, i32 0, i32 1
+  store i32 0, ptr %3, align 4
+  %4 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct, i32 0, i32 2
+  store i32 0, ptr %4, align 4
+  call void @"IO::qout"(ptr @.str.72, ptr %variadic_struct)
+  ret i32 1
 
-ifcont.i.i:                                       ; preds = %entry
-  %builtin_call.i.i = tail call fastcc ptr @qc_realloc(ptr null, i64 8)
-  %ptr_eq.i.i.not = icmp eq ptr %builtin_call.i.i, null
-  br i1 %ptr_eq.i.i.not, label %while.end, label %while.body.lr.ph
+ifcont:                                           ; preds = %entry
+  store %"Vector::Vec<CQB::CI::Task*>" zeroinitializer, ptr %pending, align 8
+  store %"Vector::Vec<CQB::CI::Task*>" zeroinitializer, ptr %"temp_Vector::Vec<CQB::CI::Task*>", align 8
+  call void @"Vector::Vec<CQB::CI::Task*>_Vec"(ptr %"temp_Vector::Vec<CQB::CI::Task*>")
+  %"Vector::Vec<CQB::CI::Task*>_inst" = load %"Vector::Vec<CQB::CI::Task*>", ptr %"temp_Vector::Vec<CQB::CI::Task*>", align 8
+  store %"Vector::Vec<CQB::CI::Task*>" %"Vector::Vec<CQB::CI::Task*>_inst", ptr %pending, align 8
+  store %"Vector::Vec<CQB::CI::Task*>" zeroinitializer, ptr %visited, align 8
+  store %"Vector::Vec<CQB::CI::Task*>" zeroinitializer, ptr %"temp_Vector::Vec<CQB::CI::Task*>1", align 8
+  call void @"Vector::Vec<CQB::CI::Task*>_Vec"(ptr %"temp_Vector::Vec<CQB::CI::Task*>1")
+  %"Vector::Vec<CQB::CI::Task*>_inst2" = load %"Vector::Vec<CQB::CI::Task*>", ptr %"temp_Vector::Vec<CQB::CI::Task*>1", align 8
+  store %"Vector::Vec<CQB::CI::Task*>" %"Vector::Vec<CQB::CI::Task*>_inst2", ptr %visited, align 8
+  %5 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 2
+  %ciRoot3 = load ptr, ptr %5, align 8
+  call void @"Vector::Vec<CQB::CI::Task*>_push_T"(ptr %pending, ptr %ciRoot3)
+  store i32 0, ptr %"CQB::Engine::head", align 4
+  store i32 0, ptr %"CQB::Engine::head", align 4
+  br label %while.cond
 
-while.body.lr.ph:                                 ; preds = %ifcont.i.i
-  store ptr %ciRoot, ptr %builtin_call.i.i, align 8
-  %activeTask_ptr = getelementptr inbounds nuw i8, ptr %0, i64 32
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 16
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 24
-  %4 = getelementptr inbounds nuw i8, ptr %0, i64 28
-  br label %while.body
-
-while.body:                                       ; preds = %while.body.lr.ph, %while.cond.backedge
-  %indvars.iv434 = phi i64 [ 0, %while.body.lr.ph ], [ %indvars.iv.next435, %while.cond.backedge ]
-  %pending.sroa.34.0414 = phi i32 [ 1, %while.body.lr.ph ], [ %pending.sroa.34.0.be, %while.cond.backedge ]
-  %pending.sroa.17.0413 = phi i32 [ 1, %while.body.lr.ph ], [ %pending.sroa.17.0.be, %while.cond.backedge ]
-  %pending.sroa.0.0412 = phi ptr [ %builtin_call.i.i, %while.body.lr.ph ], [ %pending.sroa.0.0.be, %while.cond.backedge ]
-  %visited.sroa.24.0411 = phi i32 [ 0, %while.body.lr.ph ], [ %visited.sroa.24.0.be, %while.cond.backedge ]
-  %visited.sroa.13.0410 = phi i32 [ 0, %while.body.lr.ph ], [ %visited.sroa.13.0.be, %while.cond.backedge ]
-  %visited.sroa.0.0409 = phi ptr [ null, %while.body.lr.ph ], [ %visited.sroa.0.0.be, %while.cond.backedge ]
-  %lval_ptr_arr_addr.i = getelementptr [8 x i8], ptr %pending.sroa.0.0412, i64 %indvars.iv434
-  %deref_ref = load ptr, ptr %lval_ptr_arr_addr.i, align 8
-  %indvars.iv.next435 = add nuw nsw i64 %indvars.iv434, 1
-  %smax = tail call i32 @llvm.smax.i32(i32 %visited.sroa.13.0410, i32 0)
-  %wide.trip.count = zext nneg i32 %smax to i64
-  %exitcond.not445 = icmp slt i32 %visited.sroa.13.0410, 1
-  br i1 %exitcond.not445, label %ifcont10, label %foreach.body
-
-while.end:                                        ; preds = %while.cond.backedge, %ifcont.i.i
-  %visited.sroa.0.0.lcssa = phi ptr [ null, %ifcont.i.i ], [ %visited.sroa.0.0.be, %while.cond.backedge ]
-  %pending.sroa.0.0.lcssa = phi ptr [ null, %ifcont.i.i ], [ %pending.sroa.0.0.be, %while.cond.backedge ]
-  %activeTask_ptr113 = getelementptr inbounds nuw i8, ptr %0, i64 32
-  store ptr null, ptr %activeTask_ptr113, align 8
-  store i1 true, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %pending.sroa.0.0.lcssa)
-  tail call fastcc void @qc_free(ptr %visited.sroa.0.0.lcssa)
-  br label %common.ret
-
-foreach.cond:                                     ; preds = %foreach.body
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv446, 1
-  %exitcond.not = icmp eq i64 %indvars.iv.next, %wide.trip.count
-  br i1 %exitcond.not, label %ifcont10, label %foreach.body
-
-foreach.body:                                     ; preds = %while.body, %foreach.cond
-  %indvars.iv446 = phi i64 [ %indvars.iv.next, %foreach.cond ], [ 0, %while.body ]
-  %ptr_arr_addr5.i = getelementptr [8 x i8], ptr %visited.sroa.0.0409, i64 %indvars.iv446
-  %common.ret.op.i = load ptr, ptr %ptr_arr_addr5.i, align 8
-  %ptr_eq6 = icmp eq ptr %common.ret.op.i, %deref_ref
-  br i1 %ptr_eq6, label %then9, label %foreach.cond
-
-then9:                                            ; preds = %foreach.body
-  tail call fastcc void @qc_free(ptr %pending.sroa.0.0412)
-  tail call fastcc void @qc_free(ptr nonnull %visited.sroa.0.0409)
-  br label %while.cond.backedge
-
-while.cond.backedge:                              ; preds = %"Vector::Vec<CQB::CI::Task*>_push_T.exit341", %ifcont99, %then9
-  %visited.sroa.0.0.be = phi ptr [ null, %then9 ], [ %visited.sroa.0.2, %ifcont99 ], [ %visited.sroa.0.2, %"Vector::Vec<CQB::CI::Task*>_push_T.exit341" ]
-  %visited.sroa.13.0.be = phi i32 [ -1, %then9 ], [ %visited.sroa.13.3, %ifcont99 ], [ %visited.sroa.13.3, %"Vector::Vec<CQB::CI::Task*>_push_T.exit341" ]
-  %visited.sroa.24.0.be = phi i32 [ -1, %then9 ], [ %visited.sroa.24.2, %ifcont99 ], [ %visited.sroa.24.2, %"Vector::Vec<CQB::CI::Task*>_push_T.exit341" ]
-  %pending.sroa.0.0.be = phi ptr [ null, %then9 ], [ %pending.sroa.0.0412, %ifcont99 ], [ %pending.sroa.0.5, %"Vector::Vec<CQB::CI::Task*>_push_T.exit341" ]
-  %pending.sroa.17.0.be = phi i32 [ -1, %then9 ], [ %pending.sroa.17.0413, %ifcont99 ], [ %pending.sroa.17.7, %"Vector::Vec<CQB::CI::Task*>_push_T.exit341" ]
-  %pending.sroa.34.0.be = phi i32 [ -1, %then9 ], [ %pending.sroa.34.0414, %ifcont99 ], [ %pending.sroa.34.5, %"Vector::Vec<CQB::CI::Task*>_push_T.exit341" ]
-  %5 = sext i32 %pending.sroa.17.0.be to i64
-  %icmplt = icmp slt i64 %indvars.iv.next435, %5
+while.cond:                                       ; preds = %foreach.end115, %then9, %ifcont
+  %head = load i32, ptr %"CQB::Engine::head", align 4
+  %length_result = call i32 @"Vector::Vec<CQB::CI::Task*>_length"(ptr %pending)
+  %icmplt = icmp slt i32 %head, %length_result
   br i1 %icmplt, label %while.body, label %while.end
 
-ifcont10:                                         ; preds = %foreach.cond, %while.body
-  %icmple.not.i177 = icmp sgt i32 %visited.sroa.24.0411, %visited.sroa.13.0410
-  br i1 %icmple.not.i177, label %ifcont.i194, label %then.i179
+while.body:                                       ; preds = %while.cond
+  store ptr null, ptr %"CQB::Engine::task", align 8
+  %head4 = load i32, ptr %"CQB::Engine::head", align 4
+  %6 = sext i32 %head4 to i64
+  %"operator[]_result" = call ptr @"Vector::Vec<CQB::CI::Task*>_operator[]_addr_t"(ptr %pending, i64 %6)
+  %deref_ref = load ptr, ptr %"operator[]_result", align 8
+  store ptr %deref_ref, ptr %"CQB::Engine::task", align 8
+  %inc_deref = load i32, ptr %"CQB::Engine::head", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"CQB::Engine::head", align 4
+  store i1 false, ptr %"CQB::Engine::seen", align 1
+  store i1 false, ptr %"CQB::Engine::seen", align 1
+  store %"Vector::Iterator::It<CQB::CI::Task*>" zeroinitializer, ptr %__iter_previous, align 8
+  %_begin_result = call %"Vector::Iterator::It<CQB::CI::Task*>" @"Vector::Vec<CQB::CI::Task*>__begin"(ptr %visited)
+  store %"Vector::Iterator::It<CQB::CI::Task*>" %_begin_result, ptr %__iter_previous, align 8
+  store i32 0, ptr %__foreach_i_previous, align 4
+  store ptr null, ptr %previous, align 8
+  store i32 0, ptr %__foreach_i_previous, align 4
+  br label %foreach.cond
 
-then.i179:                                        ; preds = %ifcont10
-  %icmpeq.i180 = icmp eq i32 %visited.sroa.24.0411, 0
-  %mul.i181 = shl i32 %visited.sroa.24.0411, 1
-  %select_val.i182 = select i1 %icmpeq.i180, i32 1, i32 %mul.i181
-  %icmpeq.i.i183 = icmp eq i32 %select_val.i182, 0
-  br i1 %icmpeq.i.i183, label %then.i.i205, label %ifcont.i.i184
+while.end:                                        ; preds = %while.cond
+  %activeTask_ptr119 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 4
+  store ptr null, ptr %activeTask_ptr119, align 8
+  %ciDone_ptr = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 0
+  store i1 true, ptr %ciDone_ptr, align 1
+  call void @"Vector::Vec<CQB::CI::Task*>__destroy"(ptr %pending)
+  call void @"Vector::Vec<CQB::CI::Task*>__destroy"(ptr %visited)
+  ret i32 0
 
-then.i.i205:                                      ; preds = %then.i179
-  tail call fastcc void @qc_free(ptr %visited.sroa.0.0409)
-  br label %"Vector::Vec<CQB::CI::Task*>_push_T.exit206"
+foreach.cond:                                     ; preds = %ifcont8, %while.body
+  %_atEnd_result = call i1 @"Vector::Iterator::It<CQB::CI::Task*>__atEnd"(ptr %__iter_previous)
+  br i1 %_atEnd_result, label %foreach.end, label %foreach.body
 
-ifcont.i.i184:                                    ; preds = %then.i179
-  %promote_int.i.i185 = sext i32 %select_val.i182 to i64
-  %mul.i.i186 = shl nsw i64 %promote_int.i.i185, 3
-  %builtin_call.i.i187 = tail call fastcc ptr @qc_realloc(ptr %visited.sroa.0.0409, i64 %mul.i.i186)
-  %ptr_eq.i.i188 = icmp eq ptr %builtin_call.i.i187, null
-  br i1 %ptr_eq.i.i188, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i201", label %ifcont5.i.i189
+foreach.body:                                     ; preds = %foreach.cond
+  %7 = load %"Vector::Iterator::It<CQB::CI::Task*>", ptr %__iter_previous, align 8
+  %_next_result = call ptr @"Vector::Iterator::It<CQB::CI::Task*>__next"(ptr %__iter_previous)
+  store ptr %_next_result, ptr %previous, align 8
+  %previous5 = load ptr, ptr %previous, align 8
+  %task = load ptr, ptr %"CQB::Engine::task", align 8
+  %ptr_eq6 = icmp eq ptr %previous5, %task
+  br i1 %ptr_eq6, label %then7, label %ifcont8
 
-ifcont5.i.i189:                                   ; preds = %ifcont.i.i184
-  %spec.select = tail call i32 @llvm.smin.i32(i32 %visited.sroa.13.0410, i32 %select_val.i182)
-  br label %ifcont.i194
+foreach.end:                                      ; preds = %then7, %foreach.cond
+  %seen = load i1, ptr %"CQB::Engine::seen", align 1
+  br i1 %seen, label %then9, label %ifcont10
 
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i201": ; preds = %ifcont.i.i184
-  %6 = icmp eq ptr %visited.sroa.0.0409, null
-  br i1 %6, label %"Vector::Vec<CQB::CI::Task*>_push_T.exit206", label %ifcont.i194
+then7:                                            ; preds = %foreach.body
+  store i1 true, ptr %"CQB::Engine::seen", align 1
+  br label %foreach.end
 
-ifcont.i194:                                      ; preds = %ifcont5.i.i189, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i201", %ifcont10
-  %visited.sroa.0.1 = phi ptr [ %visited.sroa.0.0409, %ifcont10 ], [ %builtin_call.i.i187, %ifcont5.i.i189 ], [ %visited.sroa.0.0409, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i201" ]
-  %visited.sroa.13.2 = phi i32 [ %visited.sroa.13.0410, %ifcont10 ], [ %spec.select, %ifcont5.i.i189 ], [ %visited.sroa.13.0410, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i201" ]
-  %visited.sroa.24.1 = phi i32 [ %visited.sroa.24.0411, %ifcont10 ], [ %select_val.i182, %ifcont5.i.i189 ], [ %visited.sroa.24.0411, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i201" ]
-  %7 = sext i32 %visited.sroa.13.2 to i64
-  %ptr_arr_asi.i197 = getelementptr [8 x i8], ptr %visited.sroa.0.1, i64 %7
-  store ptr %deref_ref, ptr %ptr_arr_asi.i197, align 8
-  %inc.i199 = add i32 %visited.sroa.13.2, 1
-  br label %"Vector::Vec<CQB::CI::Task*>_push_T.exit206"
+ifcont8:                                          ; preds = %foreach.body
+  br label %foreach.cond
 
-"Vector::Vec<CQB::CI::Task*>_push_T.exit206":     ; preds = %then.i.i205, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i201", %ifcont.i194
-  %visited.sroa.0.2 = phi ptr [ %visited.sroa.0.1, %ifcont.i194 ], [ null, %then.i.i205 ], [ null, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i201" ]
-  %visited.sroa.13.3 = phi i32 [ %inc.i199, %ifcont.i194 ], [ 0, %then.i.i205 ], [ %visited.sroa.13.0410, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i201" ]
-  %visited.sroa.24.2 = phi i32 [ %visited.sroa.24.1, %ifcont.i194 ], [ 0, %then.i.i205 ], [ %visited.sroa.24.0411, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i201" ]
-  store ptr %deref_ref, ptr %activeTask_ptr, align 8
-  %size.i207 = load i32, ptr %3, align 8
-  %icmplt14392 = icmp sgt i32 %size.i207, 0
-  %name31.pre = load ptr, ptr %deref_ref, align 8
-  %data6.pre.i213.pre = load ptr, ptr %2, align 8
-  br i1 %icmplt14392, label %for.body, label %then27
+then9:                                            ; preds = %foreach.end
+  br label %while.cond
 
-for.body:                                         ; preds = %"Vector::Vec<CQB::CI::Task*>_push_T.exit206", %ifcont22
-  %"CQB::Engine::i.0393" = phi i32 [ %inc25, %ifcont22 ], [ 0, %"Vector::Vec<CQB::CI::Task*>_push_T.exit206" ]
-  %8 = zext nneg i32 %"CQB::Engine::i.0393" to i64
-  %lval_ptr_arr_addr.i209 = getelementptr [64 x i8], ptr %data6.pre.i213.pre, i64 %8
-  %name = load ptr, ptr %lval_ptr_arr_addr.i209, align 8
-  %ptr_eq20 = icmp eq ptr %name, %name31.pre
-  br i1 %ptr_eq20, label %else, label %ifcont22
+ifcont10:                                         ; preds = %foreach.end
+  %task11 = load ptr, ptr %"CQB::Engine::task", align 8
+  call void @"Vector::Vec<CQB::CI::Task*>_push_T"(ptr %visited, ptr %task11)
+  %task12 = load ptr, ptr %"CQB::Engine::task", align 8
+  %activeTask_ptr = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 4
+  store ptr %task12, ptr %activeTask_ptr, align 8
+  store i32 0, ptr %"CQB::Engine::stateIndex", align 4
+  store i32 -1, ptr %"CQB::Engine::stateIndex", align 4
+  store i32 0, ptr %"CQB::Engine::i", align 4
+  store i32 0, ptr %"CQB::Engine::i", align 4
+  br label %for.cond
+
+for.cond:                                         ; preds = %for.inc, %ifcont10
+  %i = load i32, ptr %"CQB::Engine::i", align 4
+  %8 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 3
+  %length_result13 = call i32 @"Vector::Vec<CQB::Engine::TaskState>_length"(ptr %8)
+  %icmplt14 = icmp slt i32 %i, %length_result13
+  br i1 %icmplt14, label %for.body, label %for.end
+
+for.body:                                         ; preds = %for.cond
+  %activeStates_ptr = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 3
+  %i15 = load i32, ptr %"CQB::Engine::i", align 4
+  %9 = sext i32 %i15 to i64
+  %"operator[]_result16" = call ptr @"Vector::Vec<CQB::Engine::TaskState>_operator[]_addr_t"(ptr %activeStates_ptr, i64 %9)
+  %name_ptr = getelementptr inbounds nuw %"CQB::Engine::TaskState", ptr %"operator[]_result16", i32 0, i32 0
+  %name = load ptr, ptr %name_ptr, align 8
+  %task17 = load ptr, ptr %"CQB::Engine::task", align 8
+  %name_ptr18 = getelementptr inbounds nuw %"CQB::CI::Task", ptr %task17, i32 0, i32 0
+  %name19 = load ptr, ptr %name_ptr18, align 8
+  %ptr_eq20 = icmp eq ptr %name, %name19
+  br i1 %ptr_eq20, label %then21, label %ifcont22
+
+for.inc:                                          ; preds = %ifcont22
+  %inc_deref24 = load i32, ptr %"CQB::Engine::i", align 4
+  %inc25 = add i32 %inc_deref24, 1
+  store i32 %inc25, ptr %"CQB::Engine::i", align 4
+  br label %for.cond
+
+for.end:                                          ; preds = %then21, %for.cond
+  %stateIndex = load i32, ptr %"CQB::Engine::stateIndex", align 4
+  %icmplt26 = icmp slt i32 %stateIndex, 0
+  br i1 %icmplt26, label %then27, label %else
+
+then21:                                           ; preds = %for.body
+  %i23 = load i32, ptr %"CQB::Engine::i", align 4
+  store i32 %i23, ptr %"CQB::Engine::stateIndex", align 4
+  br label %for.end
 
 ifcont22:                                         ; preds = %for.body
-  %inc25 = add nuw nsw i32 %"CQB::Engine::i.0393", 1
-  %exitcond425.not = icmp eq i32 %inc25, %size.i207
-  br i1 %exitcond425.not, label %then27, label %for.body
+  br label %for.inc
 
-then27:                                           ; preds = %ifcont22, %"Vector::Vec<CQB::CI::Task*>_push_T.exit206"
-  %state32.fca.0.insert = insertvalue %"CQB::Engine::TaskState" poison, ptr %name31.pre, 0
-  %state32.fca.1.insert = insertvalue %"CQB::Engine::TaskState" %state32.fca.0.insert, ptr @.str.113, 1
-  %state32.fca.2.insert = insertvalue %"CQB::Engine::TaskState" %state32.fca.1.insert, ptr @.str.114, 2
-  %state32.fca.3.insert = insertvalue %"CQB::Engine::TaskState" %state32.fca.2.insert, i32 0, 3
-  %state32.fca.4.insert = insertvalue %"CQB::Engine::TaskState" %state32.fca.3.insert, ptr @0, 4
-  %state32.fca.5.0.insert = insertvalue %"CQB::Engine::TaskState" %state32.fca.4.insert, ptr null, 5, 0
-  %state32.fca.5.1.insert = insertvalue %"CQB::Engine::TaskState" %state32.fca.5.0.insert, i32 0, 5, 1
-  %state32.fca.5.2.insert = insertvalue %"CQB::Engine::TaskState" %state32.fca.5.1.insert, i32 0, 5, 2
-  %state32.fca.6.insert = insertvalue %"CQB::Engine::TaskState" %state32.fca.5.2.insert, i32 0, 6
-  %state32.fca.7.insert = insertvalue %"CQB::Engine::TaskState" %state32.fca.6.insert, i32 0, 7
-  %capacity.i210 = load i32, ptr %4, align 4
-  %icmple.not.i212 = icmp sgt i32 %capacity.i210, %size.i207
-  br i1 %icmple.not.i212, label %ifcont.i227, label %then.i214
-
-then.i214:                                        ; preds = %then27
-  %icmpeq.i215 = icmp eq i32 %capacity.i210, 0
-  %mul.i216 = shl i32 %capacity.i210, 1
-  %select_val.i217 = select i1 %icmpeq.i215, i32 1, i32 %mul.i216
-  %icmpeq.i.i218 = icmp eq i32 %select_val.i217, 0
-  br i1 %icmpeq.i.i218, label %then.i.i236, label %ifcont.i.i219
-
-then.i.i236:                                      ; preds = %then.i214
-  tail call fastcc void @qc_free(ptr %data6.pre.i213.pre)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %2, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<CQB::Engine::TaskState>_push_T.exit"
-
-ifcont.i.i219:                                    ; preds = %then.i214
-  %promote_int.i.i220 = sext i32 %select_val.i217 to i64
-  %mul.i.i221 = shl nsw i64 %promote_int.i.i220, 6
-  %builtin_call.i.i222 = tail call fastcc ptr @qc_realloc(ptr %data6.pre.i213.pre, i64 %mul.i.i221)
-  %ptr_eq.i.i223 = icmp eq ptr %builtin_call.i.i222, null
-  br i1 %ptr_eq.i.i223, label %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i224
-
-ifcont5.i.i224:                                   ; preds = %ifcont.i.i219
-  store i32 %select_val.i217, ptr %4, align 4
-  %size.i.i225 = load i32, ptr %3, align 8
-  %icmpgt.i.i226 = icmp sgt i32 %size.i.i225, %select_val.i217
-  br i1 %icmpgt.i.i226, label %then8.i.i233, label %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit.thread.i"
-
-then8.i.i233:                                     ; preds = %ifcont5.i.i224
-  store i32 %select_val.i217, ptr %3, align 8
-  br label %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit.thread.i"
-
-"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit.thread.i": ; preds = %then8.i.i233, %ifcont5.i.i224
-  %size512.i = phi i32 [ %size.i.i225, %ifcont5.i.i224 ], [ %select_val.i217, %then8.i.i233 ]
-  store ptr %builtin_call.i.i222, ptr %2, align 8
-  br label %ifcont.i227
-
-"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i219
-  %data.pr.i234 = load ptr, ptr %2, align 8
-  %9 = icmp eq ptr %data.pr.i234, null
-  %size.i237.pre = load i32, ptr %3, align 8
-  br i1 %9, label %"Vector::Vec<CQB::Engine::TaskState>_push_T.exit", label %ifcont.i227
-
-ifcont.i227:                                      ; preds = %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split.i", %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit.thread.i", %then27
-  %data6.i228 = phi ptr [ %data6.pre.i213.pre, %then27 ], [ %builtin_call.i.i222, %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit.thread.i" ], [ %data.pr.i234, %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split.i" ]
-  %size5.i229 = phi i32 [ %size.i207, %then27 ], [ %size512.i, %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exit.thread.i" ], [ %size.i237.pre, %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split.i" ]
-  %10 = sext i32 %size5.i229 to i64
-  %ptr_arr_asi.i230 = getelementptr [64 x i8], ptr %data6.i228, i64 %10
-  store %"CQB::Engine::TaskState" %state32.fca.7.insert, ptr %ptr_arr_asi.i230, align 8
-  %inc_deref.i231 = load i32, ptr %3, align 8
-  %inc.i232 = add i32 %inc_deref.i231, 1
-  store i32 %inc.i232, ptr %3, align 8
-  br label %"Vector::Vec<CQB::Engine::TaskState>_push_T.exit"
-
-"Vector::Vec<CQB::Engine::TaskState>_push_T.exit": ; preds = %then.i.i236, %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split.i", %ifcont.i227
-  %size.i237 = phi i32 [ 0, %then.i.i236 ], [ %size.i237.pre, %"Vector::Vec<CQB::Engine::TaskState>_reserve_int.exitthread-pre-split.i" ], [ %inc.i232, %ifcont.i227 ]
-  %sub = add i32 %size.i237, -1
-  %.pre = sext i32 %sub to i64
+then27:                                           ; preds = %for.end
+  %task29 = load ptr, ptr %"CQB::Engine::task", align 8
+  %name_ptr30 = getelementptr inbounds nuw %"CQB::CI::Task", ptr %task29, i32 0, i32 0
+  %name31 = load ptr, ptr %name_ptr30, align 8
+  %10 = insertvalue %"CQB::Engine::TaskState" zeroinitializer, ptr %name31, 0
+  %11 = insertvalue %"CQB::Engine::TaskState" %10, ptr @.str.73, 1
+  %12 = insertvalue %"CQB::Engine::TaskState" %11, ptr @.str.74, 2
+  %13 = insertvalue %"CQB::Engine::TaskState" %12, i32 0, 3
+  %14 = insertvalue %"CQB::Engine::TaskState" %13, ptr @.str.75, 4
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %"temp_Vector::Vec<char*>", align 8
+  call void @"Vector::Vec<char*>_Vec"(ptr %"temp_Vector::Vec<char*>")
+  %"Vector::Vec<char*>_inst" = load %"Vector::Vec<char*>", ptr %"temp_Vector::Vec<char*>", align 8
+  %15 = insertvalue %"CQB::Engine::TaskState" %14, %"Vector::Vec<char*>" %"Vector::Vec<char*>_inst", 5
+  %16 = insertvalue %"CQB::Engine::TaskState" %15, i32 0, 6
+  %17 = insertvalue %"CQB::Engine::TaskState" %16, i32 0, 7
+  store %"CQB::Engine::TaskState" zeroinitializer, ptr %state, align 8
+  store %"CQB::Engine::TaskState" %17, ptr %state, align 8
+  %18 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 3
+  %state32 = load %"CQB::Engine::TaskState", ptr %state, align 8
+  call void @"Vector::Vec<CQB::Engine::TaskState>_push_T"(ptr %18, %"CQB::Engine::TaskState" %state32)
+  %19 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 3
+  %length_result33 = call i32 @"Vector::Vec<CQB::Engine::TaskState>_length"(ptr %19)
+  %sub = sub i32 %length_result33, 1
+  store i32 %sub, ptr %"CQB::Engine::stateIndex", align 4
   br label %ifcont28
 
-ifcont28:                                         ; preds = %else, %"Vector::Vec<CQB::Engine::TaskState>_push_T.exit"
-  %.pre-phi = phi i64 [ %8, %else ], [ %.pre, %"Vector::Vec<CQB::Engine::TaskState>_push_T.exit" ]
-  %data.i238 = load ptr, ptr %2, align 8
-  %lval_ptr_arr_addr.i241 = getelementptr [64 x i8], ptr %data.i238, i64 %.pre-phi
-  %11 = getelementptr inbounds nuw i8, ptr %deref_ref, i64 16
-  %size.i248395 = load i32, ptr %11, align 8
-  %icmplt57396 = icmp sgt i32 %size.i248395, 0
-  br i1 %icmplt57396, label %for.body51.lr.ph, label %ifcont99
+ifcont28:                                         ; preds = %else, %then27
+  store ptr null, ptr %"CQB::Engine::state", align 8
+  %activeStates_ptr43 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 3
+  %stateIndex44 = load i32, ptr %"CQB::Engine::stateIndex", align 4
+  %20 = sext i32 %stateIndex44 to i64
+  %"operator[]_result45" = call ptr @"Vector::Vec<CQB::Engine::TaskState>_operator[]_addr_t"(ptr %activeStates_ptr43, i64 %20)
+  %activeStates_ptr46 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 3
+  %stateIndex47 = load i32, ptr %"CQB::Engine::stateIndex", align 4
+  %21 = sext i32 %stateIndex47 to i64
+  %"operator[]_result48" = call ptr @"Vector::Vec<CQB::Engine::TaskState>_operator[]_addr_t"(ptr %activeStates_ptr46, i64 %21)
+  store ptr %"operator[]_result48", ptr %"CQB::Engine::state", align 8
+  store i1 false, ptr %"CQB::Engine::failed", align 1
+  store i1 false, ptr %"CQB::Engine::failed", align 1
+  store i32 0, ptr %"CQB::Engine::i49", align 4
+  store i32 0, ptr %"CQB::Engine::i49", align 4
+  br label %for.cond50
 
-for.body51.lr.ph:                                 ; preds = %ifcont28
-  %12 = getelementptr inbounds nuw i8, ptr %deref_ref, i64 8
-  %progress_ptr67 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i241, i64 24
-  %lastOutput_ptr74 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i241, i64 32
-  %13 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i241, i64 40
-  %14 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i241, i64 52
-  %15 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i241, i64 48
-  %errorsCount_ptr = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i241, i64 60
-  %ignoreFailure_ptr = getelementptr inbounds nuw i8, ptr %deref_ref, i64 40
-  br label %for.body51
-
-else:                                             ; preds = %for.body
-  %16 = zext nneg i32 %"CQB::Engine::i.0393" to i64
-  %lval_ptr_arr_addr.i243 = getelementptr [64 x i8], ptr %data6.pre.i213.pre, i64 %16
-  %status_ptr = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i243, i64 16
-  store ptr @.str.116, ptr %status_ptr, align 8
-  %data.i244 = load ptr, ptr %2, align 8
-  %lval_ptr_arr_addr.i245 = getelementptr [64 x i8], ptr %data.i244, i64 %16
-  %progress_ptr = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i245, i64 24
+else:                                             ; preds = %for.end
+  %activeStates_ptr34 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 3
+  %stateIndex35 = load i32, ptr %"CQB::Engine::stateIndex", align 4
+  %22 = sext i32 %stateIndex35 to i64
+  %"operator[]_result36" = call ptr @"Vector::Vec<CQB::Engine::TaskState>_operator[]_addr_t"(ptr %activeStates_ptr34, i64 %22)
+  %status_ptr = getelementptr inbounds nuw %"CQB::Engine::TaskState", ptr %"operator[]_result36", i32 0, i32 2
+  store ptr @.str.76, ptr %status_ptr, align 8
+  %activeStates_ptr37 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 3
+  %stateIndex38 = load i32, ptr %"CQB::Engine::stateIndex", align 4
+  %23 = sext i32 %stateIndex38 to i64
+  %"operator[]_result39" = call ptr @"Vector::Vec<CQB::Engine::TaskState>_operator[]_addr_t"(ptr %activeStates_ptr37, i64 %23)
+  %progress_ptr = getelementptr inbounds nuw %"CQB::Engine::TaskState", ptr %"operator[]_result39", i32 0, i32 3
   store i32 0, ptr %progress_ptr, align 4
-  %data.i246 = load ptr, ptr %2, align 8
-  %lval_ptr_arr_addr.i247 = getelementptr [64 x i8], ptr %data.i246, i64 %16
-  %lastOutput_ptr = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i247, i64 32
-  store ptr @.str.117, ptr %lastOutput_ptr, align 8
+  %activeStates_ptr40 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 3
+  %stateIndex41 = load i32, ptr %"CQB::Engine::stateIndex", align 4
+  %24 = sext i32 %stateIndex41 to i64
+  %"operator[]_result42" = call ptr @"Vector::Vec<CQB::Engine::TaskState>_operator[]_addr_t"(ptr %activeStates_ptr40, i64 %24)
+  %lastOutput_ptr = getelementptr inbounds nuw %"CQB::Engine::TaskState", ptr %"operator[]_result42", i32 0, i32 4
+  store ptr @.str.77, ptr %lastOutput_ptr, align 8
   br label %ifcont28
 
-for.body51:                                       ; preds = %for.body51.lr.ph, %ifcont81
-  %indvars.iv426 = phi i64 [ 0, %for.body51.lr.ph ], [ %indvars.iv.next427, %ifcont81 ]
-  %size.i248398 = phi i32 [ %size.i248395, %for.body51.lr.ph ], [ %size.i248, %ifcont81 ]
-  %data.i249 = load ptr, ptr %12, align 8
-  %lval_ptr_arr_addr.i250 = getelementptr [24 x i8], ptr %data.i249, i64 %indvars.iv426
-  %strip_ref.unpack = load ptr, ptr %lval_ptr_arr_addr.i250, align 8
-  %strip_ref.elt148 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i250, i64 8
-  %strip_ref.unpack149.unpack = load ptr, ptr %strip_ref.elt148, align 8
-  %strip_ref.unpack149.elt151 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i250, i64 16
-  %strip_ref.unpack149.unpack152 = load i32, ptr %strip_ref.unpack149.elt151, align 8
-  %strip_ref.unpack149.elt153 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i250, i64 20
-  %strip_ref.unpack149.unpack154 = load i32, ptr %strip_ref.unpack149.elt153, align 4
-  %icmpgt = icmp sgt i32 %size.i248398, 0
-  %17 = trunc nuw nsw i64 %indvars.iv426 to i32
-  %mul = mul i32 %17, 100
-  %sdiv = sdiv i32 %mul, %size.i248398
-  %select_val = select i1 %icmpgt, i32 %sdiv, i32 100
-  store i32 %select_val, ptr %progress_ptr67, align 4
-  %name70 = load ptr, ptr %deref_ref, align 8
-  tail call fastcc void @qc_print_string(ptr nonnull @24)
-  tail call fastcc void @qc_fmt_string(ptr %name70)
-  tail call fastcc void @qc_print_string(ptr nonnull @25)
-  tail call fastcc void @qc_fmt_string(ptr %strip_ref.unpack)
-  tail call fastcc void @qc_print_string(ptr nonnull @29)
-  %command.fca.0.insert = insertvalue %"Vector::Vec<char*>" poison, ptr %strip_ref.unpack149.unpack, 0
-  %command.fca.1.insert = insertvalue %"Vector::Vec<char*>" %command.fca.0.insert, i32 %strip_ref.unpack149.unpack152, 1
-  %command.fca.2.insert = insertvalue %"Vector::Vec<char*>" %command.fca.1.insert, i32 %strip_ref.unpack149.unpack154, 2
-  %calltmp = tail call %"CQB::Engine::RunResult" @"CQB::Engine::runCommand"(%"Vector::Vec<char*>" %command.fca.2.insert, ptr nonnull @.str.119, i1 false)
-  %calltmp.fca.0.extract = extractvalue %"CQB::Engine::RunResult" %calltmp, 0
-  %calltmp.fca.1.extract = extractvalue %"CQB::Engine::RunResult" %calltmp, 1
-  store ptr %calltmp.fca.1.extract, ptr %lastOutput_ptr74, align 8
-  %capacity.i253 = load i32, ptr %14, align 4
-  %size.i254 = load i32, ptr %15, align 8
-  %icmple.not.i255 = icmp sgt i32 %capacity.i253, %size.i254
-  %data6.pre.i256 = load ptr, ptr %13, align 8
-  br i1 %icmple.not.i255, label %ifcont.i271, label %then.i257
+for.cond50:                                       ; preds = %for.inc52, %ifcont28
+  %i54 = load i32, ptr %"CQB::Engine::i49", align 4
+  %task55 = load ptr, ptr %"CQB::Engine::task", align 8
+  %25 = getelementptr inbounds nuw %"CQB::CI::Task", ptr %task55, i32 0, i32 1
+  %length_result56 = call i32 @"Vector::Vec<CQB::CI::Step>_length"(ptr %25)
+  %icmplt57 = icmp slt i32 %i54, %length_result56
+  br i1 %icmplt57, label %for.body51, label %for.end53
 
-then.i257:                                        ; preds = %for.body51
-  %icmpeq.i258 = icmp eq i32 %capacity.i253, 0
-  %mul.i259 = shl i32 %capacity.i253, 1
-  %select_val.i260 = select i1 %icmpeq.i258, i32 1, i32 %mul.i259
-  %icmpeq.i.i261 = icmp eq i32 %select_val.i260, 0
-  br i1 %icmpeq.i.i261, label %then.i.i280, label %ifcont.i.i262
+for.body51:                                       ; preds = %for.cond50
+  %task58 = load ptr, ptr %"CQB::Engine::task", align 8
+  %steps_ptr = getelementptr inbounds nuw %"CQB::CI::Task", ptr %task58, i32 0, i32 1
+  %i59 = load i32, ptr %"CQB::Engine::i49", align 4
+  %26 = sext i32 %i59 to i64
+  %"operator[]_result60" = call ptr @"Vector::Vec<CQB::CI::Step>_operator[]_addr_t"(ptr %steps_ptr, i64 %26)
+  store %"CQB::CI::Step" zeroinitializer, ptr %step, align 8
+  %strip_ref = load %"CQB::CI::Step", ptr %"operator[]_result60", align 8
+  store %"CQB::CI::Step" %strip_ref, ptr %step, align 8
+  %task61 = load ptr, ptr %"CQB::Engine::task", align 8
+  %27 = getelementptr inbounds nuw %"CQB::CI::Task", ptr %task61, i32 0, i32 1
+  %length_result62 = call i32 @"Vector::Vec<CQB::CI::Step>_length"(ptr %27)
+  %icmpgt = icmp sgt i32 %length_result62, 0
+  br i1 %icmpgt, label %ternary.true, label %ternary.false
 
-then.i.i280:                                      ; preds = %then.i257
-  tail call fastcc void @qc_free(ptr %data6.pre.i256)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %13, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<char*>_push_T.exit"
+for.inc52:                                        ; preds = %ifcont85
+  %inc_deref102 = load i32, ptr %"CQB::Engine::i49", align 4
+  %inc103 = add i32 %inc_deref102, 1
+  store i32 %inc103, ptr %"CQB::Engine::i49", align 4
+  br label %for.cond50
 
-ifcont.i.i262:                                    ; preds = %then.i257
-  %promote_int.i.i263 = sext i32 %select_val.i260 to i64
-  %mul.i.i264 = shl nsw i64 %promote_int.i.i263, 3
-  %builtin_call.i.i265 = tail call fastcc ptr @qc_realloc(ptr %data6.pre.i256, i64 %mul.i.i264)
-  %ptr_eq.i.i266 = icmp eq ptr %builtin_call.i.i265, null
-  br i1 %ptr_eq.i.i266, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i267
+for.end53:                                        ; preds = %then96, %for.cond50
+  %failed = load i1, ptr %"CQB::Engine::failed", align 1
+  br i1 %failed, label %then104, label %ifcont105
 
-ifcont5.i.i267:                                   ; preds = %ifcont.i.i262
-  store i32 %select_val.i260, ptr %14, align 4
-  %size.i.i268 = load i32, ptr %15, align 8
-  %icmpgt.i.i269 = icmp sgt i32 %size.i.i268, %select_val.i260
-  br i1 %icmpgt.i.i269, label %then8.i.i277, label %"Vector::Vec<char*>_reserve_int.exit.thread.i"
+ternary.true:                                     ; preds = %for.body51
+  %i63 = load i32, ptr %"CQB::Engine::i49", align 4
+  %mul = mul i32 %i63, 100
+  %task64 = load ptr, ptr %"CQB::Engine::task", align 8
+  %28 = getelementptr inbounds nuw %"CQB::CI::Task", ptr %task64, i32 0, i32 1
+  %length_result65 = call i32 @"Vector::Vec<CQB::CI::Step>_length"(ptr %28)
+  %sdiv = sdiv i32 %mul, %length_result65
+  br label %ternary.end
 
-then8.i.i277:                                     ; preds = %ifcont5.i.i267
-  store i32 %select_val.i260, ptr %15, align 8
-  br label %"Vector::Vec<char*>_reserve_int.exit.thread.i"
+ternary.false:                                    ; preds = %for.body51
+  br label %ternary.end
 
-"Vector::Vec<char*>_reserve_int.exit.thread.i":   ; preds = %then8.i.i277, %ifcont5.i.i267
-  %size511.i270 = phi i32 [ %size.i.i268, %ifcont5.i.i267 ], [ %select_val.i260, %then8.i.i277 ]
-  store ptr %builtin_call.i.i265, ptr %13, align 8
-  br label %ifcont.i271
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ %sdiv, %ternary.true ], [ 100, %ternary.false ]
+  %state66 = load ptr, ptr %"CQB::Engine::state", align 8
+  %progress_ptr67 = getelementptr inbounds nuw %"CQB::Engine::TaskState", ptr %state66, i32 0, i32 3
+  store i32 %ternary_val, ptr %progress_ptr67, align 4
+  %task68 = load ptr, ptr %"CQB::Engine::task", align 8
+  %name_ptr69 = getelementptr inbounds nuw %"CQB::CI::Task", ptr %task68, i32 0, i32 0
+  %name70 = load ptr, ptr %name_ptr69, align 8
+  %name_ptr71 = getelementptr inbounds nuw %"CQB::CI::Step", ptr %step, i32 0, i32 0
+  %name72 = load ptr, ptr %name_ptr71, align 8
+  %varadics_array73 = alloca ptr, i32 2, align 8
+  %29 = getelementptr ptr, ptr %varadics_array73, i32 0
+  store ptr %name70, ptr %29, align 8
+  %30 = getelementptr ptr, ptr %varadics_array73, i32 1
+  store ptr %name72, ptr %30, align 8
+  %variadic_struct74 = alloca { ptr, i32, i32 }, align 8
+  %31 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct74, i32 0, i32 0
+  store ptr %varadics_array73, ptr %31, align 8
+  %32 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct74, i32 0, i32 1
+  store i32 2, ptr %32, align 4
+  %33 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct74, i32 0, i32 2
+  store i32 0, ptr %33, align 4
+  call void @"IO::qout"(ptr @.str.78, ptr %variadic_struct74)
+  %command_ptr = getelementptr inbounds nuw %"CQB::CI::Step", ptr %step, i32 0, i32 1
+  %command = load %"Vector::Vec<char*>", ptr %command_ptr, align 8
+  %calltmp = call %"CQB::Engine::RunResult" @"CQB::Engine::runCommand"(%"Vector::Vec<char*>" %command, ptr @.str.79, i1 false)
+  store %"CQB::Engine::RunResult" zeroinitializer, ptr %res, align 8
+  store %"CQB::Engine::RunResult" %calltmp, ptr %res, align 8
+  %output_ptr = getelementptr inbounds nuw %"CQB::Engine::RunResult", ptr %res, i32 0, i32 1
+  %output = load ptr, ptr %output_ptr, align 8
+  %state75 = load ptr, ptr %"CQB::Engine::state", align 8
+  %lastOutput_ptr76 = getelementptr inbounds nuw %"CQB::Engine::TaskState", ptr %state75, i32 0, i32 4
+  store ptr %output, ptr %lastOutput_ptr76, align 8
+  %state77 = load ptr, ptr %"CQB::Engine::state", align 8
+  %34 = getelementptr inbounds nuw %"CQB::Engine::TaskState", ptr %state77, i32 0, i32 5
+  %output_ptr78 = getelementptr inbounds nuw %"CQB::Engine::RunResult", ptr %res, i32 0, i32 1
+  %output79 = load ptr, ptr %output_ptr78, align 8
+  call void @"Vector::Vec<char*>_push_T"(ptr %34, ptr %output79)
+  %output_ptr80 = getelementptr inbounds nuw %"CQB::Engine::RunResult", ptr %res, i32 0, i32 1
+  %output81 = load ptr, ptr %output_ptr80, align 8
+  %varadics_array82 = alloca ptr, align 8
+  %35 = getelementptr ptr, ptr %varadics_array82, i32 0
+  store ptr %output81, ptr %35, align 8
+  %variadic_struct83 = alloca { ptr, i32, i32 }, align 8
+  %36 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct83, i32 0, i32 0
+  store ptr %varadics_array82, ptr %36, align 8
+  %37 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct83, i32 0, i32 1
+  store i32 1, ptr %37, align 4
+  %38 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct83, i32 0, i32 2
+  store i32 0, ptr %38, align 4
+  call void @"IO::qout"(ptr @.str.80, ptr %variadic_struct83)
+  %exitCode_ptr = getelementptr inbounds nuw %"CQB::Engine::RunResult", ptr %res, i32 0, i32 0
+  %exitCode = load i32, ptr %exitCode_ptr, align 4
+  %icmpne = icmp ne i32 %exitCode, 0
+  br i1 %icmpne, label %then84, label %ifcont85
 
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i262
-  %data.pr.i278 = load ptr, ptr %13, align 8
-  %18 = icmp eq ptr %data.pr.i278, null
-  br i1 %18, label %"Vector::Vec<char*>_push_T.exit", label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i"
+then84:                                           ; preds = %ternary.end
+  %state86 = load ptr, ptr %"CQB::Engine::state", align 8
+  %errorsCount_ptr = getelementptr inbounds nuw %"CQB::Engine::TaskState", ptr %state86, i32 0, i32 7
+  %inc_deref87 = load i32, ptr %errorsCount_ptr, align 4
+  %inc88 = add i32 %inc_deref87, 1
+  store i32 %inc88, ptr %errorsCount_ptr, align 4
+  %name_ptr89 = getelementptr inbounds nuw %"CQB::CI::Step", ptr %step, i32 0, i32 0
+  %name90 = load ptr, ptr %name_ptr89, align 8
+  %exitCode_ptr91 = getelementptr inbounds nuw %"CQB::Engine::RunResult", ptr %res, i32 0, i32 0
+  %exitCode92 = load i32, ptr %exitCode_ptr91, align 4
+  %varadics_array93 = alloca ptr, i32 2, align 8
+  %39 = getelementptr ptr, ptr %varadics_array93, i32 0
+  store ptr %name90, ptr %39, align 8
+  %40 = getelementptr ptr, ptr %varadics_array93, i32 1
+  %vararg_int_to_ptr = inttoptr i32 %exitCode92 to ptr
+  store ptr %vararg_int_to_ptr, ptr %40, align 8
+  %variadic_struct94 = alloca { ptr, i32, i32 }, align 8
+  %41 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct94, i32 0, i32 0
+  store ptr %varadics_array93, ptr %41, align 8
+  %42 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct94, i32 0, i32 1
+  store i32 2, ptr %42, align 4
+  %43 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct94, i32 0, i32 2
+  store i32 0, ptr %43, align 4
+  call void @"IO::qout"(ptr @.str.81, ptr %variadic_struct94)
+  %task95 = load ptr, ptr %"CQB::Engine::task", align 8
+  %ignoreFailure_ptr = getelementptr inbounds nuw %"CQB::CI::Task", ptr %task95, i32 0, i32 3
+  %ignoreFailure = load i1, ptr %ignoreFailure_ptr, align 1
+  %not = xor i1 %ignoreFailure, true
+  br i1 %not, label %then96, label %ifcont97
 
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i": ; preds = %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i"
-  %size5.pre.i279 = load i32, ptr %15, align 8
-  br label %ifcont.i271
+ifcont85:                                         ; preds = %ifcont97, %ternary.end
+  %output_ptr100 = getelementptr inbounds nuw %"CQB::Engine::RunResult", ptr %res, i32 0, i32 1
+  %output101 = load ptr, ptr %output_ptr100, align 8
+  call void @qc_free(ptr %output101)
+  br label %for.inc52
 
-ifcont.i271:                                      ; preds = %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i", %"Vector::Vec<char*>_reserve_int.exit.thread.i", %for.body51
-  %data6.i272 = phi ptr [ %data.pr.i278, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %builtin_call.i.i265, %"Vector::Vec<char*>_reserve_int.exit.thread.i" ], [ %data6.pre.i256, %for.body51 ]
-  %size5.i273 = phi i32 [ %size5.pre.i279, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.ifcont_crit_edge.i" ], [ %size511.i270, %"Vector::Vec<char*>_reserve_int.exit.thread.i" ], [ %size.i254, %for.body51 ]
-  %19 = sext i32 %size5.i273 to i64
-  %ptr_arr_asi.i274 = getelementptr [8 x i8], ptr %data6.i272, i64 %19
-  store ptr %calltmp.fca.1.extract, ptr %ptr_arr_asi.i274, align 8
-  %inc_deref.i275 = load i32, ptr %15, align 8
-  %inc.i276 = add i32 %inc_deref.i275, 1
-  store i32 %inc.i276, ptr %15, align 8
-  br label %"Vector::Vec<char*>_push_T.exit"
+then96:                                           ; preds = %then84
+  %state98 = load ptr, ptr %"CQB::Engine::state", align 8
+  %status_ptr99 = getelementptr inbounds nuw %"CQB::Engine::TaskState", ptr %state98, i32 0, i32 2
+  store ptr @.str.82, ptr %status_ptr99, align 8
+  store i1 true, ptr %"CQB::Engine::failed", align 1
+  br label %for.end53
 
-"Vector::Vec<char*>_push_T.exit":                 ; preds = %then.i.i280, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", %ifcont.i271
-  tail call fastcc void @qc_print_string(ptr nonnull @26)
-  tail call fastcc void @qc_fmt_string(ptr %calltmp.fca.1.extract)
-  tail call fastcc void @qc_print_string(ptr nonnull @29)
-  %icmpne.not = icmp eq i32 %calltmp.fca.0.extract, 0
-  br i1 %icmpne.not, label %ifcont81, label %then80
+ifcont97:                                         ; preds = %then84
+  br label %ifcont85
 
-then80:                                           ; preds = %"Vector::Vec<char*>_push_T.exit"
-  %inc_deref83 = load i32, ptr %errorsCount_ptr, align 4
-  %inc84 = add i32 %inc_deref83, 1
-  store i32 %inc84, ptr %errorsCount_ptr, align 4
-  tail call fastcc void @qc_print_string(ptr nonnull @27)
-  tail call fastcc void @qc_fmt_string(ptr %strip_ref.unpack)
-  %20 = sext i32 %calltmp.fca.0.extract to i64
-  tail call fastcc void @qc_print_string(ptr nonnull @28)
-  tail call fastcc void @qc_fmt_int(i64 %20, i32 -1, i1 false)
-  tail call fastcc void @qc_print_string(ptr nonnull @29)
-  %ignoreFailure = load i1, ptr %ignoreFailure_ptr, align 8
-  br i1 %ignoreFailure, label %ifcont81, label %then98
+then104:                                          ; preds = %for.end53
+  %activeTask_ptr106 = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 4
+  store ptr null, ptr %activeTask_ptr106, align 8
+  call void @"Vector::Vec<CQB::CI::Task*>__destroy"(ptr %pending)
+  call void @"Vector::Vec<CQB::CI::Task*>__destroy"(ptr %visited)
+  ret i32 1
 
-ifcont81:                                         ; preds = %then80, %"Vector::Vec<char*>_push_T.exit"
-  tail call fastcc void @qc_free(ptr %calltmp.fca.1.extract)
-  %indvars.iv.next427 = add nuw nsw i64 %indvars.iv426, 1
-  %size.i248 = load i32, ptr %11, align 8
-  %21 = sext i32 %size.i248 to i64
-  %icmplt57 = icmp slt i64 %indvars.iv.next427, %21
-  br i1 %icmplt57, label %for.body51, label %ifcont99
+ifcont105:                                        ; preds = %for.end53
+  %state107 = load ptr, ptr %"CQB::Engine::state", align 8
+  %progress_ptr108 = getelementptr inbounds nuw %"CQB::Engine::TaskState", ptr %state107, i32 0, i32 3
+  store i32 100, ptr %progress_ptr108, align 4
+  %state109 = load ptr, ptr %"CQB::Engine::state", align 8
+  %status_ptr110 = getelementptr inbounds nuw %"CQB::Engine::TaskState", ptr %state109, i32 0, i32 2
+  store ptr @.str.83, ptr %status_ptr110, align 8
+  %task111 = load ptr, ptr %"CQB::Engine::task", align 8
+  %next_ptr = getelementptr inbounds nuw %"CQB::CI::Task", ptr %task111, i32 0, i32 2
+  store %"Vector::Iterator::It<CQB::CI::Task*>" zeroinitializer, ptr %__iter_child, align 8
+  %_begin_result112 = call %"Vector::Iterator::It<CQB::CI::Task*>" @"Vector::Vec<CQB::CI::Task*>__begin"(ptr %next_ptr)
+  store %"Vector::Iterator::It<CQB::CI::Task*>" %_begin_result112, ptr %__iter_child, align 8
+  store i32 0, ptr %__foreach_i_child, align 4
+  store ptr null, ptr %child, align 8
+  store i32 0, ptr %__foreach_i_child, align 4
+  br label %foreach.cond113
 
-then98:                                           ; preds = %then80
-  %status_ptr93 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i241, i64 16
-  store ptr @.str.122, ptr %status_ptr93, align 8
-  store ptr null, ptr %activeTask_ptr, align 8
-  tail call fastcc void @qc_free(ptr %pending.sroa.0.0412)
-  tail call fastcc void @qc_free(ptr %visited.sroa.0.2)
-  br label %common.ret
+foreach.cond113:                                  ; preds = %foreach.body114, %ifcont105
+  %_atEnd_result116 = call i1 @"Vector::Iterator::It<CQB::CI::Task*>__atEnd"(ptr %__iter_child)
+  br i1 %_atEnd_result116, label %foreach.end115, label %foreach.body114
 
-ifcont99:                                         ; preds = %ifcont81, %ifcont28
-  %progress_ptr102 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i241, i64 24
-  store i32 100, ptr %progress_ptr102, align 4
-  %status_ptr104 = getelementptr inbounds nuw i8, ptr %lval_ptr_arr_addr.i241, i64 16
-  store ptr @.str.123, ptr %status_ptr104, align 8
-  %next_ptr = getelementptr inbounds nuw i8, ptr %deref_ref, i64 24
-  %data.i287 = load ptr, ptr %next_ptr, align 8
-  %22 = getelementptr inbounds nuw i8, ptr %deref_ref, i64 32
-  %size.i288 = load i32, ptr %22, align 8
-  %icmple.i294.not399 = icmp sgt i32 %size.i288, 0
-  br i1 %icmple.i294.not399, label %foreach.body108.preheader, label %while.cond.backedge
+foreach.body114:                                  ; preds = %foreach.cond113
+  %44 = load %"Vector::Iterator::It<CQB::CI::Task*>", ptr %__iter_child, align 8
+  %_next_result117 = call ptr @"Vector::Iterator::It<CQB::CI::Task*>__next"(ptr %__iter_child)
+  store ptr %_next_result117, ptr %child, align 8
+  %child118 = load ptr, ptr %child, align 8
+  call void @"Vector::Vec<CQB::CI::Task*>_push_T"(ptr %pending, ptr %child118)
+  br label %foreach.cond113
 
-foreach.body108.preheader:                        ; preds = %ifcont99
-  %wide.trip.count432 = zext nneg i32 %size.i288 to i64
-  br label %foreach.body108
-
-foreach.body108:                                  ; preds = %foreach.body108.preheader, %"Vector::Vec<CQB::CI::Task*>_push_T.exit341"
-  %indvars.iv429 = phi i64 [ 0, %foreach.body108.preheader ], [ %indvars.iv.next430, %"Vector::Vec<CQB::CI::Task*>_push_T.exit341" ]
-  %pending.sroa.34.1403 = phi i32 [ %pending.sroa.34.0414, %foreach.body108.preheader ], [ %pending.sroa.34.5, %"Vector::Vec<CQB::CI::Task*>_push_T.exit341" ]
-  %pending.sroa.17.1402 = phi i32 [ %pending.sroa.17.0413, %foreach.body108.preheader ], [ %pending.sroa.17.7, %"Vector::Vec<CQB::CI::Task*>_push_T.exit341" ]
-  %pending.sroa.0.1401 = phi ptr [ %pending.sroa.0.0412, %foreach.body108.preheader ], [ %pending.sroa.0.5, %"Vector::Vec<CQB::CI::Task*>_push_T.exit341" ]
-  %indvars.iv.next430 = add nuw nsw i64 %indvars.iv429, 1
-  %ptr_arr_addr5.i304 = getelementptr [8 x i8], ptr %data.i287, i64 %indvars.iv429
-  %common.ret.op.i305 = load ptr, ptr %ptr_arr_addr5.i304, align 8
-  %icmple.not.i312 = icmp sgt i32 %pending.sroa.34.1403, %pending.sroa.17.1402
-  br i1 %icmple.not.i312, label %ifcont.i329, label %then.i314
-
-then.i314:                                        ; preds = %foreach.body108
-  %icmpeq.i315 = icmp eq i32 %pending.sroa.34.1403, 0
-  %mul.i316 = shl i32 %pending.sroa.34.1403, 1
-  %select_val.i317 = select i1 %icmpeq.i315, i32 1, i32 %mul.i316
-  %icmpeq.i.i318 = icmp eq i32 %select_val.i317, 0
-  br i1 %icmpeq.i.i318, label %then.i.i340, label %ifcont.i.i319
-
-then.i.i340:                                      ; preds = %then.i314
-  tail call fastcc void @qc_free(ptr %pending.sroa.0.1401)
-  br label %"Vector::Vec<CQB::CI::Task*>_push_T.exit341"
-
-ifcont.i.i319:                                    ; preds = %then.i314
-  %promote_int.i.i320 = sext i32 %select_val.i317 to i64
-  %mul.i.i321 = shl nsw i64 %promote_int.i.i320, 3
-  %builtin_call.i.i322 = tail call fastcc ptr @qc_realloc(ptr %pending.sroa.0.1401, i64 %mul.i.i321)
-  %ptr_eq.i.i323 = icmp eq ptr %builtin_call.i.i322, null
-  br i1 %ptr_eq.i.i323, label %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i336", label %ifcont5.i.i324
-
-ifcont5.i.i324:                                   ; preds = %ifcont.i.i319
-  %spec.select364 = tail call i32 @llvm.smin.i32(i32 %pending.sroa.17.1402, i32 %select_val.i317)
-  br label %ifcont.i329
-
-"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i336": ; preds = %ifcont.i.i319
-  %23 = icmp eq ptr %pending.sroa.0.1401, null
-  br i1 %23, label %"Vector::Vec<CQB::CI::Task*>_push_T.exit341", label %ifcont.i329
-
-ifcont.i329:                                      ; preds = %ifcont5.i.i324, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i336", %foreach.body108
-  %pending.sroa.0.4 = phi ptr [ %pending.sroa.0.1401, %foreach.body108 ], [ %builtin_call.i.i322, %ifcont5.i.i324 ], [ %pending.sroa.0.1401, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i336" ]
-  %pending.sroa.17.6 = phi i32 [ %pending.sroa.17.1402, %foreach.body108 ], [ %spec.select364, %ifcont5.i.i324 ], [ %pending.sroa.17.1402, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i336" ]
-  %pending.sroa.34.4 = phi i32 [ %pending.sroa.34.1403, %foreach.body108 ], [ %select_val.i317, %ifcont5.i.i324 ], [ %pending.sroa.34.1403, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i336" ]
-  %24 = sext i32 %pending.sroa.17.6 to i64
-  %ptr_arr_asi.i332 = getelementptr [8 x i8], ptr %pending.sroa.0.4, i64 %24
-  store ptr %common.ret.op.i305, ptr %ptr_arr_asi.i332, align 8
-  %inc.i334 = add i32 %pending.sroa.17.6, 1
-  br label %"Vector::Vec<CQB::CI::Task*>_push_T.exit341"
-
-"Vector::Vec<CQB::CI::Task*>_push_T.exit341":     ; preds = %then.i.i340, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i336", %ifcont.i329
-  %pending.sroa.0.5 = phi ptr [ %pending.sroa.0.4, %ifcont.i329 ], [ null, %then.i.i340 ], [ null, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i336" ]
-  %pending.sroa.17.7 = phi i32 [ %inc.i334, %ifcont.i329 ], [ 0, %then.i.i340 ], [ %pending.sroa.17.1402, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i336" ]
-  %pending.sroa.34.5 = phi i32 [ %pending.sroa.34.4, %ifcont.i329 ], [ 0, %then.i.i340 ], [ %pending.sroa.34.1403, %"Vector::Vec<CQB::CI::Task*>_reserve_int.exitthread-pre-split.i336" ]
-  %exitcond433.not = icmp eq i64 %indvars.iv.next430, %wide.trip.count432
-  br i1 %exitcond433.not, label %while.cond.backedge, label %foreach.body108
+foreach.end115:                                   ; preds = %foreach.cond113
+  br label %while.cond
 }
 
-define weak_odr void @"CQB::Engine::Runner_Runner_Vector::Vec<Build::Command>_CI::Task*"(ptr %0, %"Vector::Vec<CQB::Build::Command>" %1, ptr %2) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"CQB::Engine::Runner_Runner_Vector::Vec<Build::Command>_CI::Task*"(ptr %0, %"Vector::Vec<CQB::Build::Command>" %1, ptr %2) !qc.return_types !23 {
 entry:
-  %buildGraph_ptr = getelementptr inbounds nuw i8, ptr %0, i64 40
-  %.elt = extractvalue %"Vector::Vec<CQB::Build::Command>" %1, 0
-  store ptr %.elt, ptr %buildGraph_ptr, align 8
-  %buildGraph_ptr.repack4 = getelementptr inbounds nuw i8, ptr %0, i64 48
-  %.elt5 = extractvalue %"Vector::Vec<CQB::Build::Command>" %1, 1
-  store i32 %.elt5, ptr %buildGraph_ptr.repack4, align 8
-  %buildGraph_ptr.repack6 = getelementptr inbounds nuw i8, ptr %0, i64 52
-  %.elt7 = extractvalue %"Vector::Vec<CQB::Build::Command>" %1, 2
-  store i32 %.elt7, ptr %buildGraph_ptr.repack6, align 4
-  %ciRoot_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store ptr %2, ptr %ciRoot_ptr, align 8
-  %activeTask_ptr = getelementptr inbounds nuw i8, ptr %0, i64 32
-  store ptr %2, ptr %activeTask_ptr, align 8
-  %activeStates_ptr = getelementptr inbounds nuw i8, ptr %0, i64 16
-  store i1 false, ptr %0, align 8
-  %buildDone_ptr = getelementptr inbounds nuw i8, ptr %0, i64 1
+  %"temp_Vector::Vec<CQB::Engine::TaskState>" = alloca %"Vector::Vec<CQB::Engine::TaskState>", align 8
+  %ciRoot = alloca ptr, align 8
+  %build = alloca %"Vector::Vec<CQB::Build::Command>", align 8
+  store %"Vector::Vec<CQB::Build::Command>" zeroinitializer, ptr %build, align 8
+  store %"Vector::Vec<CQB::Build::Command>" %1, ptr %build, align 8
+  store ptr null, ptr %ciRoot, align 8
+  store ptr %2, ptr %ciRoot, align 8
+  %build1 = load %"Vector::Vec<CQB::Build::Command>", ptr %build, align 8
+  %buildGraph_ptr = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 5
+  store %"Vector::Vec<CQB::Build::Command>" %build1, ptr %buildGraph_ptr, align 8
+  %ciRoot2 = load ptr, ptr %ciRoot, align 8
+  %ciRoot_ptr = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 2
+  store ptr %ciRoot2, ptr %ciRoot_ptr, align 8
+  %ciRoot3 = load ptr, ptr %ciRoot, align 8
+  %activeTask_ptr = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 4
+  store ptr %ciRoot3, ptr %activeTask_ptr, align 8
+  store %"Vector::Vec<CQB::Engine::TaskState>" zeroinitializer, ptr %"temp_Vector::Vec<CQB::Engine::TaskState>", align 8
+  call void @"Vector::Vec<CQB::Engine::TaskState>_Vec"(ptr %"temp_Vector::Vec<CQB::Engine::TaskState>")
+  %"Vector::Vec<CQB::Engine::TaskState>_inst" = load %"Vector::Vec<CQB::Engine::TaskState>", ptr %"temp_Vector::Vec<CQB::Engine::TaskState>", align 8
+  %activeStates_ptr = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 3
+  store %"Vector::Vec<CQB::Engine::TaskState>" %"Vector::Vec<CQB::Engine::TaskState>_inst", ptr %activeStates_ptr, align 8
+  %ciDone_ptr = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 0
+  store i1 false, ptr %ciDone_ptr, align 1
+  %buildDone_ptr = getelementptr inbounds nuw %"CQB::Engine::Runner", ptr %0, i32 0, i32 1
   store i1 false, ptr %buildDone_ptr, align 1
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %activeStates_ptr, i8 0, i64 16, i1 false)
   ret void
 }
 
-define weak_odr i1 @"CQB::Engine::Runner_Run"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"CQB::Engine::Runner_Run_char*"(ptr %0, ptr %1) !qc.return_types !27 {
 entry:
-  %runCIPipeline_result = tail call i32 @"CQB::Engine::Runner_runCIPipeline"(ptr %0)
-  %runBuildPipeline_result = tail call i32 @"CQB::Engine::Runner_runBuildPipeline"(ptr %0)
+  %qc_exe = alloca ptr, align 8
+  store ptr null, ptr %qc_exe, align 8
+  store ptr %1, ptr %qc_exe, align 8
+  %runCIPipeline_result = call i32 @"CQB::Engine::Runner_runCIPipeline"(ptr %0)
+  %qc_exe1 = load ptr, ptr %qc_exe, align 8
+  %runBuildPipeline_result = call i32 @"CQB::Engine::Runner_runBuildPipeline_char*"(ptr %0, ptr %qc_exe1)
   ret i1 true
 }
 
-declare !qc.return_types !39 i32 @clock_gettime(i32, ptr) local_unnamed_addr
+declare !qc.return_types !30 i32 @__sched_cpucount(i64, ptr)
 
-declare !qc.return_types !58 i32 @waitpid(i32, ptr, i32) local_unnamed_addr
+declare !qc.return_types !40 ptr @__sched_cpualloc(i64)
 
-declare !qc.return_types !39 i32 @pipe(ptr) local_unnamed_addr
+declare !qc.return_types !21 void @__sched_cpufree(ptr)
 
-declare !qc.return_types !39 i32 @isatty(i32) local_unnamed_addr
+declare !qc.return_types !30 i32 @sched_setparam(i32, ptr)
 
-define weak_odr i16 @__bswap_16(i16 %__bsx) local_unnamed_addr !qc.return_types !59 {
+declare !qc.return_types !30 i32 @sched_getparam(i32, ptr)
+
+declare !qc.return_types !30 i32 @sched_setscheduler(i32, i32, ptr)
+
+declare !qc.return_types !30 i32 @sched_getscheduler(i32)
+
+declare !qc.return_types !30 i32 @sched_yield()
+
+declare !qc.return_types !30 i32 @sched_get_priority_max(i32)
+
+declare !qc.return_types !30 i32 @sched_get_priority_min(i32)
+
+declare !qc.return_types !30 i32 @sched_rr_get_interval(i32, ptr)
+
+define weak_odr i16 @__bswap_16(i16 %__bsx) !qc.return_types !41 {
 entry:
-  %rev = tail call i16 @llvm.bswap.i16(i16 %__bsx)
-  ret i16 %rev
+  %__bsx1 = alloca i16, align 2
+  store i16 0, ptr %__bsx1, align 2
+  store i16 %__bsx, ptr %__bsx1, align 2
+  %__bsx2 = load i16, ptr %__bsx1, align 2
+  %promote_int = sext i16 %__bsx2 to i32
+  %ashrtmp = ashr i32 %promote_int, 8
+  %promote_int3 = sext i32 %ashrtmp to i64
+  %andtmp = and i64 %promote_int3, 255
+  %__bsx4 = load i16, ptr %__bsx1, align 2
+  %promote_int5 = sext i16 %__bsx4 to i64
+  %andtmp6 = and i64 %promote_int5, 255
+  %shltmp = shl i64 %andtmp6, 8
+  %ortmp = or i64 %andtmp, %shltmp
+  %0 = trunc i64 %ortmp to i16
+  ret i16 %0
 }
 
-define weak_odr i32 @__bswap_32(i32 %__bsx) local_unnamed_addr !qc.return_types !60 {
+define weak_odr i32 @__bswap_32(i32 %__bsx) !qc.return_types !42 {
 entry:
-  %rev = tail call i32 @llvm.bswap.i32(i32 %__bsx)
-  ret i32 %rev
+  %__bsx1 = alloca i32, align 4
+  store i32 0, ptr %__bsx1, align 4
+  store i32 %__bsx, ptr %__bsx1, align 4
+  %__bsx2 = load i32, ptr %__bsx1, align 4
+  %promote_int = sext i32 %__bsx2 to i64
+  %andtmp = and i64 %promote_int, 4278190080
+  %lshrtmp = lshr i64 %andtmp, 24
+  %__bsx3 = load i32, ptr %__bsx1, align 4
+  %promote_int4 = sext i32 %__bsx3 to i64
+  %andtmp5 = and i64 %promote_int4, 16711680
+  %lshrtmp6 = lshr i64 %andtmp5, 8
+  %ortmp = or i64 %lshrtmp, %lshrtmp6
+  %__bsx7 = load i32, ptr %__bsx1, align 4
+  %promote_int8 = sext i32 %__bsx7 to i64
+  %andtmp9 = and i64 %promote_int8, 65280
+  %shltmp = shl i64 %andtmp9, 8
+  %ortmp10 = or i64 %ortmp, %shltmp
+  %__bsx11 = load i32, ptr %__bsx1, align 4
+  %promote_int12 = sext i32 %__bsx11 to i64
+  %andtmp13 = and i64 %promote_int12, 255
+  %shltmp14 = shl i64 %andtmp13, 24
+  %ortmp15 = or i64 %ortmp10, %shltmp14
+  %arg_trunc = trunc i64 %ortmp15 to i32
+  ret i32 %arg_trunc
 }
 
-define weak_odr i64 @__bswap_64(i64 %__bsx) local_unnamed_addr !qc.return_types !61 {
+define weak_odr i64 @__bswap_64(i64 %__bsx) !qc.return_types !43 {
 entry:
-  %ortmp28 = tail call i64 @llvm.bswap.i64(i64 %__bsx)
+  %__bsx1 = alloca i64, align 8
+  store i64 0, ptr %__bsx1, align 8
+  store i64 %__bsx, ptr %__bsx1, align 8
+  %__bsx2 = load i64, ptr %__bsx1, align 8
+  %andtmp = and i64 %__bsx2, -72057594037927936
+  %lshrtmp = lshr i64 %andtmp, 56
+  %__bsx3 = load i64, ptr %__bsx1, align 8
+  %andtmp4 = and i64 %__bsx3, 71776119061217280
+  %lshrtmp5 = lshr i64 %andtmp4, 40
+  %ortmp = or i64 %lshrtmp, %lshrtmp5
+  %__bsx6 = load i64, ptr %__bsx1, align 8
+  %andtmp7 = and i64 %__bsx6, 280375465082880
+  %lshrtmp8 = lshr i64 %andtmp7, 24
+  %ortmp9 = or i64 %ortmp, %lshrtmp8
+  %__bsx10 = load i64, ptr %__bsx1, align 8
+  %andtmp11 = and i64 %__bsx10, 1095216660480
+  %lshrtmp12 = lshr i64 %andtmp11, 8
+  %ortmp13 = or i64 %ortmp9, %lshrtmp12
+  %__bsx14 = load i64, ptr %__bsx1, align 8
+  %andtmp15 = and i64 %__bsx14, 4278190080
+  %shltmp = shl i64 %andtmp15, 8
+  %ortmp16 = or i64 %ortmp13, %shltmp
+  %__bsx17 = load i64, ptr %__bsx1, align 8
+  %andtmp18 = and i64 %__bsx17, 16711680
+  %shltmp19 = shl i64 %andtmp18, 24
+  %ortmp20 = or i64 %ortmp16, %shltmp19
+  %__bsx21 = load i64, ptr %__bsx1, align 8
+  %andtmp22 = and i64 %__bsx21, 65280
+  %shltmp23 = shl i64 %andtmp22, 40
+  %ortmp24 = or i64 %ortmp20, %shltmp23
+  %__bsx25 = load i64, ptr %__bsx1, align 8
+  %andtmp26 = and i64 %__bsx25, 255
+  %shltmp27 = shl i64 %andtmp26, 56
+  %ortmp28 = or i64 %ortmp24, %shltmp27
   ret i64 %ortmp28
 }
 
-define weak_odr i16 @__uint16_identity(i16 %__x) local_unnamed_addr !qc.return_types !59 {
+define weak_odr i16 @__uint16_identity(i16 %__x) !qc.return_types !41 {
 entry:
-  ret i16 %__x
+  %__x1 = alloca i16, align 2
+  store i16 0, ptr %__x1, align 2
+  store i16 %__x, ptr %__x1, align 2
+  %__x2 = load i16, ptr %__x1, align 2
+  ret i16 %__x2
 }
 
-define weak_odr i32 @__uint32_identity(i32 %__x) local_unnamed_addr !qc.return_types !60 {
+define weak_odr i32 @__uint32_identity(i32 %__x) !qc.return_types !42 {
 entry:
-  ret i32 %__x
+  %__x1 = alloca i32, align 4
+  store i32 0, ptr %__x1, align 4
+  store i32 %__x, ptr %__x1, align 4
+  %__x2 = load i32, ptr %__x1, align 4
+  ret i32 %__x2
 }
 
-define weak_odr i64 @__uint64_identity(i64 %__x) local_unnamed_addr !qc.return_types !61 {
+define weak_odr i64 @__uint64_identity(i64 %__x) !qc.return_types !43 {
 entry:
-  ret i64 %__x
+  %__x1 = alloca i64, align 8
+  store i64 0, ptr %__x1, align 8
+  store i64 %__x, ptr %__x1, align 8
+  %__x2 = load i64, ptr %__x1, align 8
+  ret i64 %__x2
 }
 
-declare !qc.return_types !39 i32 @posix_spawnp(ptr, ptr, ptr, ptr, ptr, ptr) local_unnamed_addr
+declare !qc.return_types !30 i32 @select(i32, ptr, ptr, ptr, ptr)
 
-declare !qc.return_types !39 i32 @posix_spawn_file_actions_init(ptr) local_unnamed_addr
+declare !qc.return_types !30 i32 @pselect(i32, ptr, ptr, ptr, ptr, ptr)
 
-declare !qc.return_types !39 i32 @posix_spawn_file_actions_destroy(ptr) local_unnamed_addr
+declare !qc.return_types !30 i32 @posix_spawn(ptr, ptr, ptr, ptr, ptr, ptr)
 
-declare !qc.return_types !39 i32 @posix_spawn_file_actions_addclose(ptr, i32) local_unnamed_addr
+declare !qc.return_types !30 i32 @posix_spawnp(ptr, ptr, ptr, ptr, ptr, ptr)
 
-declare !qc.return_types !39 i32 @posix_spawn_file_actions_adddup2(ptr, i32, i32) local_unnamed_addr
+declare !qc.return_types !30 i32 @posix_spawnattr_init(ptr)
 
-define weak_odr i64 @"CQB::Engine::nowMs"() local_unnamed_addr !qc.return_types !62 {
+declare !qc.return_types !30 i32 @posix_spawnattr_destroy(ptr)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_getsigdefault(ptr, ptr)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_setsigdefault(ptr, ptr)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_getsigmask(ptr, ptr)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_setsigmask(ptr, ptr)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_getflags(ptr, ptr)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_setflags(ptr, i16)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_getpgroup(ptr, ptr)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_setpgroup(ptr, i32)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_getschedpolicy(ptr, ptr)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_setschedpolicy(ptr, i32)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_getschedparam(ptr, ptr)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_setschedparam(ptr, ptr)
+
+declare !qc.return_types !30 i32 @posix_spawn_file_actions_init(ptr)
+
+declare !qc.return_types !30 i32 @posix_spawn_file_actions_destroy(ptr)
+
+declare !qc.return_types !30 i32 @posix_spawn_file_actions_addopen(ptr, i32, ptr, i32, i32)
+
+declare !qc.return_types !30 i32 @posix_spawn_file_actions_addclose(ptr, i32)
+
+declare !qc.return_types !30 i32 @posix_spawn_file_actions_adddup2(ptr, i32, i32)
+
+declare !qc.return_types !30 i32 @posix_spawn_file_actions_addchdir_np(ptr, ptr)
+
+declare !qc.return_types !30 i32 @posix_spawn_file_actions_addfchdir_np(ptr, i32)
+
+declare !qc.return_types !30 i32 @posix_spawn_file_actions_addclosefrom_np(ptr, i32)
+
+declare !qc.return_types !30 i32 @posix_spawn_file_actions_addtcsetpgrp_np(ptr, i32)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_getcgroup_np(ptr, ptr)
+
+declare !qc.return_types !30 i32 @posix_spawnattr_setcgroup_np(ptr, i32)
+
+declare !qc.return_types !30 i32 @pidfd_spawn(ptr, ptr, ptr, ptr, ptr, ptr)
+
+declare !qc.return_types !30 i32 @pidfd_spawnp(ptr, ptr, ptr, ptr, ptr, ptr)
+
+declare !qc.return_types !30 i32 @access(ptr, i32)
+
+declare !qc.return_types !30 i32 @faccessat(i32, ptr, i32, i32)
+
+declare !qc.return_types !21 void @closefrom(i32)
+
+declare !qc.return_types !44 i64 @pread(i32, ptr, i64, i64)
+
+declare !qc.return_types !44 i64 @pwrite(i32, ptr, i64, i64)
+
+declare !qc.return_types !30 i32 @pipe(ptr)
+
+declare !qc.return_types !45 i32 @alarm(i32)
+
+declare !qc.return_types !45 i32 @sleep(i32)
+
+declare !qc.return_types !46 i32 @ualarm(i32, i32)
+
+declare !qc.return_types !30 i32 @usleep(i32)
+
+declare !qc.return_types !30 i32 @pause()
+
+declare !qc.return_types !30 i32 @chown(ptr, i32, i32)
+
+declare !qc.return_types !30 i32 @fchown(i32, i32, i32)
+
+declare !qc.return_types !30 i32 @lchown(ptr, i32, i32)
+
+declare !qc.return_types !30 i32 @fchownat(i32, ptr, i32, i32, i32)
+
+declare !qc.return_types !30 i32 @chdir(ptr)
+
+declare !qc.return_types !30 i32 @fchdir(i32)
+
+declare !qc.return_types !22 ptr @getcwd(ptr, i64)
+
+declare !qc.return_types !22 ptr @getwd(ptr)
+
+declare !qc.return_types !30 i32 @dup(i32)
+
+declare !qc.return_types !30 i32 @dup2(i32, i32)
+
+declare !qc.return_types !30 i32 @execve(ptr, ptr, ptr)
+
+declare !qc.return_types !30 i32 @fexecve(i32, ptr, ptr)
+
+declare !qc.return_types !30 i32 @execv(ptr, ptr)
+
+declare !qc.return_types !30 i32 @execle(ptr, ptr, ...)
+
+declare !qc.return_types !30 i32 @execl(ptr, ptr, ...)
+
+declare !qc.return_types !30 i32 @execvp(ptr, ptr)
+
+declare !qc.return_types !30 i32 @execlp(ptr, ptr, ...)
+
+declare !qc.return_types !30 i32 @nice(i32)
+
+declare !qc.return_types !21 void @_exit(i32)
+
+declare !qc.return_types !47 i64 @pathconf(ptr, i32)
+
+declare !qc.return_types !47 i64 @fpathconf(i32, i32)
+
+declare !qc.return_types !47 i64 @sysconf(i32)
+
+declare !qc.return_types !48 i64 @confstr(i32, ptr, i64)
+
+declare !qc.return_types !49 i32 @getpid()
+
+declare !qc.return_types !49 i32 @getppid()
+
+declare !qc.return_types !49 i32 @getpgrp()
+
+declare !qc.return_types !49 i32 @__getpgid(i32)
+
+declare !qc.return_types !49 i32 @getpgid(i32)
+
+declare !qc.return_types !30 i32 @setpgid(i32, i32)
+
+declare !qc.return_types !30 i32 @setpgrp()
+
+declare !qc.return_types !49 i32 @setsid()
+
+declare !qc.return_types !49 i32 @getsid(i32)
+
+declare !qc.return_types !50 i32 @getuid()
+
+declare !qc.return_types !50 i32 @geteuid()
+
+declare !qc.return_types !51 i32 @getgid()
+
+declare !qc.return_types !51 i32 @getegid()
+
+declare !qc.return_types !30 i32 @getgroups(i32, ptr)
+
+declare !qc.return_types !30 i32 @setuid(i32)
+
+declare !qc.return_types !30 i32 @setreuid(i32, i32)
+
+declare !qc.return_types !30 i32 @seteuid(i32)
+
+declare !qc.return_types !30 i32 @setgid(i32)
+
+declare !qc.return_types !30 i32 @setregid(i32, i32)
+
+declare !qc.return_types !30 i32 @setegid(i32)
+
+declare !qc.return_types !49 i32 @fork()
+
+declare !qc.return_types !30 i32 @vfork()
+
+declare !qc.return_types !22 ptr @ttyname(i32)
+
+declare !qc.return_types !30 i32 @ttyname_r(i32, ptr, i64)
+
+declare !qc.return_types !30 i32 @isatty(i32)
+
+declare !qc.return_types !30 i32 @ttyslot()
+
+declare !qc.return_types !30 i32 @link(ptr, ptr)
+
+declare !qc.return_types !30 i32 @linkat(i32, ptr, i32, ptr, i32)
+
+declare !qc.return_types !30 i32 @symlink(ptr, ptr)
+
+declare !qc.return_types !44 i64 @readlink(ptr, ptr, i64)
+
+declare !qc.return_types !30 i32 @symlinkat(ptr, i32, ptr)
+
+declare !qc.return_types !44 i64 @readlinkat(i32, ptr, ptr, i64)
+
+declare !qc.return_types !30 i32 @unlink(ptr)
+
+declare !qc.return_types !30 i32 @unlinkat(i32, ptr, i32)
+
+declare !qc.return_types !30 i32 @rmdir(ptr)
+
+declare !qc.return_types !49 i32 @tcgetpgrp(i32)
+
+declare !qc.return_types !30 i32 @tcsetpgrp(i32, i32)
+
+declare !qc.return_types !22 ptr @getlogin()
+
+declare !qc.return_types !30 i32 @getlogin_r(ptr, i64)
+
+declare !qc.return_types !30 i32 @setlogin(ptr)
+
+declare !qc.return_types !30 i32 @getopt(i32, ptr, ptr)
+
+declare !qc.return_types !30 i32 @gethostname(ptr, i64)
+
+declare !qc.return_types !30 i32 @sethostname(ptr, i64)
+
+declare !qc.return_types !30 i32 @sethostid(i64)
+
+declare !qc.return_types !30 i32 @getdomainname(ptr, i64)
+
+declare !qc.return_types !30 i32 @setdomainname(ptr, i64)
+
+declare !qc.return_types !30 i32 @vhangup()
+
+declare !qc.return_types !30 i32 @revoke(ptr)
+
+declare !qc.return_types !30 i32 @profil(ptr, i64, i64, i32)
+
+declare !qc.return_types !30 i32 @acct(ptr)
+
+declare !qc.return_types !22 ptr @getusershell()
+
+declare !qc.return_types !21 void @endusershell()
+
+declare !qc.return_types !21 void @setusershell()
+
+declare !qc.return_types !30 i32 @daemon(i32, i32)
+
+declare !qc.return_types !30 i32 @chroot(ptr)
+
+declare !qc.return_types !22 ptr @getpass(ptr)
+
+declare !qc.return_types !30 i32 @fsync(i32)
+
+declare !qc.return_types !47 i64 @gethostid()
+
+declare !qc.return_types !21 void @sync()
+
+declare !qc.return_types !30 i32 @getpagesize()
+
+declare !qc.return_types !30 i32 @getdtablesize()
+
+declare !qc.return_types !30 i32 @truncate(ptr, i64)
+
+declare !qc.return_types !30 i32 @ftruncate(i32, i64)
+
+declare !qc.return_types !30 i32 @brk(ptr)
+
+declare !qc.return_types !52 ptr @sbrk(i64)
+
+declare !qc.return_types !47 i64 @syscall(i64, ...)
+
+declare !qc.return_types !30 i32 @lockf(i32, i32, i64)
+
+declare !qc.return_types !30 i32 @fdatasync(i32)
+
+declare !qc.return_types !22 ptr @crypt(ptr, ptr)
+
+declare !qc.return_types !30 i32 @getentropy(ptr, i64)
+
+declare !qc.return_types !53 ptr @__sysv_signal(i32, ptr)
+
+declare !qc.return_types !53 ptr @signal(i32, ptr)
+
+declare !qc.return_types !30 i32 @kill(i32, i32)
+
+declare !qc.return_types !30 i32 @killpg(i32, i32)
+
+declare !qc.return_types !30 i32 @raise(i32)
+
+declare !qc.return_types !53 ptr @ssignal(i32, ptr)
+
+declare !qc.return_types !30 i32 @gsignal(i32)
+
+declare !qc.return_types !21 void @psignal(i32, ptr)
+
+declare !qc.return_types !21 void @psiginfo(ptr, ptr)
+
+declare !qc.return_types !30 i32 @sigblock(i32)
+
+declare !qc.return_types !30 i32 @sigsetmask(i32)
+
+declare !qc.return_types !30 i32 @siggetmask()
+
+declare !qc.return_types !30 i32 @sigemptyset(ptr)
+
+declare !qc.return_types !30 i32 @sigfillset(ptr)
+
+declare !qc.return_types !30 i32 @sigaddset(ptr, i32)
+
+declare !qc.return_types !30 i32 @sigdelset(ptr, i32)
+
+declare !qc.return_types !30 i32 @sigismember(ptr, i32)
+
+declare !qc.return_types !30 i32 @sigprocmask(i32, ptr, ptr)
+
+declare !qc.return_types !30 i32 @sigsuspend(ptr)
+
+declare !qc.return_types !30 i32 @sigaction(i32, ptr, ptr)
+
+declare !qc.return_types !30 i32 @sigpending(ptr)
+
+declare !qc.return_types !30 i32 @sigwait(ptr, ptr)
+
+declare !qc.return_types !30 i32 @sigwaitinfo(ptr, ptr)
+
+declare !qc.return_types !30 i32 @sigtimedwait(ptr, ptr, ptr)
+
+declare !qc.return_types !30 i32 @sigqueue(i32, i32, %sigval)
+
+declare !qc.return_types !30 i32 @sigreturn(ptr)
+
+declare !qc.return_types !30 i32 @siginterrupt(i32, i32)
+
+declare !qc.return_types !30 i32 @sigaltstack(ptr, ptr)
+
+declare !qc.return_types !30 i32 @sigstack(ptr, ptr)
+
+declare !qc.return_types !30 i32 @pthread_sigmask(i32, ptr, ptr)
+
+declare !qc.return_types !30 i32 @pthread_kill(i64, i32)
+
+declare !qc.return_types !30 i32 @__libc_current_sigrtmin()
+
+declare !qc.return_types !30 i32 @__libc_current_sigrtmax()
+
+declare !qc.return_types !49 i32 @wait(ptr)
+
+declare !qc.return_types !49 i32 @waitpid(i32, ptr, i32)
+
+declare !qc.return_types !30 i32 @waitid(%idtype_t, i32, ptr, i32)
+
+declare !qc.return_types !49 i32 @wait3(ptr, i32, ptr)
+
+declare !qc.return_types !49 i32 @wait4(i32, ptr, i32, ptr)
+
+declare !qc.return_types !54 i64 @clock()
+
+declare !qc.return_types !55 i64 @time(ptr)
+
+declare !qc.return_types !56 double @difftime(i64, i64)
+
+declare !qc.return_types !55 i64 @mktime(ptr)
+
+declare !qc.return_types !48 i64 @strftime(ptr, i64, ptr, ptr)
+
+declare !qc.return_types !48 i64 @strftime_l(ptr, i64, ptr, ptr, ptr)
+
+declare !qc.return_types !57 ptr @gmtime(ptr)
+
+declare !qc.return_types !57 ptr @localtime(ptr)
+
+declare !qc.return_types !57 ptr @gmtime_r(ptr, ptr)
+
+declare !qc.return_types !57 ptr @localtime_r(ptr, ptr)
+
+declare !qc.return_types !22 ptr @asctime(ptr)
+
+declare !qc.return_types !22 ptr @ctime(ptr)
+
+declare !qc.return_types !22 ptr @asctime_r(ptr, ptr)
+
+declare !qc.return_types !22 ptr @ctime_r(ptr, ptr)
+
+declare !qc.return_types !21 void @tzset()
+
+declare !qc.return_types !55 i64 @timegm(ptr)
+
+declare !qc.return_types !55 i64 @timelocal(ptr)
+
+declare !qc.return_types !30 i32 @dysize(i32)
+
+declare !qc.return_types !30 i32 @nanosleep(ptr, ptr)
+
+declare !qc.return_types !30 i32 @clock_getres(i32, ptr)
+
+declare !qc.return_types !30 i32 @clock_gettime(i32, ptr)
+
+declare !qc.return_types !30 i32 @clock_settime(i32, ptr)
+
+declare !qc.return_types !30 i32 @clock_nanosleep(i32, i32, ptr, ptr)
+
+declare !qc.return_types !30 i32 @clock_getcpuclockid(i32, ptr)
+
+declare !qc.return_types !30 i32 @timer_create(i32, ptr, ptr)
+
+declare !qc.return_types !30 i32 @timer_delete(ptr)
+
+declare !qc.return_types !30 i32 @timer_settime(ptr, i32, ptr, ptr)
+
+declare !qc.return_types !30 i32 @timer_gettime(ptr, ptr)
+
+declare !qc.return_types !30 i32 @timer_getoverrun(ptr)
+
+declare !qc.return_types !30 i32 @timespec_get(ptr, i32)
+
+declare !qc.return_types !52 ptr @memcpy(ptr, ptr, i64)
+
+declare !qc.return_types !52 ptr @memmove(ptr, ptr, i64)
+
+declare !qc.return_types !52 ptr @memccpy(ptr, ptr, i32, i64)
+
+declare !qc.return_types !52 ptr @memset(ptr, i32, i64)
+
+declare !qc.return_types !52 ptr @memset_explicit(ptr, i32, i64)
+
+declare !qc.return_types !30 i32 @memcmp(ptr, ptr, i64)
+
+declare !qc.return_types !30 i32 @__memcmpeq(ptr, ptr, i64)
+
+declare !qc.return_types !52 ptr @memchr(ptr, i32, i64)
+
+declare !qc.return_types !22 ptr @strcpy(ptr, ptr)
+
+declare !qc.return_types !22 ptr @strncpy(ptr, ptr, i64)
+
+declare !qc.return_types !22 ptr @strcat(ptr, ptr)
+
+declare !qc.return_types !22 ptr @strncat(ptr, ptr, i64)
+
+declare !qc.return_types !30 i32 @strcmp(ptr, ptr)
+
+declare !qc.return_types !30 i32 @strncmp(ptr, ptr, i64)
+
+declare !qc.return_types !30 i32 @strcoll(ptr, ptr)
+
+declare !qc.return_types !25 i64 @strxfrm(ptr, ptr, i64)
+
+declare !qc.return_types !30 i32 @strcoll_l(ptr, ptr, ptr)
+
+declare !qc.return_types !48 i64 @strxfrm_l(ptr, ptr, i64, ptr)
+
+declare !qc.return_types !22 ptr @strdup(ptr)
+
+declare !qc.return_types !22 ptr @strndup(ptr, i64)
+
+declare !qc.return_types !22 ptr @strchr(ptr, i32)
+
+declare !qc.return_types !22 ptr @strrchr(ptr, i32)
+
+declare !qc.return_types !22 ptr @strchrnul(ptr, i32)
+
+declare !qc.return_types !25 i64 @strcspn(ptr, ptr)
+
+declare !qc.return_types !25 i64 @strspn(ptr, ptr)
+
+declare !qc.return_types !22 ptr @strpbrk(ptr, ptr)
+
+declare !qc.return_types !22 ptr @strstr(ptr, ptr)
+
+declare !qc.return_types !22 ptr @strtok(ptr, ptr)
+
+declare !qc.return_types !22 ptr @__strtok_r(ptr, ptr, ptr)
+
+declare !qc.return_types !22 ptr @strtok_r(ptr, ptr, ptr)
+
+declare !qc.return_types !22 ptr @strcasestr(ptr, ptr)
+
+declare !qc.return_types !52 ptr @memmem(ptr, i64, ptr, i64)
+
+declare !qc.return_types !52 ptr @__mempcpy(ptr, ptr, i64)
+
+declare !qc.return_types !52 ptr @mempcpy(ptr, ptr, i64)
+
+declare !qc.return_types !48 i64 @strnlen(ptr, i64)
+
+declare !qc.return_types !22 ptr @strerror(i32)
+
+declare !qc.return_types !30 i32 @strerror_r(i32, ptr, i64)
+
+declare !qc.return_types !22 ptr @strerror_l(i32, ptr)
+
+declare !qc.return_types !30 i32 @bcmp(ptr, ptr, i64)
+
+declare !qc.return_types !21 void @bcopy(ptr, ptr, i64)
+
+declare !qc.return_types !21 void @bzero(ptr, i64)
+
+declare !qc.return_types !22 ptr @index(ptr, i32)
+
+declare !qc.return_types !22 ptr @rindex(ptr, i32)
+
+declare !qc.return_types !30 i32 @ffs(i32)
+
+declare !qc.return_types !30 i32 @ffsl(i64)
+
+declare !qc.return_types !30 i32 @ffsll(i64)
+
+declare !qc.return_types !30 i32 @strcasecmp(ptr, ptr)
+
+declare !qc.return_types !30 i32 @strncasecmp(ptr, ptr, i64)
+
+declare !qc.return_types !30 i32 @strcasecmp_l(ptr, ptr, ptr)
+
+declare !qc.return_types !30 i32 @strncasecmp_l(ptr, ptr, i64, ptr)
+
+declare !qc.return_types !21 void @explicit_bzero(ptr, i64)
+
+declare !qc.return_types !22 ptr @strsep(ptr, ptr)
+
+declare !qc.return_types !22 ptr @strsignal(i32)
+
+declare !qc.return_types !22 ptr @__stpcpy(ptr, ptr)
+
+declare !qc.return_types !22 ptr @stpcpy(ptr, ptr)
+
+declare !qc.return_types !22 ptr @__stpncpy(ptr, ptr, i64)
+
+declare !qc.return_types !22 ptr @stpncpy(ptr, ptr, i64)
+
+declare !qc.return_types !25 i64 @strlcpy(ptr, ptr, i64)
+
+declare !qc.return_types !25 i64 @strlcat(ptr, ptr, i64)
+
+define weak_odr i64 @"CQB::Engine::nowMs"() !qc.return_types !47 {
 entry:
   %ts = alloca %timespec, align 8
-  %.fca.1.gep = getelementptr inbounds nuw i8, ptr %ts, i64 8
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %ts, i8 0, i64 16, i1 false)
-  %calltmp = call i32 @clock_gettime(i32 1, ptr nonnull %ts)
-  %tv_sec = load i64, ptr %ts, align 8
+  store %timespec zeroinitializer, ptr %ts, align 8
+  store %timespec zeroinitializer, ptr %ts, align 8
+  %ts1 = load %timespec, ptr %ts, align 8
+  %calltmp = call i32 @clock_gettime(i32 1, ptr %ts)
+  %tv_sec_ptr = getelementptr inbounds nuw %timespec, ptr %ts, i32 0, i32 0
+  %tv_sec = load i64, ptr %tv_sec_ptr, align 8
   %mul = mul i64 %tv_sec, 1000
-  %tv_nsec = load i64, ptr %.fca.1.gep, align 8
+  %tv_nsec_ptr = getelementptr inbounds nuw %timespec, ptr %ts, i32 0, i32 1
+  %tv_nsec = load i64, ptr %tv_nsec_ptr, align 8
   %sdiv = sdiv i64 %tv_nsec, 1000000
-  %add = add i64 %sdiv, %mul
+  %add = add i64 %mul, %sdiv
   ret i64 %add
 }
 
-define weak_odr i1 @"CQB::Engine::isProgressLine"(ptr %s, i32 %start) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"CQB::Engine::isProgressLine"(ptr %s, i32 %start) !qc.return_types !27 {
 entry:
-  %0 = sext i32 %start to i64
-  %ptr_arr_addr = getelementptr i8, ptr %s, i64 %0
+  %"CQB::Engine::c" = alloca i8, align 1
+  %"CQB::Engine::j" = alloca i32, align 4
+  %start2 = alloca i32, align 4
+  %s1 = alloca ptr, align 8
+  store ptr null, ptr %s1, align 8
+  store ptr %s, ptr %s1, align 8
+  store i32 0, ptr %start2, align 4
+  store i32 %start, ptr %start2, align 4
+  %start3 = load i32, ptr %start2, align 4
+  %s4 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr = getelementptr i8, ptr %s4, i32 %start3
   %ptr_arr_val = load i8, ptr %ptr_arr_addr, align 1
-  %icmpne.not = icmp eq i8 %ptr_arr_val, 91
-  br i1 %icmpne.not, label %while.cond, label %common.ret
+  %icmpne = icmp ne i8 %ptr_arr_val, 91
+  br i1 %icmpne, label %then, label %ifcont
 
-common.ret.loopexit:                              ; preds = %ifcont17, %while.cond
-  %common.ret.op.ph = phi i1 [ true, %while.cond ], [ false, %ifcont17 ]
-  br label %common.ret
+then:                                             ; preds = %entry
+  ret i1 false
 
-common.ret:                                       ; preds = %while.cond, %while.cond, %common.ret.loopexit, %entry
-  %common.ret.op = phi i1 [ %common.ret.op.ph, %common.ret.loopexit ], [ false, %entry ], [ false, %while.cond ], [ false, %while.cond ]
-  ret i1 %common.ret.op
+ifcont:                                           ; preds = %entry
+  store i32 0, ptr %"CQB::Engine::j", align 4
+  %start5 = load i32, ptr %start2, align 4
+  %add = add i32 %start5, 1
+  store i32 %add, ptr %"CQB::Engine::j", align 4
+  br label %while.cond
 
-while.cond:                                       ; preds = %entry, %ifcont17
-  %"CQB::Engine::j.0.in" = phi i32 [ %"CQB::Engine::j.0", %ifcont17 ], [ %start, %entry ]
-  %"CQB::Engine::j.0" = add i32 %"CQB::Engine::j.0.in", 1
-  %1 = sext i32 %"CQB::Engine::j.0" to i64
-  %ptr_arr_addr7 = getelementptr i8, ptr %s, i64 %1
+while.cond:                                       ; preds = %ifcont26, %ifcont
+  %j = load i32, ptr %"CQB::Engine::j", align 4
+  %s6 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr7 = getelementptr i8, ptr %s6, i32 %j
   %ptr_arr_val8 = load i8, ptr %ptr_arr_addr7, align 1
-  switch i8 %ptr_arr_val8, label %ifcont17 [
-    i8 93, label %common.ret.loopexit
-    i8 10, label %common.ret
-    i8 0, label %common.ret
-  ]
+  %icmpne9 = icmp ne i8 %ptr_arr_val8, 93
+  br i1 %icmpne9, label %while.body, label %while.end
 
-ifcont17:                                         ; preds = %while.cond
-  %2 = add i8 %ptr_arr_val8, -91
-  %and = icmp ult i8 %2, -26
-  %icmpeq23 = icmp ne i8 %ptr_arr_val8, 32
-  %or24.not = and i1 %icmpeq23, %and
-  br i1 %or24.not, label %common.ret.loopexit, label %while.cond
+while.body:                                       ; preds = %while.cond
+  store i8 0, ptr %"CQB::Engine::c", align 1
+  %j10 = load i32, ptr %"CQB::Engine::j", align 4
+  %s11 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr12 = getelementptr i8, ptr %s11, i32 %j10
+  %ptr_arr_val13 = load i8, ptr %ptr_arr_addr12, align 1
+  store i8 %ptr_arr_val13, ptr %"CQB::Engine::c", align 1
+  %c = load i8, ptr %"CQB::Engine::c", align 1
+  %icmpeq = icmp eq i8 %c, 0
+  br i1 %icmpeq, label %or.end, label %or.rhs
+
+while.end:                                        ; preds = %while.cond
+  ret i1 true
+
+or.rhs:                                           ; preds = %while.body
+  %c14 = load i8, ptr %"CQB::Engine::c", align 1
+  %icmpeq15 = icmp eq i8 %c14, 10
+  br label %or.end
+
+or.end:                                           ; preds = %or.rhs, %while.body
+  %or = phi i1 [ true, %while.body ], [ %icmpeq15, %or.rhs ]
+  br i1 %or, label %then16, label %ifcont17
+
+then16:                                           ; preds = %or.end
+  ret i1 false
+
+ifcont17:                                         ; preds = %or.end
+  %c18 = load i8, ptr %"CQB::Engine::c", align 1
+  %icmpge = icmp sge i8 %c18, 65
+  br i1 %icmpge, label %and.rhs, label %and.end
+
+and.rhs:                                          ; preds = %ifcont17
+  %c19 = load i8, ptr %"CQB::Engine::c", align 1
+  %icmple = icmp sle i8 %c19, 90
+  br label %and.end
+
+and.end:                                          ; preds = %and.rhs, %ifcont17
+  %and = phi i1 [ false, %ifcont17 ], [ %icmple, %and.rhs ]
+  br i1 %and, label %or.end21, label %or.rhs20
+
+or.rhs20:                                         ; preds = %and.end
+  %c22 = load i8, ptr %"CQB::Engine::c", align 1
+  %icmpeq23 = icmp eq i8 %c22, 32
+  br label %or.end21
+
+or.end21:                                         ; preds = %or.rhs20, %and.end
+  %or24 = phi i1 [ true, %and.end ], [ %icmpeq23, %or.rhs20 ]
+  %not = xor i1 %or24, true
+  br i1 %not, label %then25, label %ifcont26
+
+then25:                                           ; preds = %or.end21
+  ret i1 false
+
+ifcont26:                                         ; preds = %or.end21
+  %inc_deref = load i32, ptr %"CQB::Engine::j", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"CQB::Engine::j", align 4
+  br label %while.cond
 }
 
-define weak_odr i32 @"CQB::Engine::countDone"(ptr %s) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"CQB::Engine::countDone"(ptr %s) !qc.return_types !30 {
 entry:
-  %ptr_arr_val42 = load i8, ptr %s, align 1
-  %icmpne.not43 = icmp eq i8 %ptr_arr_val42, 0
-  br i1 %icmpne.not43, label %while.end, label %while.body
+  %"CQB::Engine::i" = alloca i32, align 4
+  %"CQB::Engine::n" = alloca i32, align 4
+  %s1 = alloca ptr, align 8
+  store ptr null, ptr %s1, align 8
+  store ptr %s, ptr %s1, align 8
+  store i32 0, ptr %"CQB::Engine::n", align 4
+  store i32 0, ptr %"CQB::Engine::n", align 4
+  store i32 0, ptr %"CQB::Engine::i", align 4
+  store i32 0, ptr %"CQB::Engine::i", align 4
+  br label %while.cond
 
-while.body:                                       ; preds = %entry, %while.end11
-  %ptr_arr_addr46 = phi ptr [ %ptr_arr_addr, %while.end11 ], [ %s, %entry ]
-  %"CQB::Engine::n.045" = phi i32 [ %spec.select, %while.end11 ], [ 0, %entry ]
-  %"CQB::Engine::i.044" = phi i32 [ %spec.select41, %while.end11 ], [ 0, %entry ]
-  %calltmp = tail call i32 @strncmp(ptr noundef nonnull dereferenceable(1) %ptr_arr_addr46, ptr noundef nonnull dereferenceable(7) @.str.86, i64 6)
-  %icmpeq = icmp eq i32 %calltmp, 0
-  %inc = zext i1 %icmpeq to i32
-  %spec.select = add i32 %"CQB::Engine::n.045", %inc
-  br label %while.cond9
-
-while.end:                                        ; preds = %while.end11, %entry
-  %"CQB::Engine::n.0.lcssa" = phi i32 [ 0, %entry ], [ %spec.select, %while.end11 ]
-  ret i32 %"CQB::Engine::n.0.lcssa"
-
-while.cond9:                                      ; preds = %while.body10, %while.body
-  %"CQB::Engine::i.1" = phi i32 [ %"CQB::Engine::i.044", %while.body ], [ %inc23, %while.body10 ]
-  %0 = sext i32 %"CQB::Engine::i.1" to i64
-  %ptr_arr_addr14 = getelementptr i8, ptr %s, i64 %0
-  %ptr_arr_val15 = load i8, ptr %ptr_arr_addr14, align 1
-  switch i8 %ptr_arr_val15, label %while.body10 [
-    i8 10, label %while.end11
-    i8 0, label %while.end11
-  ]
-
-while.body10:                                     ; preds = %while.cond9
-  %inc23 = add i32 %"CQB::Engine::i.1", 1
-  br label %while.cond9
-
-while.end11:                                      ; preds = %while.cond9, %while.cond9
-  %icmpeq28 = icmp eq i8 %ptr_arr_val15, 10
-  %inc32 = zext i1 %icmpeq28 to i32
-  %spec.select41 = add i32 %"CQB::Engine::i.1", %inc32
-  %1 = sext i32 %spec.select41 to i64
-  %ptr_arr_addr = getelementptr i8, ptr %s, i64 %1
+while.cond:                                       ; preds = %ifcont30, %entry
+  %i = load i32, ptr %"CQB::Engine::i", align 4
+  %s2 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr = getelementptr i8, ptr %s2, i32 %i
   %ptr_arr_val = load i8, ptr %ptr_arr_addr, align 1
-  %icmpne.not = icmp eq i8 %ptr_arr_val, 0
-  br i1 %icmpne.not, label %while.end, label %while.body
-}
+  %icmpne = icmp ne i8 %ptr_arr_val, 0
+  br i1 %icmpne, label %while.body, label %while.end
 
-define weak_odr void @"CQB::Engine::printWithoutProgress"(ptr %s) local_unnamed_addr !qc.return_types !34 {
-entry:
-  %ptr_arr_val50 = load i8, ptr %s, align 1
-  %icmpne.not51 = icmp eq i8 %ptr_arr_val50, 0
-  br i1 %icmpne.not51, label %while.end, label %while.cond4.preheader
+while.body:                                       ; preds = %while.cond
+  %i3 = load i32, ptr %"CQB::Engine::i", align 4
+  %s4 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr5 = getelementptr i8, ptr %s4, i32 %i3
+  %ptr_arr_val6 = load i8, ptr %ptr_arr_addr5, align 1
+  %s7 = load ptr, ptr %s1, align 8
+  %i8 = load i32, ptr %"CQB::Engine::i", align 4
+  %lval_ptr_arr_addr = getelementptr i8, ptr %s7, i32 %i8
+  %calltmp = call i32 @strncmp(ptr %lval_ptr_arr_addr, ptr @.str.42, i64 6)
+  %icmpeq = icmp eq i32 %calltmp, 0
+  br i1 %icmpeq, label %then, label %ifcont
 
-while.cond4.preheader:                            ; preds = %entry, %ifcont31
-  %ptr_arr_addr53 = phi ptr [ %ptr_arr_addr, %ifcont31 ], [ %s, %entry ]
-  %"CQB::Engine::i.052" = phi i32 [ %"CQB::Engine::i.2", %ifcont31 ], [ 0, %entry ]
-  br label %while.cond4
+while.end:                                        ; preds = %while.cond
+  %n = load i32, ptr %"CQB::Engine::n", align 4
+  ret i32 %n
 
-while.end:                                        ; preds = %ifcont31, %entry
-  ret void
-
-while.cond4:                                      ; preds = %while.cond4.preheader, %while.body5
-  %"CQB::Engine::i.1" = phi i32 [ %inc, %while.body5 ], [ %"CQB::Engine::i.052", %while.cond4.preheader ]
-  %0 = sext i32 %"CQB::Engine::i.1" to i64
-  %ptr_arr_addr9 = getelementptr i8, ptr %s, i64 %0
-  %ptr_arr_val10 = load i8, ptr %ptr_arr_addr9, align 1
-  switch i8 %ptr_arr_val10, label %while.body5 [
-    i8 10, label %while.end6
-    i8 0, label %while.end6
-  ]
-
-while.body5:                                      ; preds = %while.cond4
-  %inc = add i32 %"CQB::Engine::i.1", 1
-  br label %while.cond4
-
-while.end6:                                       ; preds = %while.cond4, %while.cond4
-  %ptr_arr_addr9.le = getelementptr i8, ptr %s, i64 %0
-  %icmpeq = icmp eq i8 %ptr_arr_val10, 10
-  store i8 0, ptr %ptr_arr_addr9.le, align 1
-  %ptr_arr_val.i = load i8, ptr %ptr_arr_addr53, align 1
-  %icmpne.not.i = icmp eq i8 %ptr_arr_val.i, 91
-  br i1 %icmpne.not.i, label %while.cond.i, label %then
-
-while.cond.i:                                     ; preds = %while.end6, %ifcont17.i
-  %"CQB::Engine::j.0.in.i" = phi i32 [ %"CQB::Engine::j.0.i", %ifcont17.i ], [ %"CQB::Engine::i.052", %while.end6 ]
-  %"CQB::Engine::j.0.i" = add i32 %"CQB::Engine::j.0.in.i", 1
-  %1 = sext i32 %"CQB::Engine::j.0.i" to i64
-  %ptr_arr_addr7.i = getelementptr i8, ptr %s, i64 %1
-  %ptr_arr_val8.i = load i8, ptr %ptr_arr_addr7.i, align 1
-  switch i8 %ptr_arr_val8.i, label %ifcont17.i [
-    i8 93, label %ifcont
-    i8 10, label %then
-    i8 0, label %then
-  ]
-
-ifcont17.i:                                       ; preds = %while.cond.i
-  %2 = add i8 %ptr_arr_val8.i, -91
-  %and.i = icmp ult i8 %2, -26
-  %icmpeq23.i = icmp ne i8 %ptr_arr_val8.i, 32
-  %or24.not.i = and i1 %icmpeq23.i, %and.i
-  br i1 %or24.not.i, label %then, label %while.cond.i
-
-then:                                             ; preds = %while.cond.i, %while.cond.i, %ifcont17.i, %while.end6
-  tail call fastcc void @qc_print_string(ptr nonnull @0)
-  tail call fastcc void @qc_fmt_string(ptr nonnull %ptr_arr_addr53)
-  tail call fastcc void @qc_print_string(ptr nonnull @29)
+then:                                             ; preds = %while.body
+  %inc_deref = load i32, ptr %"CQB::Engine::n", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"CQB::Engine::n", align 4
   br label %ifcont
 
-ifcont:                                           ; preds = %while.cond.i, %then
-  br i1 %icmpeq, label %then30, label %ifcont31
+ifcont:                                           ; preds = %then, %while.body
+  br label %while.cond9
+
+while.cond9:                                      ; preds = %while.body10, %ifcont
+  %i12 = load i32, ptr %"CQB::Engine::i", align 4
+  %s13 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr14 = getelementptr i8, ptr %s13, i32 %i12
+  %ptr_arr_val15 = load i8, ptr %ptr_arr_addr14, align 1
+  %icmpne16 = icmp ne i8 %ptr_arr_val15, 10
+  br i1 %icmpne16, label %and.rhs, label %and.end
+
+while.body10:                                     ; preds = %and.end
+  %inc_deref22 = load i32, ptr %"CQB::Engine::i", align 4
+  %inc23 = add i32 %inc_deref22, 1
+  store i32 %inc23, ptr %"CQB::Engine::i", align 4
+  br label %while.cond9
+
+while.end11:                                      ; preds = %and.end
+  %i24 = load i32, ptr %"CQB::Engine::i", align 4
+  %s25 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr26 = getelementptr i8, ptr %s25, i32 %i24
+  %ptr_arr_val27 = load i8, ptr %ptr_arr_addr26, align 1
+  %icmpeq28 = icmp eq i8 %ptr_arr_val27, 10
+  br i1 %icmpeq28, label %then29, label %ifcont30
+
+and.rhs:                                          ; preds = %while.cond9
+  %i17 = load i32, ptr %"CQB::Engine::i", align 4
+  %s18 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr19 = getelementptr i8, ptr %s18, i32 %i17
+  %ptr_arr_val20 = load i8, ptr %ptr_arr_addr19, align 1
+  %icmpne21 = icmp ne i8 %ptr_arr_val20, 0
+  br label %and.end
+
+and.end:                                          ; preds = %and.rhs, %while.cond9
+  %and = phi i1 [ false, %while.cond9 ], [ %icmpne21, %and.rhs ]
+  br i1 %and, label %while.body10, label %while.end11
+
+then29:                                           ; preds = %while.end11
+  %inc_deref31 = load i32, ptr %"CQB::Engine::i", align 4
+  %inc32 = add i32 %inc_deref31, 1
+  store i32 %inc32, ptr %"CQB::Engine::i", align 4
+  br label %ifcont30
+
+ifcont30:                                         ; preds = %then29, %while.end11
+  br label %while.cond
+}
+
+define weak_odr void @"CQB::Engine::printWithoutProgress"(ptr %s) !qc.return_types !21 {
+entry:
+  %"CQB::Engine::atNewline" = alloca i1, align 1
+  %"CQB::Engine::start" = alloca i32, align 4
+  %"CQB::Engine::i" = alloca i32, align 4
+  %s1 = alloca ptr, align 8
+  store ptr null, ptr %s1, align 8
+  store ptr %s, ptr %s1, align 8
+  store i32 0, ptr %"CQB::Engine::i", align 4
+  store i32 0, ptr %"CQB::Engine::i", align 4
+  br label %while.cond
+
+while.cond:                                       ; preds = %ifcont31, %entry
+  %i = load i32, ptr %"CQB::Engine::i", align 4
+  %s2 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr = getelementptr i8, ptr %s2, i32 %i
+  %ptr_arr_val = load i8, ptr %ptr_arr_addr, align 1
+  %icmpne = icmp ne i8 %ptr_arr_val, 0
+  br i1 %icmpne, label %while.body, label %while.end
+
+while.body:                                       ; preds = %while.cond
+  store i32 0, ptr %"CQB::Engine::start", align 4
+  %i3 = load i32, ptr %"CQB::Engine::i", align 4
+  store i32 %i3, ptr %"CQB::Engine::start", align 4
+  br label %while.cond4
+
+while.end:                                        ; preds = %while.cond
+  ret void
+
+while.cond4:                                      ; preds = %while.body5, %while.body
+  %i7 = load i32, ptr %"CQB::Engine::i", align 4
+  %s8 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr9 = getelementptr i8, ptr %s8, i32 %i7
+  %ptr_arr_val10 = load i8, ptr %ptr_arr_addr9, align 1
+  %icmpne11 = icmp ne i8 %ptr_arr_val10, 10
+  br i1 %icmpne11, label %and.rhs, label %and.end
+
+while.body5:                                      ; preds = %and.end
+  %inc_deref = load i32, ptr %"CQB::Engine::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"CQB::Engine::i", align 4
+  br label %while.cond4
+
+while.end6:                                       ; preds = %and.end
+  store i1 false, ptr %"CQB::Engine::atNewline", align 1
+  %i17 = load i32, ptr %"CQB::Engine::i", align 4
+  %s18 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr19 = getelementptr i8, ptr %s18, i32 %i17
+  %ptr_arr_val20 = load i8, ptr %ptr_arr_addr19, align 1
+  %icmpeq = icmp eq i8 %ptr_arr_val20, 10
+  store i1 %icmpeq, ptr %"CQB::Engine::atNewline", align 1
+  %i21 = load i32, ptr %"CQB::Engine::i", align 4
+  %s22 = load ptr, ptr %s1, align 8
+  %ptr_arr_asi = getelementptr i8, ptr %s22, i32 %i21
+  store i8 0, ptr %ptr_arr_asi, align 1
+  %s23 = load ptr, ptr %s1, align 8
+  %start = load i32, ptr %"CQB::Engine::start", align 4
+  %calltmp = call i1 @"CQB::Engine::isProgressLine"(ptr %s23, i32 %start)
+  %not = xor i1 %calltmp, true
+  br i1 %not, label %then, label %ifcont
+
+and.rhs:                                          ; preds = %while.cond4
+  %i12 = load i32, ptr %"CQB::Engine::i", align 4
+  %s13 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr14 = getelementptr i8, ptr %s13, i32 %i12
+  %ptr_arr_val15 = load i8, ptr %ptr_arr_addr14, align 1
+  %icmpne16 = icmp ne i8 %ptr_arr_val15, 0
+  br label %and.end
+
+and.end:                                          ; preds = %and.rhs, %while.cond4
+  %and = phi i1 [ false, %while.cond4 ], [ %icmpne16, %and.rhs ]
+  br i1 %and, label %while.body5, label %while.end6
+
+then:                                             ; preds = %while.end6
+  %start24 = load i32, ptr %"CQB::Engine::start", align 4
+  %s25 = load ptr, ptr %s1, align 8
+  %ptr_arr_addr26 = getelementptr i8, ptr %s25, i32 %start24
+  %ptr_arr_val27 = load i8, ptr %ptr_arr_addr26, align 1
+  %s28 = load ptr, ptr %s1, align 8
+  %start29 = load i32, ptr %"CQB::Engine::start", align 4
+  %lval_ptr_arr_addr = getelementptr i8, ptr %s28, i32 %start29
+  %varadics_array = alloca ptr, align 8
+  %0 = getelementptr ptr, ptr %varadics_array, i32 0
+  store ptr %lval_ptr_arr_addr, ptr %0, align 8
+  %variadic_struct = alloca { ptr, i32, i32 }, align 8
+  %1 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct, i32 0, i32 0
+  store ptr %varadics_array, ptr %1, align 8
+  %2 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct, i32 0, i32 1
+  store i32 1, ptr %2, align 4
+  %3 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct, i32 0, i32 2
+  store i32 0, ptr %3, align 4
+  call void @"IO::qout"(ptr @.str.43, ptr %variadic_struct)
+  br label %ifcont
+
+ifcont:                                           ; preds = %then, %while.end6
+  %atNewline = load i1, ptr %"CQB::Engine::atNewline", align 1
+  br i1 %atNewline, label %then30, label %ifcont31
 
 then30:                                           ; preds = %ifcont
-  store i8 10, ptr %ptr_arr_addr9.le, align 1
-  %inc36 = add i32 %"CQB::Engine::i.1", 1
-  %.pre = sext i32 %inc36 to i64
+  %i32 = load i32, ptr %"CQB::Engine::i", align 4
+  %s33 = load ptr, ptr %s1, align 8
+  %ptr_arr_asi34 = getelementptr i8, ptr %s33, i32 %i32
+  store i8 10, ptr %ptr_arr_asi34, align 1
+  %inc_deref35 = load i32, ptr %"CQB::Engine::i", align 4
+  %inc36 = add i32 %inc_deref35, 1
+  store i32 %inc36, ptr %"CQB::Engine::i", align 4
   br label %ifcont31
 
 ifcont31:                                         ; preds = %then30, %ifcont
-  %.pre-phi = phi i64 [ %.pre, %then30 ], [ %0, %ifcont ]
-  %"CQB::Engine::i.2" = phi i32 [ %inc36, %then30 ], [ %"CQB::Engine::i.1", %ifcont ]
-  %ptr_arr_addr = getelementptr i8, ptr %s, i64 %.pre-phi
-  %ptr_arr_val = load i8, ptr %ptr_arr_addr, align 1
-  %icmpne.not = icmp eq i8 %ptr_arr_val, 0
-  br i1 %icmpne.not, label %while.end, label %while.cond4.preheader
+  br label %while.cond
 }
 
-define weak_odr i1 @"CQB::Engine::exited"(i32 %status) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"CQB::Engine::exited"(i32 %status) !qc.return_types !27 {
 entry:
-  %andtmp = and i32 %status, 127
+  %status1 = alloca i32, align 4
+  store i32 0, ptr %status1, align 4
+  store i32 %status, ptr %status1, align 4
+  %status2 = load i32, ptr %status1, align 4
+  %andtmp = and i32 %status2, 127
   %icmpeq = icmp eq i32 %andtmp, 0
   ret i1 %icmpeq
 }
 
-define weak_odr i32 @"CQB::Engine::exitStatus"(i32 %status) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"CQB::Engine::exitStatus"(i32 %status) !qc.return_types !30 {
 entry:
-  %ashrtmp = lshr i32 %status, 8
+  %status1 = alloca i32, align 4
+  store i32 0, ptr %status1, align 4
+  store i32 %status, ptr %status1, align 4
+  %status2 = load i32, ptr %status1, align 4
+  %ashrtmp = ashr i32 %status2, 8
   %andtmp = and i32 %ashrtmp, 255
   ret i32 %andtmp
 }
 
-define weak_odr i1 @"CQB::Engine::signaled"(i32 %status) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"CQB::Engine::signaled"(i32 %status) !qc.return_types !27 {
 entry:
-  %andtmp = and i32 %status, 127
-  %icmpne = icmp ne i32 %andtmp, 0
-  %icmpne4 = icmp ne i32 %andtmp, 127
-  %and = and i1 %icmpne, %icmpne4
+  %"CQB::Engine::sig" = alloca i32, align 4
+  %status1 = alloca i32, align 4
+  store i32 0, ptr %status1, align 4
+  store i32 %status, ptr %status1, align 4
+  store i32 0, ptr %"CQB::Engine::sig", align 4
+  %status2 = load i32, ptr %status1, align 4
+  %andtmp = and i32 %status2, 127
+  store i32 %andtmp, ptr %"CQB::Engine::sig", align 4
+  %sig = load i32, ptr %"CQB::Engine::sig", align 4
+  %icmpne = icmp ne i32 %sig, 0
+  br i1 %icmpne, label %and.rhs, label %and.end
+
+and.rhs:                                          ; preds = %entry
+  %sig3 = load i32, ptr %"CQB::Engine::sig", align 4
+  %icmpne4 = icmp ne i32 %sig3, 127
+  br label %and.end
+
+and.end:                                          ; preds = %and.rhs, %entry
+  %and = phi i1 [ false, %entry ], [ %icmpne4, %and.rhs ]
   ret i1 %and
 }
 
-define weak_odr i32 @"CQB::Engine::termSignal"(i32 %status) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"CQB::Engine::termSignal"(i32 %status) !qc.return_types !30 {
 entry:
-  %andtmp = and i32 %status, 127
+  %status1 = alloca i32, align 4
+  store i32 0, ptr %status1, align 4
+  store i32 %status, ptr %status1, align 4
+  %status2 = load i32, ptr %status1, align 4
+  %andtmp = and i32 %status2, 127
   ret i32 %andtmp
 }
 
-define weak_odr i32 @"CQB::Engine::decodeStatus"(i32 %status) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"CQB::Engine::decodeStatus"(i32 %status) !qc.return_types !30 {
 entry:
-  %andtmp.i = and i32 %status, 127
-  switch i32 %andtmp.i, label %then7 [
-    i32 0, label %then
-    i32 127, label %common.ret
-  ]
-
-common.ret:                                       ; preds = %entry, %then7, %then
-  %common.ret.op = phi i32 [ %andtmp.i14, %then ], [ %add, %then7 ], [ -1, %entry ]
-  ret i32 %common.ret.op
+  %status1 = alloca i32, align 4
+  store i32 0, ptr %status1, align 4
+  store i32 %status, ptr %status1, align 4
+  %status2 = load i32, ptr %status1, align 4
+  %calltmp = call i1 @"CQB::Engine::exited"(i32 %status2)
+  br i1 %calltmp, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %ashrtmp.i = lshr i32 %status, 8
-  %andtmp.i14 = and i32 %ashrtmp.i, 255
-  br label %common.ret
+  %status3 = load i32, ptr %status1, align 4
+  %calltmp4 = call i32 @"CQB::Engine::exitStatus"(i32 %status3)
+  ret i32 %calltmp4
 
-then7:                                            ; preds = %entry
-  %add = or disjoint i32 %andtmp.i, 128
-  br label %common.ret
+ifcont:                                           ; preds = %entry
+  %status5 = load i32, ptr %status1, align 4
+  %calltmp6 = call i1 @"CQB::Engine::signaled"(i32 %status5)
+  br i1 %calltmp6, label %then7, label %ifcont8
+
+then7:                                            ; preds = %ifcont
+  %status9 = load i32, ptr %status1, align 4
+  %calltmp10 = call i32 @"CQB::Engine::termSignal"(i32 %status9)
+  %add = add i32 128, %calltmp10
+  ret i32 %add
+
+ifcont8:                                          ; preds = %ifcont
+  ret i32 -1
 }
 
-define weak_odr %"CQB::Engine::RunResult" @"CQB::Engine::runCommand"(%"Vector::Vec<char*>" %args, ptr %label, i1 %tty) local_unnamed_addr !qc.return_types !63 {
+define weak_odr %"CQB::Engine::RunResult" @"CQB::Engine::runCommand"(%"Vector::Vec<char*>" %args, ptr %label, i1 %tty) !qc.return_types !58 {
 entry:
-  %ts.i161 = alloca %timespec, align 8
-  %ts.i153 = alloca %timespec, align 8
-  %ts.i = alloca %timespec, align 8
   %"CQB::Engine::status" = alloca i32, align 4
+  %"CQB::Engine::j" = alloca i32, align 4
+  %"CQB::Engine::p" = alloca i32, align 4
+  %"CQB::Engine::len" = alloca i32, align 4
+  %"CQB::Engine::i" = alloca i32, align 4
+  %s = alloca %"String::Str", align 8
+  %"CQB::Engine::n" = alloca i32, align 4
+  %"CQB::Engine::lastStepMs" = alloca i64, align 8
+  %"CQB::Engine::phaseStart" = alloca i64, align 8
+  %"CQB::Engine::steps" = alloca i32, align 4
+  %"CQB::Engine::lineLen" = alloca i32, align 4
   %"CQB::Engine::phase" = alloca [32 x i8], align 1
   %"CQB::Engine::line" = alloca [512 x i8], align 1
   %"CQB::Engine::buf" = alloca [4096 x i8], align 1
+  %outs = alloca %"String::Str", align 8
+  %"CQB::Engine::rc" = alloca i32, align 4
   %"CQB::Engine::pid" = alloca i32, align 4
+  %"CQB::Engine::argv" = alloca ptr, align 8
   %fa = alloca %posix_spawn_file_actions_t, align 8
-  %"CQB::Engine::fds" = alloca [2 x i32], align 8
-  %tty3.sroa.0 = alloca i8, align 1
-  %args.fca.0.extract = extractvalue %"Vector::Vec<char*>" %args, 0
-  %args.fca.1.extract = extractvalue %"Vector::Vec<char*>" %args, 1
-  %args.fca.2.extract = extractvalue %"Vector::Vec<char*>" %args, 2
-  store i1 %tty, ptr %tty3.sroa.0, align 1
-  store i64 0, ptr %"CQB::Engine::fds", align 8
-  %calltmp = call i32 @pipe(ptr nonnull %"CQB::Engine::fds")
-  %icmpne.not = icmp eq i32 %calltmp, 0
-  br i1 %icmpne.not, label %ifcont, label %common.ret
+  %"CQB::Engine::fds" = alloca [2 x i32], align 4
+  %tty3 = alloca i1, align 1
+  %label2 = alloca ptr, align 8
+  %args1 = alloca %"Vector::Vec<char*>", align 8
+  store %"Vector::Vec<char*>" zeroinitializer, ptr %args1, align 8
+  store %"Vector::Vec<char*>" %args, ptr %args1, align 8
+  store ptr null, ptr %label2, align 8
+  store ptr %label, ptr %label2, align 8
+  store i1 false, ptr %tty3, align 1
+  store i1 %tty, ptr %tty3, align 1
+  store [2 x i32] zeroinitializer, ptr %"CQB::Engine::fds", align 4
+  call void @llvm.memset.inline.p0.i64(ptr %"CQB::Engine::fds", i8 0, i64 8, i1 false)
+  %decayptr = getelementptr inbounds [2 x i32], ptr %"CQB::Engine::fds", i32 0, i32 0
+  %calltmp = call i32 @pipe(ptr %decayptr)
+  %icmpne = icmp ne i32 %calltmp, 0
+  br i1 %icmpne, label %then, label %ifcont
 
-common.ret:                                       ; preds = %entry, %"CQB::Engine::decodeStatus.exit", %then28
-  %common.ret.op = phi %"CQB::Engine::RunResult" [ %5, %"CQB::Engine::decodeStatus.exit" ], [ { i32 -1, ptr @.str.89 }, %then28 ], [ { i32 -1, ptr @.str.88 }, %entry ]
-  ret %"CQB::Engine::RunResult" %common.ret.op
+then:                                             ; preds = %entry
+  ret %"CQB::Engine::RunResult" { i32 -1, ptr @.str.44 }
 
 ifcont:                                           ; preds = %entry
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(80) %fa, i8 0, i64 80, i1 false)
-  %calltmp5 = call i32 @posix_spawn_file_actions_init(ptr nonnull %fa)
-  %arr_elem_ptr = getelementptr inbounds nuw i8, ptr %"CQB::Engine::fds", i64 4
+  call void @llvm.memset.inline.p0.i64(ptr align 8 %fa, i8 0, i64 80, i1 false)
+  store %posix_spawn_file_actions_t zeroinitializer, ptr %fa, align 8
+  %fa4 = load %posix_spawn_file_actions_t, ptr %fa, align 8
+  %calltmp5 = call i32 @posix_spawn_file_actions_init(ptr %fa)
+  %fa6 = load %posix_spawn_file_actions_t, ptr %fa, align 8
+  %arr_elem_ptr = getelementptr inbounds [2 x i32], ptr %"CQB::Engine::fds", i32 0, i32 1
   %arr_elem = load i32, ptr %arr_elem_ptr, align 4
-  %calltmp7 = call i32 @posix_spawn_file_actions_adddup2(ptr nonnull %fa, i32 %arr_elem, i32 1)
-  %arr_elem10 = load i32, ptr %arr_elem_ptr, align 4
-  %calltmp11 = call i32 @posix_spawn_file_actions_adddup2(ptr nonnull %fa, i32 %arr_elem10, i32 2)
-  %arr_elem14 = load i32, ptr %"CQB::Engine::fds", align 8
-  %calltmp15 = call i32 @posix_spawn_file_actions_addclose(ptr nonnull %fa, i32 %arr_elem14)
-  %arr_elem18 = load i32, ptr %arr_elem_ptr, align 4
-  %calltmp19 = call i32 @posix_spawn_file_actions_addclose(ptr nonnull %fa, i32 %arr_elem18)
-  %icmple.not.i = icmp sgt i32 %args.fca.2.extract, %args.fca.1.extract
-  br i1 %icmple.not.i, label %ifcont.i, label %then.i
-
-then.i:                                           ; preds = %ifcont
-  %icmpeq.i = icmp eq i32 %args.fca.2.extract, 0
-  %mul.i = shl i32 %args.fca.2.extract, 1
-  %select_val.i = select i1 %icmpeq.i, i32 1, i32 %mul.i
-  %icmpeq.i.i = icmp eq i32 %select_val.i, 0
-  br i1 %icmpeq.i.i, label %then.i.i, label %ifcont.i.i
-
-then.i.i:                                         ; preds = %then.i
-  call fastcc void @qc_free(ptr %args.fca.0.extract)
-  br label %"Vector::Vec<char*>_push_T.exit"
-
-ifcont.i.i:                                       ; preds = %then.i
-  %promote_int.i.i = sext i32 %select_val.i to i64
-  %mul.i.i = shl nsw i64 %promote_int.i.i, 3
-  %builtin_call.i.i = call fastcc ptr @qc_realloc(ptr %args.fca.0.extract, i64 %mul.i.i)
-  %ptr_eq.i.i = icmp eq ptr %builtin_call.i.i, null
-  br i1 %ptr_eq.i.i, label %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", label %ifcont5.i.i
-
-ifcont5.i.i:                                      ; preds = %ifcont.i.i
-  %spec.select177 = call i32 @llvm.smin.i32(i32 %args.fca.1.extract, i32 %select_val.i)
-  br label %ifcont.i
-
-"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i": ; preds = %ifcont.i.i
-  %0 = icmp eq ptr %args.fca.0.extract, null
-  br i1 %0, label %"Vector::Vec<char*>_push_T.exit", label %ifcont.i
-
-ifcont.i:                                         ; preds = %ifcont5.i.i, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", %ifcont
-  %args1.sroa.0.0 = phi ptr [ %args.fca.0.extract, %ifcont ], [ %builtin_call.i.i, %ifcont5.i.i ], [ %args.fca.0.extract, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i" ]
-  %size5.i = phi i32 [ %args.fca.1.extract, %ifcont ], [ %spec.select177, %ifcont5.i.i ], [ %args.fca.1.extract, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i" ]
-  %1 = sext i32 %size5.i to i64
-  %ptr_arr_asi.i = getelementptr [8 x i8], ptr %args1.sroa.0.0, i64 %1
-  store ptr null, ptr %ptr_arr_asi.i, align 8
-  br label %"Vector::Vec<char*>_push_T.exit"
-
-"Vector::Vec<char*>_push_T.exit":                 ; preds = %then.i.i, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i", %ifcont.i
-  %args1.sroa.0.1 = phi ptr [ %args1.sroa.0.0, %ifcont.i ], [ null, %then.i.i ], [ null, %"Vector::Vec<char*>_reserve_int.exitthread-pre-split.i" ]
+  %calltmp7 = call i32 @posix_spawn_file_actions_adddup2(ptr %fa, i32 %arr_elem, i32 1)
+  %fa8 = load %posix_spawn_file_actions_t, ptr %fa, align 8
+  %arr_elem_ptr9 = getelementptr inbounds [2 x i32], ptr %"CQB::Engine::fds", i32 0, i32 1
+  %arr_elem10 = load i32, ptr %arr_elem_ptr9, align 4
+  %calltmp11 = call i32 @posix_spawn_file_actions_adddup2(ptr %fa, i32 %arr_elem10, i32 2)
+  %fa12 = load %posix_spawn_file_actions_t, ptr %fa, align 8
+  %arr_elem_ptr13 = getelementptr inbounds [2 x i32], ptr %"CQB::Engine::fds", i32 0, i32 0
+  %arr_elem14 = load i32, ptr %arr_elem_ptr13, align 4
+  %calltmp15 = call i32 @posix_spawn_file_actions_addclose(ptr %fa, i32 %arr_elem14)
+  %fa16 = load %posix_spawn_file_actions_t, ptr %fa, align 8
+  %arr_elem_ptr17 = getelementptr inbounds [2 x i32], ptr %"CQB::Engine::fds", i32 0, i32 1
+  %arr_elem18 = load i32, ptr %arr_elem_ptr17, align 4
+  %calltmp19 = call i32 @posix_spawn_file_actions_addclose(ptr %fa, i32 %arr_elem18)
+  call void @"Vector::Vec<char*>_push_T"(ptr %args1, ptr null)
+  store ptr null, ptr %"CQB::Engine::argv", align 8
+  %0 = getelementptr inbounds nuw %"Vector::Vec<char*>", ptr %args1, i32 0, i32 0
+  %data = load ptr, ptr %0, align 8
+  store ptr %data, ptr %"CQB::Engine::argv", align 8
   store i32 0, ptr %"CQB::Engine::pid", align 4
-  %ptr_arr_val = load ptr, ptr %args1.sroa.0.1, align 8
+  store i32 0, ptr %"CQB::Engine::pid", align 4
+  store i32 0, ptr %"CQB::Engine::rc", align 4
+  %pid = load i32, ptr %"CQB::Engine::pid", align 4
+  %argv = load ptr, ptr %"CQB::Engine::argv", align 8
+  %ptr_arr_addr = getelementptr ptr, ptr %argv, i32 0
+  %ptr_arr_val = load ptr, ptr %ptr_arr_addr, align 8
+  %fa20 = load %posix_spawn_file_actions_t, ptr %fa, align 8
+  %argv21 = load ptr, ptr %"CQB::Engine::argv", align 8
   %__environ = load ptr, ptr @__environ, align 8
-  %calltmp22 = call i32 @posix_spawnp(ptr nonnull %"CQB::Engine::pid", ptr %ptr_arr_val, ptr nonnull %fa, ptr null, ptr nonnull %args1.sroa.0.1, ptr %__environ)
-  %calltmp24 = call i32 @posix_spawn_file_actions_destroy(ptr nonnull %fa)
-  %arr_elem26 = load i32, ptr %arr_elem_ptr, align 4
-  call fastcc void @qc_close(i32 %arr_elem26)
-  %icmpne27.not = icmp eq i32 %calltmp22, 0
-  br i1 %icmpne27.not, label %ifcont29, label %then28
+  %calltmp22 = call i32 @posix_spawnp(ptr %"CQB::Engine::pid", ptr %ptr_arr_val, ptr %fa, ptr null, ptr %argv21, ptr %__environ)
+  store i32 %calltmp22, ptr %"CQB::Engine::rc", align 4
+  %fa23 = load %posix_spawn_file_actions_t, ptr %fa, align 8
+  %calltmp24 = call i32 @posix_spawn_file_actions_destroy(ptr %fa)
+  %arr_elem_ptr25 = getelementptr inbounds [2 x i32], ptr %"CQB::Engine::fds", i32 0, i32 1
+  %arr_elem26 = load i32, ptr %arr_elem_ptr25, align 4
+  call void @qc_close(i32 %arr_elem26)
+  %rc = load i32, ptr %"CQB::Engine::rc", align 4
+  %icmpne27 = icmp ne i32 %rc, 0
+  br i1 %icmpne27, label %then28, label %ifcont29
 
-then28:                                           ; preds = %"Vector::Vec<char*>_push_T.exit"
-  %arr_elem31 = load i32, ptr %"CQB::Engine::fds", align 8
-  call fastcc void @qc_close(i32 %arr_elem31)
-  br label %common.ret
+then28:                                           ; preds = %ifcont
+  %arr_elem_ptr30 = getelementptr inbounds [2 x i32], ptr %"CQB::Engine::fds", i32 0, i32 0
+  %arr_elem31 = load i32, ptr %arr_elem_ptr30, align 4
+  call void @qc_close(i32 %arr_elem31)
+  ret %"CQB::Engine::RunResult" { i32 -1, ptr @.str.45 }
 
-ifcont29:                                         ; preds = %"Vector::Vec<char*>_push_T.exit"
-  %builtin_call.i = call fastcc ptr @qc_malloc(i64 1)
-  store i8 0, ptr %builtin_call.i, align 1
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 1 dereferenceable(4096) %"CQB::Engine::buf", i8 0, i64 4096, i1 false)
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 1 dereferenceable(512) %"CQB::Engine::line", i8 0, i64 512, i1 false)
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 1 dereferenceable(32) %"CQB::Engine::phase", i8 0, i64 32, i1 false)
-  call void @llvm.lifetime.start.p0(ptr nonnull %ts.i)
-  %.fca.1.gep.i = getelementptr inbounds nuw i8, ptr %ts.i, i64 8
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %ts.i, i8 0, i64 16, i1 false)
-  %calltmp.i = call i32 @clock_gettime(i32 1, ptr nonnull %ts.i)
-  %tv_sec.i = load i64, ptr %ts.i, align 8
-  %tv_nsec.i = load i64, ptr %.fca.1.gep.i, align 8
-  call void @llvm.lifetime.end.p0(ptr nonnull %ts.i)
-  %arr_elem34 = load i32, ptr %"CQB::Engine::fds", align 8
-  %builtin_call = call fastcc i64 @qc_read(i32 %arr_elem34, ptr %"CQB::Engine::buf")
-  %"CQB::Engine::n.0192" = trunc i64 %builtin_call to i32
-  %icmpgt193 = icmp sgt i32 %"CQB::Engine::n.0192", 0
-  br i1 %icmpgt193, label %while.body.lr.ph, label %while.end
+ifcont29:                                         ; preds = %ifcont
+  store %"String::Str" zeroinitializer, ptr %outs, align 8
+  call void @"String::Str_Str_char*"(ptr %outs, ptr @.str.46)
+  call void @llvm.memset.inline.p0.i64(ptr align 1 %"CQB::Engine::buf", i8 0, i64 4096, i1 false)
+  call void @llvm.memset.inline.p0.i64(ptr %"CQB::Engine::buf", i8 0, i64 4096, i1 false)
+  call void @llvm.memset.inline.p0.i64(ptr align 1 %"CQB::Engine::line", i8 0, i64 512, i1 false)
+  call void @llvm.memset.inline.p0.i64(ptr %"CQB::Engine::line", i8 0, i64 512, i1 false)
+  store [32 x i8] zeroinitializer, ptr %"CQB::Engine::phase", align 1
+  call void @llvm.memset.inline.p0.i64(ptr %"CQB::Engine::phase", i8 0, i64 32, i1 false)
+  store i32 0, ptr %"CQB::Engine::lineLen", align 4
+  store i32 0, ptr %"CQB::Engine::lineLen", align 4
+  store i32 0, ptr %"CQB::Engine::steps", align 4
+  store i32 0, ptr %"CQB::Engine::steps", align 4
+  store i64 0, ptr %"CQB::Engine::phaseStart", align 8
+  %calltmp32 = call i64 @"CQB::Engine::nowMs"()
+  store i64 %calltmp32, ptr %"CQB::Engine::phaseStart", align 8
+  store i64 0, ptr %"CQB::Engine::lastStepMs", align 8
+  store i64 0, ptr %"CQB::Engine::lastStepMs", align 8
+  store i32 0, ptr %"CQB::Engine::n", align 4
+  %arr_elem_ptr33 = getelementptr inbounds [2 x i32], ptr %"CQB::Engine::fds", i32 0, i32 0
+  %arr_elem34 = load i32, ptr %arr_elem_ptr33, align 4
+  %decayptr35 = getelementptr inbounds [4096 x i8], ptr %"CQB::Engine::buf", i32 0, i32 0
+  %builtin_call = call i64 @qc_read(i32 %arr_elem34, ptr %decayptr35, i64 4095)
+  %trunc = trunc i64 %builtin_call to i32
+  store i32 %trunc, ptr %"CQB::Engine::n", align 4
+  br label %while.cond
 
-while.body.lr.ph:                                 ; preds = %ifcont29
-  %sdiv.i = sdiv i64 %tv_nsec.i, 1000000
-  %mul.i134 = mul i64 %tv_sec.i, 1000
-  %add.i135 = add i64 %sdiv.i, %mul.i134
-  %.fca.1.gep.i162 = getelementptr inbounds nuw i8, ptr %ts.i161, i64 8
-  %.fca.1.gep.i154 = getelementptr inbounds nuw i8, ptr %ts.i153, i64 8
-  %tty3.sroa.0.0.tty3.sroa.0.0.tty3.sroa.0.0.tty3.sroa.0.0.tty3.0.tty98 = load i1, ptr %tty3.sroa.0, align 1
-  br label %while.body
-
-while.body:                                       ; preds = %while.body.lr.ph, %for.end
-  %"CQB::Engine::lineLen.0200" = phi i32 [ 0, %while.body.lr.ph ], [ %"CQB::Engine::lineLen.2", %for.end ]
-  %"CQB::Engine::steps.0199" = phi i32 [ 0, %while.body.lr.ph ], [ %"CQB::Engine::steps.2", %for.end ]
-  %"CQB::Engine::phaseStart.0198" = phi i64 [ %add.i135, %while.body.lr.ph ], [ %"CQB::Engine::phaseStart.2", %for.end ]
-  %"CQB::Engine::lastStepMs.0197" = phi i64 [ 0, %while.body.lr.ph ], [ %"CQB::Engine::lastStepMs.2", %for.end ]
-  %"CQB::Engine::n.0.in196" = phi i64 [ %builtin_call, %while.body.lr.ph ], [ %builtin_call110, %for.end ]
-  %outs.sroa.8.0195 = phi i64 [ 0, %while.body.lr.ph ], [ %add.i141, %for.end ]
-  %outs.sroa.0.0194 = phi ptr [ %builtin_call.i, %while.body.lr.ph ], [ %builtin_call.i142, %for.end ]
-  %2 = and i64 %"CQB::Engine::n.0.in196", 2147483647
-  %arr_elem_ptr37 = getelementptr inbounds nuw i8, ptr %"CQB::Engine::buf", i64 %2
-  store i8 0, ptr %arr_elem_ptr37, align 1
-  %strlen.i136 = call i64 @strlen(ptr nonnull dereferenceable(1) %"CQB::Engine::buf")
-  %add.i138 = add i64 %strlen.i136, 1
-  %builtin_call.i139 = call fastcc ptr @qc_malloc(i64 %add.i138)
-  call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i139, ptr nonnull align 1 %"CQB::Engine::buf", i64 %add.i138, i1 false)
-  %add.i141 = add i64 %strlen.i136, %outs.sroa.8.0195
-  %add2.i = add i64 %add.i141, 1
-  %builtin_call.i142 = call fastcc ptr @qc_realloc(ptr %outs.sroa.0.0194, i64 %add2.i)
-  %icmplt27.i = icmp sgt i64 %strlen.i136, 0
-  br i1 %icmplt27.i, label %for.body.i.preheader, label %for.body.preheader
-
-for.body.i.preheader:                             ; preds = %while.body
-  %3 = getelementptr i8, ptr %builtin_call.i142, i64 %outs.sroa.8.0195
-  call void @llvm.memcpy.p0.p0.i64(ptr align 1 %3, ptr align 1 %builtin_call.i139, i64 %strlen.i136, i1 false)
-  br label %for.body.preheader
-
-for.body.preheader:                               ; preds = %while.body, %for.body.i.preheader
-  %ptr_arr_asi15.i = getelementptr i8, ptr %builtin_call.i142, i64 %add.i141
-  store i8 0, ptr %ptr_arr_asi15.i, align 1
-  call fastcc void @qc_free(ptr %builtin_call.i139)
-  %wide.trip.count211 = and i64 %"CQB::Engine::n.0.in196", 4294967295
-  br label %for.body
-
-while.end:                                        ; preds = %for.end, %ifcont29
-  %outs.sroa.0.0.lcssa = phi ptr [ %builtin_call.i, %ifcont29 ], [ %builtin_call.i142, %for.end ]
-  %arr_elem113 = load i32, ptr %"CQB::Engine::fds", align 8
-  call fastcc void @qc_close(i32 %arr_elem113)
-  store i32 0, ptr %"CQB::Engine::status", align 4
-  %pid114 = load i32, ptr %"CQB::Engine::pid", align 4
-  %calltmp115 = call i32 @waitpid(i32 %pid114, ptr nonnull %"CQB::Engine::status", i32 0)
-  %status116 = load i32, ptr %"CQB::Engine::status", align 4
-  %andtmp.i.i = and i32 %status116, 127
-  switch i32 %andtmp.i.i, label %then7.i [
-    i32 0, label %then.i147
-    i32 127, label %"CQB::Engine::decodeStatus.exit"
-  ]
-
-then.i147:                                        ; preds = %while.end
-  %ashrtmp.i.i = lshr i32 %status116, 8
-  %andtmp.i14.i = and i32 %ashrtmp.i.i, 255
-  br label %"CQB::Engine::decodeStatus.exit"
-
-then7.i:                                          ; preds = %while.end
-  %add.i148 = or disjoint i32 %andtmp.i.i, 128
-  br label %"CQB::Engine::decodeStatus.exit"
-
-"CQB::Engine::decodeStatus.exit":                 ; preds = %while.end, %then.i147, %then7.i
-  %common.ret.op.i = phi i32 [ %andtmp.i14.i, %then.i147 ], [ %add.i148, %then7.i ], [ -1, %while.end ]
-  %4 = insertvalue %"CQB::Engine::RunResult" zeroinitializer, i32 %common.ret.op.i, 0
-  %5 = insertvalue %"CQB::Engine::RunResult" %4, ptr %outs.sroa.0.0.lcssa, 1
-  br label %common.ret
-
-for.body:                                         ; preds = %for.body.preheader, %for.inc
-  %indvars.iv208 = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next209, %for.inc ]
-  %"CQB::Engine::lineLen.1187" = phi i32 [ %"CQB::Engine::lineLen.0200", %for.body.preheader ], [ %"CQB::Engine::lineLen.2", %for.inc ]
-  %"CQB::Engine::steps.1186" = phi i32 [ %"CQB::Engine::steps.0199", %for.body.preheader ], [ %"CQB::Engine::steps.2", %for.inc ]
-  %"CQB::Engine::phaseStart.1185" = phi i64 [ %"CQB::Engine::phaseStart.0198", %for.body.preheader ], [ %"CQB::Engine::phaseStart.2", %for.inc ]
-  %"CQB::Engine::lastStepMs.1184" = phi i64 [ %"CQB::Engine::lastStepMs.0197", %for.body.preheader ], [ %"CQB::Engine::lastStepMs.2", %for.inc ]
-  %arr_elem_ptr43 = getelementptr inbounds nuw i8, ptr %"CQB::Engine::buf", i64 %indvars.iv208
-  %arr_elem44 = load i8, ptr %arr_elem_ptr43, align 1
-  %icmpne45.not = icmp eq i8 %arr_elem44, 10
-  br i1 %icmpne45.not, label %ifcont47, label %then46
-
-for.inc:                                          ; preds = %while.cond.i, %while.cond.i, %ifcont17.i, %ifcont47, %ifcont93, %then99, %then46, %then49
-  %"CQB::Engine::lastStepMs.2" = phi i64 [ %"CQB::Engine::lastStepMs.1184", %then49 ], [ %"CQB::Engine::lastStepMs.1184", %then46 ], [ %"CQB::Engine::lastStepMs.1184", %ifcont47 ], [ %"CQB::Engine::lastStepMs.3", %then99 ], [ %"CQB::Engine::lastStepMs.3", %ifcont93 ], [ %"CQB::Engine::lastStepMs.1184", %ifcont17.i ], [ %"CQB::Engine::lastStepMs.1184", %while.cond.i ], [ %"CQB::Engine::lastStepMs.1184", %while.cond.i ]
-  %"CQB::Engine::phaseStart.2" = phi i64 [ %"CQB::Engine::phaseStart.1185", %then49 ], [ %"CQB::Engine::phaseStart.1185", %then46 ], [ %"CQB::Engine::phaseStart.1185", %ifcont47 ], [ %"CQB::Engine::phaseStart.3", %then99 ], [ %"CQB::Engine::phaseStart.3", %ifcont93 ], [ %"CQB::Engine::phaseStart.1185", %ifcont17.i ], [ %"CQB::Engine::phaseStart.1185", %while.cond.i ], [ %"CQB::Engine::phaseStart.1185", %while.cond.i ]
-  %"CQB::Engine::steps.2" = phi i32 [ %"CQB::Engine::steps.1186", %then49 ], [ %"CQB::Engine::steps.1186", %then46 ], [ %"CQB::Engine::steps.1186", %ifcont47 ], [ %"CQB::Engine::steps.3", %then99 ], [ %"CQB::Engine::steps.3", %ifcont93 ], [ %"CQB::Engine::steps.1186", %ifcont17.i ], [ %"CQB::Engine::steps.1186", %while.cond.i ], [ %"CQB::Engine::steps.1186", %while.cond.i ]
-  %"CQB::Engine::lineLen.2" = phi i32 [ %inc, %then49 ], [ %"CQB::Engine::lineLen.1187", %then46 ], [ 0, %ifcont47 ], [ 0, %then99 ], [ 0, %ifcont93 ], [ 0, %ifcont17.i ], [ 0, %while.cond.i ], [ 0, %while.cond.i ]
-  %indvars.iv.next209 = add nuw nsw i64 %indvars.iv208, 1
-  %exitcond212.not = icmp eq i64 %indvars.iv.next209, %wide.trip.count211
-  br i1 %exitcond212.not, label %for.end, label %for.body
-
-for.end:                                          ; preds = %for.inc
-  %arr_elem108 = load i32, ptr %"CQB::Engine::fds", align 8
-  %builtin_call110 = call fastcc i64 @qc_read(i32 %arr_elem108, ptr %"CQB::Engine::buf")
-  %"CQB::Engine::n.0" = trunc i64 %builtin_call110 to i32
-  %icmpgt = icmp sgt i32 %"CQB::Engine::n.0", 0
+while.cond:                                       ; preds = %for.end, %ifcont29
+  %n = load i32, ptr %"CQB::Engine::n", align 4
+  %icmpgt = icmp sgt i32 %n, 0
   br i1 %icmpgt, label %while.body, label %while.end
 
+while.body:                                       ; preds = %while.cond
+  %n36 = load i32, ptr %"CQB::Engine::n", align 4
+  %arr_elem_ptr37 = getelementptr inbounds [4096 x i8], ptr %"CQB::Engine::buf", i32 0, i32 %n36
+  store i8 0, ptr %arr_elem_ptr37, align 1
+  store %"String::Str" zeroinitializer, ptr %s, align 8
+  %arr_elem_ptr38 = getelementptr inbounds [4096 x i8], ptr %"CQB::Engine::buf", i32 0, i32 0
+  %arr_elem39 = load i8, ptr %arr_elem_ptr38, align 1
+  %lval_arr_addr = getelementptr [4096 x i8], ptr %"CQB::Engine::buf", i32 0, i32 0
+  call void @"String::Str_Str_char*"(ptr %s, ptr %lval_arr_addr)
+  %assign_lhs_val = load %"String::Str", ptr %outs, align 8
+  %s40 = load %"String::Str", ptr %s, align 8
+  %op_assign_tmp = call %"String::Str" @"String::Str_operator+=_Str"(ptr %outs, %"String::Str" %s40)
+  call void @"String::Str__destroy"(ptr %s)
+  store i32 0, ptr %"CQB::Engine::i", align 4
+  store i32 0, ptr %"CQB::Engine::i", align 4
+  br label %for.cond
+
+while.end:                                        ; preds = %while.cond
+  %arr_elem_ptr113 = getelementptr inbounds [2 x i32], ptr %"CQB::Engine::fds", i32 0, i32 0
+  %arr_elem114 = load i32, ptr %arr_elem_ptr113, align 4
+  call void @qc_close(i32 %arr_elem114)
+  store i32 0, ptr %"CQB::Engine::status", align 4
+  store i32 0, ptr %"CQB::Engine::status", align 4
+  %pid115 = load i32, ptr %"CQB::Engine::pid", align 4
+  %status = load i32, ptr %"CQB::Engine::status", align 4
+  %calltmp116 = call i32 @waitpid(i32 %pid115, ptr %"CQB::Engine::status", i32 0)
+  %status117 = load i32, ptr %"CQB::Engine::status", align 4
+  %calltmp118 = call i32 @"CQB::Engine::decodeStatus"(i32 %status117)
+  %1 = insertvalue %"CQB::Engine::RunResult" zeroinitializer, i32 %calltmp118, 0
+  %c_str_result = call ptr @"String::Str_c_str"(ptr %outs)
+  %2 = insertvalue %"CQB::Engine::RunResult" %1, ptr %c_str_result, 1
+  ret %"CQB::Engine::RunResult" %2
+
+for.cond:                                         ; preds = %for.inc, %while.body
+  %i = load i32, ptr %"CQB::Engine::i", align 4
+  %n41 = load i32, ptr %"CQB::Engine::n", align 4
+  %icmplt = icmp slt i32 %i, %n41
+  br i1 %icmplt, label %for.body, label %for.end
+
+for.body:                                         ; preds = %for.cond
+  %i42 = load i32, ptr %"CQB::Engine::i", align 4
+  %arr_elem_ptr43 = getelementptr inbounds [4096 x i8], ptr %"CQB::Engine::buf", i32 0, i32 %i42
+  %arr_elem44 = load i8, ptr %arr_elem_ptr43, align 1
+  %icmpne45 = icmp ne i8 %arr_elem44, 10
+  br i1 %icmpne45, label %then46, label %ifcont47
+
+for.inc:                                          ; preds = %ifcont100, %then63, %ifcont50
+  %inc_deref106 = load i32, ptr %"CQB::Engine::i", align 4
+  %inc107 = add i32 %inc_deref106, 1
+  store i32 %inc107, ptr %"CQB::Engine::i", align 4
+  br label %for.cond
+
+for.end:                                          ; preds = %for.cond
+  %arr_elem_ptr108 = getelementptr inbounds [2 x i32], ptr %"CQB::Engine::fds", i32 0, i32 0
+  %arr_elem109 = load i32, ptr %arr_elem_ptr108, align 4
+  %decayptr110 = getelementptr inbounds [4096 x i8], ptr %"CQB::Engine::buf", i32 0, i32 0
+  %builtin_call111 = call i64 @qc_read(i32 %arr_elem109, ptr %decayptr110, i64 4095)
+  %trunc112 = trunc i64 %builtin_call111 to i32
+  store i32 %trunc112, ptr %"CQB::Engine::n", align 4
+  br label %while.cond
+
 then46:                                           ; preds = %for.body
-  %icmplt48 = icmp slt i32 %"CQB::Engine::lineLen.1187", 511
-  br i1 %icmplt48, label %then49, label %for.inc
+  %lineLen = load i32, ptr %"CQB::Engine::lineLen", align 4
+  %icmplt48 = icmp slt i32 %lineLen, 511
+  br i1 %icmplt48, label %then49, label %ifcont50
 
 ifcont47:                                         ; preds = %for.body
-  %6 = sext i32 %"CQB::Engine::lineLen.1187" to i64
-  %arr_elem_ptr57 = getelementptr inbounds i8, ptr %"CQB::Engine::line", i64 %6
+  %lineLen56 = load i32, ptr %"CQB::Engine::lineLen", align 4
+  %arr_elem_ptr57 = getelementptr inbounds [512 x i8], ptr %"CQB::Engine::line", i32 0, i32 %lineLen56
   store i8 0, ptr %arr_elem_ptr57, align 1
-  %ptr_arr_val.i151 = load i8, ptr %"CQB::Engine::line", align 1
-  %icmpne.not.i = icmp eq i8 %ptr_arr_val.i151, 91
-  br i1 %icmpne.not.i, label %while.cond.i, label %for.inc
-
-while.cond.i:                                     ; preds = %ifcont47, %ifcont17.i
-  %"CQB::Engine::j.0.in.i" = phi i32 [ %"CQB::Engine::j.0.i", %ifcont17.i ], [ 0, %ifcont47 ]
-  %"CQB::Engine::j.0.i" = add i32 %"CQB::Engine::j.0.in.i", 1
-  %7 = sext i32 %"CQB::Engine::j.0.i" to i64
-  %ptr_arr_addr7.i = getelementptr i8, ptr %"CQB::Engine::line", i64 %7
-  %ptr_arr_val8.i = load i8, ptr %ptr_arr_addr7.i, align 1
-  switch i8 %ptr_arr_val8.i, label %ifcont17.i [
-    i8 93, label %while.cond65.preheader
-    i8 10, label %for.inc
-    i8 0, label %for.inc
-  ]
-
-while.cond65.preheader:                           ; preds = %while.cond.i
-  %icmplt68178 = icmp sgt i32 %"CQB::Engine::lineLen.1187", 1
-  br i1 %icmplt68178, label %and.rhs.preheader, label %while.end67
-
-and.rhs.preheader:                                ; preds = %while.cond65.preheader
-  %8 = add nsw i32 %"CQB::Engine::lineLen.1187", -1
-  %wide.trip.count = zext nneg i32 %8 to i64
-  br label %and.rhs
-
-ifcont17.i:                                       ; preds = %while.cond.i
-  %9 = add i8 %ptr_arr_val8.i, -91
-  %and.i = icmp ult i8 %9, -26
-  %icmpeq23.i = icmp ne i8 %ptr_arr_val8.i, 32
-  %or24.not.i = and i1 %icmpeq23.i, %and.i
-  br i1 %or24.not.i, label %for.inc, label %while.cond.i
+  store i32 0, ptr %"CQB::Engine::len", align 4
+  %lineLen58 = load i32, ptr %"CQB::Engine::lineLen", align 4
+  store i32 %lineLen58, ptr %"CQB::Engine::len", align 4
+  store i32 0, ptr %"CQB::Engine::lineLen", align 4
+  %arr_elem_ptr59 = getelementptr inbounds [512 x i8], ptr %"CQB::Engine::line", i32 0, i32 0
+  %arr_elem60 = load i8, ptr %arr_elem_ptr59, align 1
+  %lval_arr_addr61 = getelementptr [512 x i8], ptr %"CQB::Engine::line", i32 0, i32 0
+  %calltmp62 = call i1 @"CQB::Engine::isProgressLine"(ptr %lval_arr_addr61, i32 0)
+  %not = xor i1 %calltmp62, true
+  br i1 %not, label %then63, label %ifcont64
 
 then49:                                           ; preds = %then46
-  %10 = sext i32 %"CQB::Engine::lineLen.1187" to i64
-  %arr_elem_ptr55 = getelementptr inbounds i8, ptr %"CQB::Engine::line", i64 %10
-  store i8 %arr_elem44, ptr %arr_elem_ptr55, align 1
-  %inc = add nsw i32 %"CQB::Engine::lineLen.1187", 1
+  %lineLen51 = load i32, ptr %"CQB::Engine::lineLen", align 4
+  %i52 = load i32, ptr %"CQB::Engine::i", align 4
+  %arr_elem_ptr53 = getelementptr inbounds [4096 x i8], ptr %"CQB::Engine::buf", i32 0, i32 %i52
+  %arr_elem54 = load i8, ptr %arr_elem_ptr53, align 1
+  %arr_elem_ptr55 = getelementptr inbounds [512 x i8], ptr %"CQB::Engine::line", i32 0, i32 %lineLen51
+  store i8 %arr_elem54, ptr %arr_elem_ptr55, align 1
+  %inc_deref = load i32, ptr %"CQB::Engine::lineLen", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"CQB::Engine::lineLen", align 4
+  br label %ifcont50
+
+ifcont50:                                         ; preds = %then49, %then46
   br label %for.inc
 
-while.body66:                                     ; preds = %and.rhs
-  %arr_elem_ptr81 = getelementptr inbounds nuw i8, ptr %"CQB::Engine::phase", i64 %indvars.iv203
-  store i8 %arr_elem71, ptr %arr_elem_ptr81, align 1
-  %indvars.iv.next204 = add nuw nsw i64 %indvars.iv203, 1
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
-  %exitcond.not = icmp eq i64 %indvars.iv.next204, %wide.trip.count
-  br i1 %exitcond.not, label %while.end67.loopexit.loopexit, label %and.rhs
+then63:                                           ; preds = %ifcont47
+  br label %for.inc
 
-while.end67.loopexit.loopexit:                    ; preds = %while.body66
-  %11 = zext nneg i32 %8 to i64
-  br label %while.end67
+ifcont64:                                         ; preds = %ifcont47
+  store i32 0, ptr %"CQB::Engine::p", align 4
+  store i32 0, ptr %"CQB::Engine::p", align 4
+  store i32 0, ptr %"CQB::Engine::j", align 4
+  store i32 1, ptr %"CQB::Engine::j", align 4
+  br label %while.cond65
 
-while.end67:                                      ; preds = %and.rhs, %while.end67.loopexit.loopexit, %while.cond65.preheader
-  %"CQB::Engine::p.0.lcssa" = phi i64 [ 0, %while.cond65.preheader ], [ %11, %while.end67.loopexit.loopexit ], [ %indvars.iv203, %and.rhs ]
-  %arr_elem_ptr87 = getelementptr inbounds nuw i8, ptr %"CQB::Engine::phase", i64 %"CQB::Engine::p.0.lcssa"
+while.cond65:                                     ; preds = %while.body66, %ifcont64
+  %j = load i32, ptr %"CQB::Engine::j", align 4
+  %len = load i32, ptr %"CQB::Engine::len", align 4
+  %icmplt68 = icmp slt i32 %j, %len
+  br i1 %icmplt68, label %and.rhs, label %and.end
+
+while.body66:                                     ; preds = %and.end74
+  %p77 = load i32, ptr %"CQB::Engine::p", align 4
+  %j78 = load i32, ptr %"CQB::Engine::j", align 4
+  %arr_elem_ptr79 = getelementptr inbounds [512 x i8], ptr %"CQB::Engine::line", i32 0, i32 %j78
+  %arr_elem80 = load i8, ptr %arr_elem_ptr79, align 1
+  %arr_elem_ptr81 = getelementptr inbounds [32 x i8], ptr %"CQB::Engine::phase", i32 0, i32 %p77
+  store i8 %arr_elem80, ptr %arr_elem_ptr81, align 1
+  %inc_deref82 = load i32, ptr %"CQB::Engine::p", align 4
+  %inc83 = add i32 %inc_deref82, 1
+  store i32 %inc83, ptr %"CQB::Engine::p", align 4
+  %inc_deref84 = load i32, ptr %"CQB::Engine::j", align 4
+  %inc85 = add i32 %inc_deref84, 1
+  store i32 %inc85, ptr %"CQB::Engine::j", align 4
+  br label %while.cond65
+
+while.end67:                                      ; preds = %and.end74
+  %p86 = load i32, ptr %"CQB::Engine::p", align 4
+  %arr_elem_ptr87 = getelementptr inbounds [32 x i8], ptr %"CQB::Engine::phase", i32 0, i32 %p86
   store i8 0, ptr %arr_elem_ptr87, align 1
-  %12 = load i32, ptr %"CQB::Engine::phase", align 1
-  %13 = xor i32 %12, 1162760004
-  %14 = getelementptr i8, ptr %"CQB::Engine::phase", i64 4
-  %15 = load i8, ptr %14, align 1
-  %16 = zext i8 %15 to i32
-  %17 = xor i32 %16, 32
-  %18 = or i32 %13, %17
-  %19 = icmp ne i32 %18, 0
-  %20 = zext i1 %19 to i32
-  %icmpeq = icmp eq i32 %20, 0
+  %arr_elem_ptr88 = getelementptr inbounds [32 x i8], ptr %"CQB::Engine::phase", i32 0, i32 0
+  %arr_elem89 = load i8, ptr %arr_elem_ptr88, align 1
+  %lval_arr_addr90 = getelementptr [32 x i8], ptr %"CQB::Engine::phase", i32 0, i32 0
+  %calltmp91 = call i32 @strncmp(ptr %lval_arr_addr90, ptr @.str.47, i64 5)
+  %icmpeq = icmp eq i32 %calltmp91, 0
   br i1 %icmpeq, label %then92, label %else
 
-and.rhs:                                          ; preds = %and.rhs.preheader, %while.body66
-  %indvars.iv203 = phi i64 [ 0, %and.rhs.preheader ], [ %indvars.iv.next204, %while.body66 ]
-  %indvars.iv = phi i64 [ 1, %and.rhs.preheader ], [ %indvars.iv.next, %while.body66 ]
-  %arr_elem_ptr70 = getelementptr inbounds nuw i8, ptr %"CQB::Engine::line", i64 %indvars.iv
+and.rhs:                                          ; preds = %while.cond65
+  %j69 = load i32, ptr %"CQB::Engine::j", align 4
+  %arr_elem_ptr70 = getelementptr inbounds [512 x i8], ptr %"CQB::Engine::line", i32 0, i32 %j69
   %arr_elem71 = load i8, ptr %arr_elem_ptr70, align 1
   %icmpne72 = icmp ne i8 %arr_elem71, 93
-  %icmplt75 = icmp samesign ult i64 %indvars.iv203, 31
-  %or.cond = select i1 %icmpne72, i1 %icmplt75, i1 false
-  br i1 %or.cond, label %while.body66, label %while.end67
+  br label %and.end
+
+and.end:                                          ; preds = %and.rhs, %while.cond65
+  %and = phi i1 [ false, %while.cond65 ], [ %icmpne72, %and.rhs ]
+  br i1 %and, label %and.rhs73, label %and.end74
+
+and.rhs73:                                        ; preds = %and.end
+  %p = load i32, ptr %"CQB::Engine::p", align 4
+  %icmplt75 = icmp slt i32 %p, 31
+  br label %and.end74
+
+and.end74:                                        ; preds = %and.rhs73, %and.end
+  %and76 = phi i1 [ false, %and.end ], [ %icmplt75, %and.rhs73 ]
+  br i1 %and76, label %while.body66, label %while.end67
 
 then92:                                           ; preds = %while.end67
-  %inc95 = add i32 %"CQB::Engine::steps.1186", 1
-  call void @llvm.lifetime.start.p0(ptr nonnull %ts.i153)
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %ts.i153, i8 0, i64 16, i1 false)
-  %calltmp.i155 = call i32 @clock_gettime(i32 1, ptr nonnull %ts.i153)
-  %tv_sec.i156 = load i64, ptr %ts.i153, align 8
-  %mul.i157 = mul i64 %tv_sec.i156, 1000
-  %tv_nsec.i158 = load i64, ptr %.fca.1.gep.i154, align 8
-  %sdiv.i159 = sdiv i64 %tv_nsec.i158, 1000000
-  call void @llvm.lifetime.end.p0(ptr nonnull %ts.i153)
-  %add.i160 = sub i64 %mul.i157, %"CQB::Engine::phaseStart.1185"
-  %sub = add i64 %add.i160, %sdiv.i159
+  %inc_deref94 = load i32, ptr %"CQB::Engine::steps", align 4
+  %inc95 = add i32 %inc_deref94, 1
+  store i32 %inc95, ptr %"CQB::Engine::steps", align 4
+  %calltmp96 = call i64 @"CQB::Engine::nowMs"()
+  %phaseStart = load i64, ptr %"CQB::Engine::phaseStart", align 8
+  %sub = sub i64 %calltmp96, %phaseStart
+  store i64 %sub, ptr %"CQB::Engine::lastStepMs", align 8
   br label %ifcont93
 
 ifcont93:                                         ; preds = %else, %then92
-  %"CQB::Engine::lastStepMs.3" = phi i64 [ %sub, %then92 ], [ %"CQB::Engine::lastStepMs.1184", %else ]
-  %"CQB::Engine::phaseStart.3" = phi i64 [ %"CQB::Engine::phaseStart.1185", %then92 ], [ %add.i168, %else ]
-  %"CQB::Engine::steps.3" = phi i32 [ %inc95, %then92 ], [ %"CQB::Engine::steps.1186", %else ]
-  br i1 %tty3.sroa.0.0.tty3.sroa.0.0.tty3.sroa.0.0.tty3.sroa.0.0.tty3.0.tty98, label %then99, label %for.inc
+  %tty98 = load i1, ptr %tty3, align 1
+  br i1 %tty98, label %then99, label %ifcont100
 
 else:                                             ; preds = %while.end67
-  call void @llvm.lifetime.start.p0(ptr nonnull %ts.i161)
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %ts.i161, i8 0, i64 16, i1 false)
-  %calltmp.i163 = call i32 @clock_gettime(i32 1, ptr nonnull %ts.i161)
-  %tv_sec.i164 = load i64, ptr %ts.i161, align 8
-  %mul.i165 = mul i64 %tv_sec.i164, 1000
-  %tv_nsec.i166 = load i64, ptr %.fca.1.gep.i162, align 8
-  %sdiv.i167 = sdiv i64 %tv_nsec.i166, 1000000
-  %add.i168 = add i64 %sdiv.i167, %mul.i165
-  call void @llvm.lifetime.end.p0(ptr nonnull %ts.i161)
+  %calltmp97 = call i64 @"CQB::Engine::nowMs"()
+  store i64 %calltmp97, ptr %"CQB::Engine::phaseStart", align 8
   br label %ifcont93
 
 then99:                                           ; preds = %ifcont93
-  call fastcc void @qc_print_string(ptr nonnull @1)
-  call fastcc void @qc_fmt_string(ptr %label)
-  %21 = sext i32 %"CQB::Engine::steps.3" to i64
-  call fastcc void @qc_print_string(ptr nonnull @2)
-  call fastcc void @qc_fmt_int(i64 %21, i32 -1, i1 false)
-  call fastcc void @qc_print_string(ptr nonnull @3)
-  call fastcc void @qc_fmt_int(i64 %"CQB::Engine::lastStepMs.3", i32 -1, i1 false)
-  call fastcc void @qc_print_string(ptr nonnull @4)
-  call fastcc void @qc_fmt_string(ptr nonnull %"CQB::Engine::phase")
-  call fastcc void @qc_print_string(ptr nonnull @5)
-  call fastcc void @qc_flush()
+  %label101 = load ptr, ptr %label2, align 8
+  %steps = load i32, ptr %"CQB::Engine::steps", align 4
+  %lastStepMs = load i64, ptr %"CQB::Engine::lastStepMs", align 8
+  %arr_elem_ptr102 = getelementptr inbounds [32 x i8], ptr %"CQB::Engine::phase", i32 0, i32 0
+  %arr_elem103 = load i8, ptr %arr_elem_ptr102, align 1
+  %lval_arr_addr104 = getelementptr [32 x i8], ptr %"CQB::Engine::phase", i32 0, i32 0
+  %varadics_array = alloca ptr, i32 4, align 8
+  %3 = getelementptr ptr, ptr %varadics_array, i32 0
+  store ptr %label101, ptr %3, align 8
+  %4 = getelementptr ptr, ptr %varadics_array, i32 1
+  %vararg_int_to_ptr = inttoptr i32 %steps to ptr
+  store ptr %vararg_int_to_ptr, ptr %4, align 8
+  %5 = getelementptr ptr, ptr %varadics_array, i32 2
+  %vararg_int_to_ptr105 = inttoptr i64 %lastStepMs to ptr
+  store ptr %vararg_int_to_ptr105, ptr %5, align 8
+  %6 = getelementptr ptr, ptr %varadics_array, i32 3
+  store ptr %lval_arr_addr104, ptr %6, align 8
+  %variadic_struct = alloca { ptr, i32, i32 }, align 8
+  %7 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct, i32 0, i32 0
+  store ptr %varadics_array, ptr %7, align 8
+  %8 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct, i32 0, i32 1
+  store i32 4, ptr %8, align 4
+  %9 = getelementptr inbounds nuw { ptr, i32, i32 }, ptr %variadic_struct, i32 0, i32 2
+  store i32 0, ptr %9, align 4
+  call void @"IO::qout"(ptr @.str.48, ptr %variadic_struct)
+  call void @qc_flush()
+  br label %ifcont100
+
+ifcont100:                                        ; preds = %then99, %ifcont93
   br label %for.inc
 }
 
-define weak_odr void @"Vector::Vec<bool>_Vec"(ptr %0) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"Vector::Vec<int>_Vec"(ptr %0) !qc.return_types !23 {
 entry:
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
   ret void
 }
 
-define weak_odr void @"Vector::Vec<bool>_reserve_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<int>_reserve_int"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  %icmpeq = icmp eq i32 %1, 0
-  %data = load ptr, ptr %0, align 8
+  %"Vector::new_data" = alloca ptr, align 8
+  %cap = alloca i32, align 4
+  store i32 0, ptr %cap, align 4
+  store i32 %1, ptr %cap, align 4
+  %cap1 = load i32, ptr %cap, align 4
+  %icmpeq = icmp eq i32 %cap1, 0
   br i1 %icmpeq, label %then, label %ifcont
 
-common.ret:                                       ; preds = %ifcont, %ifcont9, %then
+then:                                             ; preds = %entry
+  %2 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
   ret void
 
-then:                                             ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
 ifcont:                                           ; preds = %entry
-  %promote_int = sext i32 %1 to i64
-  %builtin_call = tail call fastcc ptr @qc_realloc(ptr %data, i64 %promote_int)
-  %ptr_eq = icmp eq ptr %builtin_call, null
-  br i1 %ptr_eq, label %common.ret, label %ifcont5
+  store ptr null, ptr %"Vector::new_data", align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  %data2 = load ptr, ptr %3, align 8
+  %cap3 = load i32, ptr %cap, align 4
+  %promote_int = sext i32 %cap3 to i64
+  %mul = mul i64 4, %promote_int
+  %builtin_call = call ptr @qc_realloc(ptr %data2, i64 %mul)
+  store ptr %builtin_call, ptr %"Vector::new_data", align 8
+  %new_data = load ptr, ptr %"Vector::new_data", align 8
+  %ptr_eq = icmp eq ptr %new_data, null
+  br i1 %ptr_eq, label %then4, label %ifcont5
+
+then4:                                            ; preds = %ifcont
+  ret void
 
 ifcont5:                                          ; preds = %ifcont
-  %capacity_ptr7 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %1, ptr %capacity_ptr7, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %2, align 8
-  %icmpgt = icmp sgt i32 %size, %1
+  %cap6 = load i32, ptr %cap, align 4
+  %capacity_ptr7 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
+  store i32 %cap6, ptr %capacity_ptr7, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %4, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %5, align 4
+  %icmpgt = icmp sgt i32 %size, %capacity
   br i1 %icmpgt, label %then8, label %ifcont9
 
 then8:                                            ; preds = %ifcont5
-  store i32 %1, ptr %2, align 8
+  %6 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
+  %capacity10 = load i32, ptr %6, align 4
+  %size_ptr11 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  store i32 %capacity10, ptr %size_ptr11, align 4
   br label %ifcont9
 
 ifcont9:                                          ; preds = %then8, %ifcont5
-  store ptr %builtin_call, ptr %0, align 8
-  br label %common.ret
+  %new_data12 = load ptr, ptr %"Vector::new_data", align 8
+  %data_ptr13 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  store ptr %new_data12, ptr %data_ptr13, align 8
+  ret void
 }
 
-define weak_odr void @"Vector::Vec<bool>_push_T"(ptr %0, i1 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<int>_push_T"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %value = alloca i32, align 4
+  store i32 0, ptr %value, align 4
+  store i32 %1, ptr %value, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
   %capacity = load i32, ptr %2, align 4
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %3, align 4
-  %icmple.not = icmp sgt i32 %capacity, %size
-  %data6.pre = load ptr, ptr %0, align 8
-  br i1 %icmple.not, label %ifcont, label %then
+  %icmple = icmp sle i32 %capacity, %size
+  br i1 %icmple, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %icmpeq = icmp eq i32 %capacity, 0
-  %mul = shl i32 %capacity, 1
-  %select_val = select i1 %icmpeq, i32 1, i32 %mul
-  %icmpeq.i = icmp eq i32 %select_val, 0
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
+  %4 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %4, align 4
+  %icmpeq = icmp eq i32 %capacity1, 0
+  br i1 %icmpeq, label %ternary.true, label %ternary.false
 
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data6.pre)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %common.ret
-
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %select_val to i64
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data6.pre, i64 %promote_int.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<bool>_reserve_int.exitthread-pre-split", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %select_val, ptr %2, align 4
-  %size.i = load i32, ptr %3, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %select_val
-  br i1 %icmpgt.i, label %then8.i, label %"Vector::Vec<bool>_reserve_int.exit.thread"
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %select_val, ptr %3, align 8
-  br label %"Vector::Vec<bool>_reserve_int.exit.thread"
-
-"Vector::Vec<bool>_reserve_int.exit.thread":      ; preds = %ifcont5.i, %then8.i
-  %size511 = phi i32 [ %size.i, %ifcont5.i ], [ %select_val, %then8.i ]
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
-
-"Vector::Vec<bool>_reserve_int.exitthread-pre-split": ; preds = %ifcont.i
-  %data.pr = load ptr, ptr %0, align 8
-  %4 = icmp eq ptr %data.pr, null
-  br i1 %4, label %common.ret, label %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.ifcont_crit_edge"
-
-"Vector::Vec<bool>_reserve_int.exitthread-pre-split.ifcont_crit_edge": ; preds = %"Vector::Vec<bool>_reserve_int.exitthread-pre-split"
-  %size5.pre = load i32, ptr %3, align 8
-  br label %ifcont
-
-common.ret:                                       ; preds = %then.i, %"Vector::Vec<bool>_reserve_int.exitthread-pre-split", %ifcont
+ifcont:                                           ; preds = %ifcont4, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  %size5 = load i32, ptr %5, align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  %data6 = load ptr, ptr %6, align 8
+  %ptr_arr_asi = getelementptr i32, ptr %data6, i32 %size5
+  %value7 = load i32, ptr %value, align 4
+  store i32 %value7, ptr %ptr_arr_asi, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %size_ptr, align 4
   ret void
 
-ifcont:                                           ; preds = %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.ifcont_crit_edge", %"Vector::Vec<bool>_reserve_int.exit.thread", %entry
-  %data6 = phi ptr [ %data.pr, %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %builtin_call.i, %"Vector::Vec<bool>_reserve_int.exit.thread" ], [ %data6.pre, %entry ]
-  %size5 = phi i32 [ %size5.pre, %"Vector::Vec<bool>_reserve_int.exitthread-pre-split.ifcont_crit_edge" ], [ %size511, %"Vector::Vec<bool>_reserve_int.exit.thread" ], [ %size, %entry ]
-  %5 = sext i32 %size5 to i64
-  %ptr_arr_asi = getelementptr i8, ptr %data6, i64 %5
-  store i1 %1, ptr %ptr_arr_asi, align 1
-  %inc_deref = load i32, ptr %3, align 8
-  %inc = add i32 %inc_deref, 1
-  store i32 %inc, ptr %3, align 8
-  br label %common.ret
+ternary.true:                                     ; preds = %then
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %then
+  %7 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
+  %capacity2 = load i32, ptr %7, align 4
+  %mul = mul i32 %capacity2, 2
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ 1, %ternary.true ], [ %mul, %ternary.false ]
+  call void @"Vector::Vec<int>_reserve_int"(ptr %0, i32 %ternary_val)
+  %8 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %8, align 8
+  %ptr_eq = icmp eq ptr %data, null
+  br i1 %ptr_eq, label %then3, label %ifcont4
+
+then3:                                            ; preds = %ternary.end
+  ret void
+
+ifcont4:                                          ; preds = %ternary.end
+  br label %ifcont
 }
 
-define weak_odr i32 @"Vector::Vec<bool>_length"(ptr %0) local_unnamed_addr !qc.return_types !39 {
+define weak_odr i32 @"Vector::Vec<int>_length"(ptr %0) !qc.return_types !30 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   ret i32 %size
 }
 
-define weak_odr void @"Vector::Vec<bool>_pop"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<int>_pop"(ptr %0) !qc.return_types !21 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpgt = icmp sgt i32 %size, 0
   br i1 %icmpgt, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %dec = add nsw i32 %size, -1
-  store i32 %dec, ptr %1, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %size_ptr, align 4
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
   ret void
 }
 
-define weak_odr void @"Vector::Vec<bool>_shrinkToFit"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<int>_shrinkToFit"(ptr %0) !qc.return_types !21 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
-  %icmpeq.i = icmp eq i32 %size, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %entry
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
-  br label %"Vector::Vec<bool>_reserve_int.exit"
-
-ifcont.i:                                         ; preds = %entry
-  %promote_int.i = sext i32 %size to i64
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %promote_int.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %"Vector::Vec<bool>_reserve_int.exit", label %ifcont5.i
-
-ifcont5.i:                                        ; preds = %ifcont.i
-  %capacity_ptr7.i = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %size, ptr %capacity_ptr7.i, align 4
-  %size.i = load i32, ptr %1, align 8
-  %icmpgt.i = icmp sgt i32 %size.i, %size
-  br i1 %icmpgt.i, label %then8.i, label %ifcont9.i
-
-then8.i:                                          ; preds = %ifcont5.i
-  store i32 %size, ptr %1, align 8
-  br label %ifcont9.i
-
-ifcont9.i:                                        ; preds = %then8.i, %ifcont5.i
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %"Vector::Vec<bool>_reserve_int.exit"
-
-"Vector::Vec<bool>_reserve_int.exit":             ; preds = %then.i, %ifcont.i, %ifcont9.i
+  call void @"Vector::Vec<int>_reserve_int"(ptr %0, i32 %size)
   ret void
 }
 
-define weak_odr void @"Vector::Vec<bool>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<int>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) !qc.return_types !21 {
 entry:
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %3, align 4
-  %icmpne.not = icmp eq i32 %size, 0
-  br i1 %icmpne.not, label %ifcont, label %then
+  %"Vector::i" = alloca i32, align 4
+  %length = alloca i64, align 8
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i64 0, ptr %length, align 8
+  store i64 %2, ptr %length, align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, 0
+  br i1 %icmpne, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %data1 = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data1)
+  %4 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  %data1 = load ptr, ptr %4, align 8
+  call void @qc_free(ptr %data1)
   br label %ifcont
 
 ifcont:                                           ; preds = %then, %entry
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %trunc = trunc i64 %2 to i32
+  %length2 = load i64, ptr %length, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
+  %trunc = trunc i64 %length2 to i32
   store i32 %trunc, ptr %capacity_ptr, align 4
-  store i32 %trunc, ptr %3, align 4
-  %sext = shl i64 %2, 32
-  %promote_int = ashr exact i64 %sext, 32
-  %builtin_call = tail call fastcc ptr @qc_malloc(i64 %promote_int)
-  store ptr %builtin_call, ptr %0, align 8
-  %size514 = load i32, ptr %3, align 8
-  %icmplt15 = icmp sgt i32 %size514, 0
-  br i1 %icmplt15, label %for.body, label %for.end
+  %length3 = load i64, ptr %length, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  %trunc4 = trunc i64 %length3 to i32
+  store i32 %trunc4, ptr %size_ptr, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
+  %capacity5 = load i32, ptr %5, align 4
+  %promote_int = sext i32 %capacity5 to i64
+  %mul = mul i64 4, %promote_int
+  %builtin_call = call ptr @qc_malloc(i64 %mul)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  store ptr %builtin_call, ptr %data_ptr, align 8
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
 
-for.body:                                         ; preds = %ifcont, %for.body
-  %indvars.iv = phi i64 [ %indvars.iv.next, %for.body ], [ 0, %ifcont ]
-  %data7 = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr i8, ptr %data7, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr i8, ptr %1, i64 %indvars.iv
-  %ptr_arr_val = load i1, ptr %ptr_arr_addr, align 1
-  store i1 %ptr_arr_val, ptr %ptr_arr_asi, align 1
-  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
-  %size5 = load i32, ptr %3, align 8
-  %4 = sext i32 %size5 to i64
-  %icmplt = icmp slt i64 %indvars.iv.next, %4
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size
   br i1 %icmplt, label %for.body, label %for.end
 
-for.end:                                          ; preds = %for.body, %ifcont
+for.body:                                         ; preds = %for.cond
+  %i6 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  %data7 = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr i32, ptr %data7, i32 %i6
+  %i8 = load i32, ptr %"Vector::i", align 4
+  %data9 = load ptr, ptr %data, align 8
+  %ptr_arr_addr = getelementptr i32, ptr %data9, i32 %i8
+  %ptr_arr_val = load i32, ptr %ptr_arr_addr, align 4
+  store i32 %ptr_arr_val, ptr %ptr_arr_asi, align 4
+  br label %for.inc
+
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
+
+for.end:                                          ; preds = %for.cond
   ret void
 }
 
-define weak_odr ptr @"Vector::Vec<bool>_operator[]_addr_t"(ptr %0, i64 %1) local_unnamed_addr !qc.return_types !40 {
+define weak_odr ptr @"Vector::Vec<int>_operator[]_addr_t"(ptr %0, i64 %1) !qc.return_types !31 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %lval_ptr_arr_addr = getelementptr i8, ptr %data, i64 %1
+  %index = alloca i64, align 8
+  store i64 0, ptr %index, align 8
+  store i64 %1, ptr %index, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %index1 = load i64, ptr %index, align 8
+  %lval_ptr_arr_addr = getelementptr i32, ptr %data, i64 %index1
   ret ptr %lval_ptr_arr_addr
 }
 
-define weak_odr void @"Vector::Iterator::It<bool>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) local_unnamed_addr !qc.return_types !15 {
+define weak_odr void @"Vector::Iterator::It<int>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) !qc.return_types !23 {
 entry:
-  store ptr %1, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %2, ptr %size_ptr, align 8
-  %select_val = select i1 %3, i32 %2, i32 0
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %select_val, ptr %current_index_ptr, align 4
+  %is_end = alloca i1, align 1
+  %size = alloca i32, align 4
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i32 0, ptr %size, align 4
+  store i32 %2, ptr %size, align 4
+  store i1 false, ptr %is_end, align 1
+  store i1 %3, ptr %is_end, align 1
+  %data1 = load ptr, ptr %data, align 8
+  %data_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 0
+  store ptr %data1, ptr %data_ptr, align 8
+  %size2 = load i32, ptr %size, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 1
+  store i32 %size2, ptr %size_ptr, align 4
+  %is_end3 = load i1, ptr %is_end, align 1
+  br i1 %is_end3, label %ternary.true, label %ternary.false
+
+ternary.true:                                     ; preds = %entry
+  %size4 = load i32, ptr %size, align 4
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %entry
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ %size4, %ternary.true ], [ 0, %ternary.false ]
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 2
+  store i32 %ternary_val, ptr %current_index_ptr, align 4
   ret void
 }
 
-define weak_odr i1 @"Vector::Iterator::It<bool>__atEnd"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Iterator::It<int>__atEnd"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 2
   %current_index = load i32, ptr %2, align 4
   %icmple = icmp sle i32 %size, %current_index
   ret i1 %icmple
 }
 
-define weak_odr i1 @"Vector::Iterator::It<bool>__next"(ptr %0) local_unnamed_addr !qc.return_types !41 {
+define weak_odr i32 @"Vector::Iterator::It<int>__next"(ptr %0) !qc.return_types !32 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.93, ptr nonnull @6, i32 132) #29
+  call void @__qc_panic(ptr @.str.49, ptr @10, i32 40) #29
   unreachable
 
 ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i.not = icmp sgt i32 %size, %current_index.i
-  br i1 %icmple.i.not, label %then1, label %ifcont2
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %sub.sink = phi i32 [ %sub, %ifcont2 ], [ %current_index.i, %then1 ]
-  %data4 = load ptr, ptr %0, align 8
-  %3 = sext i32 %sub.sink to i64
-  %ptr_arr_addr5 = getelementptr i8, ptr %data4, i64 %3
-  %common.ret.op = load i1, ptr %ptr_arr_addr5, align 1
-  ret i1 %common.ret.op
+  %_atEnd_result = call i1 @"Vector::Iterator::It<int>__atEnd"(ptr %0)
+  %not = xor i1 %_atEnd_result, true
+  br i1 %not, label %then1, label %ifcont2
 
 then1:                                            ; preds = %ifcont
-  %inc = add nsw i32 %current_index.i, 1
-  store i32 %inc, ptr %2, align 4
-  br label %common.ret
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr i32, ptr %data, i32 %inc_deref
+  %ptr_arr_val = load i32, ptr %ptr_arr_addr, align 4
+  ret i32 %ptr_arr_val
 
 ifcont2:                                          ; preds = %ifcont
-  %sub = add i32 %size, -1
-  br label %common.ret
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 1
+  %size3 = load i32, ptr %3, align 4
+  %sub = sub i32 %size3, 1
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 0
+  %data4 = load ptr, ptr %4, align 8
+  %ptr_arr_addr5 = getelementptr i32, ptr %data4, i32 %sub
+  %ptr_arr_val6 = load i32, ptr %ptr_arr_addr5, align 4
+  ret i32 %ptr_arr_val6
 }
 
-define weak_odr i1 @"Vector::Iterator::It<bool>__atStart"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Iterator::It<int>__atStart"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 2
   %current_index = load i32, ptr %1, align 4
-  %icmple = icmp slt i32 %current_index, 1
+  %icmple = icmp sle i32 %current_index, 0
   ret i1 %icmple
 }
 
-define weak_odr i1 @"Vector::Iterator::It<bool>__prev"(ptr %0) local_unnamed_addr !qc.return_types !41 {
+define weak_odr i32 @"Vector::Iterator::It<int>__prev"(ptr %0) !qc.return_types !32 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   br i1 %icmpeq, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  tail call fastcc void @__qc_panic(ptr nonnull @.str.94, ptr nonnull @6, i32 144) #29
+  call void @__qc_panic(ptr @.str.50, ptr @11, i32 56) #29
   unreachable
 
 ifcont:                                           ; preds = %entry
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %current_index.i = load i32, ptr %2, align 4
-  %icmple.i = icmp slt i32 %current_index.i, 1
-  br i1 %icmple.i, label %ifcont2, label %then1
-
-common.ret:                                       ; preds = %ifcont2, %then1
-  %common.ret.op.in = phi ptr [ %ptr_arr_addr, %then1 ], [ %ptr_arr_addr4, %ifcont2 ]
-  %common.ret.op = load i1, ptr %common.ret.op.in, align 1
-  ret i1 %common.ret.op
+  %_atStart_result = call i1 @"Vector::Iterator::It<int>__atStart"(ptr %0)
+  %not = xor i1 %_atStart_result, true
+  br i1 %not, label %then1, label %ifcont2
 
 then1:                                            ; preds = %ifcont
-  %dec = add nsw i32 %current_index.i, -1
-  store i32 %dec, ptr %2, align 4
-  %data = load ptr, ptr %0, align 8
-  %3 = zext nneg i32 %dec to i64
-  %ptr_arr_addr = getelementptr i8, ptr %data, i64 %3
-  br label %common.ret
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr i32, ptr %data, i32 %dec
+  %ptr_arr_val = load i32, ptr %ptr_arr_addr, align 4
+  ret i32 %ptr_arr_val
 
 ifcont2:                                          ; preds = %ifcont
-  %data3 = load ptr, ptr %0, align 8
-  %4 = sext i32 %current_index.i to i64
-  %ptr_arr_addr4 = getelementptr i8, ptr %data3, i64 %4
-  br label %common.ret
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 2
+  %current_index = load i32, ptr %3, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 0
+  %data3 = load ptr, ptr %4, align 8
+  %ptr_arr_addr4 = getelementptr i32, ptr %data3, i32 %current_index
+  %ptr_arr_val5 = load i32, ptr %ptr_arr_addr4, align 4
+  ret i32 %ptr_arr_val5
 }
 
-define weak_odr void @"Vector::Iterator::It<bool>__moveTo_int"(ptr %0, i32 %1) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Iterator::It<int>__moveTo_int"(ptr %0, i32 %1) !qc.return_types !21 {
 entry:
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %index = alloca i32, align 4
+  store i32 0, ptr %index, align 4
+  store i32 %1, ptr %index, align 4
+  %index1 = load i32, ptr %index, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %2, align 4
-  %icmpge.not = icmp slt i32 %1, %size
-  %sub = add i32 %size, -1
-  %spec.store.select = tail call i32 @llvm.smax.i32(i32 %1, i32 0)
-  %index.0 = select i1 %icmpge.not, i32 %spec.store.select, i32 %sub
-  %current_index_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
-  store i32 %index.0, ptr %current_index_ptr, align 4
+  %icmpge = icmp sge i32 %index1, %size
+  br i1 %icmpge, label %then, label %elif.cond
+
+then:                                             ; preds = %entry
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 1
+  %size2 = load i32, ptr %3, align 4
+  %sub = sub i32 %size2, 1
+  store i32 %sub, ptr %index, align 4
+  br label %ifcont
+
+ifcont:                                           ; preds = %elif.body, %elif.cond, %then
+  %index4 = load i32, ptr %index, align 4
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<int>", ptr %0, i32 0, i32 2
+  store i32 %index4, ptr %current_index_ptr, align 4
   ret void
+
+elif.cond:                                        ; preds = %entry
+  %index3 = load i32, ptr %index, align 4
+  %icmplt = icmp slt i32 %index3, 0
+  br i1 %icmplt, label %elif.body, label %ifcont
+
+elif.body:                                        ; preds = %elif.cond
+  store i32 0, ptr %index, align 4
+  br label %ifcont
 }
 
-define weak_odr %"Vector::Iterator::It<bool>" @"Vector::Vec<bool>__begin"(ptr %0) local_unnamed_addr !qc.return_types !42 {
+define weak_odr %"Vector::Iterator::It<int>" @"Vector::Vec<int>__begin"(ptr %0) !qc.return_types !33 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<bool>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<bool>" poison, ptr %data, 0
-  %"Vector::Iterator::It<bool>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<bool>" %"Vector::Iterator::It<bool>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<bool>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<bool>" %"Vector::Iterator::It<bool>_inst.fca.1.insert", i32 0, 2
-  ret %"Vector::Iterator::It<bool>" %"Vector::Iterator::It<bool>_inst.fca.2.insert"
+  %"temp_Vector::Iterator::It<int>" = alloca %"Vector::Iterator::It<int>", align 8
+  store %"Vector::Iterator::It<int>" zeroinitializer, ptr %"temp_Vector::Iterator::It<int>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<int>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<int>", ptr %data, i32 %size, i1 false)
+  %"Vector::Iterator::It<int>_inst" = load %"Vector::Iterator::It<int>", ptr %"temp_Vector::Iterator::It<int>", align 8
+  ret %"Vector::Iterator::It<int>" %"Vector::Iterator::It<int>_inst"
 }
 
-define weak_odr %"Vector::Iterator::It<bool>" @"Vector::Vec<bool>__end"(ptr %0) local_unnamed_addr !qc.return_types !42 {
+define weak_odr %"Vector::Iterator::It<int>" @"Vector::Vec<int>__end"(ptr %0) !qc.return_types !33 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %size = load i32, ptr %1, align 8
-  %"Vector::Iterator::It<bool>_inst.fca.0.insert" = insertvalue %"Vector::Iterator::It<bool>" poison, ptr %data, 0
-  %"Vector::Iterator::It<bool>_inst.fca.1.insert" = insertvalue %"Vector::Iterator::It<bool>" %"Vector::Iterator::It<bool>_inst.fca.0.insert", i32 %size, 1
-  %"Vector::Iterator::It<bool>_inst.fca.2.insert" = insertvalue %"Vector::Iterator::It<bool>" %"Vector::Iterator::It<bool>_inst.fca.1.insert", i32 %size, 2
-  ret %"Vector::Iterator::It<bool>" %"Vector::Iterator::It<bool>_inst.fca.2.insert"
+  %"temp_Vector::Iterator::It<int>" = alloca %"Vector::Iterator::It<int>", align 8
+  store %"Vector::Iterator::It<int>" zeroinitializer, ptr %"temp_Vector::Iterator::It<int>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<int>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<int>", ptr %data, i32 %size, i1 true)
+  %"Vector::Iterator::It<int>_inst" = load %"Vector::Iterator::It<int>", ptr %"temp_Vector::Iterator::It<int>", align 8
+  ret %"Vector::Iterator::It<int>" %"Vector::Iterator::It<int>_inst"
 }
 
-define weak_odr void @"Vector::Vec<bool>__destroy"(ptr %0) local_unnamed_addr !qc.return_types !34 {
+define weak_odr void @"Vector::Vec<int>__destroy"(ptr %0) !qc.return_types !21 {
 entry:
-  %data = load ptr, ptr %0, align 8
-  tail call fastcc void @qc_free(ptr %data)
-  store ptr null, ptr %0, align 8
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 -1, ptr %size_ptr, align 8
-  %capacity_ptr = getelementptr inbounds nuw i8, ptr %0, i64 12
+  %1 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  store i32 -1, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
   store i32 -1, ptr %capacity_ptr, align 4
   ret void
 }
 
-define weak_odr ptr @"Vector::Vec<bool>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<bool>" %1) local_unnamed_addr !qc.return_types !43 {
+define weak_odr ptr @"Vector::Vec<int>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<int>" %1) !qc.return_types !34 {
 entry:
-  %.fca.0.extract = extractvalue %"Vector::Vec<bool>" %1, 0
-  %.fca.1.extract = extractvalue %"Vector::Vec<bool>" %1, 1
-  %.fca.2.extract = extractvalue %"Vector::Vec<bool>" %1, 2
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %capacity1 = load i32, ptr %2, align 4
-  %icmpne.not = icmp eq i32 %.fca.2.extract, %capacity1
-  br i1 %icmpne.not, label %ifcont, label %then
+  %"Vector::i" = alloca i32, align 4
+  %other = alloca %"Vector::Vec<int>", align 8
+  store %"Vector::Vec<int>" zeroinitializer, ptr %other, align 8
+  store %"Vector::Vec<int>" %1, ptr %other, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %other, i32 0, i32 2
+  %capacity = load i32, ptr %2, align 4
+  %3 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, %capacity1
+  br i1 %icmpne, label %then, label %ifcont
 
 then:                                             ; preds = %entry
-  %icmpeq.i = icmp eq i32 %.fca.2.extract, 0
-  %data.i = load ptr, ptr %0, align 8
-  br i1 %icmpeq.i, label %then.i, label %ifcont.i
-
-then.i:                                           ; preds = %then
-  tail call fastcc void @qc_free(ptr %data.i)
-  tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(16) %0, i8 0, i64 16, i1 false)
+  %4 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %other, i32 0, i32 2
+  %capacity2 = load i32, ptr %4, align 4
+  call void @"Vector::Vec<int>_reserve_int"(ptr %0, i32 %capacity2)
   br label %ifcont
 
-ifcont.i:                                         ; preds = %then
-  %promote_int.i = sext i32 %.fca.2.extract to i64
-  %builtin_call.i = tail call fastcc ptr @qc_realloc(ptr %data.i, i64 %promote_int.i)
-  %ptr_eq.i = icmp eq ptr %builtin_call.i, null
-  br i1 %ptr_eq.i, label %ifcont, label %ifcont5.i
+ifcont:                                           ; preds = %then, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %other, i32 0, i32 1
+  %size = load i32, ptr %5, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
+  store i32 %size, ptr %size_ptr, align 4
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
 
-ifcont5.i:                                        ; preds = %ifcont.i
-  store i32 %.fca.2.extract, ptr %2, align 4
-  store ptr %builtin_call.i, ptr %0, align 8
-  br label %ifcont
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %other, i32 0, i32 1
+  %size3 = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size3
+  br i1 %icmplt, label %for.body, label %for.end
 
-ifcont:                                           ; preds = %ifcont5.i, %ifcont.i, %then.i, %entry
-  %size_ptr = getelementptr inbounds nuw i8, ptr %0, i64 8
-  store i32 %.fca.1.extract, ptr %size_ptr, align 4
-  %icmplt12 = icmp sgt i32 %.fca.1.extract, 0
-  br i1 %icmplt12, label %for.body.preheader, label %for.end
+for.body:                                         ; preds = %for.cond
+  %i4 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr i32, ptr %data, i32 %i4
+  %i5 = load i32, ptr %"Vector::i", align 4
+  %8 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %other, i32 0, i32 0
+  %data6 = load ptr, ptr %8, align 8
+  %ptr_arr_addr = getelementptr i32, ptr %data6, i32 %i5
+  %ptr_arr_val = load i32, ptr %ptr_arr_addr, align 4
+  store i32 %ptr_arr_val, ptr %ptr_arr_asi, align 4
+  br label %for.inc
 
-for.body.preheader:                               ; preds = %ifcont
-  %wide.trip.count = zext nneg i32 %.fca.1.extract to i64
-  %xtraiter = and i64 %wide.trip.count, 3
-  %3 = icmp ult i32 %.fca.1.extract, 4
-  br i1 %3, label %for.body.epil.preheader, label %for.body.preheader.new
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
 
-for.body.preheader.new:                           ; preds = %for.body.preheader
-  %unroll_iter = and i64 %wide.trip.count, 2147483644
-  br label %for.body
-
-for.body:                                         ; preds = %for.body, %for.body.preheader.new
-  %indvars.iv = phi i64 [ 0, %for.body.preheader.new ], [ %indvars.iv.next.3, %for.body ]
-  %niter = phi i64 [ 0, %for.body.preheader.new ], [ %niter.next.3, %for.body ]
-  %data = load ptr, ptr %0, align 8
-  %ptr_arr_asi = getelementptr i8, ptr %data, i64 %indvars.iv
-  %ptr_arr_addr = getelementptr i8, ptr %.fca.0.extract, i64 %indvars.iv
-  %ptr_arr_val = load i1, ptr %ptr_arr_addr, align 1
-  store i1 %ptr_arr_val, ptr %ptr_arr_asi, align 1
-  %indvars.iv.next = or disjoint i64 %indvars.iv, 1
-  %data.1 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.1 = getelementptr i8, ptr %data.1, i64 %indvars.iv.next
-  %ptr_arr_addr.1 = getelementptr i8, ptr %.fca.0.extract, i64 %indvars.iv.next
-  %ptr_arr_val.1 = load i1, ptr %ptr_arr_addr.1, align 1
-  store i1 %ptr_arr_val.1, ptr %ptr_arr_asi.1, align 1
-  %indvars.iv.next.1 = or disjoint i64 %indvars.iv, 2
-  %data.2 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.2 = getelementptr i8, ptr %data.2, i64 %indvars.iv.next.1
-  %ptr_arr_addr.2 = getelementptr i8, ptr %.fca.0.extract, i64 %indvars.iv.next.1
-  %ptr_arr_val.2 = load i1, ptr %ptr_arr_addr.2, align 1
-  store i1 %ptr_arr_val.2, ptr %ptr_arr_asi.2, align 1
-  %indvars.iv.next.2 = or disjoint i64 %indvars.iv, 3
-  %data.3 = load ptr, ptr %0, align 8
-  %ptr_arr_asi.3 = getelementptr i8, ptr %data.3, i64 %indvars.iv.next.2
-  %ptr_arr_addr.3 = getelementptr i8, ptr %.fca.0.extract, i64 %indvars.iv.next.2
-  %ptr_arr_val.3 = load i1, ptr %ptr_arr_addr.3, align 1
-  store i1 %ptr_arr_val.3, ptr %ptr_arr_asi.3, align 1
-  %indvars.iv.next.3 = add nuw nsw i64 %indvars.iv, 4
-  %niter.next.3 = add i64 %niter, 4
-  %niter.ncmp.3 = icmp eq i64 %niter.next.3, %unroll_iter
-  br i1 %niter.ncmp.3, label %for.end.loopexit.unr-lcssa, label %for.body
-
-for.end.loopexit.unr-lcssa:                       ; preds = %for.body
-  %lcmp.mod.not = icmp eq i64 %xtraiter, 0
-  br i1 %lcmp.mod.not, label %for.end, label %for.body.epil.preheader
-
-for.body.epil.preheader:                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.preheader
-  %indvars.iv.epil.init = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next.3, %for.end.loopexit.unr-lcssa ]
-  %lcmp.mod15 = icmp ne i64 %xtraiter, 0
-  tail call void @llvm.assume(i1 %lcmp.mod15)
-  br label %for.body.epil
-
-for.body.epil:                                    ; preds = %for.body.epil, %for.body.epil.preheader
-  %indvars.iv.epil = phi i64 [ %indvars.iv.epil.init, %for.body.epil.preheader ], [ %indvars.iv.next.epil, %for.body.epil ]
-  %epil.iter = phi i64 [ 0, %for.body.epil.preheader ], [ %epil.iter.next, %for.body.epil ]
-  %data.epil = load ptr, ptr %0, align 8
-  %ptr_arr_asi.epil = getelementptr i8, ptr %data.epil, i64 %indvars.iv.epil
-  %ptr_arr_addr.epil = getelementptr i8, ptr %.fca.0.extract, i64 %indvars.iv.epil
-  %ptr_arr_val.epil = load i1, ptr %ptr_arr_addr.epil, align 1
-  store i1 %ptr_arr_val.epil, ptr %ptr_arr_asi.epil, align 1
-  %indvars.iv.next.epil = add nuw nsw i64 %indvars.iv.epil, 1
-  %epil.iter.next = add i64 %epil.iter, 1
-  %epil.iter.cmp.not = icmp eq i64 %epil.iter.next, %xtraiter
-  br i1 %epil.iter.cmp.not, label %for.end, label %for.body.epil, !llvm.loop !64
-
-for.end:                                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.epil, %ifcont
+for.end:                                          ; preds = %for.cond
   ret ptr %0
 }
 
-define weak_odr i1 @"Vector::Vec<bool>_isEmpty"(ptr %0) local_unnamed_addr !qc.return_types !27 {
+define weak_odr i1 @"Vector::Vec<int>_isEmpty"(ptr %0) !qc.return_types !27 {
 entry:
-  %1 = getelementptr inbounds nuw i8, ptr %0, i64 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<int>", ptr %0, i32 0, i32 1
   %size = load i32, ptr %1, align 4
   %icmpeq = icmp eq i32 %size, 0
   ret i1 %icmpeq
 }
 
-define weak_odr %"String::Str" @"String::toStr<int>"(i32 %value) local_unnamed_addr {
+define weak_odr void @"Vector::Vec<bool>_Vec"(ptr %0) !qc.return_types !23 {
 entry:
-  %"String::buffer" = alloca [64 x i8], align 1
-  %icmpeq = icmp eq i32 %value, 0
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  ret void
+}
+
+define weak_odr void @"Vector::Vec<bool>_reserve_int"(ptr %0, i32 %1) !qc.return_types !21 {
+entry:
+  %"Vector::new_data" = alloca ptr, align 8
+  %cap = alloca i32, align 4
+  store i32 0, ptr %cap, align 4
+  store i32 %1, ptr %cap, align 4
+  %cap1 = load i32, ptr %cap, align 4
+  %icmpeq = icmp eq i32 %cap1, 0
   br i1 %icmpeq, label %then, label %ifcont
 
-common.ret:                                       ; preds = %for.end, %then
-  %"String::Str_inst.fca.0.load.pn.in.sroa.speculated" = phi ptr [ %builtin_call.i, %then ], [ %builtin_call.i54, %for.end ]
-  %"String::Str_inst.fca.1.load.pn" = phi i64 [ 1, %then ], [ %strlen.i51, %for.end ]
-  %"String::Str_inst.fca.2.load.pn" = phi i64 [ 2, %then ], [ %add.i53, %for.end ]
-  %"String::Str_inst.fca.0.insert.pn" = insertvalue %"String::Str" poison, ptr %"String::Str_inst.fca.0.load.pn.in.sroa.speculated", 0
-  %"String::Str_inst.fca.1.insert.pn" = insertvalue %"String::Str" %"String::Str_inst.fca.0.insert.pn", i64 %"String::Str_inst.fca.1.load.pn", 1
-  %common.ret.op = insertvalue %"String::Str" %"String::Str_inst.fca.1.insert.pn", i64 %"String::Str_inst.fca.2.load.pn", 2
-  ret %"String::Str" %common.ret.op
-
 then:                                             ; preds = %entry
-  %builtin_call.i = tail call fastcc ptr @qc_malloc(i64 2)
-  store i16 48, ptr %builtin_call.i, align 1
-  br label %common.ret
+  %2 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  store i32 0, ptr %capacity_ptr, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  store i32 0, ptr %size_ptr, align 4
+  ret void
 
 ifcont:                                           ; preds = %entry
-  %icmplt = icmp slt i32 %value, 0
-  br i1 %icmplt, label %ifcont5, label %ifcont5.thread
+  store ptr null, ptr %"Vector::new_data", align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  %data2 = load ptr, ptr %3, align 8
+  %cap3 = load i32, ptr %cap, align 4
+  %promote_int = sext i32 %cap3 to i64
+  %mul = mul i64 1, %promote_int
+  %builtin_call = call ptr @qc_realloc(ptr %data2, i64 %mul)
+  store ptr %builtin_call, ptr %"Vector::new_data", align 8
+  %new_data = load ptr, ptr %"Vector::new_data", align 8
+  %ptr_eq = icmp eq ptr %new_data, null
+  br i1 %ptr_eq, label %then4, label %ifcont5
 
-ifcont5.thread:                                   ; preds = %ifcont
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 1 dereferenceable(64) %"String::buffer", i8 0, i64 64, i1 false)
-  br label %while.body.preheader
+then4:                                            ; preds = %ifcont
+  ret void
 
 ifcont5:                                          ; preds = %ifcont
-  %neg = sub i32 0, %value
-  %icmpgt56 = icmp sgt i32 %neg, 0
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 1 dereferenceable(64) %"String::buffer", i8 0, i64 64, i1 false)
-  br i1 %icmpgt56, label %while.body.preheader, label %then9
+  %cap6 = load i32, ptr %cap, align 4
+  %capacity_ptr7 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  store i32 %cap6, ptr %capacity_ptr7, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %4, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %5, align 4
+  %icmpgt = icmp sgt i32 %size, %capacity
+  br i1 %icmpgt, label %then8, label %ifcont9
 
-while.body.preheader:                             ; preds = %ifcont5.thread, %ifcont5
-  %value1.158.ph = phi i32 [ %neg, %ifcont5 ], [ %value, %ifcont5.thread ]
-  br label %while.body
+then8:                                            ; preds = %ifcont5
+  %6 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  %capacity10 = load i32, ptr %6, align 4
+  %size_ptr11 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  store i32 %capacity10, ptr %size_ptr11, align 4
+  br label %ifcont9
 
-while.body:                                       ; preds = %while.body.preheader, %while.body
-  %value1.158 = phi i32 [ %sdiv, %while.body ], [ %value1.158.ph, %while.body.preheader ]
-  %"String::i.057" = phi i64 [ %inc, %while.body ], [ 0, %while.body.preheader ]
-  %inc = add i64 %"String::i.057", 1
-  %srem = urem i32 %value1.158, 10
-  %0 = trunc nuw nsw i32 %srem to i8
-  %trunc_char = or disjoint i8 %0, 48
-  %arr_elem_ptr = getelementptr inbounds i8, ptr %"String::buffer", i64 %"String::i.057"
+ifcont9:                                          ; preds = %then8, %ifcont5
+  %new_data12 = load ptr, ptr %"Vector::new_data", align 8
+  %data_ptr13 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  store ptr %new_data12, ptr %data_ptr13, align 8
+  ret void
+}
+
+define weak_odr void @"Vector::Vec<bool>_push_T"(ptr %0, i1 %1) !qc.return_types !21 {
+entry:
+  %value = alloca i1, align 1
+  store i1 false, ptr %value, align 1
+  store i1 %1, ptr %value, align 1
+  %2 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %2, align 4
+  %3 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %3, align 4
+  %icmple = icmp sle i32 %capacity, %size
+  br i1 %icmple, label %then, label %ifcont
+
+then:                                             ; preds = %entry
+  %4 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %4, align 4
+  %icmpeq = icmp eq i32 %capacity1, 0
+  br i1 %icmpeq, label %ternary.true, label %ternary.false
+
+ifcont:                                           ; preds = %ifcont4, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %size5 = load i32, ptr %5, align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  %data6 = load ptr, ptr %6, align 8
+  %ptr_arr_asi = getelementptr i1, ptr %data6, i32 %size5
+  %value7 = load i1, ptr %value, align 1
+  store i1 %value7, ptr %ptr_arr_asi, align 1
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %size_ptr, align 4
+  ret void
+
+ternary.true:                                     ; preds = %then
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %then
+  %7 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  %capacity2 = load i32, ptr %7, align 4
+  %mul = mul i32 %capacity2, 2
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ 1, %ternary.true ], [ %mul, %ternary.false ]
+  call void @"Vector::Vec<bool>_reserve_int"(ptr %0, i32 %ternary_val)
+  %8 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %8, align 8
+  %ptr_eq = icmp eq ptr %data, null
+  br i1 %ptr_eq, label %then3, label %ifcont4
+
+then3:                                            ; preds = %ternary.end
+  ret void
+
+ifcont4:                                          ; preds = %ternary.end
+  br label %ifcont
+}
+
+define weak_odr i32 @"Vector::Vec<bool>_length"(ptr %0) !qc.return_types !30 {
+entry:
+  %1 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %1, align 4
+  ret i32 %size
+}
+
+define weak_odr void @"Vector::Vec<bool>_pop"(ptr %0) !qc.return_types !21 {
+entry:
+  %1 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %1, align 4
+  %icmpgt = icmp sgt i32 %size, 0
+  br i1 %icmpgt, label %then, label %ifcont
+
+then:                                             ; preds = %entry
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %inc_deref = load i32, ptr %size_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %size_ptr, align 4
+  br label %ifcont
+
+ifcont:                                           ; preds = %then, %entry
+  ret void
+}
+
+define weak_odr void @"Vector::Vec<bool>_shrinkToFit"(ptr %0) !qc.return_types !21 {
+entry:
+  %1 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %1, align 4
+  call void @"Vector::Vec<bool>_reserve_int"(ptr %0, i32 %size)
+  ret void
+}
+
+define weak_odr void @"Vector::Vec<bool>_operator[]=_T*_addr_t"(ptr %0, ptr %1, i64 %2) !qc.return_types !21 {
+entry:
+  %"Vector::i" = alloca i32, align 4
+  %length = alloca i64, align 8
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i64 0, ptr %length, align 8
+  store i64 %2, ptr %length, align 8
+  %3 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  %capacity = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, 0
+  br i1 %icmpne, label %then, label %ifcont
+
+then:                                             ; preds = %entry
+  %4 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  %data1 = load ptr, ptr %4, align 8
+  call void @qc_free(ptr %data1)
+  br label %ifcont
+
+ifcont:                                           ; preds = %then, %entry
+  %length2 = load i64, ptr %length, align 8
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  %trunc = trunc i64 %length2 to i32
+  store i32 %trunc, ptr %capacity_ptr, align 4
+  %length3 = load i64, ptr %length, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %trunc4 = trunc i64 %length3 to i32
+  store i32 %trunc4, ptr %size_ptr, align 4
+  %5 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  %capacity5 = load i32, ptr %5, align 4
+  %promote_int = sext i32 %capacity5 to i64
+  %mul = mul i64 1, %promote_int
+  %builtin_call = call ptr @qc_malloc(i64 %mul)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  store ptr %builtin_call, ptr %data_ptr, align 8
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
+
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size
+  br i1 %icmplt, label %for.body, label %for.end
+
+for.body:                                         ; preds = %for.cond
+  %i6 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  %data7 = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr i1, ptr %data7, i32 %i6
+  %i8 = load i32, ptr %"Vector::i", align 4
+  %data9 = load ptr, ptr %data, align 8
+  %ptr_arr_addr = getelementptr i1, ptr %data9, i32 %i8
+  %ptr_arr_val = load i1, ptr %ptr_arr_addr, align 1
+  store i1 %ptr_arr_val, ptr %ptr_arr_asi, align 1
+  br label %for.inc
+
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
+
+for.end:                                          ; preds = %for.cond
+  ret void
+}
+
+define weak_odr ptr @"Vector::Vec<bool>_operator[]_addr_t"(ptr %0, i64 %1) !qc.return_types !31 {
+entry:
+  %index = alloca i64, align 8
+  store i64 0, ptr %index, align 8
+  store i64 %1, ptr %index, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %index1 = load i64, ptr %index, align 8
+  %lval_ptr_arr_addr = getelementptr i1, ptr %data, i64 %index1
+  ret ptr %lval_ptr_arr_addr
+}
+
+define weak_odr void @"Vector::Iterator::It<bool>_It_T*_int_bool"(ptr %0, ptr %1, i32 %2, i1 %3) !qc.return_types !23 {
+entry:
+  %is_end = alloca i1, align 1
+  %size = alloca i32, align 4
+  %data = alloca ptr, align 8
+  store ptr null, ptr %data, align 8
+  store ptr %1, ptr %data, align 8
+  store i32 0, ptr %size, align 4
+  store i32 %2, ptr %size, align 4
+  store i1 false, ptr %is_end, align 1
+  store i1 %3, ptr %is_end, align 1
+  %data1 = load ptr, ptr %data, align 8
+  %data_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 0
+  store ptr %data1, ptr %data_ptr, align 8
+  %size2 = load i32, ptr %size, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 1
+  store i32 %size2, ptr %size_ptr, align 4
+  %is_end3 = load i1, ptr %is_end, align 1
+  br i1 %is_end3, label %ternary.true, label %ternary.false
+
+ternary.true:                                     ; preds = %entry
+  %size4 = load i32, ptr %size, align 4
+  br label %ternary.end
+
+ternary.false:                                    ; preds = %entry
+  br label %ternary.end
+
+ternary.end:                                      ; preds = %ternary.false, %ternary.true
+  %ternary_val = phi i32 [ %size4, %ternary.true ], [ 0, %ternary.false ]
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 2
+  store i32 %ternary_val, ptr %current_index_ptr, align 4
+  ret void
+}
+
+define weak_odr i1 @"Vector::Iterator::It<bool>__atEnd"(ptr %0) !qc.return_types !27 {
+entry:
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %1, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 2
+  %current_index = load i32, ptr %2, align 4
+  %icmple = icmp sle i32 %size, %current_index
+  ret i1 %icmple
+}
+
+define weak_odr i1 @"Vector::Iterator::It<bool>__next"(ptr %0) !qc.return_types !32 {
+entry:
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %1, align 4
+  %icmpeq = icmp eq i32 %size, 0
+  br i1 %icmpeq, label %then, label %ifcont
+
+then:                                             ; preds = %entry
+  call void @__qc_panic(ptr @.str.53, ptr @12, i32 40) #29
+  unreachable
+
+ifcont:                                           ; preds = %entry
+  %_atEnd_result = call i1 @"Vector::Iterator::It<bool>__atEnd"(ptr %0)
+  %not = xor i1 %_atEnd_result, true
+  br i1 %not, label %then1, label %ifcont2
+
+then1:                                            ; preds = %ifcont
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr i1, ptr %data, i32 %inc_deref
+  %ptr_arr_val = load i1, ptr %ptr_arr_addr, align 1
+  ret i1 %ptr_arr_val
+
+ifcont2:                                          ; preds = %ifcont
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 1
+  %size3 = load i32, ptr %3, align 4
+  %sub = sub i32 %size3, 1
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 0
+  %data4 = load ptr, ptr %4, align 8
+  %ptr_arr_addr5 = getelementptr i1, ptr %data4, i32 %sub
+  %ptr_arr_val6 = load i1, ptr %ptr_arr_addr5, align 1
+  ret i1 %ptr_arr_val6
+}
+
+define weak_odr i1 @"Vector::Iterator::It<bool>__atStart"(ptr %0) !qc.return_types !27 {
+entry:
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 2
+  %current_index = load i32, ptr %1, align 4
+  %icmple = icmp sle i32 %current_index, 0
+  ret i1 %icmple
+}
+
+define weak_odr i1 @"Vector::Iterator::It<bool>__prev"(ptr %0) !qc.return_types !32 {
+entry:
+  %1 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %1, align 4
+  %icmpeq = icmp eq i32 %size, 0
+  br i1 %icmpeq, label %then, label %ifcont
+
+then:                                             ; preds = %entry
+  call void @__qc_panic(ptr @.str.54, ptr @13, i32 56) #29
+  unreachable
+
+ifcont:                                           ; preds = %entry
+  %_atStart_result = call i1 @"Vector::Iterator::It<bool>__atStart"(ptr %0)
+  %not = xor i1 %_atStart_result, true
+  br i1 %not, label %then1, label %ifcont2
+
+then1:                                            ; preds = %ifcont
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 2
+  %inc_deref = load i32, ptr %current_index_ptr, align 4
+  %dec = sub i32 %inc_deref, 1
+  store i32 %dec, ptr %current_index_ptr, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %2, align 8
+  %ptr_arr_addr = getelementptr i1, ptr %data, i32 %dec
+  %ptr_arr_val = load i1, ptr %ptr_arr_addr, align 1
+  ret i1 %ptr_arr_val
+
+ifcont2:                                          ; preds = %ifcont
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 2
+  %current_index = load i32, ptr %3, align 4
+  %4 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 0
+  %data3 = load ptr, ptr %4, align 8
+  %ptr_arr_addr4 = getelementptr i1, ptr %data3, i32 %current_index
+  %ptr_arr_val5 = load i1, ptr %ptr_arr_addr4, align 1
+  ret i1 %ptr_arr_val5
+}
+
+define weak_odr void @"Vector::Iterator::It<bool>__moveTo_int"(ptr %0, i32 %1) !qc.return_types !21 {
+entry:
+  %index = alloca i32, align 4
+  store i32 0, ptr %index, align 4
+  store i32 %1, ptr %index, align 4
+  %index1 = load i32, ptr %index, align 4
+  %2 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  %icmpge = icmp sge i32 %index1, %size
+  br i1 %icmpge, label %then, label %elif.cond
+
+then:                                             ; preds = %entry
+  %3 = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 1
+  %size2 = load i32, ptr %3, align 4
+  %sub = sub i32 %size2, 1
+  store i32 %sub, ptr %index, align 4
+  br label %ifcont
+
+ifcont:                                           ; preds = %elif.body, %elif.cond, %then
+  %index4 = load i32, ptr %index, align 4
+  %current_index_ptr = getelementptr inbounds nuw %"Vector::Iterator::It<bool>", ptr %0, i32 0, i32 2
+  store i32 %index4, ptr %current_index_ptr, align 4
+  ret void
+
+elif.cond:                                        ; preds = %entry
+  %index3 = load i32, ptr %index, align 4
+  %icmplt = icmp slt i32 %index3, 0
+  br i1 %icmplt, label %elif.body, label %ifcont
+
+elif.body:                                        ; preds = %elif.cond
+  store i32 0, ptr %index, align 4
+  br label %ifcont
+}
+
+define weak_odr %"Vector::Iterator::It<bool>" @"Vector::Vec<bool>__begin"(ptr %0) !qc.return_types !33 {
+entry:
+  %"temp_Vector::Iterator::It<bool>" = alloca %"Vector::Iterator::It<bool>", align 8
+  store %"Vector::Iterator::It<bool>" zeroinitializer, ptr %"temp_Vector::Iterator::It<bool>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<bool>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<bool>", ptr %data, i32 %size, i1 false)
+  %"Vector::Iterator::It<bool>_inst" = load %"Vector::Iterator::It<bool>", ptr %"temp_Vector::Iterator::It<bool>", align 8
+  ret %"Vector::Iterator::It<bool>" %"Vector::Iterator::It<bool>_inst"
+}
+
+define weak_odr %"Vector::Iterator::It<bool>" @"Vector::Vec<bool>__end"(ptr %0) !qc.return_types !33 {
+entry:
+  %"temp_Vector::Iterator::It<bool>" = alloca %"Vector::Iterator::It<bool>", align 8
+  store %"Vector::Iterator::It<bool>" zeroinitializer, ptr %"temp_Vector::Iterator::It<bool>", align 8
+  %1 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %2, align 4
+  call void @"Vector::Iterator::It<bool>_It_T*_int_bool"(ptr %"temp_Vector::Iterator::It<bool>", ptr %data, i32 %size, i1 true)
+  %"Vector::Iterator::It<bool>_inst" = load %"Vector::Iterator::It<bool>", ptr %"temp_Vector::Iterator::It<bool>", align 8
+  ret %"Vector::Iterator::It<bool>" %"Vector::Iterator::It<bool>_inst"
+}
+
+define weak_odr void @"Vector::Vec<bool>__destroy"(ptr %0) !qc.return_types !21 {
+entry:
+  %1 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %1, align 8
+  call void @qc_free(ptr %data)
+  %data_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  store ptr null, ptr %data_ptr, align 8
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  store i32 -1, ptr %size_ptr, align 4
+  %capacity_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  store i32 -1, ptr %capacity_ptr, align 4
+  ret void
+}
+
+define weak_odr ptr @"Vector::Vec<bool>_operator=_Vec<T>"(ptr %0, %"Vector::Vec<bool>" %1) !qc.return_types !34 {
+entry:
+  %"Vector::i" = alloca i32, align 4
+  %other = alloca %"Vector::Vec<bool>", align 8
+  store %"Vector::Vec<bool>" zeroinitializer, ptr %other, align 8
+  store %"Vector::Vec<bool>" %1, ptr %other, align 8
+  %2 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %other, i32 0, i32 2
+  %capacity = load i32, ptr %2, align 4
+  %3 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 2
+  %capacity1 = load i32, ptr %3, align 4
+  %icmpne = icmp ne i32 %capacity, %capacity1
+  br i1 %icmpne, label %then, label %ifcont
+
+then:                                             ; preds = %entry
+  %4 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %other, i32 0, i32 2
+  %capacity2 = load i32, ptr %4, align 4
+  call void @"Vector::Vec<bool>_reserve_int"(ptr %0, i32 %capacity2)
+  br label %ifcont
+
+ifcont:                                           ; preds = %then, %entry
+  %5 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %other, i32 0, i32 1
+  %size = load i32, ptr %5, align 4
+  %size_ptr = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  store i32 %size, ptr %size_ptr, align 4
+  store i32 0, ptr %"Vector::i", align 4
+  store i32 0, ptr %"Vector::i", align 4
+  br label %for.cond
+
+for.cond:                                         ; preds = %for.inc, %ifcont
+  %i = load i32, ptr %"Vector::i", align 4
+  %6 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %other, i32 0, i32 1
+  %size3 = load i32, ptr %6, align 4
+  %icmplt = icmp slt i32 %i, %size3
+  br i1 %icmplt, label %for.body, label %for.end
+
+for.body:                                         ; preds = %for.cond
+  %i4 = load i32, ptr %"Vector::i", align 4
+  %7 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 0
+  %data = load ptr, ptr %7, align 8
+  %ptr_arr_asi = getelementptr i1, ptr %data, i32 %i4
+  %i5 = load i32, ptr %"Vector::i", align 4
+  %8 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %other, i32 0, i32 0
+  %data6 = load ptr, ptr %8, align 8
+  %ptr_arr_addr = getelementptr i1, ptr %data6, i32 %i5
+  %ptr_arr_val = load i1, ptr %ptr_arr_addr, align 1
+  store i1 %ptr_arr_val, ptr %ptr_arr_asi, align 1
+  br label %for.inc
+
+for.inc:                                          ; preds = %for.body
+  %inc_deref = load i32, ptr %"Vector::i", align 4
+  %inc = add i32 %inc_deref, 1
+  store i32 %inc, ptr %"Vector::i", align 4
+  br label %for.cond
+
+for.end:                                          ; preds = %for.cond
+  ret ptr %0
+}
+
+define weak_odr i1 @"Vector::Vec<bool>_isEmpty"(ptr %0) !qc.return_types !27 {
+entry:
+  %1 = getelementptr inbounds nuw %"Vector::Vec<bool>", ptr %0, i32 0, i32 1
+  %size = load i32, ptr %1, align 4
+  %icmpeq = icmp eq i32 %size, 0
+  ret i1 %icmpeq
+}
+
+define weak_odr %"String::Str" @"String::toStr<int>"(i32 %value) {
+entry:
+  %"temp_String::Str34" = alloca %"String::Str", align 8
+  %"String::temp" = alloca i8, align 1
+  %"String::j" = alloca i64, align 8
+  %"String::i" = alloca i64, align 8
+  %"String::buffer" = alloca [64 x i8], align 1
+  %"String::negative" = alloca i1, align 1
+  %"temp_String::Str" = alloca %"String::Str", align 8
+  %value1 = alloca i32, align 4
+  store i32 0, ptr %value1, align 4
+  store i32 %value, ptr %value1, align 4
+  %value2 = load i32, ptr %value1, align 4
+  %icmpeq = icmp eq i32 %value2, 0
+  br i1 %icmpeq, label %then, label %ifcont
+
+then:                                             ; preds = %entry
+  store %"String::Str" zeroinitializer, ptr %"temp_String::Str", align 8
+  call void @"String::Str_Str_char*"(ptr %"temp_String::Str", ptr @.str.64)
+  %"String::Str_inst" = load %"String::Str", ptr %"temp_String::Str", align 8
+  ret %"String::Str" %"String::Str_inst"
+
+ifcont:                                           ; preds = %entry
+  store i1 false, ptr %"String::negative", align 1
+  store i1 false, ptr %"String::negative", align 1
+  %value3 = load i32, ptr %value1, align 4
+  %icmplt = icmp slt i32 %value3, 0
+  br i1 %icmplt, label %then4, label %ifcont5
+
+then4:                                            ; preds = %ifcont
+  store i1 true, ptr %"String::negative", align 1
+  %value6 = load i32, ptr %value1, align 4
+  %neg = sub i32 0, %value6
+  store i32 %neg, ptr %value1, align 4
+  br label %ifcont5
+
+ifcont5:                                          ; preds = %then4, %ifcont
+  store [64 x i8] zeroinitializer, ptr %"String::buffer", align 1
+  call void @llvm.memset.inline.p0.i64(ptr %"String::buffer", i8 0, i64 64, i1 false)
+  store i64 0, ptr %"String::i", align 8
+  store i64 0, ptr %"String::i", align 8
+  br label %while.cond
+
+while.cond:                                       ; preds = %while.body, %ifcont5
+  %value7 = load i32, ptr %value1, align 4
+  %icmpgt = icmp sgt i32 %value7, 0
+  br i1 %icmpgt, label %while.body, label %while.end
+
+while.body:                                       ; preds = %while.cond
+  %inc_deref = load i64, ptr %"String::i", align 8
+  %inc = add i64 %inc_deref, 1
+  store i64 %inc, ptr %"String::i", align 8
+  %value8 = load i32, ptr %value1, align 4
+  %srem = srem i32 %value8, 10
+  %add = add i32 48, %srem
+  %trunc_char = trunc i32 %add to i8
+  %arr_elem_ptr = getelementptr inbounds [64 x i8], ptr %"String::buffer", i32 0, i64 %inc_deref
   store i8 %trunc_char, ptr %arr_elem_ptr, align 1
-  %sdiv = udiv i32 %value1.158, 10
-  %icmpgt.not = icmp samesign ult i32 %value1.158, 10
-  br i1 %icmpgt.not, label %while.end, label %while.body
+  %assign_lhs_val = load i32, ptr %value1, align 4
+  %sdiv = sdiv i32 %assign_lhs_val, 10
+  store i32 %sdiv, ptr %value1, align 4
+  br label %while.cond
 
-while.end:                                        ; preds = %while.body
-  br i1 %icmplt, label %then9, label %ifcont10
+while.end:                                        ; preds = %while.cond
+  %negative = load i1, ptr %"String::negative", align 1
+  br i1 %negative, label %then9, label %ifcont10
 
-then9:                                            ; preds = %ifcont5, %while.end
-  %"String::i.0.lcssa66" = phi i64 [ %inc, %while.end ], [ 0, %ifcont5 ]
-  %inc12 = add i64 %"String::i.0.lcssa66", 1
-  %arr_elem_ptr13 = getelementptr inbounds i8, ptr %"String::buffer", i64 %"String::i.0.lcssa66"
+then9:                                            ; preds = %while.end
+  %inc_deref11 = load i64, ptr %"String::i", align 8
+  %inc12 = add i64 %inc_deref11, 1
+  store i64 %inc12, ptr %"String::i", align 8
+  %arr_elem_ptr13 = getelementptr inbounds [64 x i8], ptr %"String::buffer", i32 0, i64 %inc_deref11
   store i8 45, ptr %arr_elem_ptr13, align 1
   br label %ifcont10
 
 ifcont10:                                         ; preds = %then9, %while.end
-  %"String::i.1" = phi i64 [ %inc12, %then9 ], [ %inc, %while.end ]
-  %sdiv14 = sdiv i64 %"String::i.1", 2
-  %icmplt1559 = icmp sgt i64 %"String::i.1", 1
-  br i1 %icmplt1559, label %for.body.lr.ph, label %for.end
+  store i64 0, ptr %"String::j", align 8
+  store i64 0, ptr %"String::j", align 8
+  br label %for.cond
 
-for.body.lr.ph:                                   ; preds = %ifcont10
-  %1 = getelementptr i8, ptr %"String::buffer", i64 %"String::i.1"
-  %xtraiter = and i64 %sdiv14, 1
-  %2 = and i64 %"String::i.1", 9223372036854775806
-  %3 = icmp eq i64 %2, 2
-  br i1 %3, label %for.body.epil.preheader, label %for.body.lr.ph.new
+for.cond:                                         ; preds = %for.inc, %ifcont10
+  %j = load i64, ptr %"String::j", align 8
+  %i = load i64, ptr %"String::i", align 8
+  %sdiv14 = sdiv i64 %i, 2
+  %icmplt15 = icmp slt i64 %j, %sdiv14
+  br i1 %icmplt15, label %for.body, label %for.end
 
-for.body.lr.ph.new:                               ; preds = %for.body.lr.ph
-  %unroll_iter = and i64 %sdiv14, 4611686018427387902
-  br label %for.body
-
-for.body:                                         ; preds = %for.body, %for.body.lr.ph.new
-  %"String::j.060" = phi i64 [ 0, %for.body.lr.ph.new ], [ %inc31.1, %for.body ]
-  %niter = phi i64 [ 0, %for.body.lr.ph.new ], [ %niter.next.1, %for.body ]
-  %arr_elem_ptr17 = getelementptr inbounds nuw i8, ptr %"String::buffer", i64 %"String::j.060"
+for.body:                                         ; preds = %for.cond
+  store i8 0, ptr %"String::temp", align 1
+  %j16 = load i64, ptr %"String::j", align 8
+  %arr_elem_ptr17 = getelementptr inbounds [64 x i8], ptr %"String::buffer", i32 0, i64 %j16
   %arr_elem = load i8, ptr %arr_elem_ptr17, align 1
-  %4 = xor i64 %"String::j.060", -1
-  %arr_elem_ptr22 = getelementptr i8, ptr %1, i64 %4
+  store i8 %arr_elem, ptr %"String::temp", align 1
+  %j18 = load i64, ptr %"String::j", align 8
+  %i19 = load i64, ptr %"String::i", align 8
+  %j20 = load i64, ptr %"String::j", align 8
+  %sub = sub i64 %i19, %j20
+  %sub21 = sub i64 %sub, 1
+  %arr_elem_ptr22 = getelementptr inbounds [64 x i8], ptr %"String::buffer", i32 0, i64 %sub21
   %arr_elem23 = load i8, ptr %arr_elem_ptr22, align 1
-  store i8 %arr_elem23, ptr %arr_elem_ptr17, align 1
-  store i8 %arr_elem, ptr %arr_elem_ptr22, align 1
-  %5 = getelementptr inbounds nuw i8, ptr %"String::buffer", i64 %"String::j.060"
-  %arr_elem_ptr17.1 = getelementptr inbounds nuw i8, ptr %5, i64 1
-  %arr_elem.1 = load i8, ptr %arr_elem_ptr17.1, align 1
-  %6 = xor i64 %"String::j.060", -2
-  %arr_elem_ptr22.1 = getelementptr i8, ptr %1, i64 %6
-  %arr_elem23.1 = load i8, ptr %arr_elem_ptr22.1, align 1
-  store i8 %arr_elem23.1, ptr %arr_elem_ptr17.1, align 1
-  store i8 %arr_elem.1, ptr %arr_elem_ptr22.1, align 1
-  %inc31.1 = add nuw nsw i64 %"String::j.060", 2
-  %niter.next.1 = add i64 %niter, 2
-  %niter.ncmp.1 = icmp eq i64 %niter.next.1, %unroll_iter
-  br i1 %niter.ncmp.1, label %for.end.loopexit.unr-lcssa, label %for.body
+  %arr_elem_ptr24 = getelementptr inbounds [64 x i8], ptr %"String::buffer", i32 0, i64 %j18
+  store i8 %arr_elem23, ptr %arr_elem_ptr24, align 1
+  %i25 = load i64, ptr %"String::i", align 8
+  %j26 = load i64, ptr %"String::j", align 8
+  %sub27 = sub i64 %i25, %j26
+  %sub28 = sub i64 %sub27, 1
+  %temp = load i8, ptr %"String::temp", align 1
+  %arr_elem_ptr29 = getelementptr inbounds [64 x i8], ptr %"String::buffer", i32 0, i64 %sub28
+  store i8 %temp, ptr %arr_elem_ptr29, align 1
+  br label %for.inc
 
-for.end.loopexit.unr-lcssa:                       ; preds = %for.body
-  %lcmp.mod.not = icmp eq i64 %xtraiter, 0
-  br i1 %lcmp.mod.not, label %for.end, label %for.body.epil.preheader
+for.inc:                                          ; preds = %for.body
+  %inc_deref30 = load i64, ptr %"String::j", align 8
+  %inc31 = add i64 %inc_deref30, 1
+  store i64 %inc31, ptr %"String::j", align 8
+  br label %for.cond
 
-for.body.epil.preheader:                          ; preds = %for.end.loopexit.unr-lcssa, %for.body.lr.ph
-  %"String::j.060.epil.init" = phi i64 [ 0, %for.body.lr.ph ], [ %inc31.1, %for.end.loopexit.unr-lcssa ]
-  %lcmp.mod67 = trunc i64 %sdiv14 to i1
-  tail call void @llvm.assume(i1 %lcmp.mod67)
-  %arr_elem_ptr17.epil = getelementptr inbounds nuw i8, ptr %"String::buffer", i64 %"String::j.060.epil.init"
-  %arr_elem.epil = load i8, ptr %arr_elem_ptr17.epil, align 1
-  %7 = xor i64 %"String::j.060.epil.init", -1
-  %arr_elem_ptr22.epil = getelementptr i8, ptr %1, i64 %7
-  %arr_elem23.epil = load i8, ptr %arr_elem_ptr22.epil, align 1
-  store i8 %arr_elem23.epil, ptr %arr_elem_ptr17.epil, align 1
-  store i8 %arr_elem.epil, ptr %arr_elem_ptr22.epil, align 1
-  br label %for.end
-
-for.end:                                          ; preds = %for.body.epil.preheader, %for.end.loopexit.unr-lcssa, %ifcont10
-  %arr_elem_ptr33 = getelementptr inbounds i8, ptr %"String::buffer", i64 %"String::i.1"
+for.end:                                          ; preds = %for.cond
+  %i32 = load i64, ptr %"String::i", align 8
+  %arr_elem_ptr33 = getelementptr inbounds [64 x i8], ptr %"String::buffer", i32 0, i64 %i32
   store i8 0, ptr %arr_elem_ptr33, align 1
-  %strlen.i51 = call i64 @strlen(ptr nonnull dereferenceable(1) %"String::buffer")
-  %add.i53 = add i64 %strlen.i51, 1
-  %builtin_call.i54 = tail call fastcc ptr @qc_malloc(i64 %add.i53)
-  call void @llvm.memcpy.inline.p0.p0.i64(ptr align 1 %builtin_call.i54, ptr nonnull align 1 %"String::buffer", i64 %add.i53, i1 false)
-  br label %common.ret
+  store %"String::Str" zeroinitializer, ptr %"temp_String::Str34", align 8
+  %decayptr = getelementptr inbounds [64 x i8], ptr %"String::buffer", i32 0, i32 0
+  call void @"String::Str_Str_char*"(ptr %"temp_String::Str34", ptr %decayptr)
+  %"String::Str_inst35" = load %"String::Str", ptr %"temp_String::Str34", align 8
+  ret %"String::Str" %"String::Str_inst35"
 }
-
-; Function Attrs: nocallback nofree nosync nounwind willreturn memory(argmem: write)
-declare void @llvm.memset.p0.i64(ptr writeonly captures(none), i8, i64, i1 immarg) #19
-
-; Function Attrs: nocallback nocreateundeforpoison nofree nosync nounwind speculatable willreturn memory(none)
-declare i16 @llvm.bswap.i16(i16) #20
-
-; Function Attrs: nocallback nocreateundeforpoison nofree nosync nounwind speculatable willreturn memory(none)
-declare i32 @llvm.bswap.i32(i32) #20
-
-; Function Attrs: nocallback nocreateundeforpoison nofree nosync nounwind speculatable willreturn memory(none)
-declare i64 @llvm.bswap.i64(i64) #20
-
-; Function Attrs: nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
-declare void @llvm.memcpy.p0.p0.i64(ptr noalias writeonly captures(none), ptr noalias readonly captures(none), i64, i1 immarg) #21
-
-; Function Attrs: nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
-declare void @llvm.memmove.p0.p0.i64(ptr writeonly captures(none), ptr readonly captures(none), i64, i1 immarg) #21
-
-; Function Attrs: nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
-declare void @llvm.lifetime.start.p0(ptr captures(none)) #21
-
-; Function Attrs: nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
-declare void @llvm.lifetime.end.p0(ptr captures(none)) #21
-
-; Function Attrs: nocallback nofree nosync nounwind willreturn memory(inaccessiblemem: write)
-declare void @llvm.assume(i1 noundef) #22
 
 attributes #0 = { cold mustprogress nofree noreturn nounwind sspstrong uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
 attributes #1 = { nofree nounwind "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
 attributes #2 = { cold nofree noreturn nounwind "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #3 = { mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: read) "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #4 = { mustprogress nofree nounwind sspstrong willreturn memory(inaccessiblemem: readwrite, errnomem: write) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #5 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite, errnomem: write) "alloc-family"="malloc" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #6 = { mustprogress nounwind sspstrong willreturn memory(argmem: readwrite, inaccessiblemem: readwrite) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #7 = { mustprogress nounwind willreturn allockind("free") memory(argmem: readwrite, inaccessiblemem: readwrite) "alloc-family"="malloc" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #8 = { mustprogress nounwind sspstrong willreturn memory(argmem: readwrite, inaccessiblemem: readwrite, errnomem: write) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #9 = { mustprogress nounwind willreturn allockind("realloc") allocsize(1) memory(argmem: readwrite, inaccessiblemem: readwrite, errnomem: write) "alloc-family"="malloc" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #3 = { mustprogress nofree nounwind sspstrong willreturn memory(inaccessiblemem: readwrite, errnomem: write) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #4 = { mustprogress nofree nounwind willreturn allockind("alloc,uninitialized") allocsize(0) memory(inaccessiblemem: readwrite, errnomem: write) "alloc-family"="malloc" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #5 = { mustprogress nounwind sspstrong willreturn memory(argmem: readwrite, inaccessiblemem: readwrite) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #6 = { mustprogress nounwind willreturn allockind("free") memory(argmem: readwrite, inaccessiblemem: readwrite) "alloc-family"="malloc" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #7 = { mustprogress nounwind sspstrong willreturn memory(argmem: readwrite, inaccessiblemem: readwrite, errnomem: write) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #8 = { mustprogress nounwind willreturn allockind("realloc") allocsize(1) memory(argmem: readwrite, inaccessiblemem: readwrite, errnomem: write) "alloc-family"="malloc" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #9 = { mustprogress nofree nounwind willreturn allockind("alloc,zeroed") allocsize(0,1) memory(inaccessiblemem: readwrite, errnomem: write) "alloc-family"="malloc" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
 attributes #10 = { mustprogress nofree nounwind sspstrong uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #11 = { mustprogress nocallback nocreateundeforpoison nofree nosync nounwind speculatable willreturn memory(none) }
-attributes #12 = { mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: read) }
-attributes #13 = { mustprogress sspstrong uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #14 = { "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #15 = { mustprogress nofree sspstrong uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #16 = { nofree "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #17 = { noinline optnone "noipa" }
-attributes #18 = { mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite) }
-attributes #19 = { nocallback nofree nosync nounwind willreturn memory(argmem: write) }
-attributes #20 = { nocallback nocreateundeforpoison nofree nosync nounwind speculatable willreturn memory(none) }
-attributes #21 = { nocallback nofree nosync nounwind willreturn memory(argmem: readwrite) }
-attributes #22 = { nocallback nofree nosync nounwind willreturn memory(inaccessiblemem: write) }
-attributes #23 = { cold nounwind }
-attributes #24 = { cold noreturn nounwind }
-attributes #25 = { nounwind allocsize(0) }
-attributes #26 = { nounwind }
-attributes #27 = { nounwind allocsize(1) }
+attributes #11 = { mustprogress nofree norecurse nosync nounwind sspstrong willreturn memory(none) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #12 = { mustprogress sspstrong uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #13 = { "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #14 = { mustprogress nofree sspstrong uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #15 = { nofree "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #16 = { mustprogress nounwind sspstrong uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #17 = { nounwind "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #18 = { mustprogress nofree nosync nounwind willreturn memory(argmem: read) "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #19 = { mustprogress nofree norecurse nosync nounwind sspstrong willreturn memory(argmem: read) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #20 = { mustprogress nofree norecurse nosync nounwind sspstrong willreturn memory(read, argmem: readwrite, inaccessiblemem: none, target_mem: none) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #21 = { nocallback nofree nosync nounwind willreturn memory(argmem: write) }
+attributes #22 = { cold nounwind }
+attributes #23 = { cold noreturn nounwind }
+attributes #24 = { nounwind allocsize(0) }
+attributes #25 = { nounwind }
+attributes #26 = { nounwind allocsize(1) }
+attributes #27 = { nounwind allocsize(0,1) }
 attributes #28 = { nounwind willreturn memory(read) }
 attributes #29 = { noreturn }
 
@@ -9460,54 +7911,48 @@ attributes #29 = { noreturn }
 !11 = !{!"any pointer", !4, i64 0}
 !12 = distinct !{!12, !13}
 !13 = !{!"llvm.loop.mustprogress"}
-!14 = distinct !{null}
-!15 = !{}
-!16 = !{!"Str"}
-!17 = !{!"addr_t"}
-!18 = distinct !{!18, !19, !20}
-!19 = !{!"llvm.loop.isvectorized", i32 1}
-!20 = !{!"llvm.loop.unroll.runtime.disable"}
-!21 = !{!"branch_weights", i32 4, i32 28}
-!22 = distinct !{!22, !19, !20}
-!23 = distinct !{!23, !24}
-!24 = !{!"llvm.loop.unroll.disable"}
-!25 = distinct !{!25, !19}
+!14 = distinct !{!14, !13}
+!15 = !{!16, !3, i64 12}
+!16 = !{!"_ZTS11qc_variadic", !17, i64 0, !3, i64 8, !3, i64 12}
+!17 = !{!"any p2 pointer", !11, i64 0}
+!18 = !{!16, !3, i64 8}
+!19 = !{!16, !17, i64 0}
+!20 = !{!11, !11, i64 0}
+!21 = !{!"void"}
+!22 = !{!"char*"}
+!23 = !{}
+!24 = !{!"Str"}
+!25 = !{!"addr_t"}
 !26 = !{!"View"}
 !27 = !{!"bool"}
-!28 = distinct !{!28, !19, !20}
-!29 = distinct !{!29, !19, !20}
-!30 = distinct !{!30, !24}
-!31 = distinct !{!31, !19}
-!32 = distinct !{!32, !24}
-!33 = !{!"char&"}
-!34 = !{!"void"}
-!35 = distinct !{!35, !24}
-!36 = distinct !{!36, !24}
-!37 = !{!"qbool"}
-!38 = !{!"char*"}
-!39 = !{!"int"}
-!40 = !{!"T&"}
-!41 = !{!"T"}
-!42 = !{!"Iterator::It<T>"}
-!43 = !{!"Vec<T>&"}
-!44 = distinct !{!44, !24}
-!45 = !{!"Vector::Vec<int>"}
-!46 = !{!"double"}
-!47 = !{!"Errors::Error<double>"}
-!48 = distinct !{!48, !24}
-!49 = !{!"Command&"}
-!50 = !{!"Builder*"}
-!51 = !{!"Vector::Vec<Command>"}
-!52 = distinct !{!52, !24}
-!53 = !{!"Task*"}
-!54 = !{!"Job*"}
-!55 = distinct !{!55, !24}
-!56 = distinct !{!56, !19, !20}
-!57 = distinct !{!57, !20, !19}
-!58 = !{!"__pid_t"}
-!59 = !{!"__uint16_t"}
-!60 = !{!"__uint32_t"}
-!61 = !{!"__uint64_t"}
-!62 = !{!"long int"}
-!63 = !{!"RunResult"}
-!64 = distinct !{!64, !24}
+!28 = !{!"char&"}
+!29 = !{!"qbool"}
+!30 = !{!"int"}
+!31 = !{!"T&"}
+!32 = !{!"T"}
+!33 = !{!"Iterator::It<T>"}
+!34 = !{!"Vec<T>&"}
+!35 = !{!"Command&"}
+!36 = !{!"Builder*"}
+!37 = !{!"Vector::Vec<Command>"}
+!38 = !{!"Task*"}
+!39 = !{!"Job*"}
+!40 = !{!"cpu_set_t*"}
+!41 = !{!"__uint16_t"}
+!42 = !{!"__uint32_t"}
+!43 = !{!"__uint64_t"}
+!44 = !{!"ssize_t"}
+!45 = !{!"i32u_t"}
+!46 = !{!"__useconds_t"}
+!47 = !{!"long int"}
+!48 = !{!"size_t"}
+!49 = !{!"__pid_t"}
+!50 = !{!"__uid_t"}
+!51 = !{!"__gid_t"}
+!52 = !{!"void*"}
+!53 = !{!"__sighandler_t"}
+!54 = !{!"clock_t"}
+!55 = !{!"time_t"}
+!56 = !{!"double"}
+!57 = !{!"tm*"}
+!58 = !{!"RunResult"}

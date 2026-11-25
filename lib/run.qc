@@ -44,10 +44,12 @@ namespace CQB {
             while (s[i] != '\0') {
                 int start = i;
                 while (s[i] != '\n' && s[i] != '\0') i++;
-                bool atNewline = s[i] == '\n';
-                s[i] = '\0';
-                if (!isProgressLine(s, start)) IO::qout("%s\n", &(s[start]));
-                if (atNewline) { s[i] = '\n'; i++; }
+                int len = i - start;
+                if (!isProgressLine(s, start)) {
+                    `write(1, &(s[start]), len);
+                    `write(1, "\n", 1);
+                }
+                if (s[i] == '\n') i++;
             }
         }
         struct TaskState {
@@ -155,7 +157,7 @@ namespace CQB {
                 }
                 return -1;
             }
-            int runBuildPipeline() {
+            int runBuildPipeline(char *qc_exe = "qc") {
                 Vector::Vec<int> order = Vector::Vec<int>();
                 int n = this->buildGraph.length();
                 Vector::Vec<int> remaining = Vector::Vec<int>();
@@ -198,8 +200,10 @@ namespace CQB {
                 for (int k = 0; k < order.length(); k++) {
                     Build::Command command = this->buildGraph[order[k]];
                     Vector::Vec<char*> comm = [command.commandBin];
-                    bool isQc = comm[0] == "qc";
+                    String::Str qc = String::Str(comm[0]);
+                    bool isQc = qc == "qc";
                     if (isQc) {
+                        comm[0] = qc_exe;
                         foreach (char *input in command.inputs) { comm.push(input); }
                         foreach (char *flag in command.flags) { comm.push(flag); }
                         comm.push("-o");
@@ -212,6 +216,7 @@ namespace CQB {
                     } else {
                         foreach (char *flag in command.flags) { comm.push(flag); }
                     }
+                    qc._destroy();
                     String::Str label = "[";
                     defer label._destroy();
                     String::Str num = String::toStr<int>(k + 1);
@@ -242,7 +247,7 @@ namespace CQB {
                             IO::qout("[%i/%i] %s ok (%i.%03is)\n", k + 1, order.length(), command.targetName, ms / 1000, ms % 1000);
                         }
                     } else {
-                        IO::qout("[%i/%i] %s FAILED (exit %i)\n", k + 1, order.length(), command.targetName, res.exitCode);
+                        IO::qout("[%i/%i] %s FAILED\n", k + 1, order.length(), command.targetName);
                         printWithoutProgress(res.output);
                         return res.exitCode;
                     }
@@ -347,9 +352,9 @@ namespace CQB {
                 this->ciDone = false;
                 this->buildDone = false;
             }
-            bool Run() {
+            bool Run(char *qc_exe = "qc") {
                 this->runCIPipeline();
-                this->runBuildPipeline();
+                this->runBuildPipeline(qc_exe);
                 return true;
             }
         };

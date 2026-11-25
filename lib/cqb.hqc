@@ -91,7 +91,7 @@ namespace CQB {
             int runBuildPipeline();
             int runCIPipeline();
             Runner(Vector::Vec<Build::Command> build, CI::Task *ciRoot);
-            bool Run();
+            bool Run(char *qc_executable = "qc");
         };
     }
 }
