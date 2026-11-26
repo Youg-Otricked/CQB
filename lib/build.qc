@@ -45,7 +45,6 @@ namespace CQB {
                 String::Str toStr = to_define;
                 def += toStr;
                 this->flag(def.c_str());
-                def._destroy();
                 toStr._destroy();
                 return this;
             }
@@ -54,7 +53,6 @@ namespace CQB {
                 String::Str toStr = to_link;
                 def += toStr;
                 this->flag(def.c_str());
-                def._destroy();
                 toStr._destroy();
                 return this;
             }
@@ -63,7 +61,6 @@ namespace CQB {
                 String::Str toStr = to_link;
                 def += toStr;
                 this->flag(def.c_str());
-                def._destroy();
                 toStr._destroy();
                 return this;
             }
@@ -72,7 +69,6 @@ namespace CQB {
                 String::Str toStr = to_inc;
                 def += toStr;
                 this->flag(def.c_str());
-                def._destroy();
                 toStr._destroy();
                 return this;
             }
@@ -81,7 +77,6 @@ namespace CQB {
                 String::Str toStr = to_flag;
                 def += toStr;
                 this->flag(def.c_str());
-                def._destroy();
                 toStr._destroy();
                 return this;
             }
@@ -90,7 +85,6 @@ namespace CQB {
                 String::Str toStr = to_warn;
                 def += toStr;
                 this->flag(def.c_str());
-                def._destroy();
                 toStr._destroy();
                 return this;
             }
@@ -99,7 +93,6 @@ namespace CQB {
                 String::Str toStr = to_warn;
                 def += toStr;
                 this->flag(def.c_str());
-                def._destroy();
                 toStr._destroy();
                 return this;
             }
@@ -108,7 +101,6 @@ namespace CQB {
                 String::Str toStr = to_error;
                 def += toStr;
                 this->flag(def.c_str());
-                def._destroy();
                 toStr._destroy();
                 return this;
             }
