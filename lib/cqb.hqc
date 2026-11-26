@@ -88,7 +88,7 @@ namespace CQB {
             CI::Task* activeTask;
             Vector::Vec<Build::Command> buildGraph;
             int indexOf(Vector::Vec<Build::Command>& g, char* name);
-            int runBuildPipeline();
+            int runBuildPipeline(char *qc_executable = "qc");
             int runCIPipeline();
             Runner(Vector::Vec<Build::Command> build, CI::Task *ciRoot);
             bool Run(char *qc_executable = "qc");
