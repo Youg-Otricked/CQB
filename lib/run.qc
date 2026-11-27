@@ -234,7 +234,6 @@ namespace CQB {
                     long int t0 = nowMs();
                     RunResult res = runCommand(comm, label.c_str(), tty);
                     long int ms = nowMs() - t0;
-                    comm._destroy();
                     if (tty) {
                         IO::qout("\r\x1b[K");
                         fflush(nullptr);
